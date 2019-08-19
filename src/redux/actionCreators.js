@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import axios from 'axios';
-
+let url;
 export const locationSuccess = locationList => ({
     type: types.FETCH_LOCATIONS_SUCCESS,
     payload: locationList,
