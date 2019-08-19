@@ -35,6 +35,7 @@ const mockStore = configureMockStore(middlewares)
     })
     it('location_loading success', async ()=>{
       mock.onGet(`${url}/locations`).reply(200, locations);
+      //mock the get method when locations are succesfully gotten
       const expectedActions = [
         { type: types.LOADING_LOCATIONS },
         { type: types.FETCH_LOCATIONS_SUCCESS, payload:locations }
