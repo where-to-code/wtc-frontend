@@ -45,6 +45,7 @@ const mockStore = configureMockStore(middlewares)
     })
     it('location_loading failure',async() => {
       mock.onGet(`${url}/locations`).reply(404);
+      //mock the get method when path is not found
       const expectedActions =[
         { type: types.LOADING_LOCATIONS },
         { type: types.FETCH_LOCATIONS_FAILURE, payload:'Request failed with status code 404' }
@@ -54,6 +55,18 @@ const mockStore = configureMockStore(middlewares)
         expect(store.getActions()).toEqual(expectedActions)
     })
     it('location_loading failure',async() => {
+      mock.onGet(`${url}/locations`).reply(500);
+      //mock the get method for other causes of error
+      const expectedActions =[
+        { type: types.LOADING_LOCATIONS },
+        { type: types.FETCH_LOCATIONS_FAILURE, payload:'Request failed with status code 500' }
+      ]
+      const store = mockStore({ locations:[] })
+      await store.dispatch(actions.locationLoads())
+        expect(store.getActions()).toEqual(expectedActions)
+    })
+    it('location_loading failure',async() => {
+      //mock the get method when network fails
       mock.onGet(`${url}/locations`).networkError();
       const expectedActions =[
         { type: types.LOADING_LOCATIONS },
