@@ -5,10 +5,35 @@ function Home() {
   const [googleMap, setGoogleMap] = useState(null);
   const mapDefaultView = async () => {
     const newMap = new googleMap.Map(document.getElementById('map'), {
-      zoom: 5,
+      zoom: 15,
       center: { lat: 6.553909, lng: 3.3663045 }
     });
-    console.log(newMap);
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        newMap.setCenter(pos);
+        setCenterToUserLocation(true, newMap);
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      setCenterToUserLocation(false, newMap);
+    }
+  };
+
+  const setCenterToUserLocation = (browserHasGeolocation, newMap) => {
+    // add the marker to the center
+    if (browserHasGeolocation) {
+      new googleMap.Marker({
+        map: newMap,
+        position: newMap.getCenter()
+      });
+    } else {
+      console.log('error');
+    }
   };
 
   const loadMap = () => {
@@ -60,5 +85,5 @@ const mapStateToProps = () => {
 };
 export default connect(
   mapStateToProps,
-  {  }
+  {}
 )(Home);
