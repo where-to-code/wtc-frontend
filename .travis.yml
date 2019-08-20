@@ -16,7 +16,7 @@ before_script:
 
 
 script:
-  - npm test  --transformIgnorePatterns \"node_modules/(?!(react-redux|redux-thunk))/\
+  - npm test  --transformIgnorePatterns \"node_modules/(?!(react-redux|redux-thunk))/\"
   - sudo /etc/init.d/postgresql stop 
 after_script:
   - jest --coverage && cat ./tests/coverage/lcov.info | coveralls
