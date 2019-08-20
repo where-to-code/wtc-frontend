@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test  --transformIgnorePatterns ['node_modules/(?!(redux-thunk|react-redux)/)']",
+    "test": "react-scripts test  --transformIgnorePatterns 'node_modules/(?!(<package-need-to-transform>|<other-package-need-to-transform>)/)'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
