@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns ",
+    "test": "react-scripts test --env=jsdom --transformIgnorePatterns ['node_modules/(?!(redux-thunk|react-redux)/)']",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
