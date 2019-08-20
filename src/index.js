@@ -15,7 +15,7 @@ dotenv.config();
 const combinedReducer = combineReducers({
     location: reducers.locationReducer
   });
-  const store = createStore(
+ const store = createStore(
     combinedReducer,
     {},
     compose(

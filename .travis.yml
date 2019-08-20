@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - "stable"
+services:
+  - postgresql
+cache:
+  directories:
+    - "node_modules"
+env:
+  global:
+    - DB_ENV=testing
+   
+before_script:
+  - psql -c 'create database frontend_test;' -U postgres
+  - npm install coveralls
+
+
+script:
+  - npm test
+  - sudo /etc/init.d/postgresql stop 
+after_script:
+  - jest --coverage --coverageReporters=text-lcov | coveralls
+notifications:
+  email: false
