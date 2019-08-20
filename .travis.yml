@@ -19,6 +19,6 @@ script:
   - npm test
   - sudo /etc/init.d/postgresql stop 
 after_script:
-  - jest --coverage --coverageReporters=text-lcov | coveralls
+  - jest --coverage && cat ./tests/coverage/lcov.info | coveralls
 notifications:
   email: false
