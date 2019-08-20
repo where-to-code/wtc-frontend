@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -8,6 +9,9 @@ import logger from "redux-logger";
 import  * as reducers from '../src/redux/reducers'
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import * as serviceWorker from './serviceWorker';
+
+dotenv.config();
+
 const combinedReducer = combineReducers({
     location: reducers.locationReducer
   });
