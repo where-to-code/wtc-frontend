@@ -8,7 +8,6 @@ function Home(props) {
   const { maps, mapsLoading } = props;
 
   const mapDefaultView = async () => {
-    console.log(maps)
     const newMap = new maps.mapsObj.Map(document.getElementById('map'), {
       zoom: 15,
       center: { lat: 6.553909, lng: 3.3663045 }
@@ -37,7 +36,7 @@ function Home(props) {
         position: newMap.getCenter()
       });
     } else {
-      console.log('error');
+      console.log("this browser doesn't support geolocation or you refused access to it");
     }
   };
 
@@ -48,7 +47,7 @@ function Home(props) {
     } else {
       mapsLoading();
     }
-  });
+  },[maps.mapsObj]);
   return (
     <div className="App">
       <div className="map-container" id="map" />
