@@ -1,5 +1,5 @@
 
-![](./coverage/badge-branches.svg) ![](./coverage/badge-functions.svg) ![](./coverage/badge-lines.svg) ![](./coverage/badge-statements.svg) 
+![](./badges/badge-branches.svg) ![](./badges/badge-functions.svg) ![](./badges/badge-lines.svg) ![](./badges/badge-statements.svg) 
 
 # wtc-frontend
 
