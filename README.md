@@ -1,4 +1,4 @@
-![Alt text](./controllers_brief.svg)
+![Alt text](./coverage/badge-branches.svg)
 <img src="./coverage/badge-branches.svg"> <img src="./coverage/badge-functions.svg"> <img src="./coverage/badge-lines.svg"> <img src="./coverage/badge-statements.svg">
 
 # wtc-frontend
