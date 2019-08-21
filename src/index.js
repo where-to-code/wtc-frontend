@@ -6,22 +6,23 @@ import App from './App';
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import  * as reducers from '../src/redux/reducers'
+import * as reducers from '../src/redux/reducers'
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import * as serviceWorker from './serviceWorker';
 
 dotenv.config();
 
 const combinedReducer = combineReducers({
-    location: reducers.locationReducer
-  });
-  const store = createStore(
-    combinedReducer,
-    {},
-    compose(
-      applyMiddleware(thunk, logger),
-    )
-  );
+  location: reducers.locationReducer,
+  maps: reducers.mapsReducer
+});
+const store = createStore(
+  combinedReducer,
+  {},
+  compose(
+    applyMiddleware(thunk, logger),
+  )
+);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
