@@ -16,11 +16,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage && jest-coverage-badges input \"./coverage/coverage-final.json\" output \"./badges\"",
+    "test": "react-scripts test --coverage && jest-coverage-badges",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "coverageReporters": [
+      "json-summary", 
+      "text",
+      "lcov"
+    ]
   },
   "browserslist": {
     "production": [
