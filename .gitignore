@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+#testing
+/coverage/lcov-report
 # production
 /build
 
