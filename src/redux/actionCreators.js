@@ -31,7 +31,7 @@ export const locationLoads = () => async dispatch => {
 //   // #3 the callback resolve the promise with window.google (previously set in the API call)
 //   // #4 we clear the callback function from window
 //   // #5 return the resolved promise (maps API) to the calling component
- 
+
 //   return new Promise((resolve, reject) => {
 //     window.initGoogleMapPromise = () => {
 //       resolve(window.google);
