@@ -1,5 +1,5 @@
 
-![]<object data= "https://raw.githubusercontent.com//where-to-code/wtc-frontend/tree/chore/set-up-travis/coverage/badge-branches.svg">
+<object data= "https://raw.githubusercontent.com//where-to-code/wtc-frontend/tree/chore/set-up-travis/coverage/badge-branches.svg">
 
 # wtc-frontend
 
