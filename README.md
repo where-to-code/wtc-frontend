@@ -1,5 +1,5 @@
 
-![](./coverage/badge-branches.svg)
+![]<object data= "./coverage/badge-branches.svg">
 
 # wtc-frontend
 
