@@ -86,3 +86,23 @@ describe('fetch locations', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
 });
+
+describe('fetch maps', () => {
+  const mock = new axiosMock(axios);
+  const middlewares = [thunk];
+  let url;
+  const mockStore = configureMockStore(middlewares);
+  it('mapsSucces', () => {
+    expect(actions.locationSuccess({})).toBeTruthy();
+    expect(actions.locationSuccess({})).toEqual({"payload": {}, "type": "FETCH_LOCATIONS_SUCCESS"});
+  });
+  it('mapsFailure', () => {
+    const error = 'There was an error';
+    const expectedAction = {
+      type: types.FETCH_MAP_API_FAILURE,
+      payload: error
+    };
+    expect(actions.mapsSucces({})).not.toEqual(expectedAction);
+    expect(actions.mapsFailure(error)).toEqual(expectedAction);
+  });
+});

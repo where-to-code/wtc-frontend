@@ -61,6 +61,7 @@ export const mapsLoading = () => async dispatch => {
       document.body.appendChild(script);
     });
     Promise.all([mapPromise]).then(value => {
+      console.log(value[0].maps)
       dispatch(mapsSucces((value[0].maps)));
     });
   } catch(error) {
