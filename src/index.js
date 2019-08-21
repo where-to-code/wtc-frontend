@@ -5,7 +5,6 @@ import './index.css';
 import App from './App';
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import logger from "redux-logger";
 import * as reducers from '../src/redux/reducers'
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import * as serviceWorker from './serviceWorker';
