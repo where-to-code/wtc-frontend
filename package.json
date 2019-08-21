@@ -16,8 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
-
+    "test": "react-scripts test --coverage && jest-coverage-badges input \"./coverage/coverage-final.json\" output \"./badges\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
