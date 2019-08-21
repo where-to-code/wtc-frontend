@@ -29,7 +29,6 @@ export const StyledHome = styled.div`
       text-align: center;
       color: #e5e5e5;
       text-shadow: 0px 4px 10px #666a7c;
-      border-radius: 50px;
     }
     input[type='text'] {
       background: rgba(219, 219, 219, 0.5);
@@ -38,10 +37,10 @@ export const StyledHome = styled.div`
       margin: 60px 0;
       border: none;
       border-radius: 10px;
-      padding: 8px;
       ::-webkit-input-placeholder {
         color: #fff;
         font-size: 12px;
+        padding: 8px;
       }
     }
     button {
@@ -53,6 +52,25 @@ export const StyledHome = styled.div`
       border: none;
       border-radius: 10px;
       padding: 14px;
+    }
+    @media (min-width: 600px) {
+      width: 800px;
+      h2 {
+        font-size: 36px;
+        line-height: 50px;
+      }
+      input[type='text'] {
+        width: 800px;
+        height: 50px;
+        ::-webkit-input-placeholder {
+          font-size: 16px;
+        }
+      }
+      button {
+        width: 240px;
+        font-size: 16px;
+        padding: 16px;
+      }
     }
   }
 `;
