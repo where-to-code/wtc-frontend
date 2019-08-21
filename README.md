@@ -1,5 +1,5 @@
 
-![](/coverage/badge-branches.svg)
+![](./coverage/badge-branches.svg)
 
 # wtc-frontend
 
