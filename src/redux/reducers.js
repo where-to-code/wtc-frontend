@@ -15,3 +15,7 @@ export const locationReducer = (
       return state;
   }
 };
+
+export const mapsReducer = (state = null, action) => {
+  
+}
