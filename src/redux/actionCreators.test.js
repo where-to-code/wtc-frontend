@@ -88,13 +88,8 @@ describe('fetch locations', () => {
 });
 
 describe('fetch maps', () => {
-  const mock = new axiosMock(axios);
-  const middlewares = [thunk];
-  let url;
-  const mockStore = configureMockStore(middlewares);
   it('mapsSucces', () => {
-    expect(actions.locationSuccess({})).toBeTruthy();
-    expect(actions.locationSuccess({})).toEqual({"payload": {}, "type": "FETCH_LOCATIONS_SUCCESS"});
+    expect(actions.mapsSucces({})).toBeTruthy;
   });
   it('mapsFailure', () => {
     const error = 'There was an error';
@@ -105,4 +100,54 @@ describe('fetch maps', () => {
     expect(actions.mapsSucces({})).not.toEqual(expectedAction);
     expect(actions.mapsFailure(error)).toEqual(expectedAction);
   });
+  // it('location_loading success', async () => {
+  //   mock.onGet(`${url}/locations`).reply(200, locations);
+  //   //mock the get method when locations are succesfully gotten
+  //   const expectedActions = [
+  //     { type: types.LOADING_LOCATIONS },
+  //     { type: types.FETCH_LOCATIONS_SUCCESS, payload: locations }
+  //   ];
+  //   const store = mockStore({ locations: [] });
+  //   await store.dispatch(actions.locationLoads());
+  //   expect(store.getActions()).toEqual(expectedActions);
+  // });
+  // it('location_loading failure', async () => {
+  //   mock.onGet(`${url}/locations`).reply(404);
+  //   // mock the get method when path is not found
+  //   const expectedActions = [
+  //     { type: types.LOADING_LOCATIONS },
+  //     {
+  //       type: types.FETCH_LOCATIONS_FAILURE,
+  //       payload: 'Request failed with status code 404'
+  //     }
+  //   ];
+  //   const store = mockStore({ locations: [] });
+  //   await store.dispatch(actions.locationLoads());
+  //   expect(store.getActions()).toEqual(expectedActions);
+  // });
+  // it('location_loading failure', async () => {
+  //   mock.onGet(`${url}/locations`).reply(500);
+  //   // mock the get method for other causes of error
+  //   const expectedActions = [
+  //     { type: types.LOADING_LOCATIONS },
+  //     {
+  //       type: types.FETCH_LOCATIONS_FAILURE,
+  //       payload: 'Request failed with status code 500'
+  //     }
+  //   ];
+  //   const store = mockStore({ locations: [] });
+  //   await store.dispatch(actions.locationLoads());
+  //   expect(store.getActions()).toEqual(expectedActions);
+  // });
+  // it('location_loading failure', async () => {
+  //   // mock the get method when network fails
+  //   mock.onGet(`${url}/locations`).networkError();
+  //   const expectedActions = [
+  //     { type: types.LOADING_LOCATIONS },
+  //     { type: types.FETCH_LOCATIONS_FAILURE, payload: 'Network Error' }
+  //   ];
+  //   const store = mockStore({ locations });
+  //   await store.dispatch(actions.locationLoads());
+  //   expect(store.getActions()).toEqual(expectedActions);
+  // });
 });
