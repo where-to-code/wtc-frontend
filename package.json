@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --watchAll=false --transformIgnorePatterns '/node_modules/(?!(react-redux|redux-thunk)/)' && jest-coverage-badges ",
+    "test": "react-scripts test --coverage --watchAll=false --transformIgnorePatterns '/node_modules/(?!(react-redux|redux-thunk)/)' && jest-coverage-badges output \"./badges\" ",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
