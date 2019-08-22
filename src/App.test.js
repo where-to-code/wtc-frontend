@@ -1,18 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import configureMockStore from 'redux-mock-store';
+
+import * as reducers from '../src/redux/reducers'
+import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 const initialState = {
   loading: false
 };
-// const Provide =jest.genMockFromModule('react-redux');
-// const Provider = Provide.Provider
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <Provider store={configureMockStore()(initialState)}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>,
     div
   );

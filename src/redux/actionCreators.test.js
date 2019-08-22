@@ -4,19 +4,22 @@ import * as types from './actionTypes';
 import configureMockStore from 'redux-mock-store';
 import axios from 'axios';
 import axiosMock from 'axios-mock-adapter';
-describe('fetch locations', () => {
-  const mock = new axiosMock(axios);
-  const middlewares = [thunk];
 
-  let url;
-  const mockStore = configureMockStore(middlewares);
+const mock = new axiosMock(axios);
+const middlewares = [thunk];
+let url;
+const mockStore = configureMockStore(middlewares);
+describe('fetch locations', () => {
   const locations = [
     {
       id: 1,
       description: '123 Arizona road',
       name: 'Ariz Coffee Shop',
+      image_url: 'image',
+      address: 'some address',
       longitude: '0.999923',
-      latitude: '0.273444'
+      latitude: '0.273444',
+      created_at: ''
     }
   ];
   it('location_success', () => {
@@ -84,5 +87,20 @@ describe('fetch locations', () => {
     const store = mockStore({ locations });
     await store.dispatch(actions.locationLoads());
     expect(store.getActions()).toEqual(expectedActions);
+  });
+});
+
+describe('fetch maps', () => {
+  it('mapsSucces', () => {
+    expect(actions.mapsSucces({})).toBeTruthy;
+  });
+  it('mapsFailure', () => {
+    const error = 'There was an error';
+    const expectedAction = {
+      type: types.FETCH_MAP_API_FAILURE,
+      payload: error
+    };
+    expect(actions.mapsSucces({})).not.toEqual(expectedAction);
+    expect(actions.mapsFailure(error)).toEqual(expectedAction);
   });
 });
