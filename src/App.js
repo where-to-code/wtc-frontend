@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { createGlobalStyle } from 'styled-components';
 import { Route } from 'react-router-dom';
 import Home from './views/Home';
 import Map from './components/Map';
+import Location from './views/Location';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <GlobalStyles />
       <Route exact path="/" render={props => <Home {...props} />} />
       <Route path="/locations" render={props => <Map {...props} />} />
+      <Route path="/location/:id" render={props => <Location {...props} />} />
     </div>
   );
 }

@@ -1,0 +1,30 @@
+.single-loc-container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid red;
+    display: flex;
+}
+
+.left-col{
+    width: 60%;
+    max-width: 720px;
+    border: 1px solid blue;
+    margin: 3px;
+}
+
+.right-col{
+    width: 40%;
+    max-width: 480px;
+    border: 1px solid green;
+}
+
+.loc-image{
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    border: 1px solid red;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
