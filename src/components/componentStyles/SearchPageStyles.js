@@ -41,3 +41,32 @@ export const FilterPaneStyle = styled.div`
     }
   }
 `;
+
+export const CardContainer = styled.div`
+  width: 60vw;
+  margin: 20px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+export const StyledCard = styled.div`
+  width: 300px;
+  height: 350px;
+
+  border: 1px solid #56c1cb;
+  border-radius: 5px;
+  .desc {
+    h4 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #666a7c;
+      text-align: center;
+      padding: 20px;
+    }
+  }
+  img {
+    width: 100%;
+    height: 230px;
+  }
+`;
