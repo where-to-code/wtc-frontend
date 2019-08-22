@@ -6,8 +6,7 @@ import configureMockStore from 'redux-mock-store';
 
 import * as reducers from '../src/redux/reducers'
 import App from './App';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
+
 const initialState = {
   loading: false
 };
