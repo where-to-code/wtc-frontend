@@ -4,6 +4,7 @@
     margin: 0 auto;
     border: 1px solid red;
     display: flex;
+    background: #DBDBDB;
 }
 
 .left-col{
