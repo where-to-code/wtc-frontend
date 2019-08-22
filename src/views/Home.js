@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -56,12 +57,36 @@ function Home(props) {
       console.log("this browser doesn't support geolocation or you refused access to it");
     }
   };
+=======
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { StyledHome } from './HomeStyles';
+import logo from '../assets/logo.png';
+>>>>>>> 78a032686a029229bccda0023293f22448151623
 
+const Home = () => {
   return (
-    <div className="App">
-      <div className="map-container" id="map" />
-    </div>
+    <StyledHome>
+        <header>
+          <div className="logo">
+            <img src={logo} alt="Logo" />
+          </div>
+          <div className="auth">
+            <button>Sign Up</button>
+            <button>Login</button>
+          </div>
+        </header>
+      <div className="container">
+        <h2>Find the best places to code</h2>
+        <form type="submit">
+          <input type="text" placeholder="Search" />
+          <input type="submit" value="" />
+        </form>
+        <Link to="/locations"><button>Find places near you</button></Link>
+      </div>
+    </StyledHome>
   );
+<<<<<<< HEAD
 }
 
 function mapStateToProps(state) {
@@ -76,5 +101,8 @@ function mapDispatchToProps(dispatch) {
     mapsLoading,
   }, dispatch);
 }
+=======
+};
+>>>>>>> 78a032686a029229bccda0023293f22448151623
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
