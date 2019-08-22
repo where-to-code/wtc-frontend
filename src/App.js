@@ -1,11 +1,15 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { Route } from 'react-router-dom';
 import Home from './views/Home';
+import Map from './components/Map';
+
 function App() {
   return (
     <div>
       <GlobalStyles />
-      <Home />
+      <Route exact path="/" render={props => <Home {...props} />} />
+      <Route path="/locations" render={props => <Map {...props} />} />
     </div>
   );
 }
