@@ -1,12 +1,15 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { createGlobalStyle } from 'styled-components';
 import Home from './views/Home';
 function App() {
   return (
-    <div>
-      <GlobalStyles />
-      <Home />
-    </div>
+    <Router>
+      <div>
+        <GlobalStyles />
+        <Route exact path="/" component={Home} />
+      </div>
+    </Router>
   );
 }
 
