@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { mapsLoading } from '../redux/actionCreators';
 
 function Map(props) {
-  const { maps, mapsLoading } = props;
+  const { maps, mapsLoading, locations } = props;
 
   const mapDefaultView = async () => {
     const newMap = new maps.mapsObj.Map(document.getElementById('map'), {
@@ -13,7 +13,7 @@ function Map(props) {
     });
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
+      navigator.geolocation.getCurrentPosition(position => {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
@@ -30,12 +30,19 @@ function Map(props) {
   const setCenterToUserLocation = (browserHasGeolocation, newMap) => {
     // add the marker to the center
     if (browserHasGeolocation) {
+     locations.locations.map(location => new maps.mapsObj.Marker({
+      map: newMap,
+      position: {
+        lat: location.latitude,
+        lng: location.longitude
+      }
+    }))
       new maps.mapsObj.Marker({
         map: newMap,
         position: newMap.getCenter()
       });
     } else {
-      console.log('error');
+      console.log("this browser doesn't support geolocation or you didn't allow it");
     }
   };
 
@@ -55,7 +62,8 @@ function Map(props) {
 
 function mapStateToProps(state) {
   return {
-    maps: state.maps
+    maps: state.maps,
+    locations: state.locations
   };
 }
 

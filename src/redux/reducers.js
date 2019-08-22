@@ -6,8 +6,11 @@ export const locationReducer = (
       id: 1,
       description: '123 Arizona road',
       name: 'Ariz Coffee Shop',
-      longitude: '0.999923',
-      latitude: '0.273444'
+      image_url: 'image',
+      address: 'some address',
+      longitude: -0.000737, 
+      latitude: 51.468507,
+      created_at: ''
     }
   ], error: null },
   action
