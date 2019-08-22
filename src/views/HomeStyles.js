@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import icon from '../assets/searchicon.png';
 
 export const StyledHome = styled.div`
   height: 100vh;
@@ -8,11 +9,41 @@ export const StyledHome = styled.div`
   background-position: center;
   box-shadow: inset 0 0 0 2000px rgba(102, 106, 124, 0.5);
   display: flex;
-  justify-content: center;
-  align-content: center;
+  flex-direction: column;
+  align-content: space-between;
   align-items: center;
 
-  div {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5%;
+    .logo {
+      width: 70px;
+      margin: 0 0 0 15px;
+      img {
+        width: 100%;
+      }
+    }
+    .auth {
+      display: flex;
+      button {
+        height: 25px;
+        width: 70px;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 10px;
+        background: none;
+        border: 0.5px solid #fff;
+        border-radius: 5px;
+        color: #fff;
+      }
+    }
+  }
+  .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,17 +61,30 @@ export const StyledHome = styled.div`
       color: #e5e5e5;
       text-shadow: 0px 4px 10px #666a7c;
     }
-    input[type='text'] {
-      background: rgba(219, 219, 219, 0.5);
-      width: 250px;
-      height: 35px;
-      margin: 60px 0;
-      border: none;
-      border-radius: 10px;
-      ::-webkit-input-placeholder {
-        color: #fff;
-        font-size: 12px;
-        padding: 8px;
+    form {
+      display: flex;
+      position: relative;
+
+      input[type='text'] {
+        background: rgba(219, 219, 219, 0.5);
+        width: 250px;
+        height: 35px;
+        margin: 60px 0;
+        border: none;
+        border-radius: 10px 0 0 10px;
+        ::-webkit-input-placeholder {
+          color: #fff;
+          font-size: 12px;
+          padding: 8px;
+        }
+      }
+      input[type='submit'] {
+        margin: 60px 0;
+        background: url(${icon}) no-repeat scroll center rgba(255, 150, 1, 0.8);
+        border-radius: 0 10px 10px 0;
+        border: none;
+        height: 35px;
+        width: 50px;
       }
     }
     button {
@@ -53,17 +97,38 @@ export const StyledHome = styled.div`
       border-radius: 10px;
       padding: 14px;
     }
-    @media (min-width: 600px) {
+  }
+  @media (min-width: 600px) {
+    header {
+      height: 60px;
+      .logo {
+        width: 150px;
+      }
+      .auth {
+        button {
+          height: 40px;
+          width: 107px;
+          font-size: 16px;
+        }
+      }
+    }
+    .container {
       width: 800px;
       h2 {
         font-size: 36px;
         line-height: 50px;
       }
-      input[type='text'] {
-        width: 800px;
-        height: 50px;
-        ::-webkit-input-placeholder {
-          font-size: 16px;
+      form {
+        input[type='text'] {
+          width: 550px;
+          height: 50px;
+          ::-webkit-input-placeholder {
+            font-size: 16px;
+          }
+        }
+        input[type='submit'] {
+          height: 50px;
+          width: 50px;
         }
       }
       button {
