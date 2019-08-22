@@ -72,6 +72,9 @@ export const StyledHome = styled.div`
         margin: 60px 0;
         border: none;
         border-radius: 10px 0 0 10px;
+        color: #fff;
+        text-align: left;
+        padding: 0 10px;
         ::-webkit-input-placeholder {
           color: #fff;
           font-size: 12px;
