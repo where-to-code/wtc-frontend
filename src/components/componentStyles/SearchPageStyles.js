@@ -12,7 +12,7 @@ export const StyledSearch = styled.div`
 
 export const FilterPaneStyle = styled.div`
   width: 12%;
-  border-right: 1px solid #03525b;
+  border-right: 1px solid #56c1cb;
   .filterTitle {
     display: flex;
     align-items: center;
