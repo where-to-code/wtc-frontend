@@ -2,7 +2,6 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    border: 1px solid red;
     display: flex;
 }
 
@@ -16,14 +15,13 @@
     border: 1px solid #DBDBDB;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     background: whitesmoke;
 }
 
 .right-col{
     width: 40%;
     max-width: 480px;
-    border: 1px solid green;
 }
 
 .desc-container h3{
@@ -63,22 +61,26 @@
     display: flex;
     width: 95%;
     margin: 0 auto;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     padding-top: 10px;
     border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .rev-desc{
     width: 50%;
+    min-width: 320px;
 }
 
 .rev-desc h4{
     margin: 0;
 }
 
-
 .rev-rates{
     width: 50%;
+    min-width: 320px;
+    margin-bottom: 20px;
 }
 
 .rate-line{
@@ -90,6 +92,7 @@
 
 .rate-line label{
     width: 30%;
+    min-width: 100px;
 }
 
 .rate-count-box{
