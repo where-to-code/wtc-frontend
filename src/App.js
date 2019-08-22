@@ -6,7 +6,6 @@ import Map from './components/Map';
 function App() {
   return (
     <div>
-      <Home />
       <Route exact path="/" render={props => <Home {...props} />} />
       <Route path="/locations" render={props => <Map {...props} />} />
     </div>
