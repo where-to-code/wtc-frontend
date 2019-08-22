@@ -7,6 +7,14 @@ import { mapsLoading } from '../redux/actionCreators';
 function Home(props) {
   const { maps, mapsLoading } = props;
 
+  useEffect(() => {
+    if (maps.mapsObj) {
+      mapDefaultView();
+    } else {
+      mapsLoading();
+    }
+  }, [maps.mapsObj]);
+
   const mapDefaultView = async () => {
     const newMap = new maps.mapsObj.Map(document.getElementById('map'), {
       zoom: 15,
@@ -14,7 +22,7 @@ function Home(props) {
     });
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
+      navigator.geolocation.getCurrentPosition(position => {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
@@ -40,14 +48,6 @@ function Home(props) {
     }
   };
 
-
-  useEffect(() => {
-    if (maps.mapsObj) {
-      mapDefaultView();
-    } else {
-      mapsLoading();
-    }
-  },[maps.mapsObj]);
   return (
     <div className="App">
       <div className="map-container" id="map" />
@@ -57,13 +57,13 @@ function Home(props) {
 
 function mapStateToProps(state) {
   return {
-      maps: state.maps
+    maps: state.maps
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-     mapsLoading,
+    mapsLoading,
   }, dispatch);
 }
 

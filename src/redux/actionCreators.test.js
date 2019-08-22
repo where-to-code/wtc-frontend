@@ -5,11 +5,11 @@ import configureMockStore from 'redux-mock-store';
 import axios from 'axios';
 import axiosMock from 'axios-mock-adapter';
 
+const mock = new axiosMock(axios);
+const middlewares = [thunk];
+let url;
+const mockStore = configureMockStore(middlewares);
 describe('fetch locations', () => {
-  const mock = new axiosMock(axios);
-  const middlewares = [thunk];
-  let url;
-  const mockStore = configureMockStore(middlewares);
   const locations = [
     {
       id: 1,

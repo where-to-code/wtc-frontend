@@ -37,18 +37,6 @@ export const mapsFailure = error => ({
 export const mapsLoading = () => async dispatch => {
   dispatch({ type: types.LOADING_MAP_API });
   try {
-    // HERE I'M TRYING TO REFACTOR THE CODE FOR CLEANESS
-    // const mapObj = await function() {
-    //   const script = document.createElement('script');
-    //   const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-    //   script.async = true;
-    //   script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&callback=initGoogleMapPromise`;
-    //   document.body.appendChild(script);
-    //   console.log('yo')
-    //   return window.google;
-    // }
-    // console.log(mapObj)
-    // dispatch(mapsSucces((mapObj[0].maps)));
     const mapPromise = new Promise((resolve, reject) => {
       window.initGoogleMapPromise = () => {
         resolve(window.google);
@@ -61,10 +49,9 @@ export const mapsLoading = () => async dispatch => {
       document.body.appendChild(script);
     });
     Promise.all([mapPromise]).then(value => {
-      console.log(value[0].maps)
       dispatch(mapsSucces((value[0].maps)));
     });
-  } catch(error) {
+  } catch (error) {
     dispatch(mapsFailure(error.message));
   }
 }
