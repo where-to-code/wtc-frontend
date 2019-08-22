@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { mapsLoading } from '../redux/actionCreators';
 
 function Home(props) {
-  const { maps, mapsLoading } = props;
+  const { maps, mapsLoading, locations } = props;
 
   useEffect(() => {
     if (maps.mapsObj) {
@@ -18,7 +18,8 @@ function Home(props) {
   const mapDefaultView = async () => {
     const newMap = new maps.mapsObj.Map(document.getElementById('map'), {
       zoom: 15,
-      center: { lat: 6.553909, lng: 3.3663045 }
+      center: { lat: 6.553909, lng: 3.3663045 },
+      
     });
 
     if (navigator.geolocation) {
@@ -39,6 +40,14 @@ function Home(props) {
   const setCenterToUserLocation = (browserHasGeolocation, newMap) => {
     // add the marker to the center
     if (browserHasGeolocation) {
+      console.log(locations.locations)
+      const mapWithMarkers = locations.locations.map(location => new maps.mapsObj.Marker({
+        map: newMap,
+        position: {
+          lat: location.latitude,
+          lng: location.longitude
+        }
+      }))
       new maps.mapsObj.Marker({
         map: newMap,
         position: newMap.getCenter()
@@ -57,7 +66,8 @@ function Home(props) {
 
 function mapStateToProps(state) {
   return {
-    maps: state.maps
+    maps: state.maps,
+    locations: state.locations
   };
 }
 

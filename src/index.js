@@ -12,7 +12,7 @@ import * as serviceWorker from './serviceWorker';
 dotenv.config();
 
 const combinedReducer = combineReducers({
-  location: reducers.locationReducer,
+  locations: reducers.locationReducer,
   maps: reducers.mapsReducer
 });
 const store = createStore(
