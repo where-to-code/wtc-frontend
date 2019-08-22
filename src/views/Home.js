@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { StyledHome } from './HomeStyles';
 import logo from '../assets/logo.png';
 
@@ -20,7 +21,7 @@ const Home = () => {
           <input type="text" placeholder="Search" />
           <input type="submit" value="" />
         </form>
-        <button>Find places near you</button>
+        <Link to="/locations"><button>Find places near you</button></Link>
       </div>
     </StyledHome>
   );
