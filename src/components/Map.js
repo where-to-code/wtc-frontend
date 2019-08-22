@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { mapsLoading } from '../redux/actionCreators';
+import { StyledMap } from './componentStyles/SearchPageStyles';
 
 function Map(props) {
   const { maps, mapsLoading } = props;
@@ -47,9 +48,8 @@ function Map(props) {
     }
   }, [maps.mapsObj]);
   return (
-    <div className="App">
-      <div className="map-container" id="map" />
-    </div>
+    
+  <StyledMap id="map" />
   );
 }
 
@@ -60,9 +60,15 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    mapsLoading,
-  }, dispatch);
+  return bindActionCreators(
+    {
+      mapsLoading
+    },
+    dispatch
+  );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Map);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Map);
