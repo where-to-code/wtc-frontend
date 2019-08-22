@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyledHome } from './HomeStyles';
 import logo from '../assets/logo.png';
+
 const Home = () => {
   return (
     <StyledHome>
