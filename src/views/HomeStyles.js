@@ -13,36 +13,6 @@ export const StyledHome = styled.div`
   align-content: space-between;
   align-items: center;
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 5%;
-    .logo {
-      width: 70px;
-      margin: 0 0 0 15px;
-      img {
-        width: 100%;
-      }
-    }
-    .auth {
-      display: flex;
-      button {
-        height: 25px;
-        width: 70px;
-        font-size: 12px;
-        font-weight: bold;
-        margin: 0 10px;
-        background: none;
-        border: 0.5px solid #fff;
-        border-radius: 5px;
-        color: #fff;
-      }
-    }
-  }
   .container {
     display: flex;
     flex-direction: column;
@@ -51,6 +21,7 @@ export const StyledHome = styled.div`
     align-items: center;
     height: 500px;
     width: 300px;
+    margin-top: 5%;
     h2 {
       font-weight: bolder;
       font-size: 24px;
@@ -101,19 +72,6 @@ export const StyledHome = styled.div`
     }
   }
   @media (min-width: 600px) {
-    header {
-      height: 60px;
-      .logo {
-        width: 150px;
-      }
-      .auth {
-        button {
-          height: 40px;
-          width: 107px;
-          font-size: 16px;
-        }
-      }
-    }
     .container {
       width: 800px;
       h2 {
