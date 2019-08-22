@@ -1,70 +1,29 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React from 'react';
+import { StyledHome } from './HomeStyles';
+import logo from '../assets/logo.png';
 
-import { mapsLoading } from '../redux/actionCreators';
-
-function Home(props) {
-  const { maps, mapsLoading } = props;
-
-  useEffect(() => {
-    if (maps.mapsObj) {
-      mapDefaultView();
-    } else {
-      mapsLoading();
-    }
-  }, [maps.mapsObj]);
-
-  const mapDefaultView = async () => {
-    const newMap = new maps.mapsObj.Map(document.getElementById('map'), {
-      zoom: 15,
-      center: { lat: 6.553909, lng: 3.3663045 }
-    });
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        newMap.setCenter(pos);
-        setCenterToUserLocation(true, newMap);
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      setCenterToUserLocation(false, newMap);
-    }
-  };
-
-  const setCenterToUserLocation = (browserHasGeolocation, newMap) => {
-    // add the marker to the center
-    if (browserHasGeolocation) {
-      new maps.mapsObj.Marker({
-        map: newMap,
-        position: newMap.getCenter()
-      });
-    } else {
-      console.log("this browser doesn't support geolocation or you refused access to it");
-    }
-  };
-
+const Home = () => {
   return (
-    <div className="App">
-      <div className="map-container" id="map" />
-    </div>
+    <StyledHome>
+        <header>
+          <div className="logo">
+            <img src={logo} alt="Logo" />
+          </div>
+          <div className="auth">
+            <button>Sign Up</button>
+            <button>Login</button>
+          </div>
+        </header>
+      <div className="container">
+        <h2>Find the best places to code</h2>
+        <form type="submit">
+          <input type="text" placeholder="Search" />
+          <input type="submit" value="" />
+        </form>
+        <button>Find places near you</button>
+      </div>
+    </StyledHome>
   );
-}
+};
 
-function mapStateToProps(state) {
-  return {
-    maps: state.maps
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    mapsLoading,
-  }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

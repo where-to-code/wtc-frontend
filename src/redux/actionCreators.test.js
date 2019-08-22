@@ -1,6 +1,6 @@
 import * as actions from './actionCreators';
-import * as types from './actionTypes';
 import thunk from 'redux-thunk';
+import * as types from './actionTypes';
 import configureMockStore from 'redux-mock-store';
 import axios from 'axios';
 import axiosMock from 'axios-mock-adapter';
@@ -15,8 +15,11 @@ describe('fetch locations', () => {
       id: 1,
       description: '123 Arizona road',
       name: 'Ariz Coffee Shop',
+      image_url: 'image',
+      address: 'some address',
       longitude: '0.999923',
-      latitude: '0.273444'
+      latitude: '0.273444',
+      created_at: ''
     }
   ];
   it('location_success', () => {
@@ -37,7 +40,7 @@ describe('fetch locations', () => {
   });
   it('location_loading success', async () => {
     mock.onGet(`${url}/locations`).reply(200, locations);
-    //mock the get method when locations are succesfully gotten
+    //mock the get method when locations are succesfully
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
       { type: types.FETCH_LOCATIONS_SUCCESS, payload: locations }
@@ -48,7 +51,7 @@ describe('fetch locations', () => {
   });
   it('location_loading failure', async () => {
     mock.onGet(`${url}/locations`).reply(404);
-    // mock the get method when path is not found
+    //mock the get method when path is not found
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
       {
@@ -62,7 +65,7 @@ describe('fetch locations', () => {
   });
   it('location_loading failure', async () => {
     mock.onGet(`${url}/locations`).reply(500);
-    // mock the get method for other causes of error
+    //mock the get method for other causes of error
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
       {
@@ -75,7 +78,7 @@ describe('fetch locations', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
   it('location_loading failure', async () => {
-    // mock the get method when network fails
+    //mock the get method when network fails
     mock.onGet(`${url}/locations`).networkError();
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
