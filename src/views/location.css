@@ -4,14 +4,17 @@
     margin: 0 auto;
     border: 1px solid red;
     display: flex;
-    background: #DBDBDB;
 }
 
 .left-col{
     width: 60%;
     max-width: 720px;
-    border: 1px solid blue;
+    border: 1px solid #DBDBDB;
     margin: 3px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: whitesmoke;
+
 }
 
 .right-col{
@@ -20,12 +23,24 @@
     border: 1px solid green;
 }
 
+.loc-top-desc{
+    background: whitesmoke;
+}
+
+.loc-top-desc h3{
+    padding-left: 5px;
+    margin-top: .8rem;
+}
+
+
 .loc-image{
     width: 100%;
     max-width: 720px;
     height: auto;
-    border: 1px solid red;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+}
 
+.loc-item-container{
+    padding-left: 10px;
 }
