@@ -1,18 +1,7 @@
 import * as types from './actionTypes';
 
 export const locationReducer = (
-  state = { loadingLocation: false, locations: [
-    {
-      id: 1,
-      description: '123 Arizona road',
-      name: 'Ariz Coffee Shop',
-      image_url: 'image',
-      address: 'some address',
-      longitude: -0.000737, 
-      latitude: 51.468507,
-      created_at: ''
-    }
-  ], error: null },
+  state = { loadingLocation: false, locations: [], error: null },
   action
 ) => {
   switch (action.type) {

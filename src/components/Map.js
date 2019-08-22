@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { mapsLoading } from '../redux/actionCreators';
+import { mapsLoading, locationLoads } from '../redux/actionCreators';
 
 function Map(props) {
-  const { maps, mapsLoading, locations } = props;
+  const { maps, mapsLoading, locations, locationLoads } = props;
 
-  const mapDefaultView = async () => {
-    const newMap = new maps.mapsObj.Map(document.getElementById('map'), {
+  let newMap;
+
+  const mapDefaultView = () => {
+    newMap = new maps.mapsObj.Map(document.getElementById('map'), {
       zoom: 15,
       center: { lat: 6.553909, lng: 3.3663045 }
     });
@@ -28,15 +30,8 @@ function Map(props) {
   };
 
   const setCenterToUserLocation = (browserHasGeolocation, newMap) => {
-    // add the marker to the center
+    // add the marker to the center and markers for every location in state
     if (browserHasGeolocation) {
-     locations.locations.map(location => new maps.mapsObj.Marker({
-      map: newMap,
-      position: {
-        lat: location.latitude,
-        lng: location.longitude
-      }
-    }))
       new maps.mapsObj.Marker({
         map: newMap,
         position: newMap.getCenter()
@@ -47,12 +42,36 @@ function Map(props) {
   };
 
   useEffect(() => {
+    // This wiil needs to be refactored or modified when search is present
+    // If geolocation is present we load the locations around it
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        locationLoads(pos)
+      })
+    };
+    // Then we build the map
     if (maps.mapsObj) {
       mapDefaultView();
     } else {
       mapsLoading();
     }
-  }, [maps.mapsObj]);
+    // Finally we add the markers of the locations on the map
+    if (locations.locations.length > 0) {
+      locations.locations.map(location => 
+        new maps.mapsObj.Marker({
+        map: newMap,
+        position: {
+          lat: parseFloat(location.latitude),
+          lng: parseFloat(location.longitude) 
+        }
+      }))
+    }
+   
+  }, [maps.mapsObj, locations.locations.length]);
   return (
     <div className="App">
       <div className="map-container" id="map" />
@@ -70,6 +89,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     mapsLoading,
+    locationLoads
   }, dispatch);
 }
 
