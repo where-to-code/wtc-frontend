@@ -21,12 +21,13 @@ export const StyledHeader = styled.header`
       height: 25px;
       width: 70px;
       font-size: 12px;
-      font-weight: bold;
+      font-weight: 300;
       margin: 0 10px;
       background: none;
-      border: 0.5px solid #fff;
+      border: ${props =>
+        props.landing ? '0.5px solid #fff' : '0.5px solid #03525B'};
       border-radius: 5px;
-      color: #fff;
+      color: ${props => (props.landing ? '#fff' : '#666A7C')};
     }
   }
   @media (min-width: 600px) {

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { StyledHome } from './HomeStyles';
 import Header from '../components/Header';
 
-const Home = () => {
+const Home = (props) => {
   return (
     <StyledHome>
-      <Header />
+      <Header landing={true}/>
       <div className="container">
         <h2>Find the best places to code</h2>
         <form type="submit">
