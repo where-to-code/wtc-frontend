@@ -9,12 +9,15 @@
 .left-col{
     width: 60%;
     max-width: 720px;
-    border: 1px solid #DBDBDB;
     margin: 3px;
+}
+
+.desc-container{
+    border: 1px solid #DBDBDB;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    margin-bottom: 5px;
     background: whitesmoke;
-
 }
 
 .right-col{
@@ -23,15 +26,25 @@
     border: 1px solid green;
 }
 
-.loc-top-desc{
-    background: whitesmoke;
-}
-
-.loc-top-desc h3{
+.desc-container h3{
     padding-left: 5px;
     margin-top: .8rem;
 }
 
+.img-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Bottom right text */
+.img-container h3 {
+    position: absolute;
+    bottom: 0px;
+    left: 16px;
+    padding: 5px 10px;
+    background: #FF9601;
+  }
 
 .loc-image{
     width: 100%;
@@ -43,4 +56,71 @@
 
 .loc-item-container{
     padding-left: 10px;
+}
+
+.loc-item-container.review{
+    background: white;
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    border-radius: 5px;
+}
+
+.rev-desc{
+    width: 50%;
+}
+
+.rev-desc h4{
+    margin: 0;
+}
+
+
+.rev-rates{
+    width: 50%;
+}
+
+.rate-line{
+    display: flex;
+    border-bottom: 1px solid whitesmoke;
+    width: 95%;
+    padding: 3px;
+}
+
+.rate-line label{
+    width: 30%;
+}
+
+.rate-count-box{
+    background: #DBDBDB;
+    width: 70%;
+    color: white;
+    font-size: 1.2rem;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.rate.bad{
+    background: #FF4B2B;
+    color: white;
+    width: 30%;
+}
+
+.rate.medium{
+    background: #FF9601;
+    color: white;
+    width: 60%;
+}
+
+.rate.good{
+    background: #56C1CB;
+    color: white;
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.centered{
+    text-align: center;
 }
