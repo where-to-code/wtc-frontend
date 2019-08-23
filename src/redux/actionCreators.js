@@ -70,17 +70,15 @@ export const singleLocFailure = error => ({
 export const fetchSingleLocation = (locId) => async dispatch => {
   dispatch({ type: types.LOADING_SINGLE_LOCATION });
   try {
-    //const locationInfo = await axios.get(`${url}/api/locations/${locId}`);
-    const locationInfo = {
-      data: singLocMocData,
-    };
-    dispatch(singleLocSuccess(singLocMocData.data));
+    //const locationInfo = await axios.get(`${url}locations/${locId}`);
+    // sending Mock data for now as endpoint does not seems to be deployed fron BE
+    dispatch(singleLocSuccess(locationInfo.data));
   } catch (error) {
     dispatch(singleLocFailure(error.message));
   }
 };
 
-const singLocMocData = {
+const locationInfo = {
   "status": 200,
   "data": {
       "id": 244,
@@ -92,7 +90,51 @@ const singLocMocData = {
       "latitude": "49.82",
       "created_at": "2019-08-21T11:29:28.714Z",
       "averageRating": null,
-      "reviews": []
+      "reviews": [{
+        quietness: 2,
+        wifi_speed: 1,
+        close_late: 4,
+        community: 5,
+        accessibility: 5,
+        description: 'Service was awesome',
+        user_id: 1,
+      },
+      {
+        quietness: 3,
+        wifi_speed: 4,
+        close_late: 2,
+        community: 1,
+        accessibility: 1,
+        description: 'Service was meh',
+        user_id: 2,
+      },
+      {
+        quietness: 5,
+        wifi_speed: 5,
+        close_late: 1,
+        community: 3,
+        accessibility: 2,
+        description: 'was kinda over there',
+        user_id: 3,
+      },
+      {
+        quietness: 1,
+        wifi_speed: 1,
+        close_late: 2,
+        community: 1,
+        accessibility: 3,
+        description: 'It definitely could have been better',
+        user_id: 4,
+      },
+      {
+        quietness: 3,
+        wifi_speed: 4,
+        close_late: 4,
+        community: 5,
+        accessibility: 5,
+        description: 'Great, great place to code!',
+        user_id: 5,
+      },]
   }
 }
 

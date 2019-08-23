@@ -2,7 +2,7 @@ import React from 'react';
 import Stars from '../components/Stars'
 
 export default function ReviewItem(props){
-    if(props.reviews.length > 0){
+    if(props.reviews && props.reviews.length > 0){
       return(
         <>
         {

@@ -62,7 +62,7 @@ function Location (props) {
                 </div>
             </div>
             <div className="desc-container">
-              <Map />
+              <Map selectedLocation={{lat:parseFloat(props.location.latitude), lng:parseFloat(props.location.longitude)}}/>
               <div className="centered">
                   <button>Get me there</button> 
               </div>
