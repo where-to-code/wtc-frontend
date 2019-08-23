@@ -124,17 +124,13 @@
     min-width: 100px;
 }
 
-.rate-count-box, .rate-star-box{
+.rate-count-box{
     background: #DBDBDB;
     width: 70%;
     color: white;
     font-size: 1.2rem;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-}
-
-.rate-star-box{
-    background: none;
 }
 
 .rate.bad{
@@ -155,11 +151,6 @@
     width: 100%;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-}
-
-.rate-start{
-    width: 20px;
-    height: auto;
 }
 
 .centered{
