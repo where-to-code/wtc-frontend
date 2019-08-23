@@ -14,13 +14,15 @@ dotenv.config();
 
 const combinedReducer = combineReducers({
   locations: reducers.locationReducer,
-  maps: reducers.mapsReducer
+  maps: reducers.mapsReducer,
+  location: reducers.singleLocaReducer
 });
 const store = createStore(
   combinedReducer,
   {},
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    
   )
 );
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './location.css';
 import Map from '../components/Map';
 import ReviewItem from '../components/ReviewItem';
@@ -10,12 +10,14 @@ import { fetchSingleLocation } from '../redux/actionCreators';
 function Location (props) {
   const { fetchSingleLocation } = props;
   const loactionId = props.match.params.id;
+  console.log('loading single loaction');
   
   useEffect(()=>{
-      console.log(props.location);
-      fetchSingleLocation(loactionId);    
-    },[loactionId]
-  );
+    if(!props.location){
+      fetchSingleLocation(loactionId);
+    }
+  },[]
+);
     if(props.location){
       return(
         <div className="single-loc-container">
@@ -49,7 +51,7 @@ function Location (props) {
             </div>
             <div className="desc-container">
               <h3 className="centered">Reviews</h3>
-              {/* <ReviewItem reviews={props.location.reviews} /> */}
+              <ReviewItem reviews={props.location.reviews} />
             </div>
           </div>
 
@@ -80,8 +82,9 @@ function Location (props) {
 }
 
 function mapStateToProps(state) {
+  console.log('state', state);
   return {
-    location: state.locations
+    location: state.location.location
   };
 }
 
@@ -90,4 +93,5 @@ function mapDispatchToProps(dispatch) {
     fetchSingleLocation,
   }, dispatch);
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Location);

@@ -74,7 +74,7 @@ export const fetchSingleLocation = (locId) => async dispatch => {
     const locationInfo = {
       data: singLocMocData,
     };
-    dispatch(singleLocSuccess(locationInfo.data));
+    dispatch(singleLocSuccess(singLocMocData.data));
   } catch (error) {
     dispatch(singleLocFailure(error.message));
   }

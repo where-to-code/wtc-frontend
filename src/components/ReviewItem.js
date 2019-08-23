@@ -2,7 +2,8 @@ import React from 'react';
 
 export default function ReviewItem(props){
     console.log('items', props);
-    return(
+    if(props.reviews){
+      return(
         <>
         {
             props.reviews.map(review =>(
@@ -38,4 +39,10 @@ export default function ReviewItem(props){
         }
         </>
     );
+    }
+    else {
+      return(
+        <h2>Loading review`</h2>
+      );
+    }
 }
