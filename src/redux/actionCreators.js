@@ -1,12 +1,12 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 
-let url;
+const url = 'https://where2code.herokuapp.com/api/';
 
 
 export const locationSuccess = locationList => ({
   type: types.FETCH_LOCATIONS_SUCCESS,
-  payload: locationList
+  payload: locationList.info
 });
 
 export const locationFailure = error => ({
@@ -14,10 +14,10 @@ export const locationFailure = error => ({
   payload: error
 });
 
-export const locationLoads = () => async dispatch => {
+export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
-    const locationsInfo = await axios.get(`${url}/locations`);
+    const locationsInfo = await axios.get(`${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`);
     dispatch(locationSuccess(locationsInfo.data));
   } catch (error) {
     dispatch(locationFailure(error.message));
