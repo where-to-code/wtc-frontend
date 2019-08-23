@@ -2,7 +2,7 @@ import React from 'react';
 import Stars from '../components/Stars'
 
 export default function ReviewItem(props){
-    if(props.reviews){
+    if(props.reviews.length > 0){
       return(
         <>
         {
@@ -48,7 +48,9 @@ export default function ReviewItem(props){
     }
     else {
       return(
-        <h2>Loading review`</h2>
+        <div>
+          <p className="centered">No reviews are available yet</p>
+        </div>
       );
     }
 }
