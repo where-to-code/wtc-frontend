@@ -87,10 +87,28 @@
     width: 100%;
 }
 
+.small-screen{
+    display: none;
+}
+
+
 /* Media screen for main form */
 @media only screen and (max-width: 900px){
     .loc-item-container.review{
         flex-direction: column;
+    }
+    .right-col{
+        display: none;
+    }
+    .left-col{
+        width: 100%;
+    }
+    .small-screen{
+        display: block;
+        padding-left: 10px;
+    }
+    .buttons.small-screen{
+        text-align: center;
     }
 }
 
@@ -128,7 +146,7 @@
 }
 
 .rate.good{
-    background: #56C1CB;
+    background: #03525B;
     color: white;
     width: 100%;
     border-top-right-radius: 5px;
@@ -138,3 +156,20 @@
 .centered{
     text-align: center;
 }
+
+button {
+    width: 170px;
+    background-color: #56c1cb;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .flex{
+      display: flex;
+      align-content: space-between;
+  }

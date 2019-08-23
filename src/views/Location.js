@@ -11,6 +11,33 @@ export default function Location () {
                 <img className="loc-image" src="https://source.unsplash.com/lWGRG9_RQHg/1600x900" />
                 <h3>Location name</h3>
               </div>
+
+
+              <div className="rev-rates overall-review small-screen">
+                <h4>Overall review</h4>
+                  <div className="rate-line">
+                    <label>Quietnes</label> 
+                    <div className="rate-count-box">
+                      <div className="rate bad centered">Bad</div>
+                    </div>
+                  </div>
+                  <div className="rate-line">
+                    <label>Wifi</label> 
+                    <div className="rate-count-box">
+                      <div className="rate medium centered">Okay</div>
+                    </div>
+                  </div>
+                  <div className="rate-line">
+                    <label>Accessibility</label> 
+                    <div className="rate-count-box">
+                      <div className="rate good centered">Goog</div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
               <div className="loc-item-container">
                 <h4>Address</h4>
                 <p>28 Avenue des Chardonnerets, 33320 le Taillan</p>
@@ -18,6 +45,9 @@ export default function Location () {
               <div className="loc-item-container">
                 <h4>Description</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+              <div className="buttons small-screen">
+                  <button>Add review</button><button>Add to favorite</button>
               </div>
             </div>
 
@@ -107,9 +137,15 @@ export default function Location () {
                   </div>
                 </div>
               </div>
+                <div className="centered">
+                  <button>Add review</button><button>Add to favorite</button>
+                </div>
             </div>
             <div className="desc-container">
               <Map />
+              <div className="centered">
+                  <button>Get me there</button> 
+              </div>
             </div>
 
           </div>
