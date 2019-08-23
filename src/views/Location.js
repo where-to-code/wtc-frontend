@@ -9,36 +9,39 @@ import { fetchSingleLocation } from '../redux/actionCreators';
 
 function Location (props) {
   const { fetchSingleLocation } = props;
-  const loactionId = props.match.params.id
-
+  const loactionId = props.match.params.id;
+  //console.log(props.location)
+  
   useEffect(()=>{
-    fetchSingleLocation(loactionId);
+      fetchSingleLocation(loactionId);    
     }, [loactionId]
   );
-    return(
+    if(props.location){
+      return(
         <div className="single-loc-container">
           <div className="left-col">
             <div className="desc-container">
               <div className="img-container">
-                <img className="loc-image" src="https://source.unsplash.com/lWGRG9_RQHg/1600x900" />
-                <h3>Location name</h3>
+                <img className="loc-image" src={props.location.image_url} />
+                <h3>{props.location.name}</h3>
               </div>
 
 
               <div className="rev-rates overall-review small-screen">
                 <OverallReview />
               </div>
-
-
-
-
               <div className="loc-item-container">
-                <h4>Address</h4>
-                <p>28 Avenue des Chardonnerets, 33320 le Taillan</p>
+                {
+                  props.address && 
+                    <>
+                    <h4>Address</h4>
+                    <p>{props.location.address}</p>
+                    </>
+                }
               </div>
               <div className="loc-item-container">
                 <h4>Description</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>{props.location.description}</p>
               </div>
               <div className="buttons small-screen">
                   <button>Add review</button><button>Add to favorite</button>
@@ -46,7 +49,7 @@ function Location (props) {
             </div>
             <div className="desc-container">
               <h3 className="centered">Reviews</h3>
-              <ReviewItem />
+              <ReviewItem reviews={props.location.reviews} />
             </div>
           </div>
 
@@ -69,12 +72,16 @@ function Location (props) {
           </div>
 
         </div>
-      );
+      ); 
+    }
+    else {
+      return (<div><h2>Loading</h2></div>);
+    }
 }
 
 function mapStateToProps(state) {
   return {
-    maps: state.maps
+    location: state.location.locations.data
   };
 }
 
@@ -83,5 +90,4 @@ function mapDispatchToProps(dispatch) {
     fetchSingleLocation,
   }, dispatch);
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Location);
