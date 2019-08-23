@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './location.css';
 import Map from '../components/Map';
 import ReviewItem from '../components/ReviewItem';
 import OverallReview from '../components/OverallReview';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchSingleLocation } from '../redux/actionCreators';
 
-export default function Location (props) {
-    const [loactionId, setLocationId] = useState(props.match.params.id)
+function Location (props) {
+  const { fetchSingleLocation } = props;
+  const loactionId = props.match.params.id
+
+  useEffect(()=>{
+    fetchSingleLocation(loactionId);
+    }, [loactionId]
+  );
     return(
         <div className="single-loc-container">
           <div className="left-col">
@@ -62,3 +71,17 @@ export default function Location (props) {
         </div>
       );
 }
+
+function mapStateToProps(state) {
+  return {
+    maps: state.maps
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    fetchSingleLocation,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Location);

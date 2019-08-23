@@ -55,3 +55,24 @@ export const mapsLoading = () => async dispatch => {
     dispatch(mapsFailure(error.message));
   }
 }
+
+// Actions to get Single location data
+export const singleLocSuccess = locationList => ({
+  type: types.FETCH_SINGLE_LOCATIONS_SUCCESS,
+  payload: locationList
+});
+
+export const singleLocFailure = error => ({
+  type: types.FETCH_SINGLE_LOCATIONS_FAILURE,
+  payload: error
+});
+
+export const fetchSingleLocation = (locId) => async dispatch => {
+  dispatch({ type: types.LOADING_SINGLE_LOCATION });
+  try {
+    const locationInfo = await axios.get(`${url}/api/locations/${locId}`);
+    dispatch(singleLocSuccess(locationInfo.data));
+  } catch (error) {
+    dispatch(singleLocFailure(error.message));
+  }
+};
