@@ -70,6 +70,8 @@ function Map(props) {
           lng: parseFloat(location.longitude) 
         }
       }))
+    } else {
+      console.log('Unfortunately we have no locations to suggests around you. Would you like to add one?')
     }
    
   }, [maps.mapsObj, locations.locations.length]);
