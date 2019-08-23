@@ -7,11 +7,11 @@ function Map(props) {
   const { maps, mapsLoading, locations, locationLoads } = props;
 
   let newMap;
-
+  const defaultPos = { lat: 51.508056, lng: -0.128056, }
   const mapDefaultView = () => {
     newMap = new maps.mapsObj.Map(document.getElementById('map'), {
       zoom: 15,
-      center: { lat: 6.553909, lng: 3.3663045 }
+      center: defaultPos
     });
 
     if (navigator.geolocation) {
@@ -30,15 +30,14 @@ function Map(props) {
   };
 
   const setCenterToUserLocation = (browserHasGeolocation, newMap) => {
-    // add the marker to the center and markers for every location in state
-    if (browserHasGeolocation) {
-      new maps.mapsObj.Marker({
-        map: newMap,
-        position: newMap.getCenter()
-      });
-    } else {
-      console.log("this browser doesn't support geolocation or you didn't allow it");
-    }
+    // add the marker to the center 
+    new maps.mapsObj.Marker({
+      map: newMap,
+      position: newMap.getCenter()
+    });
+    if (!browserHasGeolocation) {
+      console.log("this browser doesn't support geolocation or you didn't allow it. Map is centered to default position");
+    } 
   };
 
   useEffect(() => {
@@ -52,7 +51,9 @@ function Map(props) {
         };
         locationLoads(pos)
       })
-    };
+    } else {
+      locationLoads(defaultPos)
+    }
     // Then we build the map
     if (maps.mapsObj) {
       mapDefaultView();
