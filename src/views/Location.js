@@ -1,5 +1,6 @@
 import React from 'react';
-import './location.css'
+import './location.css';
+import Map from '../components/Map';
 
 export default function Location () {
     return(
@@ -78,7 +79,38 @@ export default function Location () {
             </div>
 
           </div>
+
+
           <div className="right-col">
+
+            <div className="desc-container">
+              <h3 className="centered">Overall review</h3>
+              <div className="loc-item-container review">
+                <div className="rev-rates overall-review">
+                  <div className="rate-line">
+                    <label>Quietnes</label> 
+                    <div className="rate-count-box">
+                      <div className="rate bad centered">Bad</div>
+                    </div>
+                  </div>
+                  <div className="rate-line">
+                    <label>Wifi</label> 
+                    <div className="rate-count-box">
+                      <div className="rate medium centered">Okay</div>
+                    </div>
+                  </div>
+                  <div className="rate-line">
+                    <label>Accessibility</label> 
+                    <div className="rate-count-box">
+                      <div className="rate good centered">Goog</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="desc-container">
+              <Map />
+            </div>
 
           </div>
 
