@@ -11,6 +11,7 @@ import { locationLoads } from '../redux/actionCreators';
 import LocationCard from './LocationCard';
 const SearchPage = props => {
   const { locations } = props;
+  const [toggle, setToggle] = useState(false);
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
@@ -18,17 +19,21 @@ const SearchPage = props => {
     setPlaces(locations);
   }, []);
 
+  const show = () => setToggle(!toggle);
+
   return (
     <div>
       <Header />
       <StyledSearch>
-        <FilterPane />
-        <CardContainer>
-          {locations &&
-            places.map(place => {
-              return <LocationCard key={place.name} location={place} />;
-            })}
-        </CardContainer>
+        <div>
+          <FilterPane toggle={toggle} show={show} />
+          <CardContainer>
+            {locations &&
+              places.map(place => {
+                return <LocationCard key={place.name} location={place} />;
+              })}
+          </CardContainer>
+        </div>
         <Map />
       </StyledSearch>
     </div>
