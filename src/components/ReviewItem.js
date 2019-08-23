@@ -1,4 +1,5 @@
 import React from 'react';
+import Stars from '../components/Star'
 
 export default function ReviewItem(props){
     console.log('items', props);
@@ -9,9 +10,11 @@ export default function ReviewItem(props){
                 <div className="loc-item-container review">
                 <div className="rev-rates">
                 <div className="rate-line">
-                  <label>Quietnes</label> 
-                  <div className="rate-count-box">
-                    <div className="rate bad centered">Bad</div>
+                  <label>Quietness</label> 
+                  <div className="rate-star-box">
+                    <div className="rate">
+                    <Stars number={review.quietness}/>
+                    </div>
                   </div>
                 </div>
                 <div className="rate-line">
