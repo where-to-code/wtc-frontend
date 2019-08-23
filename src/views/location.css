@@ -153,8 +153,18 @@
     border-bottom-right-radius: 5px;
 }
 
+img.star{
+    width: 20px;
+    height: auto;
+    padding: 2px;
+}
+
 .centered{
     text-align: center;
+}
+
+span.extra-small{
+    font-size: .9rem;
 }
 
 button {

@@ -10,13 +10,10 @@ import { fetchSingleLocation } from '../redux/actionCreators';
 function Location (props) {
   const { fetchSingleLocation } = props;
   const loactionId = props.match.params.id;
-  console.log('loading single loaction');
   
   useEffect(()=>{
-    if(!props.location){
       fetchSingleLocation(loactionId);
-    }
-  },[]
+  }
 );
     if(props.location){
       return(
@@ -82,7 +79,6 @@ function Location (props) {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state);
   return {
     location: state.location.location
   };

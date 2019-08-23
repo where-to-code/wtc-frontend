@@ -1,30 +1,36 @@
 import React from 'react';
+import Stars from '../components/Stars'
 
 export default function ReviewItem(props){
-    console.log('items', props);
     if(props.reviews){
       return(
         <>
         {
             props.reviews.map(review =>(
-                <div className="loc-item-container review">
+                <div key={review.user_id} className="loc-item-container review">
                 <div className="rev-rates">
                 <div className="rate-line">
                   <label>Quietnes</label> 
-                  <div className="rate-count-box">
-                    <div className="rate bad centered">Bad</div>
+                  <div>
+                    <Stars starNumber={review.quietness}/>
                   </div>
                 </div>
                 <div className="rate-line">
                   <label>Wifi</label> 
-                  <div className="rate-count-box">
-                    <div className="rate medium centered">Okay</div>
+                  <div>
+                    <Stars starNumber={review.wifi_speed}/>
                   </div>
                 </div>
                 <div className="rate-line">
                   <label>Accessibility</label> 
-                  <div className="rate-count-box">
-                    <div className="rate good centered">Good</div>
+                  <div>
+                  <Stars starNumber={review.accessibility}/>
+                  </div>
+                </div>
+                <div className="rate-line">
+                  <label>Community</label> 
+                  <div>
+                  <Stars starNumber={review.community}/>
                   </div>
                 </div>
               </div>    
