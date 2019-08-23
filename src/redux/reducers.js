@@ -16,7 +16,7 @@ export const locationReducer = (
       return { ...state, loadingSingleLoc: true };
     case types.FETCH_SINGLE_LOCATIONS_SUCCESS:
       return { ...state, loadingSingleLoc: false, singelLocation: action.payload };
-    case types.FETCH_LOCATIONS_FAILURE:
+    case types.FETCH_SINGLE_LOCATIONS_FAILURE:
       return { ...state, loadingSingleLoc: false, error: action.payload };
     default:
       return state;

@@ -55,8 +55,10 @@ function Map(props) {
       locationLoads(defaultPos)
     }
     // Then we build the map
+    
     if (maps.mapsObj) {
       mapDefaultView();
+
     } else {
       mapsLoading();
     }

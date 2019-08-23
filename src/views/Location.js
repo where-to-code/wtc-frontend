@@ -10,11 +10,11 @@ import { fetchSingleLocation } from '../redux/actionCreators';
 function Location (props) {
   const { fetchSingleLocation } = props;
   const loactionId = props.match.params.id;
-  //console.log(props.location)
   
   useEffect(()=>{
+      console.log(props.location);
       fetchSingleLocation(loactionId);    
-    }, [loactionId]
+    },[loactionId]
   );
     if(props.location){
       return(
@@ -49,7 +49,7 @@ function Location (props) {
             </div>
             <div className="desc-container">
               <h3 className="centered">Reviews</h3>
-              <ReviewItem reviews={props.location.reviews} />
+              {/* <ReviewItem reviews={props.location.reviews} /> */}
             </div>
           </div>
 
@@ -81,7 +81,7 @@ function Location (props) {
 
 function mapStateToProps(state) {
   return {
-    location: state.location.locations.data
+    location: state.locations
   };
 }
 
