@@ -41,8 +41,8 @@ const SearchPage = props => {
 };
 
 const mapStateToProps = state => ({
-  locations: state.location.locations,
-  loadingLocation: state.location.loadingLocation
+  locations: state.locations.locations,
+  // loadingLocation: state.location.loadingLocation
 });
 
 export default connect(

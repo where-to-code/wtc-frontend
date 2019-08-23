@@ -16,6 +16,7 @@ const combinedReducer = combineReducers({
   locations: reducers.locationReducer,
   maps: reducers.mapsReducer
 });
+
 const store = createStore(
   combinedReducer,
   {},
