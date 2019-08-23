@@ -11,6 +11,9 @@ export const StyledHeader = styled.header`
   .logo {
     width: 50px;
     margin: 0 0 0 15px;
+    &:hover {
+      cursor: pointer;
+    }
     img {
       width: 100%;
     }

@@ -47,10 +47,7 @@ function Map(props) {
       mapsLoading();
     }
   }, [maps.mapsObj]);
-  return (
-    
-  <StyledMap id="map" />
-  );
+  return <StyledMap id="map" />;
 }
 
 function mapStateToProps(state) {

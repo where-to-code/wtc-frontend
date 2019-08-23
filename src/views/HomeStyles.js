@@ -58,6 +58,9 @@ export const StyledHome = styled.div`
         border: none;
         height: 35px;
         width: 50px;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
     button {
@@ -69,6 +72,9 @@ export const StyledHome = styled.div`
       border: none;
       border-radius: 10px;
       padding: 14px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
   @media (min-width: 600px) {

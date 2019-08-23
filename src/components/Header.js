@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import logo from '../assets/logo.png';
 const Header = props => {
-  console.log(props);
   return (
     <StyledHeader landing={props.landing}>
       <div className="logo">
