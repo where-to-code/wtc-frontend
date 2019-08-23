@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './location.css';
 import Map from '../components/Map';
+import ReviewItem from '../components/ReviewItem';
+import OverallReview from '../components/OverallReview';
 
-export default function Location () {
+export default function Location (props) {
+    const [loactionId, setLocationId] = useState(props.match.params.id)
     return(
         <div className="single-loc-container">
           <div className="left-col">
@@ -14,26 +17,8 @@ export default function Location () {
 
 
               <div className="rev-rates overall-review small-screen">
-                <h4>Overall review</h4>
-                  <div className="rate-line">
-                    <label>Quietnes</label> 
-                    <div className="rate-count-box">
-                      <div className="rate bad centered">Bad</div>
-                    </div>
-                  </div>
-                  <div className="rate-line">
-                    <label>Wifi</label> 
-                    <div className="rate-count-box">
-                      <div className="rate medium centered">Okay</div>
-                    </div>
-                  </div>
-                  <div className="rate-line">
-                    <label>Accessibility</label> 
-                    <div className="rate-count-box">
-                      <div className="rate good centered">Goog</div>
-                    </div>
-                  </div>
-                </div>
+                <OverallReview />
+              </div>
 
 
 
@@ -50,93 +35,17 @@ export default function Location () {
                   <button>Add review</button><button>Add to favorite</button>
               </div>
             </div>
-
             <div className="desc-container">
               <h3 className="centered">Reviews</h3>
-              <div className="loc-item-container review">
-                <div className="rev-rates">
-                  <div className="rate-line">
-                    <label>Quietnes</label> 
-                    <div className="rate-count-box">
-                      <div className="rate bad centered">Bad</div>
-                    </div>
-                  </div>
-                  <div className="rate-line">
-                    <label>Wifi</label> 
-                    <div className="rate-count-box">
-                      <div className="rate medium centered">Okay</div>
-                    </div>
-                  </div>
-                  <div className="rate-line">
-                    <label>Accessibility</label> 
-                    <div className="rate-count-box">
-                      <div className="rate good centered">Goog</div>
-                    </div>
-                  </div>
-                </div>
-                <div className='rev-desc'>
-                  <h4>Comment</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-              </div>
-              <div className="loc-item-container review">
-                <div className="rev-rates">
-                  <div className="rate-line">
-                    <label>Quietnes</label> 
-                    <div className="rate-count-box">
-                      <div className="rate medium centered">Okay</div>
-                    </div>
-                  </div>
-                  <div className="rate-line">
-                    <label>Wifi</label> 
-                    <div className="rate-count-box">
-                      <div className="rate good centered">Good</div>
-                    </div>
-                  </div>
-                  <div className="rate-line">
-                    <label>Accessibility</label> 
-                    <div className="rate-count-box">
-                      <div className="rate bad centered">Bad</div>
-                    </div>
-                  </div>
-                </div>
-                <div className='rev-desc'>
-                  <h4>Comment</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-              </div>
-
+              <ReviewItem />
             </div>
-
           </div>
 
-
+          {/* Right column start */}
           <div className="right-col">
-
             <div className="desc-container">
               <h3 className="centered">Overall review</h3>
-              <div className="loc-item-container review">
-                <div className="rev-rates overall-review">
-                  <div className="rate-line">
-                    <label>Quietnes</label> 
-                    <div className="rate-count-box">
-                      <div className="rate bad centered">Bad</div>
-                    </div>
-                  </div>
-                  <div className="rate-line">
-                    <label>Wifi</label> 
-                    <div className="rate-count-box">
-                      <div className="rate medium centered">Okay</div>
-                    </div>
-                  </div>
-                  <div className="rate-line">
-                    <label>Accessibility</label> 
-                    <div className="rate-count-box">
-                      <div className="rate good centered">Goog</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <OverallReview />
                 <div className="centered">
                   <button>Add review</button><button>Add to favorite</button>
                 </div>
