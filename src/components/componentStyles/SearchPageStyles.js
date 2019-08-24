@@ -3,20 +3,23 @@ import styled from 'styled-components';
 export const StyledMap = styled.div`
   display: none;
   @media (min-width: 600px) {
-    position: relative;
+    position: fixed;
     display: block;
-    height: 100vh;
-    width: 45vw;
+    top: 32px;
+    right: 0px;
+    height: 100%;
+    width: 35vw;
   }
 `;
 
 export const StyledLoader = styled.div`
-  position: absolute;
+  position: fixed;
   left: 30%;
   top: 50%;
 `;
 
 export const StyledSearch = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   border-top: 1px solid #03525b;
@@ -75,10 +78,10 @@ export const CardContainer = styled.div`
   flex-direction: column;
   @media (min-width: 600px) {
     flex-direction: row;
-    margin: 20px 50px;
+    margin: 20px 40px;
     width: 60vw;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 `;
 
@@ -99,7 +102,7 @@ export const StyledCard = styled.div`
       color: #666a7c;
     }
     div {
-      margin: 0 auto;
+      margin: 10px auto;
       font-size: 16px;
       line-height: 18px;
       color: #666a7c;

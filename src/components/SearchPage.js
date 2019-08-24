@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 import Map from './Map';
 import Header from './Header';
@@ -14,7 +13,6 @@ import FilterPane from './FilterPane';
 import { locationLoads } from '../redux/actionCreators';
 import LocationCard from './LocationCard';
 const SearchPage = props => {
-  console.log(props);
   const { locations, locationLoads, loadingLocation } = props;
 
   const [toggle, setToggle] = useState(false);

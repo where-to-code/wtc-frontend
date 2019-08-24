@@ -63,8 +63,6 @@ const Map = props => {
     } else {
       mapsLoading();
     }
-    // }, [maps.mapsObj]);
-    // return <StyledMap id="map" />;
 
     // Finally we add the markers of the locations on the map
     if (locations.locations.length > 0) {

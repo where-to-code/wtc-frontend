@@ -6,8 +6,7 @@ export const StyledHeader = styled.header`
   align-items: center;
   height: 20px;
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0;
   .logo {
     width: 50px;
     margin: 0 0 0 15px;
