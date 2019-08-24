@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/SearchPageStyles';
 import { mapsLoading, locationLoads } from '../redux/actionCreators';
 
-function Map(props) {
+const Map = props => {
   const { maps, mapsLoading, locations, locationLoads } = props;
 
   let newMap;
@@ -84,12 +84,8 @@ function Map(props) {
       );
     }
   }, [maps.mapsObj, locations.locations.length]);
-  return (
-    <div className="App">
-      <div className="map-container" id="map" />
-    </div>
-  );
-}
+  return <StyledMap id="map" />;
+};
 
 function mapStateToProps(state) {
   return {

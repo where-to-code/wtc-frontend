@@ -3,10 +3,17 @@ import styled from 'styled-components';
 export const StyledMap = styled.div`
   display: none;
   @media (min-width: 600px) {
+    position: relative;
     display: block;
     height: 100vh;
     width: 45vw;
   }
+`;
+
+export const StyledLoader = styled.div`
+  position: absolute;
+  left: 30%;
+  top: 50%;
 `;
 
 export const StyledSearch = styled.div`
@@ -85,11 +92,11 @@ export const StyledCard = styled.div`
 
   .desc {
     text-align: center;
+    padding: 10px;
     h4 {
-      font-size: 24px;
-      font-weight: bold;
+      font-size: 18px;
+      font-weight: bolder;
       color: #666a7c;
-      padding: 10px;
     }
     div {
       margin: 0 auto;

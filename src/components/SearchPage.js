@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
 import Map from './Map';
 import Header from './Header';
 import {
   StyledSearch,
-  CardContainer
+  CardContainer,
+  StyledLoader,
+  StyledMap
 } from './componentStyles/SearchPageStyles';
 import FilterPane from './FilterPane';
 import { locationLoads } from '../redux/actionCreators';
 import LocationCard from './LocationCard';
 const SearchPage = props => {
-  const { locations } = props;
+  console.log(props);
+  const { locations, locationLoads, loadingLocation } = props;
+
   const [toggle, setToggle] = useState(false);
   const [places, setPlaces] = useState([]);
 
+  const defaultPos = { lat: 51.508056, lng: -0.128056 };
+
   useEffect(() => {
-    // locationLoads();
-    setPlaces(locations);
+    locationLoads(defaultPos);
   }, []);
+
+  useEffect(() => setPlaces(locations), [locations]);
 
   const show = () => setToggle(!toggle);
 
@@ -27,6 +36,11 @@ const SearchPage = props => {
       <StyledSearch>
         <div>
           <FilterPane toggle={toggle} show={show} />
+          {loadingLocation && (
+            <StyledLoader>
+              <Loader type="Oval" color="#56c1cb" height={80} width={80} />
+            </StyledLoader>
+          )}
           <CardContainer>
             {locations &&
               places.map(place => {
@@ -34,7 +48,9 @@ const SearchPage = props => {
               })}
           </CardContainer>
         </div>
-        <Map />
+        <StyledMap>
+          <Map />
+        </StyledMap>
       </StyledSearch>
     </div>
   );
@@ -42,7 +58,7 @@ const SearchPage = props => {
 
 const mapStateToProps = state => ({
   locations: state.locations.locations,
-  // loadingLocation: state.location.loadingLocation
+  loadingLocation: state.locations.loadingLocation
 });
 
 export default connect(
