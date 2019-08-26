@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/SearchPageStyles';
 import { mapsLoading, locationLoads } from '../redux/actionCreators';
 
+import marker from '../assets/icons8-marker-40.png'
+
 const Map = props => {
   const { maps, mapsLoading, locations, locationLoads } = props;
 
@@ -70,6 +72,7 @@ const Map = props => {
         location =>
           new maps.mapsObj.Marker({
             map: newMap,
+            icon: marker,
             position: {
               lat: parseFloat(location.latitude),
               lng: parseFloat(location.longitude)
