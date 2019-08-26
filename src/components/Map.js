@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/SearchPageStyles';
 import { mapsLoading, locationLoads } from '../redux/actionCreators';
 
-import marker from '../assets/icons8-marker-40.png'
+import markerBlue from '../assets/icons8-marker-40.png'
 
 const Map = props => {
   const { maps, mapsLoading, locations, locationLoads } = props;
@@ -69,15 +69,21 @@ const Map = props => {
     // Finally we add the markers of the locations on the map
     if (locations.locations.length > 0) {
       locations.locations.map(
-        location =>
-          new maps.mapsObj.Marker({
+        location => {
+          const marker = new maps.mapsObj.Marker({
             map: newMap,
-            icon: marker,
+            icon: markerBlue,
             position: {
               lat: parseFloat(location.latitude),
               lng: parseFloat(location.longitude)
             }
           })
+          marker.addListener('click', () => {
+            newMap.setCenter(marker.getPosition());
+          });
+  
+        }
+
       );
     } else {
       console.log(
