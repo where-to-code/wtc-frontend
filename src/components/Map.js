@@ -13,7 +13,7 @@ const Map = props => {
   const defaultPos = { lat: 51.508056, lng: -0.128056 };
   const mapDefaultView = () => {
     newMap = new maps.mapsObj.Map(document.getElementById('map'), {
-      zoom: 15,
+      zoom: 12,
       center: defaultPos
     });
 
