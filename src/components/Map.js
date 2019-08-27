@@ -4,29 +4,41 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/SearchPageStyles';
 import { mapsLoading, locationLoads } from '../redux/actionCreators';
 
-const Map = props => {
-  const { maps, mapsLoading, locations, locationLoads } = props;
-
+function Map(props) {
+  const { maps, mapsLoading, locations, locationLoads, selectedLocation } = props;
   let newMap;
-  const defaultPos = { lat: 51.508056, lng: -0.128056 };
+  let defaultPos = { lat: 51.508056, lng: -0.128056, }
+  // if we received a location selected and passed from single location view
+  // we set the default center to the selected location
+  if(selectedLocation) {
+    defaultPos = selectedLocation;
+  }
+
   const mapDefaultView = () => {
     newMap = new maps.mapsObj.Map(document.getElementById('map'), {
       zoom: 15,
       center: defaultPos
     });
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        newMap.setCenter(pos);
-        setCenterToUserLocation(true, newMap);
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      setCenterToUserLocation(false, newMap);
+    if(!selectedLocation){
+      // we set center to user location only if we have not received 
+      // a selected location already (from single location view)
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          newMap.setCenter(pos);
+          setCenterToUserLocation(true, newMap);
+        });
+      } else {
+        // Browser doesn't support Geolocation
+        setCenterToUserLocation(false, newMap);
+      }  
+    }
+    else{
+      setCenterToUserLocation(null, newMap);
     }
   };
 
@@ -36,11 +48,9 @@ const Map = props => {
       map: newMap,
       position: newMap.getCenter()
     });
-    if (!browserHasGeolocation) {
-      console.log(
-        "this browser doesn't support geolocation or you didn't allow it. Map is centered to default position"
-      );
-    }
+    if (!browserHasGeolocation && !selectedLocation) {
+      console.log("this browser doesn't support geolocation or you didn't allow it. Map is centered to default position");
+    } 
   };
 
   useEffect(() => {
@@ -58,8 +68,10 @@ const Map = props => {
       locationLoads(defaultPos);
     }
     // Then we build the map
+    
     if (maps.mapsObj) {
       mapDefaultView();
+
     } else {
       mapsLoading();
     }
