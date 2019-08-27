@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './index.css';
 import App from './App';
 import { Provider } from "react-redux";
@@ -16,6 +17,7 @@ const combinedReducer = combineReducers({
   locations: reducers.locationReducer,
   maps: reducers.mapsReducer
 });
+
 const store = createStore(
   combinedReducer,
   {},

@@ -7,7 +7,7 @@ import axiosMock from 'axios-mock-adapter';
 
 const mock = new axiosMock(axios);
 const middlewares = [thunk];
-const url = 'https://where2code.herokuapp.com/api/';
+const url = 'https://where2code.herokuapp.com/api';
 const mockStore = configureMockStore(middlewares);
 describe('fetch locations', () => {
   const locations = [

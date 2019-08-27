@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 
-const url = 'https://where2code.herokuapp.com/api/';
+const url = 'https://where2code.herokuapp.com/api';
 
 
 export const locationSuccess = locationList => ({
