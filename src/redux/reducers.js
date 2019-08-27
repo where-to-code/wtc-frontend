@@ -29,7 +29,7 @@ export const singleLocaReducer = (
     case types.LOADING_SINGLE_LOCATION:
       return { ...state, loadingSingleLoc: true };
     case types.FETCH_SINGLE_LOCATIONS_SUCCESS:
-      return { ...state, loadingSingleLoc: false, location: action.payload };;
+      return { ...state, loadingSingleLoc: false, location: action.payload };
     case types.FETCH_SINGLE_LOCATIONS_FAILURE:
       return { ...state, loadingSingleLoc: false, error: action.payload };
     default:
@@ -37,12 +37,20 @@ export const singleLocaReducer = (
   }
 };
 
-export const mapsReducer = (state = { loadingMaps: false, mapsObj: null, error: null }, action) => {
+export const mapsReducer = (
+  state = { loadingMaps: false, mapsObj: null, error: null, geolocation: {} },
+  action
+) => {
   switch (action.type) {
     case types.LOADING_MAP_API:
       return { ...state, loadingMaps: true };
     case types.FETCH_MAP_API_SUCCESS:
-      return { ...state, loadingLocation: false, mapsObj: action.payload };
+      return {
+        ...state,
+        loadingLocation: false,
+        mapsObj: action.payload.mapsObj,
+        geolocation: action.payload.geolocation
+      };
     case types.FETCH_MAP_API_FAILURE:
       return { ...state, loadingLocation: false, error: action.payload };
     default:
