@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './views/Home';
-import Map from './components/Map';
 import Location from './views/Location';
 import SearchPage from './components/SearchPage';
 

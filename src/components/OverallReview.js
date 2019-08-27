@@ -20,7 +20,7 @@ export default function OverallReview(){
                   <div className="rate-line">
                     <label>Accessibility</label> 
                     <div className="rate-count-box">
-                      <div className="rate good centered">Goog</div>
+                      <div className="rate good centered">Good</div>
                     </div>
                   </div>
                 </div>
