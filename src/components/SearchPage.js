@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import Map from './Map';
-import { Link } from 'react-router-dom';
 import Header from './Header';
 import {
   StyledSearch,
   CardContainer,
   StyledLoader,
   StyledMap,
-  LocationErr
 } from './componentStyles/SearchPageStyles';
+import LocationErr from './LocationErr'
 import FilterPane from './FilterPane';
 import { locationLoads } from '../redux/actionCreators';
 import LocationCard from './LocationCard';
@@ -39,18 +38,7 @@ const SearchPage = props => {
             </StyledLoader>
           )}
           {locationsErr && (
-            <LocationErr>
-              <h4>Sorry, we couldn't find any location around you</h4>
-              <p>Maybe you want to try again</p>
-              <button onClick={() => window.location.reload()}>Find places near you</button>
-              <p>Or suggest us a location</p>
-              <button>Add a Location</button>
-              <p>Or use our search feature</p>
-              <form type="submit">
-                <input type="text" placeholder="Search" />
-                <input type="submit" value="" />
-              </form>
-            </LocationErr>
+            <LocationErr />
           )}
           <CardContainer>
             {locations &&

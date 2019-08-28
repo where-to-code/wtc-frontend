@@ -120,7 +120,7 @@ export const StyledCard = styled.div`
   }
 `;
 
-export const LocationErr = styled.div`
+export const StyledLocationErr = styled.div`
   width: 55vw;
   margin: 0 auto;
   text-align: center;
