@@ -10,7 +10,7 @@ export default function ReviewItem(props){
                 <div key={review.id} className="loc-item-container review">
                 <div className="rev-rates">
                 <div className="rate-line">
-                  <label>Quietnes</label> 
+                  <label>Quietness</label> 
                   <div>
                     <Stars starNumber={review.quietness}/>
                   </div>
