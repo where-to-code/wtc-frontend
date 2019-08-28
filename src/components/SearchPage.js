@@ -13,18 +13,15 @@ import FilterPane from './FilterPane';
 import { locationLoads } from '../redux/actionCreators';
 import LocationCard from './LocationCard';
 const SearchPage = props => {
-  const { locations, locationLoads, loadingLocation } = props;
+  const { geolocation, locations, locationLoads, loadingLocation } = props;
 
   const [toggle, setToggle] = useState(false);
-  const [places, setPlaces] = useState([]);
-
-  const defaultPos = { lat: 51.508056, lng: -0.128056 };
 
   useEffect(() => {
-    locationLoads(defaultPos);
+    if (Object.keys(geolocation).length > 0) {
+      locationLoads(geolocation);
+    }
   }, []);
-
-  useEffect(() => setPlaces(locations), [locations]);
 
   const show = () => setToggle(!toggle);
 
@@ -41,13 +38,13 @@ const SearchPage = props => {
           )}
           <CardContainer>
             {locations &&
-              places.map(place => {
+              locations.map(place => {
                 return <LocationCard key={place.name} location={place} />;
               })}
           </CardContainer>
         </div>
         <StyledMap>
-          <Map />
+          <Map locations={locations} />
         </StyledMap>
       </StyledSearch>
     </div>
@@ -56,7 +53,8 @@ const SearchPage = props => {
 
 const mapStateToProps = state => ({
   locations: state.locations.locations,
-  loadingLocation: state.locations.loadingLocation
+  loadingLocation: state.locations.loadingLocation,
+  geolocation: state.maps.geolocation
 });
 
 export default connect(
