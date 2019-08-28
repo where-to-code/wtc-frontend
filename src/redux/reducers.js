@@ -49,3 +49,11 @@ export const mapsReducer = (state = { loadingMaps: false, mapsObj: null, error: 
       return state;
   }
 };
+export const activeLocation = (state = null, action) => {
+  switch (action.type) {
+    case types.SET_ACTIVE:
+      return action.payload;
+    default:
+      return state;
+  }
+}

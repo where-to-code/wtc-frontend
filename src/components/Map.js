@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/SearchPageStyles';
-import { mapsLoading, locationLoads } from '../redux/actionCreators';
+import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
 
 import markerBlue from '../assets/icons8-marker-40.png'
 
 function Map(props) {
-  const { maps, mapsLoading, locations, locationLoads, selectedLocation } = props;
+  const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive } = props;
   let newMap;
   let defaultPos = { lat: 51.508056, lng: -0.128056, }
   // if we received a location selected and passed from single location view
@@ -91,7 +91,7 @@ function Map(props) {
             }
           })
           marker.addListener('click', () => {
-            newMap.setCenter(marker.getPosition());
+            setActive(location)
           });
   
         }
@@ -103,6 +103,7 @@ function Map(props) {
       );
     }
   }, [maps.mapsObj, locations.locations.length]);
+  
   return <StyledMap id="map" />;
 };
 
@@ -117,7 +118,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       mapsLoading,
-      locationLoads
+      locationLoads,
+      setActive
     },
     dispatch
   );
