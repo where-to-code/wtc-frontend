@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './index.css';
 import App from './App';
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import * as reducers from '../src/redux/reducers'
-import { createStore, applyMiddleware, combineReducers, compose } from "redux";
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import * as reducers from '../src/redux/reducers';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -24,8 +24,10 @@ const store = createStore(
   combinedReducer,
   {},
   compose(
-    applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    
+    applyMiddleware(thunk),
+    (window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__()) ||
+      compose
   )
 );
 

@@ -62,7 +62,7 @@ function Map(props) {
   };
 
   const geo = navigator.geolocation.getCurrentPosition(position => {
-    var pos = {
+    let pos = {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
@@ -88,17 +88,6 @@ function Map(props) {
       }
     }
     // Finally we add the markers of the locations on the map
-
-    // if (locations.length > 0) {
-    //   locations.map(
-    //     location =>
-    //       new maps.mapsObj.Marker({
-    //         map: newMap,
-    //         position: {
-    //           lat: parseFloat(location.latitude),
-    //           lng: parseFloat(location.longitude)
-    //         }
-    //       })
 
     if (maps.mapsObj && locations.locations.length > 0) {
       locations.locations.map(
@@ -145,7 +134,7 @@ function Map(props) {
         locations.error
       );
     }
-  }, [activeLocation, locations.locations.length]);
+  }, [activeLocation, locations.locations.length, geo]);
 
   return <StyledMap id="map" />;
 }

@@ -13,19 +13,29 @@ import FilterPane from './FilterPane';
 import { locationLoads } from '../redux/actionCreators';
 import LocationCard from './LocationCard';
 const SearchPage = props => {
+  const {
+    geolocation,
+    locations,
+    locationLoads,
+    loadingLocation,
+    activeLocation
+  } = props;
 
-  const { geolocation, locations, locationLoads, loadingLocation, activeLocation} = props;
-
-
+  const [places, setPlaces] = useState([]);
   const [toggle, setToggle] = useState(false);
   let defaultPos = { lat: 51.508056, lng: -0.128056 };
   useEffect(() => {
     if (Object.keys(geolocation).length > 0) {
       locationLoads(geolocation);
-    } else {
-      locationLoads(defaultPos);
+      if (locations.length > 0) {
+        setPlaces(locations);
+      } else {
+        locationLoads(defaultPos);
+        setPlaces(locations);
+      }
     }
-  }, []);
+  }, [geolocation]);
+
 
   const show = () => setToggle(!toggle);
 
@@ -42,11 +52,21 @@ const SearchPage = props => {
           )}
           <CardContainer>
             {locations &&
-              locations.map(place => {
-                if (activeLocation && activeLocation.latitude === place.latitude && activeLocation.longitude === place.longitude) {
-                  return <LocationCard key={place.name} location={place} active={true}/>
+              places.map(place => {
+                if (
+                  activeLocation &&
+                  activeLocation.latitude === place.latitude &&
+                  activeLocation.longitude === place.longitude
+                ) {
+                  return (
+                    <LocationCard
+                      key={place.name}
+                      location={place}
+                      active={true}
+                    />
+                  );
                 } else {
-                  return <LocationCard key={place.name} location={place} />
+                  return <LocationCard key={place.name} location={place} />;
                 }
               })}
           </CardContainer>
@@ -64,7 +84,6 @@ const mapStateToProps = state => ({
   loadingLocation: state.locations.loadingLocation,
   geolocation: state.maps.geolocation,
   activeLocation: state.activeLocation
-
 });
 
 export default connect(
