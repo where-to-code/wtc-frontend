@@ -43,6 +43,7 @@ const Registration = () => {
 
     const { firstname, lastname, email, password, confirmPassword } = formState;
 
+    // checks to see that all validation passes
     if (
       !/^[a-zA-Z-]{2,}$/.test(firstname) ||
       !/^[a-zA-Z-]{2,}$/.test(lastname) ||
