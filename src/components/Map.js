@@ -5,12 +5,18 @@ import { StyledMap } from './componentStyles/SearchPageStyles';
 import { mapsLoading, locationLoads } from '../redux/actionCreators';
 
 function Map(props) {
-  const { maps, mapsLoading, locations, locationLoads, selectedLocation } = props;
+  const {
+    maps,
+    mapsLoading,
+    locations,
+    locationLoads,
+    selectedLocation
+  } = props;
   let newMap;
-  let defaultPos = { lat: 51.508056, lng: -0.128056 }
+  let defaultPos = { lat: 51.508056, lng: -0.128056 };
   // if we received a location selected and passed from single location view
   // we set the default center to the selected location
-  if(selectedLocation) {
+  if (selectedLocation) {
     defaultPos = selectedLocation;
   }
 
@@ -20,8 +26,8 @@ function Map(props) {
       center: defaultPos
     });
 
-    if(!selectedLocation){
-      // we set center to user location only if we have not received 
+    if (!selectedLocation) {
+      // we set center to user location only if we have not received
       // a selected location already (from single location view)
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -35,9 +41,8 @@ function Map(props) {
       } else {
         // Browser doesn't support Geolocation
         setCenterToUserLocation(false, newMap);
-      }  
-    }
-    else{
+      }
+    } else {
       setCenterToUserLocation(null, newMap);
     }
   };
@@ -49,33 +54,37 @@ function Map(props) {
       position: newMap.getCenter()
     });
     if (!browserHasGeolocation && !selectedLocation) {
-      console.log("this browser doesn't support geolocation or you didn't allow it. Map is centered to default position");
-    } 
+      console.log(
+        "this browser doesn't support geolocation or you didn't allow it. Map is centered to default position"
+      );
+    }
   };
 
+  const geo = navigator.geolocation.getCurrentPosition(position => {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+    return pos;
+  });
   useEffect(() => {
     // This wiil needs to be refactored or modified when search is present
     // If geolocation is present we load the locations around it
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        locationLoads(pos);
-      });
+    if (geo) {
+      locationLoads(geo);
     } else {
       locationLoads(defaultPos);
     }
     // Then we build the map
-    
     if (maps.mapsObj) {
       mapDefaultView();
-
     } else {
-      mapsLoading();
+      if (geo) {
+        mapsLoading(geo);
+      } else {
+        mapsLoading(defaultPos);
+      }
     }
-
     // Finally we add the markers of the locations on the map
     if (locations.locations.length > 0) {
       locations.locations.map(
@@ -95,7 +104,7 @@ function Map(props) {
     }
   }, [maps.mapsObj, locations.locations.length]);
   return <StyledMap id="map" />;
-};
+}
 
 function mapStateToProps(state) {
   return {
