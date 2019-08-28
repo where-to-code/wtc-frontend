@@ -53,6 +53,12 @@ export const StyledLeftSection = styled.div`
       margin: 10px 0;
     }
 
+    span {
+      color: red;
+      margin: 0;
+      font-size: 10px;
+    }
+
     button {
       width: 250px;
       font-size: 16px;
