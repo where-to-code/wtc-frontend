@@ -17,14 +17,41 @@ const Registration = () => {
     confirmPassword: '',
   });
 
-  const handleChange = e =>
+  const [inputChangeState, updateInputChangeState] = useState({
+    firstname: false,
+    lastname: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+  });
+
+  const handleChange = e => {
     updateFormState({
       ...formState,
       [e.target.name]: e.target.value,
     });
 
+    updateInputChangeState({
+      ...inputChangeState,
+      [e.target.name]: true,
+    });
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
+
+    const { firstname, lastname, email, password, confirmPassword } = formState;
+
+    if (
+      !/^[a-zA-Z-]{2,}$/.test(firstname) ||
+      !/^[a-zA-Z-]{2,}$/.test(lastname) ||
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) ||
+      !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
+      password !== confirmPassword
+    ) {
+      return;
+    }
+
     console.log(formState);
   };
 
@@ -41,6 +68,11 @@ const Registration = () => {
             value={formState.firstname}
             onChange={handleChange}
           />
+          {inputChangeState.firstname &&
+            !/^[a-zA-Z-]{2,}$/.test(formState.firstname) && (
+              <span>Must be above 2 characters and alphabet alone.</span>
+            )}
+
           <input
             type="text"
             placeholder="Last Name"
@@ -48,13 +80,23 @@ const Registration = () => {
             value={formState.lastname}
             onChange={handleChange}
           />
+          {inputChangeState.lastname &&
+            !/^[a-zA-Z-]{2,}$/.test(formState.lastname) && (
+              <span>Must be above 2 characters and alphabet alone.</span>
+            )}
+
           <input
-            type="email"
+            type="text"
             placeholder="Email"
             name="email"
             value={formState.email}
             onChange={handleChange}
           />
+          {inputChangeState.email &&
+            !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+              formState.email,
+            ) && <span>You have entered an invalid email address!</span>}
+
           <input
             type="password"
             placeholder="Password"
@@ -62,6 +104,15 @@ const Registration = () => {
             value={formState.password}
             onChange={handleChange}
           />
+          {inputChangeState.password &&
+            !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(
+              formState.password,
+            ) && (
+              <span>
+                Must be between 6 and 15 characters and contain a number.
+              </span>
+            )}
+
           <input
             type="password"
             placeholder="Confirm Password"
@@ -69,10 +120,18 @@ const Registration = () => {
             value={formState.confirmPassword}
             onChange={handleChange}
           />
+          {inputChangeState.confirmPassword &&
+            !(formState.confirmPassword === formState.password) && (
+              <span>Does not match the password.</span>
+            )}
+
           <button type="submit">Sign Up</button>
         </form>
 
-        <p>Or sign up via GitHub</p>
+        <div>
+          <span></span> <p>Or sign up via</p>
+          <span></span>
+        </div>
         <img src={gitHubIcon} alt="github" />
       </StyledLeftSection>
       <StyledMap>
