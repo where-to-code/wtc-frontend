@@ -82,7 +82,7 @@ function Map(props) {
     }
 
     // Finally we add the markers of the locations on the map
-    if (locations.locations.length > 0) {
+    if (maps.mapsObj && locations.locations.length > 0) {
       locations.locations.map(
         location => {
           let marker
