@@ -86,6 +86,7 @@ export const CardContainer = styled.div`
 `;
 
 export const StyledCard = styled.div`
+  border: ${props => props.active ? '2px solid red' : 'inherit'} ;
   margin: 10px 0;
   width: 100%;
   height: 340px;
