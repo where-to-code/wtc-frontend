@@ -188,7 +188,6 @@ export const StyledLocationErr = styled.div`
 
 export const StyledNoGeoLocation = styled.div`
   display: ${props => props.toggleNoLoc ? 'block' : 'none'};
-  border: ${props => console.log(props.toggleNoLoc)};
   div {
     position: fixed;
     z-index: 2;
@@ -200,6 +199,12 @@ export const StyledNoGeoLocation = styled.div`
     text-align: center;
     padding: 10px 0;
   }
+
+  p {
+    padding-right: 80px;
+    padding-left: 25px;
+  }
+
   button {
     display: block;
     width: 35px;
