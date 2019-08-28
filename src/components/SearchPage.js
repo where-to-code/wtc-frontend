@@ -16,10 +16,12 @@ const SearchPage = props => {
   const { geolocation, locations, locationLoads, loadingLocation } = props;
 
   const [toggle, setToggle] = useState(false);
-
+  let defaultPos = { lat: 51.508056, lng: -0.128056 };
   useEffect(() => {
     if (Object.keys(geolocation).length > 0) {
       locationLoads(geolocation);
+    } else {
+      locationLoads(defaultPos);
     }
   }, []);
 

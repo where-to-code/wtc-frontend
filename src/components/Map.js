@@ -86,8 +86,8 @@ function Map(props) {
       }
     }
     // Finally we add the markers of the locations on the map
-    if (locations.locations.length > 0) {
-      locations.locations.map(
+    if (locations.length > 0) {
+      locations.map(
         location =>
           new maps.mapsObj.Marker({
             map: newMap,
@@ -102,7 +102,7 @@ function Map(props) {
         'Unfortunately we have no locations to suggests around you. Would you like to add one?'
       );
     }
-  }, [maps.mapsObj, locations.locations.length]);
+  }, [maps.mapsObj, locations.length]);
   return <StyledMap id="map" />;
 }
 
