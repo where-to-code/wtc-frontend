@@ -86,7 +86,19 @@ function Map(props) {
       locations.locations.map(
         location => {
           let marker
+
+
           if (activeLocation && activeLocation.latitude === location.latitude && activeLocation.longitude === location.longitude) {
+            const contentString = `<div>`+
+            `<h1 style="font-size: 2rem; text-align: center">${location.name}</h1>`+
+            `<p style="text-align: center">${location.description}</p>`+
+            `<p style="text-align: center">${location.address}</p>`
+
+            const modal = new maps.mapsObj.InfoWindow({
+              content: contentString,
+              maxWidth: 200,
+            })
+
             marker = new maps.mapsObj.Marker({
               map: newMap,
               position: {
@@ -94,6 +106,7 @@ function Map(props) {
                 lng: parseFloat(location.longitude)
               }
             })
+            modal.open(newMap, marker)
           } else {
             marker = new maps.mapsObj.Marker({
               map: newMap,
@@ -104,11 +117,9 @@ function Map(props) {
               }
             })
           }
-
           marker.addListener('click', () => {
             setActive(location)
           });
-
         }
 
       );
@@ -117,7 +128,7 @@ function Map(props) {
         'Unfortunately we have no locations to suggests around you. Would you like to add one?'
       );
     }
-  }, [activeLocation,  locations.locations.length]);
+  }, [activeLocation, locations.locations.length]);
 
   return <StyledMap id="map" />;
 };
