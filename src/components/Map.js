@@ -6,13 +6,14 @@ import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
 
 import markerBlue from '../assets/icons8-marker-40.png'
 
+
 function Map(props) {
-  const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive } = props;
+  const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive, activeLocation } = props;
   let newMap;
   let defaultPos = { lat: 51.508056, lng: -0.128056, }
   // if we received a location selected and passed from single location view
   // we set the default center to the selected location
-  if(selectedLocation) {
+  if (selectedLocation) {
     defaultPos = selectedLocation;
   }
 
@@ -22,7 +23,7 @@ function Map(props) {
       center: defaultPos
     });
 
-    if(!selectedLocation){
+    if (!selectedLocation) {
       // we set center to user location only if we have not received 
       // a selected location already (from single location view)
       if (navigator.geolocation) {
@@ -37,9 +38,9 @@ function Map(props) {
       } else {
         // Browser doesn't support Geolocation
         setCenterToUserLocation(false, newMap);
-      }  
+      }
     }
-    else{
+    else {
       setCenterToUserLocation(null, newMap);
     }
   };
@@ -52,7 +53,7 @@ function Map(props) {
     });
     if (!browserHasGeolocation && !selectedLocation) {
       console.log("this browser doesn't support geolocation or you didn't allow it. Map is centered to default position");
-    } 
+    }
   };
 
   useEffect(() => {
@@ -70,7 +71,7 @@ function Map(props) {
       locationLoads(defaultPos);
     }
     // Then we build the map
-    
+
     if (maps.mapsObj) {
       mapDefaultView();
 
@@ -82,18 +83,32 @@ function Map(props) {
     if (locations.locations.length > 0) {
       locations.locations.map(
         location => {
-          const marker = new maps.mapsObj.Marker({
-            map: newMap,
-            icon: markerBlue,
-            position: {
-              lat: parseFloat(location.latitude),
-              lng: parseFloat(location.longitude)
-            }
-          })
+          let marker
+          console.log(activeLocation)
+          if (activeLocation && activeLocation.latitude === location.latitude && activeLocation.longitude === location.longitude) {
+            console.log('yo')
+            marker = new maps.mapsObj.Marker({
+              map: newMap,
+              position: {
+                lat: parseFloat(location.latitude),
+                lng: parseFloat(location.longitude)
+              }
+            })
+          } else {
+            marker = new maps.mapsObj.Marker({
+              map: newMap,
+              icon: markerBlue,
+              position: {
+                lat: parseFloat(location.latitude),
+                lng: parseFloat(location.longitude)
+              }
+            })
+          }
+
           marker.addListener('click', () => {
             setActive(location)
           });
-  
+
         }
 
       );
@@ -102,15 +117,16 @@ function Map(props) {
         'Unfortunately we have no locations to suggests around you. Would you like to add one?'
       );
     }
-  }, [maps.mapsObj, locations.locations.length]);
-  
+  }, [activeLocation,  locations.locations.length]);
+
   return <StyledMap id="map" />;
 };
 
 function mapStateToProps(state) {
   return {
     maps: state.maps,
-    locations: state.locations
+    locations: state.locations,
+    activeLocation: state.activeLocation
   };
 }
 
