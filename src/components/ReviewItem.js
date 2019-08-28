@@ -7,7 +7,7 @@ export default function ReviewItem(props){
         <>
         {
             props.reviews.map(review =>(
-                <div key={review.user_id} className="loc-item-container review">
+                <div key={review.id} className="loc-item-container review">
                 <div className="rev-rates">
                 <div className="rate-line">
                   <label>Quietnes</label> 

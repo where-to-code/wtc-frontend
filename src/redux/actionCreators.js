@@ -6,7 +6,7 @@ const url = 'https://where2code.herokuapp.com/api';
 
 export const locationSuccess = locationList => ({
   type: types.FETCH_LOCATIONS_SUCCESS,
-  payload: locationList.info
+  payload: locationList.data
 });
 
 export const locationFailure = error => ({
