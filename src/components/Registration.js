@@ -49,7 +49,7 @@ const Registration = () => {
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             name="email"
             value={formState.email}
