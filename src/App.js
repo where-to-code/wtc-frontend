@@ -1,16 +1,21 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 import Home from './views/Home';
-import Map from './components/Map';
 import Location from './views/Location';
 import SearchPage from './components/SearchPage';
+import Login from './components/Login';
 
+
+library.add(fab)
 function App() {
   return (
     <div>
       <Route exact path="/" render={props => <Home {...props} />} />
       <Route path="/location/:id" render={props => <Location {...props} />} />
       <Route path="/locations" render={props => <SearchPage {...props} />} />
+      <Route path="/login" render={props => <Login {...props} />} />
     </div>
   );
 }
