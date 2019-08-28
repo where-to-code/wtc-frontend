@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import logo from '../assets/logo.png';
 import {
   LoginContainer,
   LoginField,
   AltLogin
 } from './componentStyles/LoginStyles';
+
 const Login = props => {
   const { loading } = props;
   const [details, setDetails] = useState({
@@ -14,7 +16,11 @@ const Login = props => {
   });
   return (
     <LoginContainer>
-      <div className="img"></div>
+      <div className="img">
+        <div className='logo-login'>
+          <img src={logo} alt="logo" />
+        </div>
+      </div>
       <LoginField>
         <h1>Log In</h1>
         <form>
@@ -53,7 +59,7 @@ const Login = props => {
           </div>
         </AltLogin>
         <span>
-          Don't have an account? <Link to="/signup">  Sign Up</Link>
+          Don't have an account? <Link to="/signup"> Sign Up</Link>
         </span>
       </LoginField>
     </LoginContainer>

@@ -10,7 +10,14 @@ export const LoginContainer = styled.div`
   @media (min-width: 600px) {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: flex-end;
     .img {
+      .logo-login {
+        padding: 20px;
+        height: 100px;
+      }
+      display: flex;
+      justify-content: flex-end;
       width: 50vw;
       height: 100vh;
     }
