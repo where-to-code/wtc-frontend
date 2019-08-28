@@ -16,13 +16,14 @@ export const locationFailure = error => ({
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
+    console.log('yo')
     const locationsInfo = await axios.get(
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
     );
     console.log(locationsInfo)
     dispatch(locationSuccess(locationsInfo.data));
   } catch (error) {
-    console.log(error)
+    console.log('ya')
     dispatch(locationFailure(error.message));
   }
 };

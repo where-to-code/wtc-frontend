@@ -11,7 +11,7 @@ import markerMan from '../assets/icons8-street-view-40.png'
 function Map(props) {
   const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive, activeLocation } = props;
   let newMap;
-  let defaultPos = { lat: 51.508056, lng: -0.128056 };
+  let defaultPos = { lat: 1, lng: 1 };
   // if we received a location selected and passed from single location view
   // we set the default center to the selected location
   if (selectedLocation) {
@@ -27,6 +27,7 @@ function Map(props) {
       // we set center to user location only if we have not received
       // a selected location already (from single location view)
       if (navigator.geolocation) {
+      
         navigator.geolocation.getCurrentPosition(position => {
           var pos = {
             lat: position.coords.latitude,
