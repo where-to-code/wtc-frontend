@@ -123,9 +123,10 @@ function Map(props) {
         }
 
       );
-    } else {
+    } 
+    if (locations.error && locations.error === "Request failed with status code 404") {
       console.log(
-        'Unfortunately we have no locations to suggests around you. Would you like to add one?'
+        locations.error
       );
     }
   }, [activeLocation, locations.locations.length]);
