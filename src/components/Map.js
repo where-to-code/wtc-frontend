@@ -31,7 +31,7 @@ function Map(props) {
       // we set center to user location only if we have not received
       // a selected location already (from single location view)
       if (navigator.geolocation) {
-        const geo = navigator.geolocation.getCurrentPosition(position => {
+        geo = navigator.geolocation.getCurrentPosition(position => {
           var pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -98,7 +98,7 @@ function Map(props) {
         'Unfortunately we have no locations to suggests around you. Would you like to add one?'
       );
     }
-  }, [maps.mapsObj, locations.locations.length]);
+  }, [maps.mapsObj, locations.locations.length, locations.geolocation]);
   return <StyledMap id="map" />;
 }
 

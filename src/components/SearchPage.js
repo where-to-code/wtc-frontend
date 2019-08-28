@@ -17,12 +17,6 @@ const SearchPage = props => {
 
   const [toggle, setToggle] = useState(false);
 
-  useEffect(() => {
-    if (Object.keys(geolocation).length > 0) {
-      locationLoads(geolocation);
-    }
-  }, []);
-
   const show = () => setToggle(!toggle);
 
   return (
