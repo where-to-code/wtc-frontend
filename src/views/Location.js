@@ -13,7 +13,7 @@ function Location (props) {
   
   useEffect(()=>{
       fetchSingleLocation(loactionId);
-  }
+  }, []
 );
     if(props.location){
       return(
@@ -62,8 +62,8 @@ function Location (props) {
                 </div>
             </div>
             <div className="desc-container">
-              <Map selectedLocation={{lat:parseFloat(props.location.latitude), lng:parseFloat(props.location.longitude)}}/>
-              <div className="centered">
+{/*               <Map selectedLocation={{lat:parseFloat(props.location.latitude), lng:parseFloat(props.location.longitude)}}/>
+ */}              <div className="centered">
                   <button>Get me there</button> 
               </div>
             </div>

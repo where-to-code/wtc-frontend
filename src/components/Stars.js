@@ -5,7 +5,7 @@ export default function Stars(props){
     let i;
     let starsArray = []
     for(i=1; i<props.starNumber; i++){
-        starsArray.push(<img className="star" src={star} alt="star"/>);
+        starsArray.push(<img className="star" key={i} src={star} alt="star"/>);
     }
     if(starsArray.length === 0){
         return(
