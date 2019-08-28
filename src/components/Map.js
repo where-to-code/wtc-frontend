@@ -36,7 +36,7 @@ function Map(props) {
           };
           newMap.setCenter(pos);
           setCenterToUserLocation(true, newMap);
-          locationLoads(maps.geolocation);
+          locationLoads(pos);
         });
         
       } else {
