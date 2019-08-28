@@ -34,12 +34,13 @@ function Map(props) {
           };
           newMap.setCenter(pos);
           setCenterToUserLocation(true, newMap);
-          return pos;
+          locationLoads(pos);
         });
         
       } else {
         // Browser doesn't support Geolocation
         setCenterToUserLocation(false, newMap);
+        locationLoads(defaultPos)
       }
     } else {
       setCenterToUserLocation(null, newMap);
@@ -60,20 +61,11 @@ function Map(props) {
 
   
   useEffect(() => {
-    // This wiil needs to be refactored or modified when search is present
-    // If geolocation is present we load the locations around it
-    console.log(maps.geolocation)
-    if (maps.geolocation) {
-      console.log('yo')
-      locationLoads(maps.geolocation);
-    } else {
-      console.log('ya')
-      locationLoads(defaultPos);
-    }
+   
     // Then we build the map
     if (maps.mapsObj) {
       mapDefaultView();
-    } else {
+    } else { //Or we fetch it from google maps Api, before building it
       if (maps.geolocation) {
         mapsLoading(maps.geolocation);
       } else {
