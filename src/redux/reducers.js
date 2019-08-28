@@ -38,7 +38,7 @@ export const singleLocaReducer = (
 };
 
 export const mapsReducer = (
-  state = { loadingMaps: false, mapsObj: null, error: null, geolocation: {} },
+  state = { loadingMaps: false, mapsObj: null, error: null, geolocation: {}, isGeolocated: false },
   action
 ) => {
   switch (action.type) {
@@ -53,6 +53,10 @@ export const mapsReducer = (
       };
     case types.FETCH_MAP_API_FAILURE:
       return { ...state, loadingLocation: false, error: action.payload };
+    case types.SET_GEOLOCATION_TRUE:
+      return { ...state, isGeolocated: true };
+    case types.SET_GEOLOCATION_FALSE:
+      return { ...state, isGeolocated: false };
     default:
       return state;
   }

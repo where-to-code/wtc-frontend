@@ -16,14 +16,12 @@ export const locationFailure = error => ({
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
-    console.log('yo')
     const locationsInfo = await axios.get(
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
     );
     console.log(locationsInfo)
     dispatch(locationSuccess(locationsInfo.data));
   } catch (error) {
-    console.log('ya')
     dispatch(locationFailure(error.message));
   }
 };
@@ -86,5 +84,11 @@ export const setActive = location => ({
   payload: location
 })
 
+export const setGeolocationTrue = () => ({
+  type: types.SET_GEOLOCATION_TRUE
+})
 
+export const setGeolocationFalse = () => ({
+  type: types.SET_GEOLOCATION_FALSE
+})
 

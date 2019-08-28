@@ -185,3 +185,30 @@ export const StyledLocationErr = styled.div`
       }
     }
 `
+
+export const StyledNoGeoLocation = styled.div`
+  display: ${props => props.toggleNoLoc ? 'block' : 'none'};
+  border: ${props => console.log(props.toggleNoLoc)};
+  div {
+    position: fixed;
+    z-index: 2;
+    bottom: 0;
+    background-color: #000000b8;
+    color:#860d0d;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px 0;
+  }
+  button {
+    display: block;
+    width: 35px;
+    height: 45px;
+    border: 1px solid black;
+    position: fixed;
+    bottom: -3px;
+    right: 25px;
+    background-color: #000000b8;
+    font-size: 1rem;
+  }
+`
