@@ -7,6 +7,7 @@ export const StyledRegistration = styled.div`
 
   @media screen and (max-width: 900px) {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -108,16 +109,21 @@ export const StyledLeftSection = styled.div`
   }
 
   @media screen and (max-width: 900px) {
-    width: 500px;
+    width: 400px;
     height: 600px;
+
+    h2 {
+      font-size: 26px;
+    }
   }
 
   @media screen and (max-width: 500px) {
-    width: 400px;
+    width: 300px;
     margin: 30px;
 
     h2 {
       font-size: 21px;
+      margin-top: 20px;
     }
 
     form {
@@ -129,5 +135,28 @@ export const StyledLeftSection = styled.div`
         width: 150px;
       }
     }
+
+    img {
+      margin-bottom: 20px;
+    }
+  }
+`;
+
+export const TabletAndMobileHeader = styled.header`
+  width: 100%;
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
+
+  img {
+    width: 100px;
+    height: 50px;
+  }
+
+  @media screen and (min-width: 900px) {
+    display: none;
+  }
+
+  @media screen and (max-width: 900px) {
+    display: block;
   }
 `;
