@@ -7,7 +7,7 @@ import { mapsLoading, locationLoads } from '../redux/actionCreators';
 function Map(props) {
   const { maps, mapsLoading, locations, locationLoads, selectedLocation } = props;
   let newMap;
-  let defaultPos = { lat: 51.508056, lng: -0.128056, }
+  let defaultPos = { lat: 51.508056, lng: -0.128056 }
   // if we received a location selected and passed from single location view
   // we set the default center to the selected location
   if(selectedLocation) {
