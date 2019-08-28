@@ -13,6 +13,7 @@ function Map(props) {
     selectedLocation
   } = props;
   let newMap;
+  let geo;
   let defaultPos = { lat: 51.508056, lng: -0.128056 };
   // if we received a location selected and passed from single location view
   // we set the default center to the selected location
@@ -30,13 +31,14 @@ function Map(props) {
       // we set center to user location only if we have not received
       // a selected location already (from single location view)
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
+        const geo = navigator.geolocation.getCurrentPosition(position => {
           var pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
           newMap.setCenter(pos);
           setCenterToUserLocation(true, newMap);
+          return pos;
         });
       } else {
         // Browser doesn't support Geolocation
@@ -60,13 +62,7 @@ function Map(props) {
     }
   };
 
-  const geo = navigator.geolocation.getCurrentPosition(position => {
-    var pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    };
-    return pos;
-  });
+  
   useEffect(() => {
     // This wiil needs to be refactored or modified when search is present
     // If geolocation is present we load the locations around it
