@@ -8,7 +8,7 @@ const LocationCard = props => {
   const { location, active, setActive } = props;
 
   return (
-    <StyledCard active={active} onClick={() => setActive(location)}>
+    <StyledCard active={active} onMouseEnter={() => setActive(location)}>
       <img src={location.image_url} alt={location.name} />
       <div className="desc">
         <h4>{location.name}</h4>
