@@ -60,9 +60,21 @@ export const StyledLeftSection = styled.div`
     }
   }
 
-  p {
-    margin: 15px 0;
-    font-size: 12px;
+  div {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 15px 0;
+      font-size: 12px;
+    }
+
+    span {
+      display: block;
+      width: 70px;
+      border-bottom: 1px solid #56c1cb;
+      margin: 0 10px;
+    }
   }
 
   img {
