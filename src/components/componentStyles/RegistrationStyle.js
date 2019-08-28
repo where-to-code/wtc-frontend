@@ -4,6 +4,15 @@ import map from '../../assets/map.png';
 
 export const StyledRegistration = styled.div`
   display: flex;
+
+  @media screen and (max-width: 900px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+  }
 `;
 
 export const StyledMap = styled.div`
@@ -14,6 +23,10 @@ export const StyledMap = styled.div`
   img {
     float: right;
     margin: 20px 10px;
+  }
+
+  @media screen and (max-width: 900px) {
+    display: none;
   }
 `;
 
@@ -42,7 +55,7 @@ export const StyledLeftSection = styled.div`
     align-items: center;
 
     input {
-      width: 300px;
+      width: 270px;
       height: 40px;
       background: #ffffff;
       border: 1px solid #56c1cb;
@@ -92,5 +105,29 @@ export const StyledLeftSection = styled.div`
   img {
     width: 30px;
     height: 30px;
+  }
+
+  @media screen and (max-width: 900px) {
+    width: 500px;
+    height: 600px;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 400px;
+    margin: 30px;
+
+    h2 {
+      font-size: 21px;
+    }
+
+    form {
+      input {
+        width: 220px;
+      }
+
+      button {
+        width: 150px;
+      }
+    }
   }
 `;
