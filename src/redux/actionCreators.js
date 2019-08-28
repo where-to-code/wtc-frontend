@@ -78,6 +78,11 @@ export const fetchSingleLocation = (locId) => async dispatch => {
   }
 };
 
+export const setActive = location => ({
+  type: types.SET_ACTIVE,
+  payload: location
+})
+
 const locationInfo = {
   "status": 200,
   "data": {
