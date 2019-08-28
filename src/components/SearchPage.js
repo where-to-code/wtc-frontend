@@ -8,17 +8,17 @@ import {
   CardContainer,
   StyledLoader,
   StyledMap,
-  StyledNoGeoLocation,
 } from './componentStyles/SearchPageStyles';
 import LocationErr from './LocationErr'
 import FilterPane from './FilterPane';
 import { locationLoads } from '../redux/actionCreators';
 import LocationCard from './LocationCard';
+import NoGeoLocation from './NoGeoLocation';
 const SearchPage = props => {
   const { geolocation, locations, locationLoads, loadingLocation, activeLocation, locationsErr, isGeolocated } = props;
 
   const [toggle, setToggle] = useState(false);
-  const [toggleNoLoc, setToggleNoLoc] = useState(true);
+ 
 
   useEffect(() => {
     if (Object.keys(geolocation).length > 0) {
@@ -27,7 +27,7 @@ const SearchPage = props => {
   }, [geolocation]);
 
   const show = () => setToggle(!toggle);
-  const hideNoLoc = () => setToggleNoLoc(!toggleNoLoc);
+ 
 
   return (
     <div>
@@ -36,13 +36,7 @@ const SearchPage = props => {
         <div>
           <FilterPane toggle={toggle} show={show} />
           {!isGeolocated &&
-            <StyledNoGeoLocation toggleNoLoc={toggleNoLoc}>
-              <div>
-                <p>Your browser doesn't support Geolocation, or you didn't allow it.</p>
-                <p>Centering the map to a default location</p>
-                <button onClick={() => hideNoLoc()}>x</button>
-              </div>
-            </StyledNoGeoLocation>
+            <NoGeoLocation />
           }
           {loadingLocation && (
             <StyledLoader>
