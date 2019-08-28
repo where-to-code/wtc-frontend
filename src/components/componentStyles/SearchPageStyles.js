@@ -149,11 +149,13 @@ export const StyledLocationErr = styled.div`
     form {
       display: flex;
       position: relative;
-      margin-left: 180px;
-      margin-right: 180px;
+      @media (min-width: 1200px) {
+        margin-left: 180px;
+        margin-right: 180px;
+      }
       input[type='text'] {
         background: rgba(219, 219, 219, 0.5);
-        width: 100%;
+        width: 85%;
         height: 35px;
         margin: 0 auto;
         border: none;
@@ -161,6 +163,9 @@ export const StyledLocationErr = styled.div`
         color: black;
         text-align: left;
         padding: 0 10px;
+        @media (min-width: 600px) {
+          width: 100%
+        }
         ::-webkit-input-placeholder {
           color: #fff;
           font-size: 12px;
