@@ -63,6 +63,12 @@ export const StyledLeftSection = styled.div`
       width: 250px;
       font-size: 16px;
       margin: 10px 0;
+      background: rgba(86, 193, 203, 0.8);
+    }
+
+    button:hover {
+      background: rgba(86, 193, 203, 1);
+      transition: 0.2s;
     }
   }
 
