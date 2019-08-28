@@ -71,9 +71,8 @@ export const singleLocFailure = error => ({
 export const fetchSingleLocation = locId => async dispatch => {
   dispatch({ type: types.LOADING_SINGLE_LOCATION });
   try {
-    //const locationInfo = await axios.get(`${url}locations/${locId}`);
-    // sending Mock data for now as endpoint does not seems to be deployed fron BE
-    dispatch(singleLocSuccess(locationInfo.data));
+    const locationInfo = await axios.get(`${url}/locations/${locId}`);
+    dispatch(singleLocSuccess(locationInfo.data.data));
   } catch (error) {
     dispatch(singleLocFailure(error.message));
   }
@@ -142,3 +141,12 @@ const locationInfo = {
     ]
   }
 };
+
+export const setActive = location => ({
+  type: types.SET_ACTIVE,
+  payload: location
+})
+
+
+
+

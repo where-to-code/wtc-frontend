@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/SearchPageStyles';
-import { mapsLoading, locationLoads } from '../redux/actionCreators';
+import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
+
+import markerBlue from '../assets/icons8-marker-40.png'
+import markerMan from '../assets/icons8-street-view-40.png'
+
 
 function Map(props) {
-  const {
-    maps,
-    mapsLoading,
-    locations,
-    locationLoads,
-    selectedLocation
-  } = props;
+
+  const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive, activeLocation } = props;
+
   let newMap;
   let defaultPos = { lat: 51.508056, lng: -0.128056 };
   // if we received a location selected and passed from single location view
@@ -22,7 +22,7 @@ function Map(props) {
 
   const mapDefaultView = () => {
     newMap = new maps.mapsObj.Map(document.getElementById('map'), {
-      zoom: 15,
+      zoom: 12,
       center: defaultPos
     });
 
@@ -51,6 +51,7 @@ function Map(props) {
     // add the marker to the center
     new maps.mapsObj.Marker({
       map: newMap,
+      icon: markerMan,
       position: newMap.getCenter()
     });
     if (!browserHasGeolocation && !selectedLocation) {
@@ -76,6 +77,7 @@ function Map(props) {
       locationLoads(defaultPos);
     }
     // Then we build the map
+
     if (maps.mapsObj) {
       mapDefaultView();
     } else {
@@ -86,30 +88,73 @@ function Map(props) {
       }
     }
     // Finally we add the markers of the locations on the map
-    if (locations.length > 0) {
-      locations.map(
-        location =>
-          new maps.mapsObj.Marker({
-            map: newMap,
-            position: {
-              lat: parseFloat(location.latitude),
-              lng: parseFloat(location.longitude)
-            }
-          })
+
+    // if (locations.length > 0) {
+    //   locations.map(
+    //     location =>
+    //       new maps.mapsObj.Marker({
+    //         map: newMap,
+    //         position: {
+    //           lat: parseFloat(location.latitude),
+    //           lng: parseFloat(location.longitude)
+    //         }
+    //       })
+
+    if (maps.mapsObj && locations.locations.length > 0) {
+      locations.locations.map(
+        location => {
+          let marker
+
+          if (activeLocation && activeLocation.latitude === location.latitude && activeLocation.longitude === location.longitude) {
+            const contentString = `<div>`+
+            `<h1 style="font-size: 1rem; text-align: center">${location.name}</h1>`+
+            `<p style="text-align: center">${location.description}</p>`+
+            `<p style="text-align: center">${location.address}</p>`
+
+            const modal = new maps.mapsObj.InfoWindow({
+              content: contentString,
+              maxWidth: 200,
+            })
+
+            marker = new maps.mapsObj.Marker({
+              map: newMap,
+              position: {
+                lat: parseFloat(location.latitude),
+                lng: parseFloat(location.longitude)
+              }
+            })
+            modal.open(newMap, marker)
+          } else {
+            marker = new maps.mapsObj.Marker({
+              map: newMap,
+              icon: markerBlue,
+              position: {
+                lat: parseFloat(location.latitude),
+                lng: parseFloat(location.longitude)
+              }
+            })
+          }
+          marker.addListener('click', () => {
+            setActive(location)
+          });
+        }
       );
-    } else {
+    } 
+    if (locations.error && locations.error === "Request failed with status code 404") {
       console.log(
-        'Unfortunately we have no locations to suggests around you. Would you like to add one?'
+        locations.error
       );
     }
-  }, [maps.mapsObj, locations.length]);
+  }, [activeLocation, locations.locations.length]);
+
   return <StyledMap id="map" />;
 }
 
 function mapStateToProps(state) {
   return {
     maps: state.maps,
-    locations: state.locations
+    locations: state.locations,
+    activeLocation: state.activeLocation
   };
 }
 
@@ -117,7 +162,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       mapsLoading,
-      locationLoads
+      locationLoads,
+      setActive
     },
     dispatch
   );

@@ -16,7 +16,8 @@ dotenv.config();
 const combinedReducer = combineReducers({
   locations: reducers.locationReducer,
   maps: reducers.mapsReducer,
-  location: reducers.singleLocaReducer
+  location: reducers.singleLocaReducer,
+  activeLocation: reducers.activeLocation
 });
 
 const store = createStore(
