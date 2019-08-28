@@ -5,6 +5,7 @@ import { StyledMap } from './componentStyles/SearchPageStyles';
 import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
 
 import markerBlue from '../assets/icons8-marker-40.png'
+import markerMan from '../assets/icons8-street-view-40.png'
 
 
 function Map(props) {
@@ -49,6 +50,7 @@ function Map(props) {
     // add the marker to the center
     new maps.mapsObj.Marker({
       map: newMap,
+      icon: markerMan,
       position: newMap.getCenter()
     });
     if (!browserHasGeolocation && !selectedLocation) {
@@ -84,9 +86,7 @@ function Map(props) {
       locations.locations.map(
         location => {
           let marker
-          console.log(activeLocation)
           if (activeLocation && activeLocation.latitude === location.latitude && activeLocation.longitude === location.longitude) {
-            console.log('yo')
             marker = new maps.mapsObj.Marker({
               map: newMap,
               position: {
