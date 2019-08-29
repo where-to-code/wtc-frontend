@@ -4,9 +4,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import Home from './views/Home';
 import Location from './views/Location';
-import SearchPage from './components/SearchPage';
-import Login from './components/Login';
-import Registration from './components/Registration';
+import SearchPage from './views/SearchPage';
+import Login from './views/Login';
+import Registration from './views/Registration';
 
 
 

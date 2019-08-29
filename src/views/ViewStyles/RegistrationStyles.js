@@ -75,9 +75,14 @@ export const StyledLeftSection = styled.div`
 
     button {
       width: 250px;
+      height: 40px;
       font-size: 16px;
       margin: 10px 0;
       background: rgba(86, 193, 203, 0.8);
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
     }
 
     button:hover {
@@ -101,11 +106,6 @@ export const StyledLeftSection = styled.div`
       border-bottom: 1px solid #56c1cb;
       margin: 0 10px;
     }
-  }
-
-  img {
-    width: 30px;
-    height: 30px;
   }
 
   @media screen and (max-width: 900px) {
@@ -141,7 +141,15 @@ export const StyledLeftSection = styled.div`
     }
   }
 `;
-
+export const StyleGit = styled.div`
+  border-radius: 50%;
+  padding: 5px;
+  border: 1px solid #56c1cb;
+  svg {
+    color: #56c1cb;
+    font-size: 20px;
+  }
+`;
 export const TabletAndMobileHeader = styled.header`
   width: 100%;
   border-bottom: 1px solid black;

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { StyledMap } from './componentStyles/SearchPageStyles';
+import { StyledMap } from './componentStyles/MapStyles';
 import { mapsLoading, locationLoads, setActive, setGeolocationTrue, setGeolocationFalse } from '../redux/actionCreators';
 
 import markerBlue from '../assets/icons8-marker-40.png'

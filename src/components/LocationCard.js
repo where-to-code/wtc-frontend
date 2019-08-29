@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { setActive } from '../redux/actionCreators'
-import { StyledCard } from './componentStyles/SearchPageStyles';
+import { StyledCard } from './componentStyles/LocationCardStyles';
 
 const LocationCard = props => {
   const { location, active, setActive } = props;

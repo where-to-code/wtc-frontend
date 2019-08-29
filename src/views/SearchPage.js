@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
-import Map from './Map';
-import Header from './Header';
+import Map from '../components/Map';
+import Header from '../components/Header';
 import {
   StyledSearch,
   CardContainer,
-  StyledLoader,
-  StyledMap,
-} from './componentStyles/SearchPageStyles';
-import LocationErr from './LocationErr'
-import FilterPane from './FilterPane';
+  StyledLoader
+} from './ViewStyles/SearchPageStyles';
+import { StyledMap } from '../components/componentStyles/MapStyles';
+import LocationErr from '../components/LocationErr';
+import FilterPane from '../components/FilterPane';
 import { locationLoads } from '../redux/actionCreators';
-import LocationCard from './LocationCard';
-import NoGeoLocation from './NoGeoLocation';
+import LocationCard from '../components/LocationCard';
+import NoGeoLocation from '../components/NoGeoLocation';
 const SearchPage = props => {
-  const { geolocation, locations, locationLoads, loadingLocation, activeLocation, locationsErr, isGeolocated } = props;
+  const {
+    geolocation,
+    locations,
+    locationLoads,
+    loadingLocation,
+    activeLocation,
+    locationsErr,
+    isGeolocated
+  } = props;
 
   const [toggle, setToggle] = useState(false);
- 
 
   useEffect(() => {
     if (geolocation) {
@@ -27,7 +34,6 @@ const SearchPage = props => {
   }, [geolocation]);
 
   const show = () => setToggle(!toggle);
- 
 
   return (
     <div>
@@ -35,17 +41,13 @@ const SearchPage = props => {
       <StyledSearch>
         <div>
           <FilterPane toggle={toggle} show={show} />
-          {!isGeolocated &&
-            <NoGeoLocation />
-          }
+          {!isGeolocated && <NoGeoLocation />}
           {loadingLocation && (
             <StyledLoader>
               <Loader type="Oval" color="#56c1cb" height={80} width={80} />
             </StyledLoader>
           )}
-          {locationsErr && (
-            <LocationErr />
-          )}
+          {locationsErr && <LocationErr />}
           <CardContainer>
             {locations.length > 0 &&
               locations.map(place => {
@@ -81,7 +83,7 @@ const mapStateToProps = state => ({
   loadingLocation: state.locations.loadingLocation,
   geolocation: state.maps.geolocation,
   activeLocation: state.activeLocation,
-  isGeolocated: state.maps.isGeolocated,
+  isGeolocated: state.maps.isGeolocated
 });
 
 export default connect(

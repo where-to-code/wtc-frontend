@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyledNoGeoLocation } from './componentStyles/SearchPageStyles'
+import { StyledNoGeoLocation } from './componentStyles/LocationErrStyles'
 
 const NoGeoLocation = () => {
     const [toggleNoLoc, setToggleNoLoc] = useState(true);
