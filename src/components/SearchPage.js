@@ -7,21 +7,19 @@ import {
   StyledSearch,
   CardContainer,
   StyledLoader,
-  StyledMap
+  StyledMap,
 } from './componentStyles/SearchPageStyles';
+import LocationErr from './LocationErr'
 import FilterPane from './FilterPane';
 import { locationLoads } from '../redux/actionCreators';
 import LocationCard from './LocationCard';
+import NoGeoLocation from './NoGeoLocation';
 const SearchPage = props => {
-  const {
-    geolocation,
-    locations,
-    locationLoads,
-    loadingLocation,
-    activeLocation
-  } = props;
+  const { geolocation, locations, locationLoads, loadingLocation, activeLocation, locationsErr, isGeolocated } = props;
 
   const [toggle, setToggle] = useState(false);
+ 
+
   useEffect(() => {
     if (geolocation) {
       locationLoads(geolocation);
@@ -29,6 +27,7 @@ const SearchPage = props => {
   }, [geolocation]);
 
   const show = () => setToggle(!toggle);
+ 
 
   return (
     <div>
@@ -36,10 +35,16 @@ const SearchPage = props => {
       <StyledSearch>
         <div>
           <FilterPane toggle={toggle} show={show} />
+          {!isGeolocated &&
+            <NoGeoLocation />
+          }
           {loadingLocation && (
             <StyledLoader>
               <Loader type="Oval" color="#56c1cb" height={80} width={80} />
             </StyledLoader>
+          )}
+          {locationsErr && (
+            <LocationErr />
           )}
           <CardContainer>
             {locations.length > 0 &&
@@ -60,11 +65,10 @@ const SearchPage = props => {
                   return <LocationCard key={place.name} location={place} />;
                 }
               })}
-            {locations.length === 0 && <div>No location exists around you</div>}
           </CardContainer>
         </div>
         <StyledMap>
-          <Map locations={locations} />
+          <Map />
         </StyledMap>
       </StyledSearch>
     </div>
@@ -73,9 +77,11 @@ const SearchPage = props => {
 
 const mapStateToProps = state => ({
   locations: state.locations.locations,
+  locationsErr: state.locations.error,
   loadingLocation: state.locations.loadingLocation,
   geolocation: state.maps.geolocation,
-  activeLocation: state.activeLocation
+  activeLocation: state.activeLocation,
+  isGeolocated: state.maps.isGeolocated,
 });
 
 export default connect(

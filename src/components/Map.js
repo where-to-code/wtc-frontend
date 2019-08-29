@@ -2,21 +2,16 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/SearchPageStyles';
-import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
-import markerBlue from '../assets/icons8-marker-40.png';
-import markerMan from '../assets/icons8-street-view-40.png';
+import { mapsLoading, locationLoads, setActive, setGeolocationTrue, setGeolocationFalse } from '../redux/actionCreators';
+
+import markerBlue from '../assets/icons8-marker-40.png'
+import markerMan from '../assets/icons8-street-view-40.png'
+
+
 function Map(props) {
-  const {
-    maps,
-    mapsLoading,
-    locations,
-    locationLoads,
-    selectedLocation,
-    setActive,
-    activeLocation
-  } = props;
+  const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive, activeLocation, setGeolocationTrue, setGeolocationFalse } = props;
   let newMap;
-  let defaultPos = { lat: 51.508056, lng: -0.128056 };
+  let defaultPos = { lat: 51.504831314, lng: -0.123499506 };
   // if we received a location selected and passed from single location view
   // we set the default center to the selected location
   if (selectedLocation) {
@@ -39,11 +34,14 @@ function Map(props) {
           newMap.setCenter(pos);
           setCenterToUserLocation(true, newMap);
           locationLoads(pos);
+          setGeolocationTrue()
         });
+        
       } else {
         // Browser doesn't support Geolocation
         setCenterToUserLocation(false, newMap);
-        locationLoads(defaultPos);
+        locationLoads(defaultPos)
+        setGeolocationFalse();
       }
     } else {
       setCenterToUserLocation(null, newMap);
@@ -56,11 +54,6 @@ function Map(props) {
       icon: markerMan,
       position: newMap.getCenter()
     });
-    if (!browserHasGeolocation && !selectedLocation) {
-      console.log(
-        "this browser doesn't support geolocation or you didn't allow it. Map is centered to default position"
-      );
-    }
   };
   useEffect(() => {
     // Then we build the map
@@ -113,12 +106,6 @@ function Map(props) {
       });
     });
   }
-  if (
-    locations.error &&
-    locations.error === 'Request failed with status code 404'
-  ) {
-    console.log(locations.error);
-  }
 }, [activeLocation, locations.locations.length, maps.geolocation]);
 return <StyledMap id="map" />;
 }
@@ -134,7 +121,9 @@ function mapDispatchToProps(dispatch) {
     {
       mapsLoading,
       locationLoads,
-      setActive
+      setActive,
+      setGeolocationTrue,
+      setGeolocationFalse
     },
     dispatch
   );
