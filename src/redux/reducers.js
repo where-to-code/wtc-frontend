@@ -25,7 +25,6 @@ export const singleLocaReducer = (
   action
 ) => {
   switch (action.type) {
-    // Single location data
     case types.LOADING_SINGLE_LOCATION:
       return { ...state, loadingSingleLoc: true };
     case types.FETCH_SINGLE_LOCATIONS_SUCCESS:
@@ -61,6 +60,7 @@ export const mapsReducer = (
       return state;
   }
 };
+
 export const activeLocation = (state = null, action) => {
   switch (action.type) {
     case types.SET_ACTIVE:
