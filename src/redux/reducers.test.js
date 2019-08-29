@@ -11,11 +11,18 @@ describe('location reducer', () => {
       latitude: '0.273444'
     }
   ];
+
+  const geolocation = {
+    lat: 0.273443,
+    lng: 0.999922
+  }
+
   it('should return the initial state', () => {
     expect(locationReducer(undefined, {})).toEqual({
       loadingLocation: false,
       locations: [],
-      error: null
+      error: null,
+      geolocation: {}
     });
   });
   it('should load locations', () => {
@@ -32,7 +39,7 @@ describe('location reducer', () => {
     // test the spread state functionality
     expect(
       locationReducer(
-        { loadingLocation: false, locations: [], error: null },
+        { loadingLocation: false, locations: [], error: null, geolocation: {} },
         {
           type: types.LOADING_LOCATIONS
         }
@@ -40,21 +47,23 @@ describe('location reducer', () => {
     ).toEqual({
       loadingLocation: true,
       locations: [],
-      error: null
+      error: null,
+      geolocation: {}
     });
   });
   it('should get all locations on success', () => {
     expect(
       locationReducer(
-        { loadingLocation: false, locations: [], error: null },
+        { loadingLocation: false, locations: [], error: null, geolocation: {} },
         {
           type: types.FETCH_LOCATIONS_SUCCESS,
-          payload: locations
+          payload: {locations, geolocation}
         }
       )
     ).toEqual({
       loadingLocation: false,
       locations,
+      geolocation,
       error: null
     });
   });

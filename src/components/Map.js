@@ -127,7 +127,7 @@ function Map(props) {
     ) {
       console.log(locations.error);
     }
-  }, [activeLocation, locations.locations.length]);
+  }, [activeLocation, locations.locations.length, navigator.geolocation]);
   return <StyledMap id="map" />;
 }
 function mapStateToProps(state) {
