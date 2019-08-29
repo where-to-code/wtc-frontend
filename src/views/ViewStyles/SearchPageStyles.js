@@ -16,4 +16,7 @@ export const StyledSearch = styled.div`
     .filter {
     }
   }
+  #map {
+    width: 35vw;
+  }
 `;
