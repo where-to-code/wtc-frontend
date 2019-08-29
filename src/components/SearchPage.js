@@ -26,7 +26,7 @@ const SearchPage = props => {
     if (geolocation) {
       locationLoads(geolocation);
     }
-  }, [geolocation, locations.length]);
+  }, [geolocation]);
 
   const show = () => setToggle(!toggle);
 
