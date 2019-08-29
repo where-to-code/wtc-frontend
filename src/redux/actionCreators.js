@@ -15,7 +15,6 @@ export const locationFailure = error => ({
 
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
-  console.log(currentLocation)
   try {
     const locationsInfo = await axios.get(
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`

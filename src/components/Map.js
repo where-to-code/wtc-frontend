@@ -38,10 +38,12 @@ function Map(props) {
           };
           newMap.setCenter(pos);
           setCenterToUserLocation(true, newMap);
+          locationLoads(pos);
         });
       } else {
         // Browser doesn't support Geolocation
         setCenterToUserLocation(false, newMap);
+        locationLoads(defaultPos);
       }
     } else {
       setCenterToUserLocation(null, newMap);
@@ -61,24 +63,11 @@ function Map(props) {
     }
   };
   useEffect(() => {
-    // This wiil needs to be refactored or modified when search is present
-    // If geolocation is present we load the locations around it
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        locationLoads(pos);
-      });
-    } else {
-      locationLoads(defaultPos);
-    }
     // Then we build the map
     if (maps.mapsObj) {
       mapDefaultView();
     } else {
-      mapsLoading();
+      mapsLoading(maps.geolocation);
     }
     // Finally we add the markers of the locations on the map
     if (maps.mapsObj) {
@@ -127,14 +116,14 @@ function Map(props) {
     ) {
       console.log(locations.error);
     }
-  }, [activeLocation, locations.locations.length, navigator.geolocation]);
+  }, [activeLocation, locations.locations.length, maps.geolocation]);
   return <StyledMap id="map" />;
 }
 function mapStateToProps(state) {
   return {
     maps: state.maps,
     locations: state.locations,
-    activeLocation: state.activeLocation
+    activeLocation: state.activeLocation,
   };
 }
 function mapDispatchToProps(dispatch) {

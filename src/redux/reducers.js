@@ -41,6 +41,7 @@ export const mapsReducer = (
   state = { loadingMaps: false, mapsObj: null, error: null, geolocation: {} },
   action
 ) => {
+  console.log(action.payload)
   switch (action.type) {
     case types.LOADING_MAP_API:
       return { ...state, loadingMaps: true };
