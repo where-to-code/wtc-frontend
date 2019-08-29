@@ -42,7 +42,7 @@ describe('fetch locations', () => {
       type: types.FETCH_LOCATIONS_FAILURE,
       payload: error
     };
-    expect(actions.locationSuccess(locations)).not.toEqual(expectedAction);
+    expect(actions.locationSuccess(locations, currentPosition)).not.toEqual(expectedAction);
     expect(actions.locationFailure(error)).toEqual(expectedAction);
   });
   it('location_loading success', async () => {
@@ -52,7 +52,7 @@ describe('fetch locations', () => {
       { type: types.LOADING_LOCATIONS },
       { type: types.FETCH_LOCATIONS_SUCCESS, payload: locations.info }
     ];
-    const store = mockStore({ locations: [] });
+    const store = mockStore({ locations: [], maps: {}, location: {}, activeLocation: {} });
     await store.dispatch(actions.locationLoads(currentPosition));
     expect(store.getActions()).toEqual(expectedActions);
   });

@@ -6,7 +6,7 @@ export default function OverallReview(){
               <div className="loc-item-container review">
                 <div className="rev-rates overall-review">
                   <div className="rate-line">
-                    <label>Quietnes</label> 
+                    <label>Quietness</label> 
                     <div className="rate-count-box">
                       <div className="rate bad centered">Bad</div>
                     </div>

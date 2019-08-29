@@ -11,11 +11,17 @@ describe('location reducer', () => {
       latitude: '0.273444'
     }
   ];
+
+  const geolocation = {
+    lat: 0.273443,
+    lng: 0.999922
+  }
+
   it('should return the initial state', () => {
     expect(locationReducer(undefined, {})).toEqual({
       loadingLocation: false,
       locations: [],
-      error: null
+      error: null,
     });
   });
   it('should load locations', () => {
@@ -40,7 +46,7 @@ describe('location reducer', () => {
     ).toEqual({
       loadingLocation: true,
       locations: [],
-      error: null
+      error: null,
     });
   });
   it('should get all locations on success', () => {
