@@ -19,7 +19,6 @@ export const locationLoads = currentLocation => async dispatch => {
     const locationsInfo = await axios.get(
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
     );
-    console.log(locationsInfo)
     dispatch(locationSuccess(locationsInfo.data));
   } catch (error) {
     dispatch(locationFailure(error.message));
@@ -91,4 +90,5 @@ export const setGeolocationTrue = () => ({
 export const setGeolocationFalse = () => ({
   type: types.SET_GEOLOCATION_FALSE
 })
+
 

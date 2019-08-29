@@ -4,7 +4,7 @@ export const locationReducer = (
   state = {
     loadingLocation: false,
     locations: [],
-    error: null
+    error: null,
   },
   action
 ) => {
@@ -38,7 +38,7 @@ export const singleLocaReducer = (
 };
 
 export const mapsReducer = (
-  state = { loadingMaps: false, mapsObj: null, error: null, geolocation: {}, isGeolocated: false },
+  state = { loadingMaps: false, mapsObj: null, error: null, geolocation: null, isGeolocated: false },
   action
 ) => {
   switch (action.type) {

@@ -21,7 +21,7 @@ const SearchPage = props => {
  
 
   useEffect(() => {
-    if (Object.keys(geolocation).length > 0) {
+    if (geolocation) {
       locationLoads(geolocation);
     }
   }, [geolocation]);
@@ -47,13 +47,25 @@ const SearchPage = props => {
             <LocationErr />
           )}
           <CardContainer>
-            {locations &&
+            {locations.length > 0 &&
               locations.map(place => {
-                if (activeLocation && activeLocation.latitude === place.latitude && activeLocation.longitude === place.longitude) {
-                  return <LocationCard key={place.name} location={place} active={true} />
+                if (
+                  activeLocation &&
+                  activeLocation.latitude === place.latitude &&
+                  activeLocation.longitude === place.longitude
+                ) {
+                  return (
+                    <LocationCard
+                      key={place.name}
+                      location={place}
+                      active={true}
+                    />
+                  );
+                } else {
+                  return <LocationCard key={place.name} location={place} />;
                 }
-                return <LocationCard key={place.name} location={place} />;
               })}
+            {locations.length === 0 && <div>No location exists around you</div>}
           </CardContainer>
         </div>
         <StyledMap>
