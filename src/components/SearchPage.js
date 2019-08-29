@@ -68,7 +68,7 @@ const SearchPage = props => {
           </CardContainer>
         </div>
         <StyledMap>
-          <Map locations={locations} />
+          <Map />
         </StyledMap>
       </StyledSearch>
     </div>

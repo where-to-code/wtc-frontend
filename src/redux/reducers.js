@@ -12,7 +12,7 @@ export const locationReducer = (
     case types.LOADING_LOCATIONS:
       return { ...state, loadingLocation: true };
     case types.FETCH_LOCATIONS_SUCCESS:
-      return { ...state, loadingLocation: false, locations: action.payload };
+      return { error: null, loadingLocation: false, locations: action.payload };
     case types.FETCH_LOCATIONS_FAILURE:
       return { ...state, loadingLocation: false, error: action.payload };
     default:
