@@ -6,6 +6,8 @@ import Home from './views/Home';
 import Location from './views/Location';
 import SearchPage from './components/SearchPage';
 import Login from './components/Login';
+import Registration from './components/Registration';
+
 
 
 library.add(fab)
@@ -16,6 +18,7 @@ function App() {
       <Route path="/location/:id" render={props => <Location {...props} />} />
       <Route path="/locations" render={props => <SearchPage {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
+      <Route path="/signup" render={props => <Registration {...props} />} />
     </div>
   );
 }

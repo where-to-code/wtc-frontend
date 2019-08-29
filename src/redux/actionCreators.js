@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const url = 'https://where2code.herokuapp.com/api';
 
-export const locationSuccess = locationList => ({
+export const locationSuccess = (locationList, geolocation) => ({
   type: types.FETCH_LOCATIONS_SUCCESS,
-  payload: locationList.data
+  payload: {locations:locationList.data, geolocation}
 });
 
 export const locationFailure = error => ({
@@ -13,21 +13,22 @@ export const locationFailure = error => ({
   payload: error
 });
 
-export const locationLoads = currentLocation => async dispatch => {
+export const locationLoads = (currentLocation) => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
+  console.log(currentLocation)
   try {
     const locationsInfo = await axios.get(
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
     );
-    dispatch(locationSuccess(locationsInfo.data));
+    dispatch(locationSuccess(locationsInfo.data, currentLocation));
   } catch (error) {
     dispatch(locationFailure(error.message));
   }
 };
 
-export const mapsSucces = (mapsObj, geolocation) => ({
+export const mapsSucces = (mapsObj) => ({
   type: types.FETCH_MAP_API_SUCCESS,
-  payload: { mapsObj, geolocation }
+  payload: { mapsObj }
 });
 
 export const mapsFailure = error => ({
@@ -35,7 +36,7 @@ export const mapsFailure = error => ({
   payload: error
 });
 
-export const mapsLoading = geolocation => async dispatch => {
+export const mapsLoading = () => async dispatch => {
   dispatch({ type: types.LOADING_MAP_API });
   try {
     const mapPromise = new Promise((resolve, reject) => {
@@ -50,7 +51,7 @@ export const mapsLoading = geolocation => async dispatch => {
       document.body.appendChild(script);
     });
     Promise.all([mapPromise]).then(value => {
-      dispatch(mapsSucces(value[0].maps, geolocation));
+      dispatch(mapsSucces(value[0].maps));
     });
   } catch (error) {
     dispatch(mapsFailure(error.message));

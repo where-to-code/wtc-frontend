@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import logo from '../assets/logo.png';
+
 const Header = props => {
   return (
     <StyledHeader landing={props.landing}>
@@ -12,7 +13,7 @@ const Header = props => {
       </div>
       <div className="auth">
         <button>
-          <Link to="/sign-in">Sign Up</Link>
+          <Link to="/signup">Sign Up</Link>
         </button>
         <button>
           <Link to="/login">Login</Link>
