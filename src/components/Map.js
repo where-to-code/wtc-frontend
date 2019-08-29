@@ -25,7 +25,8 @@ const Map = props => {
   useEffect(() => {
     let map;
     // If we already got the mapObj we build the map
-    if (mapsObj)  map = mapInit(mapsObj, defaultPos, markerMan);
+    if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord)
+    else if (mapsObj)  map = mapInit(mapsObj, defaultPos, markerMan);
     //Or we fetch it from google API before
     else if (geolocation) mapsLoading(geolocation);
     else mapsLoading(defaultPos);
