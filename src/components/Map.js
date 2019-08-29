@@ -8,7 +8,7 @@ import markerBlue from '../assets/icons8-marker-40.png'
 import markerMan from '../assets/icons8-street-view-40.png'
 
 
-function Map(props) {
+const Map = props => {
   const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive, activeLocation, setGeolocationTrue, setGeolocationFalse } = props;
   let newMap;
   let defaultPos = { lat: 51.504831314, lng: -0.123499506 };

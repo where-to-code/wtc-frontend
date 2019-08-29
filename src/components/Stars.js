@@ -1,7 +1,7 @@
 import React from 'react';
 import star from '../assets/star_rating.png'
 
-export default function Stars(props){
+const Stars = props => {
     let i;
     let starsArray = []
     for(i=1; i<props.starNumber; i++){
@@ -20,3 +20,5 @@ export default function Stars(props){
         );    
     }
 }
+
+export default Stars;

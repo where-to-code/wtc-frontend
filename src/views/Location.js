@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleLocation } from '../redux/actionCreators';
 
-function Location(props) {
+const Location = props => {
   const { fetchSingleLocation } = props;
   const loactionId = props.match.params.id;
 

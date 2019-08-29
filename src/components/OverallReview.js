@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function OverallReview(){
+const OverallReview = () => {
     return(
         <>
               <div className="loc-item-container review">
@@ -28,3 +28,5 @@ export default function OverallReview(){
         </>
     );
 }
+
+export default OverallReview;

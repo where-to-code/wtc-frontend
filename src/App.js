@@ -11,7 +11,7 @@ import Registration from './components/Registration';
 
 
 library.add(fab)
-function App() {
+const App = () => {
   return (
     <div>
       <Route exact path="/" render={props => <Home {...props} />} />

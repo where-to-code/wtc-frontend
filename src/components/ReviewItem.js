@@ -1,7 +1,7 @@
 import React from 'react';
 import Stars from '../components/Stars'
 
-export default function ReviewItem(props){
+const ReviewItem = props => {
     if(props.reviews && props.reviews.length > 0){
       return(
         <>
@@ -54,3 +54,5 @@ export default function ReviewItem(props){
       );
     }
 }
+
+export default ReviewItem;
