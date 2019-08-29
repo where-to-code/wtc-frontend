@@ -2,7 +2,8 @@ import React from 'react';
 import Stars from '../components/Stars'
 
 const ReviewItem = props => {
-    if(props.reviews && props.reviews.length > 0){
+  const { reviews } = props
+    if(reviews && reviews.length > 0){
       return(
         <>
         {

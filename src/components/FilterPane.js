@@ -2,9 +2,10 @@ import React from 'react';
 import { FilterPaneStyle } from './componentStyles/SearchPageStyles';
 
 const FilterPane = props => {
+  const { toggle, show } = props;
   return (
-    <FilterPaneStyle show={props.toggle}>
-      <div className="filter" onClick={props.show}>
+    <FilterPaneStyle show={toggle}>
+      <div className="filter" onClick={show}>
         Filter
       </div>
       <div className="pane">

@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 import { fetchSingleLocation } from '../redux/actionCreators';
 
 const Location = props => {
-  const { fetchSingleLocation } = props;
+  const { fetchSingleLocation, location } = props;
   const loactionId = props.match.params.id;
 
   useEffect(() => {
@@ -21,8 +21,8 @@ const Location = props => {
         <div className="left-col">
           <div className="desc-container">
             <div className="img-container">
-              <img className="loc-image" src={props.location.image_url} />
-              <h3>{props.location.name}</h3>
+              <img className="loc-image" src={location.image_url} />
+              <h3>{location.name}</h3>
             </div>
 
 
@@ -34,13 +34,13 @@ const Location = props => {
                 props.address &&
                 <>
                   <h4>Address</h4>
-                  <p>{props.location.address}</p>
+                  <p>{location.address}</p>
                 </>
               }
             </div>
             <div className="loc-item-container">
               <h4>Description</h4>
-              <p>{props.location.description}</p>
+              <p>{location.description}</p>
             </div>
             <div className="buttons small-screen">
               <button>Add review</button><button>Add to favorite</button>
@@ -48,7 +48,7 @@ const Location = props => {
           </div>
           <div className="desc-container">
             <h3 className="centered">Reviews</h3>
-            <ReviewItem reviews={props.location.reviews} />
+            <ReviewItem reviews={location.reviews} />
           </div>
         </div>
 
@@ -62,7 +62,7 @@ const Location = props => {
             </div>
           </div>
           <div className="desc-container">
-            <Map selectedLocation={{ lat: parseFloat(props.location.latitude), lng: parseFloat(props.location.longitude) }} />
+            <Map selectedLocation={{ lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) }} />
             <div className="centered">
               <button>Get me there</button>
             </div>
