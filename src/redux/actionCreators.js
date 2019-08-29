@@ -24,6 +24,9 @@ export const locationLoads = currentLocation => async dispatch => {
     dispatch(locationFailure(error.message));
   }
 };
+export const clearLocations = () => ({
+  type: types.CLEAR_LOCATIONS
+})
 
 // ACTIONS FOR MAPS REDUCER
 export const mapsSucces = (mapsObj, geolocation) => ({
@@ -75,4 +78,7 @@ export const fetchSingleLocation = locId => async dispatch => {
 export const setActive = location => ({
   type: types.SET_ACTIVE,
   payload: location
+})
+export const clearActive = location => ({
+  type: types.CLEAR_ACTIVE
 })

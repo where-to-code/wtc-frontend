@@ -15,6 +15,8 @@ export const locationReducer = (
       return { error: null, loadingLocation: false, locations: action.payload };
     case types.FETCH_LOCATIONS_FAILURE:
       return { ...state, loadingLocation: false, error: action.payload };
+    case types.CLEAR_LOCATIONS:
+      return { ...state, locations: []}
     default:
       return state;
   }
@@ -71,6 +73,8 @@ export const activeLocation = (state = null, action) => {
   switch (action.type) {
     case types.SET_ACTIVE:
       return action.payload;
+    case types.CLEAR_ACTIVE:
+      return null
     default:
       return state;
   }

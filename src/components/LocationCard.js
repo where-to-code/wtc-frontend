@@ -2,14 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { setActive } from '../redux/actionCreators'
+import { setActive, clearLocations } from '../redux/actionCreators'
 import { StyledCard } from './componentStyles/LocationCardStyles';
 
 const LocationCard = props => {
-  const { location, active, setActive } = props;
+  const { location, active, setActive, clearLocations } = props;
 
   return (
-    <StyledCard active={active} onMouseEnter={() => setActive(location)}>
+    <StyledCard
+      active={active}
+      onMouseEnter={() => setActive(location)}
+      onClick={() => {
+        clearLocations()
+      }}
+    >
       <Link to={`/location/${location.id}`}>
         <img src={location.image_url} alt={location.name} />
         <div className="desc">
@@ -24,7 +30,8 @@ const LocationCard = props => {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      setActive
+      setActive,
+      clearLocations
     },
     dispatch
   );

@@ -4,16 +4,15 @@ import ReviewItem from '../components/ReviewItem';
 import OverallReview from '../components/OverallReview';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchSingleLocation, locationLoads } from '../redux/actionCreators';
+import { fetchSingleLocation } from '../redux/actionCreators';
 import { LocationContainer } from './ViewStyles/LocationStyles';
 
 const Location = props => {
-  const { fetchSingleLocation, location, geolocation, locationLoads } = props;
+  const { fetchSingleLocation, location } = props;
   const loactionId = props.match.params.id;
   useEffect(() => {
     fetchSingleLocation(loactionId);
-    if (geolocation) locationLoads(geolocation);
-  }, [geolocation]);
+  }, []);
   if (props.location) {
     return (
       <LocationContainer>
@@ -86,7 +85,6 @@ const Location = props => {
 
 function mapStateToProps(state) {
   return {
-    geolocation: state.maps.geolocation,
     location: state.location.location
   };
 }
@@ -95,7 +93,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       fetchSingleLocation,
-      locationLoads
     },
     dispatch
   );
