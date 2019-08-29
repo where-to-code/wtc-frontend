@@ -62,7 +62,7 @@ const Location = props => {
             </div>
           </div>
           <div className="desc-container">
-            <Map selectedLocation={{ lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) }} />
+            <Map singleLocCoord={{ lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) }} />
             <div className="centered">
               <button>Get me there</button>
             </div>

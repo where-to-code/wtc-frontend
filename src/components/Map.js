@@ -2,117 +2,61 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/SearchPageStyles';
-import { mapsLoading, locationLoads, setActive, setGeolocationTrue, setGeolocationFalse } from '../redux/actionCreators';
-
-import markerBlue from '../assets/icons8-marker-40.png'
+import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
+import { modalInit, markerInit, mapInit } from './helpers/mapHelpers'
 import markerMan from '../assets/icons8-street-view-40.png'
-
+import markerBlue from '../assets/icons8-marker-40.png'
 
 const Map = props => {
-  const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive, activeLocation, setGeolocationTrue, setGeolocationFalse } = props;
-  let newMap;
+  const {
+    mapsObj,
+    geolocation,
+    mapsLoading,
+    locations,
+    singleLocCoord,
+    setActive,
+    activeLocation } = props;
+
+  let map;
+  // Set the default position to Trafalgar Square, London
   let defaultPos = { lat: 51.504831314, lng: -0.123499506 };
-  // if we received a location selected and passed from single location view
-  // we set the default center to the selected location
-  if (selectedLocation) {
-    defaultPos = selectedLocation;
-  }
-  const mapDefaultView = () => {
-    newMap = new maps.mapsObj.Map(document.getElementById('map'), {
-      zoom: 12,
-      center: defaultPos
-    });
-    if (!selectedLocation) {
-      // we set center to user location only if we have not received
-      // a selected location already (from single location view)
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          newMap.setCenter(pos);
-          setCenterToUserLocation(true, newMap);
-          locationLoads(pos);
-          setGeolocationTrue()
-        });
-        
-      } else {
-        // Browser doesn't support Geolocation
-        setCenterToUserLocation(false, newMap);
-        locationLoads(defaultPos)
-        setGeolocationFalse();
-      }
-    } else {
-      setCenterToUserLocation(null, newMap);
-    }
-  };
-  const setCenterToUserLocation = (browserHasGeolocation, newMap) => {
-    // add the marker to the center
-    new maps.mapsObj.Marker({
-      map: newMap,
-      icon: markerMan,
-      position: newMap.getCenter()
-    });
-  };
+  // if we receive coordinates from Single Location component we set the center with them
+  if (singleLocCoord) defaultPos = singleLocCoord;
+
   useEffect(() => {
-    // Then we build the map
-    if (maps.mapsObj) {
-      mapDefaultView();
-    } else if (maps.geolocation) { //Or we load the mapObj from google API before building it
-      mapsLoading(maps.geolocation);
-    } else {
-      mapsLoading(defaultPos);
-    }
-  
-    // Finally we add the markers and correspondant modals of the locations on the map
-    if (maps.mapsObj) {
-    locations.locations.map(location => {
-      let marker;
-      if (
-        activeLocation &&
-        activeLocation.latitude === location.latitude &&
-        activeLocation.longitude === location.longitude
-      ) {
-        const contentString =
-          `<div>` +
-          `<h1 style="font-size: 2rem; text-align: center">${location.name}</h1>` +
-          `<p style="text-align: center">${location.description}</p>` +
-          `<p style="text-align: center">${location.address}</p>`;
-        const modal = new maps.mapsObj.InfoWindow({
-          content: contentString,
-          maxWidth: 200
-        });
-        marker = new maps.mapsObj.Marker({
-          map: newMap,
-          position: {
-            lat: parseFloat(location.latitude),
-            lng: parseFloat(location.longitude)
-          }
-        });
-        modal.open(newMap, marker);
-      } else {
-        marker = new maps.mapsObj.Marker({
-          map: newMap,
-          icon: markerBlue,
-          position: {
-            lat: parseFloat(location.latitude),
-            lng: parseFloat(location.longitude)
-          }
-        });
-      }
-      marker.addListener('click', () => {
-        setActive(location);
+    // If we already got the mapObj we build the map
+    if (mapsObj) map = mapInit(mapsObj, defaultPos, markerMan);
+    //Or we fetch it from google API before
+    else if (geolocation) mapsLoading(geolocation);
+    else mapsLoading(defaultPos);
+
+    // We add markers and modals to locations
+    if (mapsObj) {
+      locations.map(location => {
+        let marker;
+        const selectedLocation = activeLocation &&
+          activeLocation.latitude === location.latitude &&
+          activeLocation.longitude === location.longitude;
+
+        if (selectedLocation) {
+          const modal = modalInit(mapsObj, location);
+          marker = markerInit(map, mapsObj, location);
+          modal.open(map, marker);
+        } else {
+          marker = markerInit(map, mapsObj, location, markerBlue)
+        }
+        marker.addListener('click', () => setActive(location));
       });
-    });
-  }
-}, [activeLocation, locations.locations.length, maps.geolocation]);
-return <StyledMap id="map" />;
+    }
+  }, [activeLocation, locations.length, geolocation]);
+
+  return <StyledMap id="map" />;
 }
 function mapStateToProps(state) {
   return {
-    maps: state.maps,
-    locations: state.locations,
+    mapsObj: state.maps.mapsObj,
+    geolocation: state.maps.geolocation,
+    locations: state.locations.locations,
     activeLocation: state.activeLocation,
   };
 }
@@ -122,8 +66,6 @@ function mapDispatchToProps(dispatch) {
       mapsLoading,
       locationLoads,
       setActive,
-      setGeolocationTrue,
-      setGeolocationFalse
     },
     dispatch
   );
