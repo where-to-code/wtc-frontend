@@ -17,21 +17,21 @@ const Map = props => {
     setActive,
     activeLocation } = props;
 
-  let map;
   // Set the default position to Trafalgar Square, London
   let defaultPos = { lat: 51.504831314, lng: -0.123499506 };
   // if we receive coordinates from Single Location component we set the center with them
   if (singleLocCoord) defaultPos = singleLocCoord;
 
   useEffect(() => {
+    let map;
     // If we already got the mapObj we build the map
-    if (mapsObj) map = mapInit(mapsObj, defaultPos, markerMan);
+    if (mapsObj)  map = mapInit(mapsObj, defaultPos, markerMan);
     //Or we fetch it from google API before
     else if (geolocation) mapsLoading(geolocation);
     else mapsLoading(defaultPos);
 
     // We add markers and modals to locations
-    if (map) {
+    if (locations.length > 0) {
       locations.map(location => {
         let marker;
         const selectedLocation = activeLocation &&
