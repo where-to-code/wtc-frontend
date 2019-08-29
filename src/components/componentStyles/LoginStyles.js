@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-
+import map from '../../assets/map.png';
 export const LoginContainer = styled.div`
   .img {
     height: 150px;
-    background-image: url('https://image.freepik.com/free-vector/street-map-with-pin-routes_23-2147622544.jpg');
+    background-image: url(${map});
     background-size: cover;
     background-position: center;
   }
