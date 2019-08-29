@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { StyledMap } from './componentStyles/SearchPageStyles';
+import { StyledMap } from './componentStyles/MapStyles';
 import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
 import { modalInit, markerInit, mapInit } from './helpers/mapHelpers'
 import markerMan from '../assets/icons8-street-view-40.png'

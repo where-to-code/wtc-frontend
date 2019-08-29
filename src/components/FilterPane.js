@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterPaneStyle } from './componentStyles/SearchPageStyles';
+import { FilterPaneStyle } from './componentStyles/FilterPaneStyles';
 
 const FilterPane = props => {
   const { toggle, show } = props;

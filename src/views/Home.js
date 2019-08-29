@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledHome } from './HomeStyles';
+import { StyledHome } from './ViewStyles/HomeStyles';
 import Header from '../components/Header';
 
 const Home = () => {

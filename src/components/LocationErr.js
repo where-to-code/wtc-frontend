@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledLocationErr } from './componentStyles/SearchPageStyles'
+import { StyledLocationErr } from './componentStyles/LocationErrStyles'
 
 const LocationErr = () => {
     return (
