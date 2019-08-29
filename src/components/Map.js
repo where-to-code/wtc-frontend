@@ -11,7 +11,7 @@ import markerMan from '../assets/icons8-street-view-40.png'
 function Map(props) {
   const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive, activeLocation, setGeolocationTrue, setGeolocationFalse } = props;
   let newMap;
-  let defaultPos = { lat: 1, lng: 1 };
+  let defaultPos = { lat: 51.504831314, lng: -0.123499506 };
   // if we received a location selected and passed from single location view
   // we set the default center to the selected location
   if (selectedLocation) {
