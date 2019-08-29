@@ -24,8 +24,8 @@ const SearchPage = props => {
   // const [places, setPlaces] = useState([]);
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
-    if (Object.keys(geolocation).length > 0 ) {
-      locationLoads(geolocation, geolocation);
+    if (geolocation) {
+      locationLoads(geolocation);
     // } else {
     //   locationLoads(defaultPos);
     }

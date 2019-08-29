@@ -38,7 +38,7 @@ export const singleLocaReducer = (
 };
 
 export const mapsReducer = (
-  state = { loadingMaps: false, mapsObj: null, error: null, geolocation: {} },
+  state = { loadingMaps: false, mapsObj: null, error: null, geolocation: null },
   action
 ) => {
   console.log(action.payload)

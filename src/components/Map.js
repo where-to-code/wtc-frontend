@@ -66,58 +66,61 @@ function Map(props) {
     // Then we build the map
     if (maps.mapsObj) {
       mapDefaultView();
-    } else {
+    } else if (maps.geolocation) { //Or we load the mapObj from google API before building it
       mapsLoading(maps.geolocation);
+    } else {
+      mapsLoading(defaultPos);
     }
-    // Finally we add the markers of the locations on the map
+  
+    // Finally we add the markers and correspondant modals of the locations on the map
     if (maps.mapsObj) {
-      locations.locations.map(location => {
-        let marker;
-        if (
-          activeLocation &&
-          activeLocation.latitude === location.latitude &&
-          activeLocation.longitude === location.longitude
-        ) {
-          const contentString =
-            `<div>` +
-            `<h1 style="font-size: 2rem; text-align: center">${location.name}</h1>` +
-            `<p style="text-align: center">${location.description}</p>` +
-            `<p style="text-align: center">${location.address}</p>`;
-          const modal = new maps.mapsObj.InfoWindow({
-            content: contentString,
-            maxWidth: 200
-          });
-          marker = new maps.mapsObj.Marker({
-            map: newMap,
-            position: {
-              lat: parseFloat(location.latitude),
-              lng: parseFloat(location.longitude)
-            }
-          });
-          modal.open(newMap, marker);
-        } else {
-          marker = new maps.mapsObj.Marker({
-            map: newMap,
-            icon: markerBlue,
-            position: {
-              lat: parseFloat(location.latitude),
-              lng: parseFloat(location.longitude)
-            }
-          });
-        }
-        marker.addListener('click', () => {
-          setActive(location);
+    locations.locations.map(location => {
+      let marker;
+      if (
+        activeLocation &&
+        activeLocation.latitude === location.latitude &&
+        activeLocation.longitude === location.longitude
+      ) {
+        const contentString =
+          `<div>` +
+          `<h1 style="font-size: 2rem; text-align: center">${location.name}</h1>` +
+          `<p style="text-align: center">${location.description}</p>` +
+          `<p style="text-align: center">${location.address}</p>`;
+        const modal = new maps.mapsObj.InfoWindow({
+          content: contentString,
+          maxWidth: 200
         });
+        marker = new maps.mapsObj.Marker({
+          map: newMap,
+          position: {
+            lat: parseFloat(location.latitude),
+            lng: parseFloat(location.longitude)
+          }
+        });
+        modal.open(newMap, marker);
+      } else {
+        marker = new maps.mapsObj.Marker({
+          map: newMap,
+          icon: markerBlue,
+          position: {
+            lat: parseFloat(location.latitude),
+            lng: parseFloat(location.longitude)
+          }
+        });
+      }
+      marker.addListener('click', () => {
+        setActive(location);
       });
-    }
-    if (
-      locations.error &&
-      locations.error === 'Request failed with status code 404'
-    ) {
-      console.log(locations.error);
-    }
-  }, [activeLocation, locations.locations.length, maps.geolocation]);
-  return <StyledMap id="map" />;
+    });
+  }
+  if (
+    locations.error &&
+    locations.error === 'Request failed with status code 404'
+  ) {
+    console.log(locations.error);
+  }
+}, [activeLocation, locations.locations.length, maps.geolocation]);
+return <StyledMap id="map" />;
 }
 function mapStateToProps(state) {
   return {
