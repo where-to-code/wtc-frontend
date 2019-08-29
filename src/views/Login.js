@@ -52,7 +52,7 @@ const Login = props => {
           </div>
           <div className="bottom">
             <div>
-              <a href="https://github.com/login/oauth/authorize?client_id=788c40e178d18cdc6874">
+              <a href="https://github.com/login/oauth/authorize?client_id=86d82ca50b3aad5948e7">
                 <FontAwesomeIcon icon={['fab', 'github']} />{' '}
               </a>
             </div>
