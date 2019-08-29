@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
-const url = 'http://localhost:5000/api/auth/gitAuth';
+const url = 'https://where-to-code-staging.herokuapp.com/api/auth/gitAuth';
 
 const StyledSpinner = styled.div`
   display: flex;
