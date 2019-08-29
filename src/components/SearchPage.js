@@ -21,13 +21,10 @@ const SearchPage = props => {
     activeLocation
   } = props;
 
-  // const [places, setPlaces] = useState([]);
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
     if (geolocation) {
       locationLoads(geolocation);
-    // } else {
-    //   locationLoads(defaultPos);
     }
   }, [geolocation, locations.length]);
 
