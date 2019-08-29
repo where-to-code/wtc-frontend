@@ -1,16 +1,15 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import Home from './views/Home';
 import Location from './views/Location';
 import SearchPage from './views/SearchPage';
 import Login from './views/Login';
 import Registration from './views/Registration';
+import GitHub from './views/GitHubAuth';
 
-
-
-library.add(fab)
+library.add(fab);
 function App() {
   return (
     <div>
@@ -19,6 +18,7 @@ function App() {
       <Route path="/locations" render={props => <SearchPage {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
       <Route path="/signup" render={props => <Registration {...props} />} />
+      <Route path="/gitAuth" render={props => <GitHub {...props} />} />
     </div>
   );
 }
