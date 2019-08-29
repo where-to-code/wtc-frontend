@@ -11,7 +11,7 @@ import markerMan from '../assets/icons8-street-view-40.png'
 function Map(props) {
   const { maps, mapsLoading, locations, locationLoads, selectedLocation, setActive, activeLocation, setGeolocationTrue, setGeolocationFalse } = props;
   let newMap;
-  let defaultPos = { lat: 1, lng: 1 };
+  let defaultPos = { lat: 51.504831314, lng: -0.123499506 };
   // if we received a location selected and passed from single location view
   // we set the default center to the selected location
   if (selectedLocation) {
@@ -54,11 +54,6 @@ function Map(props) {
       icon: markerMan,
       position: newMap.getCenter()
     });
-    if (!browserHasGeolocation && !selectedLocation) {
-      console.log(
-        "this browser doesn't support geolocation or you didn't allow it. Map is centered to default position"
-      );
-    }
   };
   useEffect(() => {
     // Then we build the map
@@ -110,12 +105,6 @@ function Map(props) {
         setActive(location);
       });
     });
-  }
-  if (
-    locations.error &&
-    locations.error === 'Request failed with status code 404'
-  ) {
-    console.log(locations.error);
   }
 }, [activeLocation, locations.locations.length, maps.geolocation]);
 return <StyledMap id="map" />;
