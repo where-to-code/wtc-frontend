@@ -8,7 +8,7 @@ const Login = props => {
   const { loading } = props;
   const [details, setDetails] = useState({
     email: '',
-    password: ''
+    password: '',
   });
   return (
     <LoginContainer>
@@ -52,7 +52,9 @@ const Login = props => {
           </div>
           <div className="bottom">
             <div>
-              <FontAwesomeIcon icon={['fab', 'github']} />
+              <a href="https://github.com/login/oauth/authorize?client_id=788c40e178d18cdc6874">
+                <FontAwesomeIcon icon={['fab', 'github']} />{' '}
+              </a>
             </div>
           </div>
         </AltLogin>
