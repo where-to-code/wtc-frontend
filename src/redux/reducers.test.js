@@ -22,7 +22,6 @@ describe('location reducer', () => {
       loadingLocation: false,
       locations: [],
       error: null,
-      geolocation: {}
     });
   });
   it('should load locations', () => {
@@ -39,7 +38,7 @@ describe('location reducer', () => {
     // test the spread state functionality
     expect(
       locationReducer(
-        { loadingLocation: false, locations: [], error: null, geolocation: {} },
+        { loadingLocation: false, locations: [], error: null },
         {
           type: types.LOADING_LOCATIONS
         }
@@ -48,22 +47,20 @@ describe('location reducer', () => {
       loadingLocation: true,
       locations: [],
       error: null,
-      geolocation: {}
     });
   });
   it('should get all locations on success', () => {
     expect(
       locationReducer(
-        { loadingLocation: false, locations: [], error: null, geolocation: {} },
+        { loadingLocation: false, locations: [], error: null },
         {
           type: types.FETCH_LOCATIONS_SUCCESS,
-          payload: {locations, geolocation}
+          payload: locations
         }
       )
     ).toEqual({
       loadingLocation: false,
       locations,
-      geolocation,
       error: null
     });
   });

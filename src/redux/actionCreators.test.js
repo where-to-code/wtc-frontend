@@ -32,9 +32,9 @@ describe('fetch locations', () => {
   it('location_success', () => {
     const expectedAction = {
       type: types.FETCH_LOCATIONS_SUCCESS,
-      payload: {locations:locations.info, geolocation:currentPosition}
+      payload: locations.info
     };
-    expect(actions.locationSuccess(locations, currentPosition)).toEqual(expectedAction);
+    expect(actions.locationSuccess(locations)).toEqual(expectedAction);
   });
   it('location_failure', () => {
     const error = 'There was an error';
@@ -50,7 +50,7 @@ describe('fetch locations', () => {
     //mock the get method when locations are succesfully
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
-      { type: types.FETCH_LOCATIONS_SUCCESS, payload: {locations:locations.info, geolocation: currentPosition } }
+      { type: types.FETCH_LOCATIONS_SUCCESS, payload: locations.info }
     ];
     const store = mockStore({ locations: [], maps: {}, location: {}, activeLocation: {} });
     await store.dispatch(actions.locationLoads(currentPosition));

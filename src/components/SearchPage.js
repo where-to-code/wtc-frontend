@@ -21,16 +21,12 @@ const SearchPage = props => {
     activeLocation
   } = props;
 
-  // const [places, setPlaces] = useState([]);
   const [toggle, setToggle] = useState(false);
-  let defaultPos = { lat: 51.508056, lng: -0.128056 };
   useEffect(() => {
-    if (Object.keys(geolocation).length > 0 ) {
-      locationLoads(geolocation, geolocation);
-    // } else {
-    //   locationLoads(defaultPos);
+    if (geolocation) {
+      locationLoads(geolocation);
     }
-  }, [geolocation, locations.length]);
+  }, [geolocation]);
 
   const show = () => setToggle(!toggle);
 
@@ -78,7 +74,7 @@ const SearchPage = props => {
 const mapStateToProps = state => ({
   locations: state.locations.locations,
   loadingLocation: state.locations.loadingLocation,
-  geolocation: state.locations.geolocation,
+  geolocation: state.maps.geolocation,
   activeLocation: state.activeLocation
 });
 
