@@ -65,7 +65,6 @@ const SearchPage = props => {
                   return <LocationCard key={place.name} location={place} />;
                 }
               })}
-            {locations.length === 0 && <div>No location exists around you</div>}
           </CardContainer>
         </div>
         <StyledMap>
