@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import map from '../../assets/map.png';
+
 export const LoginContainer = styled.div`
   .img {
     height: 150px;
