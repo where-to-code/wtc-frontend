@@ -5,7 +5,7 @@ import {
   StyledLeftSection,
   StyledRegistration,
   TabletAndMobileHeader,
-  StyleGit
+  StyleGit,
 } from './ViewStyles/RegistrationStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import gitHubIcon from '../assets/github.png';
@@ -17,7 +17,7 @@ const Registration = () => {
     lastname: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   const [inputChangeState, updateInputChangeState] = useState({
@@ -25,18 +25,18 @@ const Registration = () => {
     lastname: false,
     email: false,
     password: false,
-    confirmPassword: false
+    confirmPassword: false,
   });
 
   const handleChange = e => {
     updateFormState({
       ...formState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
 
     updateInputChangeState({
       ...inputChangeState,
-      [e.target.name]: true
+      [e.target.name]: true,
     });
   };
 
@@ -104,7 +104,7 @@ const Registration = () => {
             />
             {inputChangeState.email &&
               !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-                formState.email
+                formState.email,
               ) && <span>You have entered an invalid email address!</span>}
 
             <input
@@ -116,7 +116,7 @@ const Registration = () => {
             />
             {inputChangeState.password &&
               !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(
-                formState.password
+                formState.password,
               ) && (
                 <span>
                   Must be between 6 and 15 characters and contain a number.
@@ -144,7 +144,9 @@ const Registration = () => {
             <span></span>
           </div>
           <StyleGit>
-            <FontAwesomeIcon icon={['fab', 'github']} />
+            <a href="https://github.com/login/oauth/authorize?client_id=86d82ca50b3aad5948e7">
+              <FontAwesomeIcon icon={['fab', 'github']} />
+            </a>
           </StyleGit>
         </StyledLeftSection>
         <StyledMap>
