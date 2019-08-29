@@ -10,12 +10,11 @@ export const setMapCenter = (map, mapsObj, icon) => {
 
 export const modalInit = (mapsObj, location) => {
     // InfoWindow accept only strings as content
-    const content = `<div>` +
+    const content = 
         `<h1 style="font-size: 2rem; text-align: center">${location.name}</h1>` +
         `<p style="text-align: center">${location.description}</p>` +
-        `<p style="text-align: center">${location.address}</p>` +
-        `div`;
-        
+        `<p style="text-align: center">${location.address}</p>` ;
+
     return new mapsObj.InfoWindow({
         content: content,
         maxWidth: 200

@@ -31,7 +31,7 @@ const Map = props => {
     else mapsLoading(defaultPos);
 
     // We add markers and modals to locations
-    if (mapsObj) {
+    if (map) {
       locations.map(location => {
         let marker;
         const selectedLocation = activeLocation &&
