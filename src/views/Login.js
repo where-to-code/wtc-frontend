@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../assets/logo.png';
-import {
-  LoginContainer,
-  LoginField,
-  AltLogin
-} from './ViewStyles/LoginStyles';
+import { LoginContainer, LoginField, AltLogin } from './ViewStyles/LoginStyles';
 
 const Login = props => {
   const { loading } = props;
@@ -17,8 +13,10 @@ const Login = props => {
   return (
     <LoginContainer>
       <div className="img">
-        <div className='logo-login'>
-          <img src={logo} alt="logo" />
+        <div className="logo-login">
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
         </div>
       </div>
       <LoginField>
@@ -36,7 +34,7 @@ const Login = props => {
             value={details.password}
             onChange={e => setDetails({ ...details, password: e.target.value })}
           />
-          <input type="submit" value={loading ? 'Loading...' : 'LOGIN'} />
+          <input type="submit" value={loading ? 'Loading...' : 'Login'} />
         </form>
         <AltLogin>
           <div className="top">

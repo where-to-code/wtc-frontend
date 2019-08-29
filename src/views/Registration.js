@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import {
   StyledMap,
   StyledLeftSection,
   StyledRegistration,
-  TabletAndMobileHeader
-} from './ViewStyles/RegistrationStyle';
-import gitHubIcon from '../assets/github.png';
+  TabletAndMobileHeader,
+  StyleGit
+} from './ViewStyles/RegistrationStyles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import gitHubIcon from '../assets/github.png';
 import logo from '../assets/logo.png';
 
 const Registration = () => {
@@ -60,7 +62,9 @@ const Registration = () => {
   return (
     <>
       <TabletAndMobileHeader>
-        <img src={logo} alt="logo" />
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
       </TabletAndMobileHeader>
       <StyledRegistration>
         <StyledLeftSection>
@@ -135,13 +139,18 @@ const Registration = () => {
           </form>
 
           <div>
-            <span></span> <p>Or sign up via</p>
+            <span></span>
+            <p>Or sign up via</p>
             <span></span>
           </div>
-          <img src={gitHubIcon} alt="github" />
+          <StyleGit>
+            <FontAwesomeIcon icon={['fab', 'github']} />
+          </StyleGit>
         </StyledLeftSection>
         <StyledMap>
-          <img src={logo} alt="Where-to-code" />
+          <Link to="/">
+            <img src={logo} alt="Where-to-code" />
+          </Link>
         </StyledMap>
       </StyledRegistration>
     </>

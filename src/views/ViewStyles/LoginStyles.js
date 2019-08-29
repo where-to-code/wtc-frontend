@@ -109,8 +109,6 @@ export const AltLogin = styled.div`
   .bottom {
     margin: 20px auto;
     div {
-      ${'' /* width: 30px;
-      height: 30px; */}
       border-radius: 50%;
       padding: 5px;
       border: 1px solid #56c1cb;
