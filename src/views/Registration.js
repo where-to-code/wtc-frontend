@@ -5,7 +5,7 @@ import {
   StyledLeftSection,
   StyledRegistration,
   TabletAndMobileHeader,
-  StyleGit
+  StyleGit,
 } from './ViewStyles/RegistrationStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import gitHubIcon from '../assets/github.png';
@@ -144,7 +144,9 @@ const Registration = () => {
             <span></span>
           </div>
           <StyleGit>
-            <FontAwesomeIcon icon={['fab', 'github']} />
+            <a href="https://github.com/login/oauth/authorize?client_id=788c40e178d18cdc6874">
+              <FontAwesomeIcon icon={['fab', 'github']} />
+            </a>
           </StyleGit>
         </StyledLeftSection>
         <StyledMap>
