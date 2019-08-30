@@ -24,16 +24,37 @@ export function authFail(payload) {
   };
 }
 
-export const loginUser = user => dispatch => {
+export const login = user => dispatch => {
   dispatch(authLoad());
   return axios
-    .post('https://where-to-code-staging.herokuapp.com/api/auth/login', user)
+    .post('https://where-to-code-staging.herokuapp.com/api/auth/login', user, {
+      withCredentials: true
+    })
     .then(res => {
       dispatch(authSuccess(res.data.data.id));
       return res;
     })
     .catch(err => {
-      console.log(err.response.data.message);
+      dispatch(authFail(err.response.data.message));
+      return err;
+    });
+};
+
+export const signup = userData => dispatch => {
+  const { firstname, lastname, email, password } = userData;
+  dispatch(authLoad());
+  return axios
+    .post('https://where-to-code-staging.herokuapp.com/api/auth/register', {
+      firstname,
+      lastname,
+      email,
+      password
+    })
+    .then(res => {
+      dispatch(authSuccess(res.data.data.id));
+      return res;
+    })
+    .catch(err => {
       dispatch(authFail(err.response.data.message));
       return err;
     });
