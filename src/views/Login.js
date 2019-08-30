@@ -4,11 +4,17 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Loader from 'react-loader-spinner';
 import logo from '../assets/logo.png';
-import { loginUser } from '../redux/actionCreators';
-import { LoginContainer, LoginField, AltLogin } from './ViewStyles/LoginStyles';
+import { login } from '../redux/actionCreators';
+import {
+  StyledWrapper,
+  StyleMap,
+  StyledRegistration,
+  StyledLeftSection,
+  StyleGit
+} from './ViewStyles/AuthStyles';
 
 const Login = props => {
-  const { loading, error, loginUser } = props;
+  const { loading, error, login } = props;
   const [details, setDetails] = useState({
     email: '',
     password: ''
@@ -16,65 +22,63 @@ const Login = props => {
 
   const submitLogin = event => {
     event.preventDefault();
-    loginUser(details).then(res => {
+    login(details).then(res => {
       if (res.status === 200) props.history.push('/');
     });
   };
 
   return (
-    <LoginContainer>
-      <div className="img">
-        <div className="logo-login">
+    <StyledWrapper>
+      <StyleMap>
+        <div>
           <Link to="/">
             <img src={logo} alt="logo" />
           </Link>
         </div>
-      </div>
-      <LoginField>
-        <h1>Log In</h1>
-        <form onSubmit={submitLogin}>
-          <input
-            type="email"
-            placeholder="Enter Email"
-            value={details.email}
-            onChange={e => setDetails({ ...details, email: e.target.value })}
-          />
-          <input
-            type="password"
-            placeholder="Enter Password"
-            value={details.password}
-            onChange={e => setDetails({ ...details, password: e.target.value })}
-          />
-          <button type="submit" >{loading ? <Loader type="Oval" color="#fff" height={40} width={30} /> : 'Login'}</button>
-          {error && <div>{error}</div>}
-        </form>
-        <AltLogin>
-          <div className="top">
-            <div>
-              <span></span>
-            </div>
-
-            <div>
-              <p>or login via</p>
-            </div>
-
-            <div>
-              <span></span>
-            </div>
+      </StyleMap>
+      <StyledRegistration>
+        <StyledLeftSection>
+          <h2>Log In</h2>
+          <form onSubmit={submitLogin}>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              value={details.email}
+              onChange={e => setDetails({ ...details, email: e.target.value })}
+            />
+            <input
+              type="password"
+              placeholder="Enter Password"
+              value={details.password}
+              onChange={e =>
+                setDetails({ ...details, password: e.target.value })
+              }
+            />
+            <button type="submit">
+              {loading ? (
+                <Loader type="Oval" color="#fff" height={40} width={30} />
+              ) : (
+                'Login'
+              )}
+            </button>
+            {error && <div>{error}</div>}
+          </form>
+          <div>
+            <span></span>
+            <p>or login via</p>
+            <span></span>
           </div>
-          <div className="bottom">
-            <div>
-              <a href="https://github.com/login/oauth/authorize?client_id=86d82ca50b3aad5948e7">
-                <FontAwesomeIcon icon={['fab', 'github']} />
-              </a>
-            </div>
-          </div>
-        </AltLogin>
-        <span>
-          Don't have an account? <Link to="/signup"> Sign Up</Link>
-        </span>
-      </LoginField>
-    </LoginContainer>
+          <StyleGit>
+            <a href="https://github.com/login/oauth/authorize?client_id=86d82ca50b3aad5948e7">
+              <FontAwesomeIcon icon={['fab', 'github']} />
+            </a>
+          </StyleGit>
+          <span>
+            Don't have an account? <Link to="/signup"> Sign Up</Link>
+          </span>
+        </StyledLeftSection>
+      </StyledRegistration>
+    </StyledWrapper>
   );
 };
 
@@ -86,5 +90,5 @@ const mapStatetoProps = state => {
 };
 export default connect(
   mapStatetoProps,
-  { loginUser }
+  { login }
 )(Login);
