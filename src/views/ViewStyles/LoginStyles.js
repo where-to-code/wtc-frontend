@@ -55,11 +55,20 @@ export const LoginField = styled.div`
       padding: 0 20px;
       font-size: 16px;
     }
-    input[type='submit'] {
+    button {
       width: 150px;
-      background-color: #56c1cb;
+      height: 40px;
+      font-size: 16px;
+      margin: 10px 0;
+      background: rgba(86, 193, 203, 0.8);
       color: #fff;
       font-weight: bold;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: rgba(86, 193, 203, 1);
+      transition: 0.2s;
     }
   }
 
