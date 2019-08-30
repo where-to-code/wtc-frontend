@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
 // const url = 'https://where2code.herokuapp.com/api/auth/gitAuth';
-const url = 'https://where-to-code-staging.herokuapp.com/auth/gitAuth'
+const url = 'https://where-to-code-staging.herokuapp.com/api/auth/gitAuth'
 
 const StyledSpinner = styled.div`
   display: flex;
