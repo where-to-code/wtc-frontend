@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 
 export const StyledCard = styled.div`
-  border: ${props => props.active ? '2px solid red' : 'inherit'} ;
+  transition: 0.2s;
   margin: 10px 0;
   width: 100%;
   height: 340px;
   box-shadow: -1px 1px 5px 1px rgba(219, 219, 219, 1);
   background-color: rgba(219, 219, 219, 0.35);
   border-radius: 5px;
+  &:hover {
+    transform: ${props => (props.active ? 'scale(1.05)' : 'scale(1)')};
+    transition: 0.2s;
+    box-shadow: -1px 1px 5px 5px rgba(219, 219, 219, 1);
+  }
 
   .desc {
     text-align: center;

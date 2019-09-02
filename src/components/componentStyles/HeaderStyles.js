@@ -4,12 +4,14 @@ export const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 20px;
+  height: 50px;
   width: 100%;
-  margin: 10px 0;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background-color: ${props => (props.landing ? '' : 'rgb(219,219,219, 0.5)')};
   .logo {
     width: 50px;
-    margin: 0 0 0 15px;
     &:hover {
       cursor: pointer;
     }
@@ -29,13 +31,11 @@ export const StyledHeader = styled.header`
       border: ${props =>
         props.landing ? '0.5px solid #fff' : '0.5px solid #03525B'};
       border-radius: 5px;
-      a {
-        color: ${props => (props.landing ? '#fff' : '#666A7C')};
-      }
+      color: ${props => (props.landing ? '#fff' : '#666A7C')};
     }
   }
   @media (min-width: 600px) {
-    height: 40px;
+    height: 65px;
     .logo {
       width: 120px;
     }
