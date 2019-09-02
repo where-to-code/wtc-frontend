@@ -39,6 +39,7 @@ export const mapInit = (mapsObj, defaultPos, icon) => {
     center: defaultPos
   });
   
+  
   // if user is GeoLocated
   // and defaultPos match with the one declared in Map.js
   // we set center based on geolocation
