@@ -23,18 +23,15 @@ const Map = props => {
   if (singleLocCoord) defaultPos = singleLocCoord;
 
   useEffect(  () => {
-    const getPos = async () => {
+    // we need to use a wrapper tp use async functions inside UseEffect
+    const asyncWrap = async () => {
       const pos = await position(defaultPos)
-      const isGeolocated = navigator.geolocation
       let map;
       // If we already got the mapObj we build the map
       if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord)
       else if (mapsObj)  map = mapInit(mapsObj, defaultPos, markerMan);
       //Or we fetch it from google API before
-      else if (isGeolocated && !singleLocCoord) {
-          mapsLoading(pos)
-      } 
-      else mapsLoading(defaultPos);
+      else mapsLoading(pos);
   
       // We add markers and modals to locations
       if (locations.length > 0) {
@@ -54,8 +51,7 @@ const Map = props => {
         });
       }
     } 
-    getPos()
-    
+    asyncWrap()
   }, [activeLocation, locations.length, geolocation]);
 
   return <StyledMap id="map" />;
