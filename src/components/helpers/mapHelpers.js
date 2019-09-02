@@ -53,12 +53,14 @@ export const positionPromise = () => {
 export const position = async defaultPos => {
   try {
     const posObj = await positionPromise();
+    // I we can access geolocation we use that to assign a center position
     return {
       lat: posObj.coords.latitude,
       lng: posObj.coords.longitude
     }
   }
   catch {
+    // otherwise we use the default one
     return {
       lat: defaultPos.lat,
       lng: defaultPos.lng
