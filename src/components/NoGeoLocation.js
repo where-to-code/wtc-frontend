@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyledNoGeoLocation } from './componentStyles/LocationErrStyles';
 
-
 const NoGeoLocation = () => {
   const [toggleNoLoc, setToggleNoLoc] = useState(true);
   const hideNoLoc = () => setToggleNoLoc(!toggleNoLoc);

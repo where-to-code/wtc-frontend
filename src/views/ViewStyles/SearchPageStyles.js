@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 export const StyledLoader = styled.div`
   position: fixed;
-  left: 30%;
+  left: 40%;
   top: 50%;
+  @media (min-width: 600px) {
+    left: 30%;
+    top: 50%;
+  }
 `;
 
 export const StyledSearch = styled.div`
@@ -17,8 +21,6 @@ export const StyledSearch = styled.div`
     }
   }
 `;
-
-
 
 export const CardContainer = styled.div`
   margin: 20px 30px;
