@@ -4,8 +4,9 @@ import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import logo from '../assets/logo.png';
 
 const Header = props => {
+  const { landing } = props;
   return (
-    <StyledHeader landing={props.landing}>
+    <StyledHeader landing={landing}>
       <div className="logo">
         <Link to="/">
           <img src={logo} alt="Logo" />

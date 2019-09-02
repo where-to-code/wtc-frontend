@@ -65,7 +65,6 @@ export const LocationContainer = styled.div`
   } */}
 
   .right-col {
-    width: 40%;
     max-width: 480px;
     margin: 3px;
   }
@@ -86,6 +85,11 @@ export const LocationContainer = styled.div`
 
   .rev-rates.overall-review {
     width: 100%;
+  }
+  
+  .map-container {
+    position: relative;
+    top: -32px;
   }
 
   .small-screen {

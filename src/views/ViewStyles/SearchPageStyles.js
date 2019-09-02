@@ -33,5 +33,7 @@ export const CardContainer = styled.div`
     width: 60vw;
     flex-wrap: wrap;
     justify-content: space-evenly;
+  #map {
+    width: 35vw;
   }
 `;

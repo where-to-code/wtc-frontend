@@ -11,8 +11,8 @@ import { LocationContainer } from './ViewStyles/LocationStyles';
 import Header from '../components/Header';
 import ReviewContainer from '../components/ReviewContainer';
 
-function Location(props) {
-  const { fetchSingleLocation } = props;
+const Location = props => {
+  const { fetchSingleLocation, location } = props;
   const loactionId = props.match.params.id;
   useEffect(() => {
     fetchSingleLocation(loactionId);
@@ -52,7 +52,7 @@ function Location(props) {
             <div className="desc-container">
               <h3 className="centered">Reviews</h3>
             </div>
-              <ReviewContainer reviews={props.location.reviews} />
+            <ReviewContainer reviews={props.location.reviews} />
           </div>
 
           {/* Right column start */}
@@ -87,7 +87,7 @@ function Location(props) {
       </StyledLoader>
     );
   }
-}
+};
 
 function mapStateToProps(state) {
   return {
