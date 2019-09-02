@@ -36,7 +36,7 @@ const SearchPage = props => {
   const show = () => setToggle(!toggle);
 
   return (
-    <div>
+    <>
       <Header />
       <StyledSearch>
         <div>
@@ -73,7 +73,7 @@ const SearchPage = props => {
           <Map />
         </StyledMap>
       </StyledSearch>
-    </div>
+    </>
   );
 };
 

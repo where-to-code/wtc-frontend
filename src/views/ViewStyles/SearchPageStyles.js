@@ -14,7 +14,8 @@ export const StyledSearch = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #03525b;
+  margin-top: 60px;
+  ${'' /* border-top: 1px solid #03525b; */}
   @media (min-width: 600px) {
     flex-direction: row;
     .filter {
