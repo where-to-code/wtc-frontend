@@ -61,13 +61,6 @@ export const mapInit = (mapsObj, defaultPos, icon) => {
 
 export const positionPromise = () => {
   const geolocationExists = navigator.geolocation
-
-  const success = position => {
-    return {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    };
-  }
   if (geolocationExists) {
     return new Promise((res, rej) => {
       geolocationExists.getCurrentPosition(res, rej);
@@ -76,7 +69,6 @@ export const positionPromise = () => {
 }
 
 export const position = async defaultPos => {
-  
   try {
     const posObj = await positionPromise();
     return {
