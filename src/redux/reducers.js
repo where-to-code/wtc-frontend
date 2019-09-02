@@ -15,6 +15,8 @@ export const locationReducer = (
       return { error: null, loadingLocation: false, locations: action.payload };
     case types.FETCH_LOCATIONS_FAILURE:
       return { ...state, loadingLocation: false, error: action.payload };
+    case types.CLEAR_LOCATIONS:
+      return { ...state, locations: []}
     default:
       return state;
   }
@@ -25,7 +27,6 @@ export const singleLocaReducer = (
   action
 ) => {
   switch (action.type) {
-    // Single location data
     case types.LOADING_SINGLE_LOCATION:
       return { ...state, loadingSingleLoc: true };
     case types.FETCH_SINGLE_LOCATIONS_SUCCESS:
@@ -67,10 +68,13 @@ export const mapsReducer = (
       return state;
   }
 };
+
 export const activeLocation = (state = null, action) => {
   switch (action.type) {
     case types.SET_ACTIVE:
       return action.payload;
+    case types.CLEAR_ACTIVE:
+      return null
     default:
       return state;
   }

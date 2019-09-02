@@ -9,8 +9,10 @@ import Login from './views/Login';
 import Registration from './views/Registration';
 import GitHub from './views/GitHubAuth';
 
-library.add(fab);
-function App() {
+
+
+library.add(fab)
+const App = () => {
   return (
     <div>
       <Route exact path="/" render={props => <Home {...props} />} />

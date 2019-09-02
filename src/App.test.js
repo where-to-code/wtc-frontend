@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import configureMockStore from 'redux-mock-store';
-
-import * as reducers from '../src/redux/reducers'
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 
