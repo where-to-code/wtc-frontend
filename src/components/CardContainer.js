@@ -6,9 +6,9 @@ const CardContainer = props => {
     const { locations, activeLocation } = props;
     const scrollToCard = (divId) =>{
       let elm = document.getElementById(divId)
-      elm.scrollIntoView();
-      // console.log('divId', divId);
-      // console.log('scrollHeight', elm)
+      if(props.clickedMarker){
+        elm.scrollIntoView();
+      }
     }
 
     return (
@@ -36,11 +36,22 @@ const CardContainer = props => {
     )
 }
 
-const mapStateToProps = state => ({
-    locations: state.locations.locations,
-    activeLocation: state.activeLocation,
-  });
+// const mapStateToProps = state => (
   
+//   return {
+//     locations: state.locations.locations,
+//     activeLocation: state.activeLocation.location,
+//     clickedMarker: state.activeLocation.clickedMarker,
+//   });
+  
+  function mapStateToProps(state) {
+    console.log('state', state)
+    return {
+      locations: state.locations.locations,
+      activeLocation: state.activeLocation.location,
+      clickedMarker: state.activeLocation.clickedMarker,
+    };
+  }
   export default connect(
     mapStateToProps, null
   )(CardContainer);

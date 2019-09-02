@@ -69,10 +69,13 @@ export const mapsReducer = (
   }
 };
 
-export const activeLocation = (state = null, action) => {
+export const activeLocation = (state = {
+  location: null,
+  clickedMarker: false
+}, action) => {
   switch (action.type) {
     case types.SET_ACTIVE:
-      return action.payload;
+      return { ...state, location:action.payload, clickedMarker: action.clikedMarker };  
     case types.CLEAR_ACTIVE:
       return null
     default:

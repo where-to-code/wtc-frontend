@@ -47,7 +47,7 @@ const Map = props => {
           } else {
             marker = markerInit(map, mapsObj, location, markerBlue)
           }
-          marker.addListener('click', () => setActive(location));
+          marker.addListener('click', () => setActive(location, true));
         });
       }
     } 

@@ -133,9 +133,10 @@ export const fetchSingleLocation = locId => async dispatch => {
 };
 
 // ACTIONS FOR ACTIVE LOCATION REDUCER
-export const setActive = location => ({
+export const setActive = (location, clikedMarker) => ({
   type: types.SET_ACTIVE,
-  payload: location
+  payload: location,
+  clikedMarker
 })
 export const clearActive = location => ({
   type: types.CLEAR_ACTIVE
