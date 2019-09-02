@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
 import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
-import { modalInit, markerInit, mapInit } from './helpers/mapHelpers'
+import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers'
 import markerMan from '../assets/icons8-street-view-40.png'
 import markerBlue from '../assets/icons8-marker-40.png'
 
@@ -22,42 +22,40 @@ const Map = props => {
   // if we receive coordinates from Single Location component we set the center with them
   if (singleLocCoord) defaultPos = singleLocCoord;
 
-  useEffect(() => {
-    const isGeolocated = navigator.geolocation
-    let map;
-    // If we already got the mapObj we build the map
-    if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord)
-    else if (mapsObj)  map = mapInit(mapsObj, defaultPos, markerMan);
-    //Or we fetch it from google API before
-    else if (isGeolocated && !singleLocCoord) {
-      isGeolocated.getCurrentPosition(position => {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        mapsLoading(pos)
-      });
+  useEffect(  () => {
+    const getPos = async () => {
+      const pos = await position(defaultPos)
+      const isGeolocated = navigator.geolocation
+      let map;
+      // If we already got the mapObj we build the map
+      if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord)
+      else if (mapsObj)  map = mapInit(mapsObj, defaultPos, markerMan);
+      //Or we fetch it from google API before
+      else if (isGeolocated && !singleLocCoord) {
+          mapsLoading(pos)
+      } 
+      else mapsLoading(defaultPos);
+  
+      // We add markers and modals to locations
+      if (locations.length > 0) {
+        locations.map(location => {
+          let marker;
+          const selectedLocation = activeLocation &&
+            activeLocation.name === location.name;
+  
+          if (selectedLocation) {
+            const modal = modalInit(mapsObj, location);
+            marker = markerInit(map, mapsObj, location);
+            modal.open(map, marker);
+          } else {
+            marker = markerInit(map, mapsObj, location, markerBlue)
+          }
+          marker.addListener('click', () => setActive(location));
+        });
+      }
     } 
-    else mapsLoading(defaultPos);
-
-    // We add markers and modals to locations
-    if (locations.length > 0) {
-      locations.map(location => {
-        let marker;
-        const selectedLocation = activeLocation &&
-          activeLocation.latitude === location.latitude &&
-          activeLocation.longitude === location.longitude;
-
-        if (selectedLocation) {
-          const modal = modalInit(mapsObj, location);
-          marker = markerInit(map, mapsObj, location);
-          modal.open(map, marker);
-        } else {
-          marker = markerInit(map, mapsObj, location, markerBlue)
-        }
-        marker.addListener('click', () => setActive(location));
-      });
-    }
+    getPos()
+    
   }, [activeLocation, locations.length, geolocation]);
 
   return <StyledMap id="map" />;

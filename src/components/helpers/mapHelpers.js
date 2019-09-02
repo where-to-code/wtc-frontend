@@ -35,7 +35,7 @@ export const mapInit = (mapsObj, defaultPos, icon) => {
   const isGeolocated = navigator.geolocation
   // We initialize a map
   const map = new mapsObj.Map(document.getElementById('map'), {
-    zoom: 13,
+    zoom: 11,
     center: defaultPos
   });
   
@@ -57,4 +57,37 @@ export const mapInit = (mapsObj, defaultPos, icon) => {
 
   //we return the map
   return map;
+}
+
+export const positionPromise = () => {
+  const geolocationExists = navigator.geolocation
+
+  const success = position => {
+    return {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+  }
+  if (geolocationExists) {
+    return new Promise((res, rej) => {
+      geolocationExists.getCurrentPosition(res, rej);
+    })
+  }
+}
+
+export const position = async defaultPos => {
+  
+  try {
+    const posObj = await positionPromise();
+    return {
+      lat: posObj.coords.latitude,
+      lng: posObj.coords.longitude
+    }
+  }
+  catch {
+    return {
+      lat: defaultPos.lat,
+      lng: defaultPos.lng
+    }
+  }
 }
