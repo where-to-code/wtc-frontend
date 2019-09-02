@@ -5,7 +5,7 @@ const Stars = props => {
   const { starNumber } = props;
   let i;
   let starsArray = [];
-  for (i = 1; i < starNumber; i++) {
+  for (i = 0; i < starNumber; i++) {
     starsArray.push(<img className="star" key={i} src={star} alt="star" />);
   }
   if (starsArray.length === 0) {

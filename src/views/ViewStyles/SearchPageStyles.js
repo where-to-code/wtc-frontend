@@ -21,6 +21,9 @@ export const StyledSearch = styled.div`
     .filter {
     }
   }
+  #map {
+    width: 35vw;
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -33,7 +36,5 @@ export const CardContainer = styled.div`
     width: 60vw;
     flex-wrap: wrap;
     justify-content: space-evenly;
-  #map {
-    width: 35vw;
   }
 `;
