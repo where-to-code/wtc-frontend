@@ -45,8 +45,7 @@ const Map = props => {
       locations.map(location => {
         let marker;
         const selectedLocation = activeLocation &&
-          activeLocation.latitude === location.latitude &&
-          activeLocation.longitude === location.longitude;
+          activeLocation.name === location.name;
 
         if (selectedLocation) {
           const modal = modalInit(mapsObj, location);
