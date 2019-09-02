@@ -60,7 +60,7 @@ const Registration = props => {
       return;
     }
     signup(formState).then(res => {
-      // if (res.status === 201) props.history.push('/');
+      if (res.status === 201) props.history.push('/');
     });
   };
 
