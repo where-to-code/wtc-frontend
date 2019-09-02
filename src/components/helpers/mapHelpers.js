@@ -35,7 +35,7 @@ export const mapInit = (mapsObj, defaultPos, icon) => {
   const isGeolocated = navigator.geolocation
   // We initialize a map
   const map = new mapsObj.Map(document.getElementById('map'), {
-    zoom: 14,
+    zoom: 13,
     center: defaultPos
   });
   
