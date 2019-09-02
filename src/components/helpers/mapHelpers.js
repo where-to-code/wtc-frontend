@@ -31,13 +31,31 @@ export const markerInit = (map, mapsObj, location, icon) => {
   });
 }
 
-export const mapInit = async (mapsObj, defaultPos, icon) => {
-  const pos = await position(defaultPos)
+export const mapInit = (mapsObj, defaultPos, icon) => {
+  const isGeolocated = navigator.geolocation
+  // We initialize a map
   const map = new mapsObj.Map(document.getElementById('map'), {
     zoom: 11,
-    center: pos
+    center: defaultPos
   });
-  setMapCenter(map, mapsObj, icon)
+  
+  // if user is GeoLocated
+  // and defaultPos match with the one declared in Map.js
+  // we set center based on geolocation
+  if (isGeolocated && defaultPos.lat === 51.504831314) {
+    isGeolocated.getCurrentPosition(position => {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      map.setCenter(pos)
+      setMapCenter(map, mapsObj, icon)
+    });
+  } else { // otherwise we use the default position for it
+    setMapCenter(map, mapsObj, icon)
+  }
+
+  //we return the map
   return map;
 }
 
