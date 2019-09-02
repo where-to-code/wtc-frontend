@@ -68,6 +68,7 @@ export const positionPromise = () => {
   }
 }
 
+
 export const position = async defaultPos => {
   try {
     const posObj = await positionPromise();
