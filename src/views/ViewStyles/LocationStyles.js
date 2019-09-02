@@ -6,17 +6,16 @@ export const LocationContainer = styled.div`
   margin: 0 auto;
   display: flex;
 
-  .left-col {
+  ${'' /* .left-col {
     width: 60%;
     max-width: 720px;
     margin: 3px;
-  }
+  } */}
 
   .desc-container {
     border: 1px solid #dbdbdb;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    margin-bottom: 20px;
     background: whitesmoke;
   }
 
@@ -50,11 +49,11 @@ export const LocationContainer = styled.div`
     border-top-right-radius: 5px;
   }
 
-  .loc-item-container {
+  ${'' /* .loc-item-container {
     padding-left: 10px;
-  }
+  } */}
 
-  .loc-item-container.review {
+  ${'' /* .loc-item-container.review {
     background: white;
     display: flex;
     width: 95%;
@@ -63,7 +62,7 @@ export const LocationContainer = styled.div`
     padding-top: 10px;
     border-radius: 5px;
     display: flex;
-  }
+  } */}
 
   .right-col {
     max-width: 480px;
@@ -78,11 +77,11 @@ export const LocationContainer = styled.div`
     margin: 0;
   }
 
-  .rev-rates,
+  ${'' /* .rev-rates,
   .rev-rates.overall-review {
     min-width: 280px;
     margin-bottom: 20px;
-  }
+  } */}
 
   .rev-rates.overall-review {
     width: 100%;
@@ -117,17 +116,17 @@ export const LocationContainer = styled.div`
     }
   }
 
-  .rate-line {
+  ${'' /* .rate-line {
     display: flex;
     border-bottom: 1px solid whitesmoke;
     width: 95%;
     padding: 3px;
-  }
+  } */}
 
-  .rate-line label {
+  ${'' /* .rate-line label {
     width: 30%;
     min-width: 100px;
-  }
+  } */}
 
   .rate-count-box {
     background: #dbdbdb;

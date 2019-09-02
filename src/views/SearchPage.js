@@ -3,15 +3,16 @@ import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import Map from '../components/Map';
 import Header from '../components/Header';
-import CardContainer from '../components/CardContainer'
-import {
-  StyledSearch,
-  StyledLoader
-} from './ViewStyles/SearchPageStyles';
+import CardContainer from '../components/CardContainer';
+import { StyledSearch, StyledLoader } from './ViewStyles/SearchPageStyles';
 import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
-import { locationLoads, setGeolocationFalse, setGeolocationTrue } from '../redux/actionCreators';
+import {
+  locationLoads,
+  setGeolocationFalse,
+  setGeolocationTrue
+} from '../redux/actionCreators';
 
 import NoGeoLocation from '../components/NoGeoLocation';
 const SearchPage = props => {
@@ -20,7 +21,7 @@ const SearchPage = props => {
     locationLoads,
     loadingLocation,
     locationsErr,
-    isGeolocated, 
+    isGeolocated,
     setGeolocationFalse,
     setGeolocationTrue
   } = props;
@@ -37,7 +38,7 @@ const SearchPage = props => {
   const show = () => setToggle(!toggle);
 
   return (
-    <div>
+    <>
       <Header />
       <StyledSearch>
         <div>
@@ -55,7 +56,7 @@ const SearchPage = props => {
           <Map />
         </StyledMap>
       </StyledSearch>
-    </div>
+    </>
   );
 };
 
