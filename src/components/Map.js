@@ -23,12 +23,21 @@ const Map = props => {
   if (singleLocCoord) defaultPos = singleLocCoord;
 
   useEffect(() => {
+    const isGeolocated = navigator.geolocation
     let map;
     // If we already got the mapObj we build the map
     if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord)
     else if (mapsObj)  map = mapInit(mapsObj, defaultPos, markerMan);
     //Or we fetch it from google API before
-    else if (geolocation) mapsLoading(geolocation);
+    else if (isGeolocated && defaultPos.lat === 51.504831314) {
+      isGeolocated.getCurrentPosition(position => {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        mapsLoading(pos)
+      });
+    } 
     else mapsLoading(defaultPos);
 
     // We add markers and modals to locations

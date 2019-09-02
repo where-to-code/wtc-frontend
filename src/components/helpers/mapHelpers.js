@@ -1,4 +1,3 @@
-import { locationLoads, setGeolocationFalse, setGeolocationTrue } from '../../redux/actionCreators'
 
 export const setMapCenter = (map, mapsObj, icon) => {
   new mapsObj.Marker({
@@ -51,10 +50,8 @@ export const mapInit = (mapsObj, defaultPos, icon) => {
       };
       map.setCenter(pos)
       setMapCenter(map, mapsObj, icon)
-      setGeolocationTrue()
     });
   } else { // otherwise we use the default position for it
-    setGeolocationFalse();
     setMapCenter(map, mapsObj, icon)
   }
 
