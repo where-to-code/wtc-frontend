@@ -74,7 +74,8 @@ export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
     const locationsInfo = await axios.get(
-      `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
+      //`${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
+      `${url}/locations?lat=51.504831314&long=-0.123499506`
     );
     dispatch(locationSuccess(locationsInfo.data));
   } catch (error) {
