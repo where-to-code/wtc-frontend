@@ -64,7 +64,7 @@ const SearchPage = props => {
                     />
                   );
                 } else {
-                  return <LocationCard key={place.name} location={place} />;
+                  return <LocationCard key={place.name} location={place} active={false} />;
                 }
               })}
           </CardContainer>
