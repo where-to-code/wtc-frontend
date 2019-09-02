@@ -4,6 +4,10 @@ import { StyledCardContainer } from './componentStyles/CardContStyles'
 import LocationCard from './LocationCard'
 const CardContainer = props => {
     const { locations, activeLocation } = props;
+    const scrollToCard = (divId) =>{
+      let elm = document.getElementById(divId)
+        elm.scrollIntoView();
+    }
     return (
         <StyledCardContainer>
         {locations.length > 0 &&
@@ -18,6 +22,7 @@ const CardContainer = props => {
                   key={place.name}
                   location={place}
                   active={true}
+                  scroll = {scrollToCard(place.id)}
                 />
               );
             } else {
