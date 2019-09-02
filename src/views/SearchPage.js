@@ -42,7 +42,7 @@ const SearchPage = props => {
         <div>
           <FilterPane toggle={toggle} show={show} />
           {!isGeolocated && <NoGeoLocation />}
-          {loadingLocation && (
+          {loadingLocation && locations.length <= 0 && (
             <StyledLoader>
               <Loader type="Oval" color="#56c1cb" height={80} width={80} />
             </StyledLoader>

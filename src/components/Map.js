@@ -78,7 +78,8 @@ function Map(props) {
           `<div>` +
           `<h1 style="font-size: 2rem; text-align: center">${location.name}</h1>` +
           `<p style="text-align: center">${location.description}</p>` +
-          `<p style="text-align: center">${location.address}</p>`;
+          `<p style="text-align: center">${location.address}</p>` + 
+          `</div>`;
         const modal = new maps.mapsObj.InfoWindow({
           content: contentString,
           maxWidth: 200
