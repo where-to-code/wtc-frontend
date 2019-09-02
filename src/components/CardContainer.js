@@ -35,14 +35,6 @@ const CardContainer = props => {
       </StyledCardContainer>
     )
 }
-
-// const mapStateToProps = state => (
-  
-//   return {
-//     locations: state.locations.locations,
-//     activeLocation: state.activeLocation.location,
-//     clickedMarker: state.activeLocation.clickedMarker,
-//   });
   
   function mapStateToProps(state) {
     return {
