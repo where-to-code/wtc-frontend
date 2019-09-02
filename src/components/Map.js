@@ -56,6 +56,7 @@ const Map = props => {
 
   return <StyledMap id="map" />;
 }
+
 function mapStateToProps(state) {
   return {
     mapsObj: state.maps.mapsObj,
@@ -64,6 +65,7 @@ function mapStateToProps(state) {
     activeLocation: state.activeLocation,
   };
 }
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
@@ -71,10 +73,11 @@ function mapDispatchToProps(dispatch) {
       locationLoads,
       setActive,
     },
-    dispatch
+    dispatch,
   );
 }
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Map);
