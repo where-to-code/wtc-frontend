@@ -29,7 +29,7 @@ const Map = props => {
     if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord)
     else if (mapsObj)  map = mapInit(mapsObj, defaultPos, markerMan);
     //Or we fetch it from google API before
-    else if (isGeolocated && defaultPos.lat === 51.504831314) {
+    else if (isGeolocated && !singleLocCoord) {
       isGeolocated.getCurrentPosition(position => {
         var pos = {
           lat: position.coords.latitude,
