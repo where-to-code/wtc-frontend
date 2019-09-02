@@ -29,9 +29,8 @@ export const StyledHeader = styled.header`
       border: ${props =>
         props.landing ? '0.5px solid #fff' : '0.5px solid #03525B'};
       border-radius: 5px;
-      a {
-        color: ${props => (props.landing ? '#fff' : '#666A7C')};
-      }
+
+      color: ${props => (props.landing ? '#fff' : '#666A7C')};
     }
   }
   @media (min-width: 600px) {

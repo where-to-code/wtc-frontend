@@ -12,13 +12,13 @@ const Header = props => {
         </Link>
       </div>
       <div className="auth">
-        <button>
-          <Link to="/signup">Sign Up</Link>
-        </button>
+        <Link to="/signup">
+          <button>Sign Up</button>
+        </Link>
 
-        <button>
-          <Link to="/login">Login</Link>
-        </button>
+        <Link to="/login">
+          <button>Login</button>
+        </Link>
       </div>
     </StyledHeader>
   );
