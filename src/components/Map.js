@@ -39,7 +39,6 @@ const Map = props => {
           let marker;
           const selectedLocation = activeLocation &&
             activeLocation.name === location.name;
-  
           if (selectedLocation) {
             const modal = modalInit(mapsObj, location);
             marker = markerInit(map, mapsObj, location);

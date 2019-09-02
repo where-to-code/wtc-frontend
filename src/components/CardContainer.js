@@ -45,7 +45,6 @@ const CardContainer = props => {
 //   });
   
   function mapStateToProps(state) {
-    console.log('state', state)
     return {
       locations: state.locations.locations,
       activeLocation: state.activeLocation.location,

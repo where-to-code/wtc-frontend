@@ -7,7 +7,6 @@ import { StyledCard } from './componentStyles/LocationCardStyles';
 
 const LocationCard = props => {
   const { location, active, setActive, clearLocations } = props;
-
   return (
     <StyledCard
       active={active}
