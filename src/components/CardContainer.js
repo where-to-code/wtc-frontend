@@ -6,7 +6,9 @@ const CardContainer = props => {
     const { locations, activeLocation } = props;
     const scrollToCard = (divId) =>{
       let elm = document.getElementById(divId)
-      elm.scrollTop = elm.scrollHeight;
+      elm.scrollIntoView();
+      // console.log('divId', divId);
+      // console.log('scrollHeight', elm)
     }
 
     return (
