@@ -58,3 +58,36 @@ export const mapInit = (mapsObj, defaultPos, icon) => {
   //we return the map
   return map;
 }
+
+export const positionPromise = () => {
+  const geolocationExists = navigator.geolocation
+
+  const success = position => {
+    return {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+  }
+  if (geolocationExists) {
+    return new Promise((res, rej) => {
+      geolocationExists.getCurrentPosition(res, rej);
+    })
+  }
+}
+
+export const position = async defaultPos => {
+  
+  try {
+    const posObj = await positionPromise();
+    return {
+      lat: posObj.coords.latitude,
+      lng: posObj.coords.longitude
+    }
+  }
+  catch {
+    return {
+      lat: defaultPos.lat,
+      lng: defaultPos.lng
+    }
+  }
+}
