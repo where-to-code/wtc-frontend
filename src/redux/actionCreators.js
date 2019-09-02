@@ -4,7 +4,64 @@ import { mapPromise } from './helpers'
 
 const url = 'https://where2code.herokuapp.com/api';
 
-// ACTIONS FOR LOCATIONS REDUCER
+// Auth
+export function authLoad() {
+  return {
+    type: types.AUTH_LOAD
+  };
+}
+
+export function authSuccess(user) {
+  return {
+    type: types.AUTH_SUCCESS,
+    payload: user
+  };
+}
+
+export function authFail(payload) {
+  return {
+    type: types.AUTH_FAILURE,
+    payload: payload
+  };
+}
+
+export const login = user => dispatch => {
+  dispatch(authLoad());
+  return axios
+    .post('https://where-to-code-staging.herokuapp.com/api/auth/login', user, {
+      withCredentials: true
+    })
+    .then(res => {
+      dispatch(authSuccess(res.data.data.id));
+      return res;
+    })
+    .catch(err => {
+      dispatch(authFail(err.response.data.message));
+      return err;
+    });
+};
+
+export const signup = userData => dispatch => {
+  const { firstname, lastname, email, password } = userData;
+  dispatch(authLoad());
+  return axios
+    .post('https://where-to-code-staging.herokuapp.com/api/auth/register', {
+      firstname,
+      lastname,
+      email,
+      password
+    })
+    .then(res => {
+      dispatch(authSuccess(res.data.data.id));
+      return res;
+    })
+    .catch(err => {
+      dispatch(authFail(err.response.data.message));
+      return err;
+    });
+};
+
+// Locations
 export const locationSuccess = locationList => ({
   type: types.FETCH_LOCATIONS_SUCCESS,
   payload: locationList.data
@@ -81,4 +138,6 @@ export const setActive = location => ({
 })
 export const clearActive = location => ({
   type: types.CLEAR_ACTIVE
-})
+});
+
+

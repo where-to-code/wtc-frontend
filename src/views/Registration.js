@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
 import {
-  StyledMap,
   StyledLeftSection,
   StyledRegistration,
-  TabletAndMobileHeader,
-  StyleGit
-} from './ViewStyles/RegistrationStyles';
+  StyleGit,
+  StyleMap,
+  StyledWrapper
+} from './ViewStyles/AuthStyles';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import gitHubIcon from '../assets/github.png';
+import { signup } from '../redux/actionCreators';
 import logo from '../assets/logo.png';
 
-const Registration = () => {
+const Registration = props => {
+  const { signup, loading, error } = props;
   const [formState, updateFormState] = useState({
     firstname: '',
     lastname: '',
@@ -55,17 +59,20 @@ const Registration = () => {
     ) {
       return;
     }
-
-    console.log(formState);
+    signup(formState).then(res => {
+      if (res.status === 201) props.history.push('/');
+    });
   };
 
   return (
-    <>
-      <TabletAndMobileHeader>
-        <Link to="/">
-          <img src={logo} alt="logo" />
-        </Link>
-      </TabletAndMobileHeader>
+    <StyledWrapper>
+      <StyleMap>
+        <div>
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
+        </div>
+      </StyleMap>
       <StyledRegistration>
         <StyledLeftSection>
           <h2>Create Account</h2>
@@ -135,7 +142,14 @@ const Registration = () => {
                 <span>Does not match the password.</span>
               )}
 
-            <button type="submit">Sign Up</button>
+            <button type="submit">
+              {loading ? (
+                <Loader type="Oval" color="#fff" height={40} width={30} />
+              ) : (
+                'Sign Up'
+              )}
+            </button>
+            {error && <div>{error}</div>}
           </form>
 
           <div>
@@ -144,17 +158,28 @@ const Registration = () => {
             <span></span>
           </div>
           <StyleGit>
-            <FontAwesomeIcon icon={['fab', 'github']} />
+            <a href="https://github.com/login/oauth/authorize?client_id=86d82ca50b3aad5948e7">
+              <FontAwesomeIcon icon={['fab', 'github']} />
+            </a>
           </StyleGit>
+
+          <span>
+            Already have an account? <Link to="/login"> Login</Link>
+          </span>
         </StyledLeftSection>
-        <StyledMap>
-          <Link to="/">
-            <img src={logo} alt="Where-to-code" />
-          </Link>
-        </StyledMap>
       </StyledRegistration>
-    </>
+    </StyledWrapper>
   );
 };
 
-export default Registration;
+const mapStatetoProps = state => {
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error
+  };
+};
+
+export default connect(
+  mapStatetoProps,
+  { signup }
+)(Registration);

@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -17,15 +16,15 @@ const combinedReducer = combineReducers({
   locations: reducers.locationReducer,
   maps: reducers.mapsReducer,
   location: reducers.singleLocaReducer,
-  activeLocation: reducers.activeLocation
+  activeLocation: reducers.activeLocation,
+  auth: reducers.authReducer
 });
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   combinedReducer,
-  {},
-  compose(
-    applyMiddleware(thunk),
-  )
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 ReactDOM.render(
