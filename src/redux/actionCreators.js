@@ -32,6 +32,7 @@ export const login = user => dispatch => {
       withCredentials: true
     })
     .then(res => {
+      console.log(res.data.data);
       dispatch(authSuccess(res.data.data.id));
       return res;
     })
@@ -50,12 +51,13 @@ export const signup = userData => dispatch => {
       lastname,
       email,
       password
-    })
+    }, { withCredentials: true } )
     .then(res => {
       dispatch(authSuccess(res.data.data.id));
       return res;
     })
     .catch(err => {
+      console.log(err);
       dispatch(authFail(err.response.data.message));
       return err;
     });
