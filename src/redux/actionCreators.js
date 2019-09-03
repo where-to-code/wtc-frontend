@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import axios from 'axios';
-import { mapPromise } from './helpers'
+import { mapPromise } from './helpers';
+import { setTempCookie } from '../components/helpers/authHelpers';
 
 const url = 'https://where2code.herokuapp.com/api';
 
@@ -33,7 +34,7 @@ export const login = user => dispatch => {
     })
     .then(res => {
       // temporary code to write cookie until banckend is ready to send
-        document.cookie = "ugid=1234";
+      setTempCookie();
       /////
       dispatch(authSuccess(res.data.data.id));
       return res;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
+import { setTempCookie } from '../components/helpers/authHelpers';
 
 const url = 'https://where2code.herokuapp.com/api/auth/gitAuth';
 
@@ -22,7 +23,12 @@ export default ({ location }) => {
     const code = location.search.split('=')[1];
 
     axios(`${url}?code=${code}`)
-      .then(res => setIsAuth(true))
+      .then(res => {
+        // temporary code to write cookie until banckend is ready to send
+        setTempCookie();
+        /////
+        setIsAuth(true)
+      })
       .catch(err => setIsAuth(false));
   }, []);
 

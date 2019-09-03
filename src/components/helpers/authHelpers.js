@@ -32,3 +32,10 @@ function readCookie(name) {
     return (result = new RegExp('(?:^|; )' + encodeURIComponent(name) + '=([^;]*)').exec(document.cookie)) ? (result[1]) : null;
 }
 
+
+///// temporary code to write cookie until banckend is ready to send
+export const setTempCookie = () =>{
+    document.cookie = `${process.env.REACT_APP_COOKIE_NAME}=qeq6JLAhTYLQPnzDuyb7oXvFXYnIjUNz`;
+}
+/////
+
