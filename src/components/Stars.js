@@ -1,5 +1,6 @@
 import React from 'react';
 import star from '../assets/star_rating.png';
+import { StyledStars } from './componentStyles/ReviewStyles';
 
 const Stars = props => {
   const { starNumber } = props;
@@ -11,11 +12,7 @@ const Stars = props => {
   if (starsArray.length === 0) {
     return <span className="extra-small">Not rated</span>;
   } else {
-    return (
-      <div className="flex" id="stars-rating">
-        {starsArray}
-      </div>
-    );
+    return <StyledStars id="stars-rating">{starsArray}</StyledStars>;
   }
 };
 

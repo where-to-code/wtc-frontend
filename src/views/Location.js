@@ -7,11 +7,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleLocation } from '../redux/actionCreators';
 import { StyledLoader } from './ViewStyles/SearchPageStyles';
-import { LocationContainer } from './ViewStyles/LocationStyles';
+import { LocationContainer, TopContainer } from './ViewStyles/LocationStyles';
 import Header from '../components/Header';
 import ReviewContainer from '../components/ReviewContainer';
+import LocationBanner from '../components/LocationBanner';
+import AverageRatings from '../components/AverageRatings';
 
 const Location = props => {
+  console.log(props.location);
   const { fetchSingleLocation, location } = props;
   const loactionId = props.match.params.id;
   useEffect(() => {
@@ -22,40 +25,15 @@ const Location = props => {
       <>
         <Header />
         <LocationContainer>
-          <div className="left-col">
-            <div className="desc-container">
-              <div className="img-container">
-                <img className="loc-image" src={props.location.image_url} />
-                <h3>{props.location.name}</h3>
-              </div>
-
-              <div className="rev-rates overall-review small-screen">
-                <OverallReview />
-              </div>
-              <div className="loc-item-container">
-                {props.address && (
-                  <>
-                    <h4>Address</h4>
-                    <p>{props.location.address}</p>
-                  </>
-                )}
-              </div>
-              <div className="loc-item-container">
-                <h4>Description</h4>
-                <p>{props.location.description}</p>
-              </div>
-              <div className="buttons small-screen">
-                <button>Add review</button>
-                <button>Add to favorite</button>
-              </div>
-            </div>
-            <div className="desc-container">
-              <h3 className="centered">Reviews</h3>
-            </div>
-            <ReviewContainer reviews={props.location.reviews} />
+          <TopContainer>
+            <LocationBanner location={location} />
+            <AverageRatings location={location} />
+          </TopContainer>
+          <div>
+            <ReviewContainer reviews={location.reviews} />
           </div>
 
-          {/* Right column start */}
+          {/* Right column start
           <div className="right-col">
             <div className="desc-container">
               <h3 className="centered">Overall review</h3>
@@ -76,7 +54,7 @@ const Location = props => {
                 <button>Get me there</button>
               </div>
             </div>
-          </div>
+          </div> */}
         </LocationContainer>
       </>
     );
