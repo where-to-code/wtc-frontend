@@ -6,7 +6,7 @@ const Comment = props => {
   return (
     <StyledComment>
       <>
-        <h1>Comment</h1>
+        <h3>Comment</h3>
         <p>{description}</p>
       </>
     </StyledComment>

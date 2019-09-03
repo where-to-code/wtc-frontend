@@ -5,7 +5,7 @@ export const StyledLoader = styled.div`
   left: 40%;
   top: 50%;
   @media (min-width: 600px) {
-    left: 30%;
+    left: 50%;
     top: 50%;
   }
 `;
@@ -15,7 +15,6 @@ export const StyledSearch = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 60px;
-  ${'' /* border-top: 1px solid #03525b; */}
   @media (min-width: 600px) {
     flex-direction: row;
     .filter {

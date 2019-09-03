@@ -5,7 +5,15 @@ export const StyledReviewContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  margin: 10px 0;
+  padding: 10px;
   background-color: #f5f5f5;
+  border-radius: 10px;
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
 `;
 
 export const StyledReviewRatings = styled.div`
@@ -16,12 +24,16 @@ export const StyledReviewRatings = styled.div`
 
 export const StyledReviewCard = styled.div`
   display: flex;
+  flex-direction: column;
   width: 95%;
   justify-content: space-between;
   margin: 15px;
   background-color: #fff;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 0;
+  @media (min-width: 600px) {
+    flex-direction: row;
+  }
 `;
 
 export const StyledReview = styled.div`
@@ -33,5 +45,15 @@ export const StyledReview = styled.div`
   label {
     width: 30%;
     min-width: 100px;
+  }
+`;
+
+export const StyledStars = styled.div`
+  display: flex;
+  align-content: space-between;
+  img {
+    width: 20px;
+    height: auto;
+    padding: 2px;
   }
 `;
