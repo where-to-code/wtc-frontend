@@ -20,6 +20,12 @@ export const TopContainer = styled.div`
     flex-direction: row;
   }
 `;
+
+export const TopRightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 //   width: 100%;
 //   max-width: 1200px;
 //   margin: 0 auto;

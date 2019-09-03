@@ -7,11 +7,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleLocation } from '../redux/actionCreators';
 import { StyledLoader } from './ViewStyles/SearchPageStyles';
-import { LocationContainer, TopContainer } from './ViewStyles/LocationStyles';
+import { LocationContainer, TopContainer, TopRightContainer } from './ViewStyles/LocationStyles';
 import Header from '../components/Header';
 import ReviewContainer from '../components/ReviewContainer';
 import LocationBanner from '../components/LocationBanner';
 import AverageRatings from '../components/AverageRatings';
+import MapIFrame from '../components/MapIFrame';
 
 const Location = props => {
   console.log(props.location);
@@ -27,7 +28,10 @@ const Location = props => {
         <LocationContainer>
           <TopContainer>
             <LocationBanner location={location} />
-            <AverageRatings location={location} />
+            <TopRightContainer>
+              <AverageRatings location={location} />
+              <MapIFrame location={location} />
+            </TopRightContainer>
           </TopContainer>
           <div>
             <ReviewContainer reviews={location.reviews} />

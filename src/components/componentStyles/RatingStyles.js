@@ -20,7 +20,7 @@ export const StyledAverage = styled.div`
   }
   button {
     width: 130px;
-    height: 40px;
+    height: 50px;
     background-color: #56c1cb;
     font-size: 10px;
     font-weight: 600;
