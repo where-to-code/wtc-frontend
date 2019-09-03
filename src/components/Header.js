@@ -14,13 +14,25 @@ const Header = props => {
         </Link>
       </div>
       <div className="auth">
-        <Link to="/signup">
-          <button>Sign Up</button>
-        </Link>
-
-        <Link to="/login">
-          <button>Login</button>
-        </Link>
+      {
+        props.userId 
+          ? (
+            <Link to="/signup">
+            <button>Logout</button>
+            </Link>          
+            )
+          : (
+            <>
+            <Link to="/signup">
+            <button>Sign Up</button>
+           </Link>
+            <Link to="/login">
+              <button>Login</button>
+            </Link>  
+            </>
+          )
+      }
+        
       </div>
     </StyledHeader>
   );
