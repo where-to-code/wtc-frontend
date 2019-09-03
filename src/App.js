@@ -8,6 +8,7 @@ import SearchPage from './views/SearchPage';
 import Login from './views/Login';
 import Registration from './views/Registration';
 import GitHub from './views/GitHubAuth';
+import ResetPassword from './views/ResetPassword';
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
       <Route path="/location/:id" render={props => <Location {...props} />} />
       <Route path="/locations" render={props => <SearchPage {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
+      <Route path="/reset-password" render={props => <ResetPassword {...props} />} />
       <Route path="/signup" render={props => <Registration {...props} />} />
       <Route path="/gitAuth" render={props => <GitHub {...props} />} />
     </div>

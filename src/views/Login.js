@@ -76,6 +76,9 @@ const Login = props => {
           <span>
             Don't have an account? <Link to="/signup"> Sign Up</Link>
           </span>
+          <span id="reset-password">
+            <Link to="/reset-password">Forgot password?</Link>
+          </span>
         </StyledLeftSection>
       </StyledRegistration>
     </StyledWrapper>
