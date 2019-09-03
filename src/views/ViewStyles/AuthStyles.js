@@ -124,6 +124,18 @@ export const StyledLeftSection = styled.div`
       font-size: 36px;
     }
   }
+  h3 {
+    font-size: 1.3rem;
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+    color: #666a7c;
+    padding: 10px 0;
+  }
+  h6 {
+    font-size: 0.8rem;
+    color: #666a7c;
+    padding: 6px 0;
+  }
 `;
 
 export const StyleGit = styled.div`
