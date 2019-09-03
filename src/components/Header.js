@@ -42,6 +42,7 @@ const Header = props => {
 };
 
 function mapStateToProps (state) {
+  console.log(state.auth);
   return{
     userId: state.auth.userId
   }

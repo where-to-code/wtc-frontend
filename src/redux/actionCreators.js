@@ -3,7 +3,10 @@ import axios from 'axios';
 import { mapPromise } from './helpers';
 import { setTempCookie } from '../components/helpers/authHelpers';
 
-const url = 'https://where2code.herokuapp.com/api';
+const url =
+  process.env.NODE_ENV === 'development'
+    ? 'https://where-to-code-staging.herokuapp.com/api'
+    : 'https://where2code.herokuapp.com/api';
 
 // Auth
 export function authLoad() {
@@ -29,7 +32,7 @@ export function authFail(payload) {
 export const login = user => dispatch => {
   dispatch(authLoad());
   return axios
-    .post('https://where-to-code-staging.herokuapp.com/api/auth/login', user, {
+    .post(`${url}/auth/login`, user, {
       withCredentials: true
     })
     .then(res => {
@@ -49,7 +52,7 @@ export const signup = userData => dispatch => {
   const { firstname, lastname, email, password } = userData;
   dispatch(authLoad());
   return axios
-    .post('https://where-to-code-staging.herokuapp.com/api/auth/register', {
+    .post(`${url}/auth//auth/register`, {
       firstname,
       lastname,
       email,
@@ -88,7 +91,7 @@ export const locationLoads = currentLocation => async dispatch => {
 };
 export const clearLocations = () => ({
   type: types.CLEAR_LOCATIONS
-})
+});
 
 // ACTIONS FOR MAPS REDUCER
 export const mapsSucces = (mapsObj, geolocation) => ({
@@ -112,10 +115,10 @@ export const mapsLoading = geolocation => async dispatch => {
 };
 export const setGeolocationTrue = () => ({
   type: types.SET_GEOLOCATION_TRUE
-})
+});
 export const setGeolocationFalse = () => ({
   type: types.SET_GEOLOCATION_FALSE
-})
+});
 
 // ACTIONS FOR SINGLE LOCATION REDUCER
 export const singleLocSuccess = locationList => ({
@@ -140,7 +143,7 @@ export const fetchSingleLocation = locId => async dispatch => {
 export const setActive = location => ({
   type: types.SET_ACTIVE,
   payload: location
-})
+});
 export const clearActive = location => ({
   type: types.CLEAR_ACTIVE
 });

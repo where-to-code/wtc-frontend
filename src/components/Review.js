@@ -4,7 +4,6 @@ import { StyledReview } from './componentStyles/ReviewStyles';
 
 const Review = props => {
   const { title, starNumber } = props;
-  console.log(props)
   return (
     <StyledReview>
       <label>{title}</label>
