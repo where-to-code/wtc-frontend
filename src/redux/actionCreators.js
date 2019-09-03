@@ -32,6 +32,9 @@ export const login = user => dispatch => {
       withCredentials: true
     })
     .then(res => {
+      // temporary code to write cookie until banckend is ready to send
+        document.cookie = "ugid=1234";
+      /////
       dispatch(authSuccess(res.data.data.id));
       return res;
     })

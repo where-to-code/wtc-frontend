@@ -1,13 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCookie } from './helpers/authHelpers'
+import { getCookie, eraseCookie } from './helpers/authHelpers';
+import { BrowserRouter as  Redirect } from "react-router-dom";
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing } = props;
   const isCookie = getCookie();
+  const logout = () => {
+    eraseCookie();
+    document.location.reload(true);
+  }
 
   return (
     <StyledHeader landing={landing}>
@@ -19,11 +24,11 @@ const Header = props => {
       <div className="auth">
       {
         isCookie 
-          ? (
-            <Link to={`/logout/:${props.userId}`}>
-            <button>Logout</button>
-            </Link>          
-            )
+          ? 
+            <button
+            onClick={logout}>
+              Logout
+            </button>
           : (
             <>
             <Link to="/signup">
