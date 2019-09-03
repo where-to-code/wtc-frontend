@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
 import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
 import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers';
-import markerMan from '../assets/icons8-street-view-40.png';
 import markerBlue from '../assets/icons8-marker-40.png';
 
 const Map = props => {
