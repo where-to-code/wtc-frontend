@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getCookie } from './helpers/authHelpers'
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing } = props;
+  const isCookie = getCookie();
+
   return (
     <StyledHeader landing={landing}>
       <div className="logo">
@@ -15,9 +18,9 @@ const Header = props => {
       </div>
       <div className="auth">
       {
-        props.userId 
+        isCookie 
           ? (
-            <Link to="/signup">
+            <Link to={`/logout/:${props.userId}`}>
             <button>Logout</button>
             </Link>          
             )

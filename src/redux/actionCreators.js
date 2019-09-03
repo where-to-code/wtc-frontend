@@ -32,7 +32,6 @@ export const login = user => dispatch => {
       withCredentials: true
     })
     .then(res => {
-      console.log(res.data.data);
       dispatch(authSuccess(res.data.data.id));
       return res;
     })
@@ -141,5 +140,3 @@ export const setActive = location => ({
 export const clearActive = location => ({
   type: types.CLEAR_ACTIVE
 });
-
-
