@@ -28,40 +28,36 @@ export function authFail(payload) {
   };
 }
 
-export const login = user => dispatch => {
+export const login = user => async dispatch => {
   dispatch(authLoad());
-  return axios
-    .post(`${url}/auth/login`, user, {
+  try {
+    const loginDetails = await axios.post(`${url}/auth/login`, user, {
       withCredentials: true
-    })
-    .then(res => {
-      dispatch(authSuccess(res.data.data.id));
-      return res;
-    })
-    .catch(err => {
-      dispatch(authFail(err.response.data.message));
-      return err;
     });
+    dispatch(authSuccess(loginDetails.data.data.id));
+    return loginDetails;
+  } catch (error) {
+    dispatch(authFail(error.response.data.message));
+    return error;
+  }
 };
 
-export const signup = userData => dispatch => {
+export const signup = userData => async dispatch => {
   const { firstname, lastname, email, password } = userData;
   dispatch(authLoad());
-  return axios
-    .post(`${url}/auth//auth/register`, {
+  try {
+    const userDetails = await axios.post(`${url}/auth/register`, {
       firstname,
       lastname,
       email,
       password
-    })
-    .then(res => {
-      dispatch(authSuccess(res.data.data.id));
-      return res;
-    })
-    .catch(err => {
-      dispatch(authFail(err.response.data.message));
-      return err;
     });
+    dispatch(authSuccess(userDetails.data.data.id));
+    return userDetails;
+  } catch (error) {
+    dispatch(authFail(error.response.data.message));
+    return error;
+  }
 };
 
 // Locations
