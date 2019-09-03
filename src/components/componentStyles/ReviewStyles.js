@@ -24,12 +24,16 @@ export const StyledReviewRatings = styled.div`
 
 export const StyledReviewCard = styled.div`
   display: flex;
+  flex-direction: column;
   width: 95%;
   justify-content: space-between;
   margin: 15px;
   background-color: #fff;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 0;
+  @media (min-width: 600px) {
+    flex-direction: row;
+  }
 `;
 
 export const StyledReview = styled.div`

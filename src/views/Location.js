@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-import Map from '../components/Map';
-import ReviewItem from '../components/ReviewItem';
-import OverallReview from '../components/OverallReview';
+// import Map from '../components/Map';
+// import ReviewItem from '../components/ReviewItem';
+// import OverallReview from '../components/OverallReview';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleLocation } from '../redux/actionCreators';
