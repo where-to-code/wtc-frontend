@@ -15,6 +15,7 @@ const LocationCard = props => {
       onClick={() => {
         clearLocations()
       }}
+      id={location.id}
     >
       <Link to={`/location/${location.id}`}>
         <img src={location.image_url} alt={location.name} />

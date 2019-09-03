@@ -34,6 +34,12 @@ const Map = props => {
     defaultPos = center;
   }
 
+  const updateView = (location) =>{
+    let elm = document.getElementById(location.id)
+    elm.scrollIntoView();
+    setActive(location);
+  }
+
   useEffect(() => {
     // we need to use a wrapper tp use async functions inside UseEffect
     const asyncWrap = async () => {
@@ -59,7 +65,7 @@ const Map = props => {
           } else {
             marker = markerInit(map, mapsObj, location, markerBlue);
           }
-          marker.addListener('click', () => setActive(location));
+          marker.addListener('click', () => updateView(location));
         });
       }
     };
