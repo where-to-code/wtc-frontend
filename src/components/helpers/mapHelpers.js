@@ -1,12 +1,4 @@
 
-export const setMapCenter = (map, mapsObj, icon) => {
-  new mapsObj.Marker({
-    map: map,
-    icon: icon,
-    position: map.getCenter()
-  });
-};
-
 export const modalInit = (mapsObj, location) => {
   // InfoWindow accept only strings as content
   const content =
@@ -31,33 +23,11 @@ export const markerInit = (map, mapsObj, location, icon) => {
   });
 }
 
-export const mapInit = (mapsObj, defaultPos, icon) => {
-  const isGeolocated = navigator.geolocation
-  // We initialize a map
-  const map = new mapsObj.Map(document.getElementById('map'), {
+export const mapInit = (mapsObj, defaultPos) => {
+  return new mapsObj.Map(document.getElementById('map'), {
     zoom: 11,
-    center: defaultPos
+    center: defaultPos,
   });
-  
-  
-  // if user is GeoLocated
-  // and defaultPos match with the one declared in Map.js
-  // we set center based on geolocation
-  if (isGeolocated && defaultPos.lat === 51.504831314) {
-    isGeolocated.getCurrentPosition(position => {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      map.setCenter(pos)
-      setMapCenter(map, mapsObj, icon)
-    });
-  } else { // otherwise we use the default position for it
-    setMapCenter(map, mapsObj, icon)
-  }
-
-  //we return the map
-  return map;
 }
 
 export const positionPromise = () => {

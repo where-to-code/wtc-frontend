@@ -9,7 +9,6 @@ import {
 
 const ReviewContainer = props => {
   const { reviews } = props;
-  console.log(reviews);
   //   console.log(reviews)
   //   const convertToWord = key => {
   //     const words = key.split('_');

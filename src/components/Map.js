@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
 import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
 import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers';
-import markerMan from '../assets/icons8-street-view-40.png';
 import markerBlue from '../assets/icons8-marker-40.png';
 
 const Map = props => {
@@ -34,6 +33,12 @@ const Map = props => {
     defaultPos = center;
   }
 
+  const updateView = (location) =>{
+    let elm = document.getElementById(location.id)
+    elm.scrollIntoView();
+    setActive(location);
+  }
+
   useEffect(() => {
     // we need to use a wrapper tp use async functions inside UseEffect
     const asyncWrap = async () => {
@@ -41,7 +46,7 @@ const Map = props => {
       let map;
       // If we already got the mapObj we build the map
       if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord);
-      else if (mapsObj) map = mapInit(mapsObj, defaultPos);
+      else if (mapsObj) map = mapInit(mapsObj, pos);
       //Or we fetch it from google API before
       else mapsLoading(pos);
 
@@ -59,7 +64,7 @@ const Map = props => {
           } else {
             marker = markerInit(map, mapsObj, location, markerBlue);
           }
-          marker.addListener('click', () => setActive(location));
+          marker.addListener('click', () => updateView(location));
         });
       }
     };

@@ -4,6 +4,7 @@ import { StyledCardContainer } from './componentStyles/CardContStyles'
 import LocationCard from './LocationCard'
 const CardContainer = props => {
     const { locations, activeLocation } = props;
+
     return (
         <StyledCardContainer>
         {locations.length > 0 &&

@@ -49,7 +49,7 @@ const SearchPage = props => {
               <Loader type="Oval" color="#56c1cb" height={80} width={80} />
             </StyledLoader>
           )}
-          {locationsErr && <LocationErr />}
+          {locationsErr && locationsErr !== "currentLocation is null" && <LocationErr />}
           <CardContainer />
         </div>
         <StyledMap>
