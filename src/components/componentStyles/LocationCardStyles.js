@@ -10,7 +10,7 @@ export const StyledCard = styled.div`
   border-radius: 5px;
   transform: ${props => (props.active ? 'scale(1.05)' : 'scale(1)')};
   transition: 0.2s;
-  box-shadow: -1px 1px 5px 5px rgba(219, 219, 219, 1);
+  box-shadow: ${props => (props.active ? '-1px 1px 5px 5px rgb(206, 229, 155)' : '-1px 1px 5px 5px rgba(219, 219, 219, 1)')} ;
   
   .desc {
     text-align: center;
