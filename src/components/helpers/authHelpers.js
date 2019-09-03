@@ -1,4 +1,7 @@
-const cookieName = 'ugid';
+// as the cookie name is not clear yet and may change 
+// from one environment to another we store it 
+// in an Env variable
+const cookieName = process.env.REACT_APP_COOKIE_NAME;
 
 export const getCookie = () => {
     const cookieData = readCookie(cookieName);
@@ -16,7 +19,7 @@ export const logout = () => {
   }
 
 // to delete a cookie based on its name
-// To delete a cookie, we just need to set the value of the cookie to empty and 
+// We just need to set the value of the cookie to empty and 
 // set the value of expires to a passed date.
 function eraseCookie(){
     console.log('erasing cookie');
