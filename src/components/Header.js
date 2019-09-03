@@ -10,8 +10,9 @@ const Header = props => {
   const { landing } = props;
   const isCookie = getCookie();
   const logout = () => {
+    // delete cookie and redirect to home
     eraseCookie();
-    document.location.reload(true);
+    window.location = "/";
   }
 
   return (
