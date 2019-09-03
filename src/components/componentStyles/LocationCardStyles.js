@@ -8,12 +8,10 @@ export const StyledCard = styled.div`
   box-shadow: -1px 1px 5px 1px rgba(219, 219, 219, 1);
   background-color: rgba(219, 219, 219, 0.35);
   border-radius: 5px;
+  transform: ${props => (props.active ? 'scale(1.05)' : 'scale(1)')};
+  transition: 0.2s;
+  box-shadow: -1px 1px 5px 5px rgba(219, 219, 219, 1);
   
-    transform: ${props => (props.active ? 'scale(1.05)' : 'scale(1)')};
-    transition: 0.2s;
-    box-shadow: -1px 1px 5px 5px rgba(219, 219, 219, 1);
-  
-
   .desc {
     text-align: center;
     padding: 10px;
