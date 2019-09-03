@@ -31,6 +31,7 @@ const SearchPage = props => {
   useEffect(() => {
     if (navigator.geolocation) setGeolocationTrue();
     else setGeolocationFalse();
+    console.log(locationsErr);
 
     locationLoads(geolocation);
   }, [geolocation]);
