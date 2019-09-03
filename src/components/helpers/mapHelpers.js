@@ -1,12 +1,4 @@
 
-export const setMapCenter = (map, mapsObj, icon) => {
-  new mapsObj.Marker({
-    map: map,
-    icon: icon,
-    position: map.getCenter()
-  });
-};
-
 export const modalInit = (mapsObj, location) => {
   // InfoWindow accept only strings as content
   const content =
