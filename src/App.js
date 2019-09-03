@@ -22,10 +22,10 @@ const App = () => {
       <Route path="/location/:id" render={props => <Location {...props} />} />
       <Route path="/locations" render={props => <SearchPage {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
-      <Route path="/find-account" render={props => <FindAccount {...props} />} />
+      <Route path="/account" render={props => <FindAccount {...props} />} />
       <Route path="/signup" render={props => <Registration {...props} />} />
       <Route path="/gitAuth" render={props => <GitHub {...props} />} />
-      <Route path="/reset-password" render={props => <ResetPassword {...props} />} />
+      <Route path="/reset" render={props => <ResetPassword {...props} />} />
     </div>
   );
 }
