@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
 import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
 import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers';
-import markerMan from '../assets/icons8-street-view-40.png';
 import markerBlue from '../assets/icons8-marker-40.png';
 
 const Map = props => {
@@ -47,7 +46,7 @@ const Map = props => {
       let map;
       // If we already got the mapObj we build the map
       if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord);
-      else if (mapsObj) map = mapInit(mapsObj, defaultPos);
+      else if (mapsObj) map = mapInit(mapsObj, pos);
       //Or we fetch it from google API before
       else mapsLoading(pos);
 

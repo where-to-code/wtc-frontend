@@ -9,7 +9,6 @@ import {
 
 const ReviewContainer = props => {
   const { reviews } = props;
-  console.log(reviews);
   //   console.log(reviews)
   //   const convertToWord = key => {
   //     const words = key.split('_');
@@ -39,8 +38,8 @@ const ReviewContainer = props => {
       <Comment description={reviews.description} /> */}
 
       {reviews.map(review => (
-        <StyledReviewCard>
-          <StyledReviewRatings key={review.id}>
+        <StyledReviewCard key={review.id}>
+          <StyledReviewRatings >
             <Review title="Quietness" starNumber={review.quietness} />
             <Review title="Wifi Speed" starNumber={review.wifi_speed} />
             <Review title="Close Late" starNumber={review.close_late} />
