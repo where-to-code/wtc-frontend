@@ -25,7 +25,7 @@ export const StyledMessage = styled.div`
   }
 
   button {
-    width: 150px;
+    width: 200px;
     height: 40px;
     font-size: 16px;
     margin: 30px 0;
