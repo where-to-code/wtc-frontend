@@ -4,9 +4,15 @@ import { Provider } from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
+import * as reducers from '../src/redux/reducers';
 
 const initialState = {
-  loading: false
+  loading: false,
+  locations: reducers.locationReducer,
+  maps: reducers.mapsReducer,
+  location: reducers.singleLocaReducer,
+  activeLocation: reducers.activeLocation,
+  auth: reducers.authReducer
 };
 
 it('renders without crashing', () => {
