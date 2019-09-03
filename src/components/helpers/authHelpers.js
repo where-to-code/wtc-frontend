@@ -9,10 +9,16 @@ export const getCookie = () => {
     }
 }
 
+export const logout = () => {
+    // delete cookie and redirect to home
+    eraseCookie();
+    window.location = "/";
+  }
+
 // to delete a cookie based on its name
 // To delete a cookie, we just need to set the value of the cookie to empty and 
 // set the value of expires to a passed date.
-export const eraseCookie = () => {
+function eraseCookie(){
     console.log('erasing cookie');
 	document.cookie = `${cookieName}= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`
 }

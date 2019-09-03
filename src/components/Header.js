@@ -1,19 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCookie, eraseCookie } from './helpers/authHelpers';
-import { BrowserRouter as  Redirect } from "react-router-dom";
+import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing } = props;
   const isCookie = getCookie();
-  const logout = () => {
-    // delete cookie and redirect to home
-    eraseCookie();
-    window.location = "/";
-  }
 
   return (
     <StyledHeader landing={landing}>
