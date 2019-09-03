@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import logo from '../assets/logo.png';
 
@@ -25,4 +26,13 @@ const Header = props => {
   );
 };
 
-export default Header;
+function mapStateToProps (state) {
+  console.log('User', state.auth.userId);
+  return{
+    userId: state.auth.userId
+  }
+};
+
+export default connect(
+  mapStateToProps, null
+)(Header);
