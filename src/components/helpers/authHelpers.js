@@ -1,6 +1,7 @@
 const uuid = require('uuid');
 
 export const getCookie = (userId) => {
+    console.log('userId', userId)
     const cookieData = readCookie(userId);
     if(cookieData){
         return true;

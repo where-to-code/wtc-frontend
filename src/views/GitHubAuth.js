@@ -24,9 +24,8 @@ export default ({ location }) => {
 
     axios(`${url}?code=${code}`)
       .then(res => {
-        // temporary code to write cookie until banckend is ready to send
-        setTempCookie();
-        /////
+        // Login is successful so we write a cookie to auth the user
+        setTempCookie(res.data.data.id, res.data.data.lastname);
         setIsAuth(true)
       })
       .catch(err => setIsAuth(false));

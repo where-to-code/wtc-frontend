@@ -62,6 +62,8 @@ const Registration = props => {
     }
     signup(formState).then(res => {
       if (res.status === 201) {
+        // since the user is automatically looged in after sigin up 
+        // we set the cookie to flag the auth
         setTempCookie(res.data.data.id, res.data.data.lastname);
         props.history.push('/');
       }
