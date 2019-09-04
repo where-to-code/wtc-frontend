@@ -10,11 +10,10 @@ import Registration from './views/Registration';
 import GitHub from './views/GitHubAuth';
 import FindAccount from './views/FindAccount';
 import ResetPassword from './views/ResetPassword';
+import EmailConfirmationMessage from './views/EmailConfirmationMessage';
 
 
-
-
-library.add(fab)
+library.add(fab);
 const App = () => {
   return (
     <div>
@@ -26,8 +25,12 @@ const App = () => {
       <Route path="/signup" render={props => <Registration {...props} />} />
       <Route path="/gitAuth" render={props => <GitHub {...props} />} />
       <Route path="/reset" render={props => <ResetPassword {...props} />} />
+      <Route
+        path="/email-message"
+        render={props => <EmailConfirmationMessage {...props} />}
+      />
     </div>
   );
-}
+};
 
 export default App;
