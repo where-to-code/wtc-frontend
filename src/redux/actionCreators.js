@@ -183,7 +183,7 @@ export function verifyEmailFail(payload) {
 export const verifyEmail = email => dispatch => {
   dispatch(verifyEmailLoad());
   return axios
-    .post('https://where-to-code-staging.herokuapp.com/api/auth/forgot', email, {
+    .post(`${url}/auth/forgot`, email, {
       withCredentials: true
     })
     .then(res => {
@@ -223,7 +223,7 @@ export const resetPassword = (password, id) => dispatch => {
   dispatch(resetPasswordLoad());
   console.log(password , id)
   return axios
-    .post(`https://where-to-code-staging.herokuapp.com/api/auth/change/${id}`, {password}, {
+    .post(`${url}/auth/change/${id}`, {password}, {
       withCredentials: true
     })
     .then(res => {
