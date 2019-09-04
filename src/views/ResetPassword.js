@@ -14,14 +14,16 @@ import {
 
 const ResetPassword = props => {
   const { loading, error, resetPassword } = props;
+  const id =  Number(props.location.search.split('=')[1])
   const [details, setDetails] = useState({
-    password: ''
+    password: '',
+    id
   });
 
   const submitPassword = event => {
     event.preventDefault();
-    const id =  Number(props.location.search.split('=')[1])
-    resetPassword(details.password, id).then(res => {
+
+    resetPassword(details).then(res => {
       if (res.status === 200) props.history.push('/login');
     });
   };
