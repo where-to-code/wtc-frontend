@@ -23,9 +23,9 @@ const ResetPassword = props => {
   const submitPassword = event => {
     event.preventDefault();
     resetPassword(details.password, details.id)
-    // .then(res => {
-    //   if (res.status === 200) props.history.push('/login');
-    // });
+    .then(res => {
+      if (res.status === 200) props.history.push('/login');
+    });
   };
 
   return (
