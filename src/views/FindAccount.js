@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+import { connect } from 'react-redux';
 import logo from '../assets/logo.png';
 import { verifyEmail } from '../redux/actionCreators';
 
@@ -10,17 +11,17 @@ import {
   StyledRegistration,
   StyledLeftSection,
 } from './ViewStyles/AuthStyles';
-import { connect } from 'net';
+// import { connect } from 'net';
 
 const FindAccount = props => {
-  const { loading, error, login } = props;
+  const { loading, error, verifyEmail } = props;
   const [details, setDetails] = useState({
     email: '',
   });
 
-  const submitLogin = event => {
+  const submitEmail = event => {
     event.preventDefault();
-    login(details).then(res => {
+    verifyEmail(details).then(res => {
       if (res.status === 200) props.history.push('/');
     });
   };
@@ -38,7 +39,7 @@ const FindAccount = props => {
         <StyledLeftSection>
           <h3>First, let's find your account</h3>
           <h6>Please enter your email</h6>
-          <form onSubmit={submitLogin}>
+          <form onSubmit={submitEmail}>
             <input
               type="email"
               placeholder="Email"

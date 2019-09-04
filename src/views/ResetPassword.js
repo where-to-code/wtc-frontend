@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+import { connect } from 'react-redux';
 import logo from '../assets/logo.png';
 import { resetPassword } from '../redux/actionCreators';
 
@@ -10,7 +11,6 @@ import {
   StyledRegistration,
   StyledLeftSection,
 } from './ViewStyles/AuthStyles';
-import { connect } from 'http2';
 
 const ResetPassword = props => {
   const { loading, error, login } = props;
@@ -42,15 +42,6 @@ const ResetPassword = props => {
           <input
               type="password"
               placeholder="Enter Password"
-              value={details.password}
-              onChange={e =>
-                setDetails({ ...details, password: e.target.value })
-              }
-            />
-
-            <input
-              type="password"
-              placeholder="Confirm Password"
               value={details.password}
               onChange={e =>
                 setDetails({ ...details, password: e.target.value })
