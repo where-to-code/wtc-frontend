@@ -7,6 +7,7 @@ const url =
     ? 'https://where-to-code-staging.herokuapp.com/api'
     : 'https://where2code.herokuapp.com/api';
 
+
 // Auth
 export function authLoad() {
   return {
@@ -159,3 +160,83 @@ export const setActive = location => ({
 export const clearActive = location => ({
   type: types.CLEAR_ACTIVE
 });
+
+// verify email
+export function verifyEmailLoad() {
+  return {
+    type: types.VERIFY_EMAIL_LOAD
+  };
+}
+
+export function verifyEmailSuccess(email) {
+  return {
+    type: types.VERIFY_EMAIL_SUCCESS,
+    payload: email
+  };
+}
+
+export function verifyEmailFail(payload) {
+  return {
+    type: types.VERIFY_EMAIL_FAILURE,
+    payload: payload
+  };
+}
+
+
+export const verifyEmail = email => dispatch => {
+  dispatch(verifyEmailLoad());
+  return axios
+    .post('https://where-to-code-staging.herokuapp.com/api/auth/forgot', email, {
+      withCredentials: true
+    })
+    .then(res => {
+      dispatch(verifyEmailSuccess(res.data));
+      return res;
+    })
+    .catch(err => {
+      dispatch(verifyEmailFail(err.response.data.message));
+      return err;
+    });
+};
+
+
+// password reset
+export function resetPasswordLoad() {
+  return {
+    type: types.RESET_PASSWORD_LOAD
+  };
+}
+
+export function resetPasswordSuccess(password) {
+  return {
+    type: types.RESET_PASSWORD_SUCCESS,
+    payload: password
+  };
+}
+
+export function resetPasswordFail(payload) {
+  return {
+    type: types.RESET_PASSWORD_FAILURE,
+    payload: payload
+  };
+}
+
+
+export const resetPassword = (password, id) => dispatch => {
+  dispatch(resetPasswordLoad());
+  console.log(password , id)
+  return axios
+    .post(`https://where-to-code-staging.herokuapp.com/api/auth/change/${id}`, {password}, {
+      withCredentials: true
+    })
+    .then(res => {
+      console.log('creator', res)
+      dispatch(resetPasswordSuccess(res.data));
+      return res;
+    })
+    .catch(err => {
+      dispatch(resetPasswordFail(err.response.data.message));
+      return err;
+    });
+};
+

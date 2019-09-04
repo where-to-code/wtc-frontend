@@ -17,7 +17,9 @@ const combinedReducer = combineReducers({
   maps: reducers.mapsReducer,
   location: reducers.singleLocaReducer,
   activeLocation: reducers.activeLocation,
-  auth: reducers.authReducer
+  auth: reducers.authReducer,
+  verifyEmail: reducers.verifyEmailReducer,
+  resetPassword: reducers.resetPasswordReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

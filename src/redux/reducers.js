@@ -83,7 +83,7 @@ export const activeLocation = (state = null, action) => {
 const initialState = {
   userId: '',
   loading: false,
-  error: ''
+  error: '',
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -106,6 +106,72 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         userId: '',
+        loading: false,
+        error: action.payload
+      };
+
+    default:
+      return state;
+  }
+};
+
+
+export const verifyEmailReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case types.VERIFY_EMAIL_LOAD:
+      return {
+        ...state,
+        loading: true,
+        error: ''
+      };
+
+    case types.VERIFY_EMAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        email: action.payload
+      };
+
+    case types.VERIFY_EMAIL_FAILURE:
+      return {
+        ...state,
+        email: '',
+        loading: false,
+        error: action.payload
+      };
+
+    default:
+      return state;
+  }
+};
+
+
+const passwordState = {
+  password: {},
+  loading: false,
+  error: '',
+};
+
+export const resetPasswordReducer = (state = passwordState, action) => {
+  switch (action.type) {
+    case types.RESET_PASSWORD_LOAD:
+      return {
+        ...state,
+        loading: true,
+        error: ''
+      };
+
+    case types.RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        password: action.payload
+      };
+
+    case types.RESET_PASSWORD_FAILURE:
+      return {
+        ...state,
+        password: '',
         loading: false,
         error: action.payload
       };
