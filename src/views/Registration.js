@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
+import { setTempCookie } from '../components/helpers/authHelpers';
 import {
   StyledLeftSection,
   StyledRegistration,
@@ -60,7 +61,10 @@ const Registration = props => {
       return;
     }
     signup(formState).then(res => {
-      if (res.status === 201) props.history.push('/');
+      if (res.status === 201) {
+        setTempCookie(res.data.data.id, res.data.data.lastname);
+        props.history.push('/');
+      }
     });
   };
 

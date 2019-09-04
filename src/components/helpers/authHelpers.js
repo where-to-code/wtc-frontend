@@ -15,7 +15,7 @@ export const logout = (userId) => {
     window.location = "/";
 }
 
-// to delete a cookie based on its name
+// to delete a cookie based on its name (here the userId)
 // We just need to set the value of the cookie to empty and 
 // set the value of expires to a passed date.
 function eraseCookie(userId){
@@ -29,9 +29,9 @@ function readCookie(name) {
 }
 
 
-///// temporary code to write cookie until banckend is ready to send
+// function that write a cookie on successful login
+// using userId as cookie name and uuid(lastname) as value
 export const setTempCookie = (id, lastname) =>{
     const value = uuid(lastname);
     document.cookie = `${id}=${value}`;
 }
-
