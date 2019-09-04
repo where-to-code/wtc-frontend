@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing } = props;
+  const isCookie = getCookie(props.userId);
+  const onLogout = () => {
+    logout(props.userId);
+  }
+
   return (
     <StyledHeader landing={landing}>
       <div className="logo">
@@ -13,16 +20,36 @@ const Header = props => {
         </Link>
       </div>
       <div className="auth">
-        <Link to="/signup">
-          <button>Sign Up</button>
-        </Link>
-
-        <Link to="/login">
-          <button>Login</button>
-        </Link>
+      {
+        isCookie 
+          ? 
+            <button
+            onClick={onLogout}>
+              Logout
+            </button>
+          : (
+            <>
+            <Link to="/signup">
+            <button>Sign Up</button>
+           </Link>
+            <Link to="/login">
+              <button>Login</button>
+            </Link>  
+            </>
+          )
+      }
+        
       </div>
     </StyledHeader>
   );
 };
 
-export default Header;
+function mapStateToProps (state) {
+  return{
+    userId: state.auth.userId
+  }
+};
+
+export default connect(
+  mapStateToProps, null
+)(Header);

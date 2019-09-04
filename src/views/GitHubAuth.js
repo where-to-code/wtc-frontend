@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { successGitlog } from '../redux/actionCreators';
 import { Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
+import { setTempCookie } from '../components/helpers/authHelpers';
+
 
 const url = 'https://where2code.herokuapp.com/api/auth/gitAuth';
 
@@ -15,14 +19,20 @@ const StyledSpinner = styled.div`
   height: 100vh;
 `;
 
-export default ({ location }) => {
+const GitHub = ({ location, successGitlog }) => {
   const [isAuth, setIsAuth] = useState(null);
 
   useEffect(() => {
     const code = location.search.split('=')[1];
 
     axios(`${url}?code=${code}`)
-      .then(res => setIsAuth(true))
+      .then(res => {
+        // dispatch successful auth to redux state
+        successGitlog(res.data.data.id);
+        // Login is successful so we write a cookie to auth the user
+        setTempCookie(res.data.data.id, res.data.data.lastname);
+        setIsAuth(true)
+      })
       .catch(err => setIsAuth(false));
   }, []);
 
@@ -35,3 +45,15 @@ export default ({ location }) => {
 
   return isAuth ? <Redirect to="/" /> : <Redirect to="signup" />;
 };
+
+
+const mapStatetoProps = state => {
+  return {
+    userId: state.auth.userId
+  };
+};
+
+export default connect(
+  mapStatetoProps,
+  { successGitlog }
+)(GitHub);

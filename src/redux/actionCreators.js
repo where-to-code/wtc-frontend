@@ -31,6 +31,14 @@ export const login = user => async dispatch => {
   try {
     const loginDetails = await axios.post(`${url}/auth/login`, user, {
       withCredentials: true
+    })
+    .then(res => {
+      dispatch(authSuccess(res.data.data.id));
+      return res;
+    })
+    .catch(err => {
+      dispatch(authFail(err.response.data.message));
+      return err;
     });
     dispatch(authSuccess(loginDetails.data.data.id));
     return loginDetails;
@@ -38,6 +46,10 @@ export const login = user => async dispatch => {
     dispatch(authFail(error.response.data.message));
     return error;
   }
+};
+
+export const successGitlog = (userId) => dispatch =>{
+  dispatch(authSuccess(userId));
 };
 
 export const signup = userData => async dispatch => {
@@ -49,6 +61,15 @@ export const signup = userData => async dispatch => {
       lastname,
       email,
       password
+    }, { withCredentials: true } )
+    .then(res => {
+      dispatch(authSuccess(res.data.data.id));
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(authFail(err.response.data.message));
+      return err;
     });
     dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;

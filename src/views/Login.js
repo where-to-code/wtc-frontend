@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Loader from 'react-loader-spinner';
 import logo from '../assets/logo.png';
 import { login } from '../redux/actionCreators';
+import { setTempCookie } from '../components/helpers/authHelpers';
 import {
   StyledWrapper,
   StyleMap,
@@ -23,7 +24,11 @@ const Login = props => {
   const submitLogin = event => {
     event.preventDefault();
     login(details).then(res => {
-      if (res.status === 200) props.history.push('/');
+      if (res.status === 200){
+        // Login is successful so we write a cookie to auth the user
+        setTempCookie(res.data.data.id, res.data.data.lastname);
+        props.history.push('/');
+      } 
     });
   };
 
