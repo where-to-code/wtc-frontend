@@ -210,6 +210,7 @@ export const resetPassword = (password, id) => dispatch => {
       withCredentials: true
     })
     .then(res => {
+      console.log('creator', res)
       dispatch(resetPasswordSuccess(res.data.data.password));
       return res;
     })
