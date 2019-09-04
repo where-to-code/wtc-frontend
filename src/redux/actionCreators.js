@@ -203,7 +203,8 @@ export function resetPasswordFail(payload) {
 
 
 export const resetPassword = (password, id) => dispatch => {
-  //dispatch(resetPasswordLoad());
+  dispatch(resetPasswordLoad());
+  console.log(password , id)
   axios
     .post(`https://where-to-code-staging.herokuapp.com/api/auth/change/${id}`, {password}, {
       withCredentials: true
