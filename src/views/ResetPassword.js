@@ -13,14 +13,17 @@ import {
 } from './ViewStyles/AuthStyles';
 
 const ResetPassword = props => {
-  const { loading, error, login } = props;
+  const { loading, error, resetPassword } = props;
   const [details, setDetails] = useState({
-    email: '',
+    password: '',
+    id:0,
   });
-
-  const submitLogin = event => {
+const setNew = () =>{
+  
+}
+  const submitPassword = event => {
     event.preventDefault();
-    login(details).then(res => {
+    resetPassword(details).then(res => {
       if (res.status === 200) props.history.push('/');
     });
   };
@@ -38,7 +41,7 @@ const ResetPassword = props => {
         <StyledLeftSection>
           <h3>Reset Password</h3>
           <h6>Please enter your new password</h6>
-          <form onSubmit={submitLogin}>
+          <form onSubmit={submitPassword}>
           <input
               type="password"
               placeholder="Enter Password"

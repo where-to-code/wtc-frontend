@@ -202,10 +202,10 @@ export function resetPasswordFail(payload) {
 }
 
 
-export const resetPassword = email => dispatch => {
+export const resetPassword = (password, id) => dispatch => {
   dispatch(resetPasswordLoad());
   return axios
-    .post('https://where-to-code-staging.herokuapp.com/api/auth/change/:id', email, {
+    .post(`https://where-to-code-staging.herokuapp.com/api/auth/change/${id}`, password, {
       withCredentials: true
     })
     .then(res => {
