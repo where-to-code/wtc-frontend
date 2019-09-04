@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
@@ -16,7 +17,7 @@ const StyledSpinner = styled.div`
   height: 100vh;
 `;
 
-export default ({ location }) => {
+const GitHubAuth = ({ location }) => {
   const [isAuth, setIsAuth] = useState(null);
 
   useEffect(() => {
@@ -40,3 +41,13 @@ export default ({ location }) => {
 
   return isAuth ? <Redirect to="/" /> : <Redirect to="signup" />;
 };
+
+function mapStateToProps (state) {
+  return{
+    userId: state.auth.userId
+  }
+};
+
+export default connect(
+  mapStateToProps, null
+)(GitHubAuth);
