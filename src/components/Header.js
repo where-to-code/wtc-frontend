@@ -7,7 +7,7 @@ import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing } = props;
-  const isCookie = getCookie();
+  const isCookie = getCookie(props.userId);
 
   return (
     <StyledHeader landing={landing}>

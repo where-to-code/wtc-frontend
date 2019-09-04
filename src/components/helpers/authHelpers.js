@@ -5,8 +5,8 @@ const uuid = require('uuid');
 // in an Env variable
 const cookieName = process.env.REACT_APP_COOKIE_NAME;
 
-export const getCookie = () => {
-    const cookieData = readCookie(cookieName);
+export const getCookie = (userId) => {
+    const cookieData = readCookie(userId);
     if(cookieData){
         return true;
     } else {
@@ -18,7 +18,7 @@ export const logout = () => {
     // delete cookie and redirect to home
     eraseCookie();
     window.location = "/";
-  }
+}
 
 // to delete a cookie based on its name
 // We just need to set the value of the cookie to empty and 
