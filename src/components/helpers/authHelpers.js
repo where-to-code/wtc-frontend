@@ -1,3 +1,5 @@
+const uuid = require('uuid');
+
 // as the cookie name is not clear yet and may change 
 // from one environment to another we store it 
 // in an Env variable
@@ -34,8 +36,8 @@ function readCookie(name) {
 
 
 ///// temporary code to write cookie until banckend is ready to send
-export const setTempCookie = () =>{
-    document.cookie = `${process.env.REACT_APP_COOKIE_NAME}=qeq6JLAhTYLQPnzDuyb7oXvFXYnIjUNz`;
+export const setTempCookie = (id, lastname) =>{
+    const value = uuid(lastname);
+    document.cookie = `${id}=${value}`;
 }
-/////
 

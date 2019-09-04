@@ -26,7 +26,7 @@ const Login = props => {
     login(details).then(res => {
       if (res.status === 200){
         // Login is successful so we write a cookie to auth the user
-        setTempCookie(res.data.data.id, res.data.data.firstname);
+        setTempCookie(res.data.data.id, res.data.data.lastname);
         props.history.push('/');
       } 
     });
