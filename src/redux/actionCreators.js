@@ -204,10 +204,9 @@ export function resetPasswordFail(payload) {
 
 export const resetPassword = (password, id) => dispatch => {
 
-  console.log('password creator',password , id)
   dispatch(resetPasswordLoad());
   return axios
-    .post(`https://where-to-code-staging.herokuapp.com/api/auth/change/${id}`, password, {
+    .post(`https://where-to-code-staging.herokuapp.com/api/auth/change/${id}`, {password:password}, {
       withCredentials: true
     })
     .then(res => {
