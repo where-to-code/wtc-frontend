@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import logo from '../assets/logo.png';
+import { verifyEmail } from '../redux/actionCreators';
+
 import {
   StyledWrapper,
   StyleMap,
   StyledRegistration,
   StyledLeftSection,
 } from './ViewStyles/AuthStyles';
+import { connect } from 'net';
 
 const FindAccount = props => {
   const { loading, error, login } = props;
@@ -59,5 +62,15 @@ const FindAccount = props => {
   );
 };
 
-export default FindAccount;
+const mapStateToProps = state => {
+  return {
+    loading: state.verifyEmail.loading,
+    error: state.verifyEmail.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { verifyEmail }
+)(FindAccount);
 
