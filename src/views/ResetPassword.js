@@ -17,13 +17,13 @@ const ResetPassword = props => {
   const id =  Number(props.location.search.split('=')[1])
   const [details, setDetails] = useState({
     password: '',
-    id
+    id,
   });
 
   const submitPassword = event => {
     event.preventDefault();
 
-    resetPassword(details).then(res => {
+    resetPassword(details.password, details.id).then(res => {
       if (res.status === 200) props.history.push('/login');
     });
   };
