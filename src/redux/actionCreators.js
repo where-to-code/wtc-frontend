@@ -2,10 +2,7 @@ import * as types from './actionTypes';
 import axios from 'axios';
 import { mapPromise } from './helpers';
 
-const url =
-  process.env.NODE_ENV === 'development'
-    ? 'https://where-to-code-staging.herokuapp.com/api'
-    : 'https://where2code.herokuapp.com/api';
+const url = 'https://where2code.herokuapp.com/api';
 
 
 // Auth
