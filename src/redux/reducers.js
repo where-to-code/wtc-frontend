@@ -83,7 +83,7 @@ export const activeLocation = (state = null, action) => {
 const initialState = {
   userId: '',
   loading: false,
-  error: ''
+  error: '',
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -146,7 +146,13 @@ export const verifyEmailReducer = (state = initialState, action) => {
 };
 
 
-export const resetPasswordReducer = (state = initialState, action) => {
+const passwordState = {
+  password: {},
+  loading: false,
+  error: '',
+};
+
+export const resetPasswordReducer = (state = passwordState, action) => {
   switch (action.type) {
     case types.RESET_PASSWORD_LOAD:
       return {

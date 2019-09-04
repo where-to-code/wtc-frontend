@@ -206,11 +206,11 @@ export const resetPassword = (password, id) => dispatch => {
 
   dispatch(resetPasswordLoad());
   return axios
-    .post(`https://where-to-code-staging.herokuapp.com/api/auth/change/${id}`, {password:password}, {
+    .post(`https://where-to-code-staging.herokuapp.com/api/auth/change/${id}`, password, {
       withCredentials: true
     })
     .then(res => {
-      dispatch(resetPasswordSuccess(res.data));
+      dispatch(resetPasswordSuccess(res.data.data.password));
       return res;
     })
     .catch(err => {
