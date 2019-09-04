@@ -22,7 +22,7 @@ const ResetPassword = props => {
     event.preventDefault();
     const id =  Number(props.location.search.split('=')[1])
     resetPassword(details.password , id).then(res => {
-      if (res.status === 200) props.history.push('/');
+      if (res.status === 200) props.history.push('/login');
     });
   };
 
