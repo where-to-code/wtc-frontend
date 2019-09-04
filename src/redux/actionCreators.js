@@ -166,7 +166,7 @@ export function verifyEmailFail(payload) {
 export const verifyEmail = email => dispatch => {
   dispatch(verifyEmailLoad());
   return axios
-    .post('https://localhost:4000/api/account', email, {
+    .post(`${url}/reset`, email, {
       withCredentials: true
     })
     .then(res => {
@@ -205,7 +205,7 @@ export function resetPasswordFail(payload) {
 export const resetPassword = email => dispatch => {
   dispatch(resetPasswordLoad());
   return axios
-    .post('https://localhost:4000/api/reset', email, {
+    .post(`${url}/reset`, email, {
       withCredentials: true
     })
     .then(res => {
