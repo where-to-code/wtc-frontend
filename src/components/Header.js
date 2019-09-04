@@ -8,6 +8,9 @@ import logo from '../assets/logo.png';
 const Header = props => {
   const { landing } = props;
   const isCookie = getCookie(props.userId);
+  const onLogout = () => {
+    logout(props.userId);
+  }
 
   return (
     <StyledHeader landing={landing}>
@@ -21,7 +24,7 @@ const Header = props => {
         isCookie 
           ? 
             <button
-            onClick={logout}>
+            onClick={onLogout}>
               Logout
             </button>
           : (
