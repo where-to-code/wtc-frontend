@@ -50,6 +50,10 @@ export const login = user => async dispatch => {
   }
 };
 
+export const successGitlog = (userId) => dispatch =>{
+  dispatch(authSuccess(userId));
+};
+
 export const signup = userData => async dispatch => {
   const { firstname, lastname, email, password } = userData;
   dispatch(authLoad());
