@@ -1,7 +1,6 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 import { mapPromise } from './helpers';
-import { setTempCookie } from '../components/helpers/authHelpers';
 
 const url =
   process.env.NODE_ENV === 'development'
@@ -36,9 +35,6 @@ export const login = user => async dispatch => {
       withCredentials: true
     })
     .then(res => {
-      // temporary code to write cookie until banckend is ready to send
-      setTempCookie();
-      /////
       dispatch(authSuccess(res.data.data.id));
       return res;
     })
