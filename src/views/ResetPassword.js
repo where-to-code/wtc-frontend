@@ -42,15 +42,12 @@ const ResetPassword = props => {
   const submitPassword = event => {
     event.preventDefault();
     const { password, confirmPassword } = details;
-    if (
-      !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
+    if (!/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
       password !== confirmPassword
     ) {
       return;
     }
-
-      resetPassword(details.password, details.id)
-      .then(res => {
+      resetPassword(details).then(res => {
         if (res.status === 200) props.history.push('/login');
       });
   };
@@ -72,21 +69,26 @@ const ResetPassword = props => {
           <input
               type="password"
               placeholder="Enter Password"
+              name="password"
               value={details.password}
               onChange={handleChange}
-              // onChange={e =>
-              //   setDetails({ ...details, password: e.target.value })
-              // }
             />
+
+              {inputChangeState.password &&
+              !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(
+                details.password
+              ) && (
+                <span>
+                  Must be between 6 and 15 characters and contain a number.
+                </span>
+              )}
 
              <input
               type="password"
               placeholder="Confirm Password"
+              name="confirmPassword"
               value={details.confirmPassword}
               onChange={handleChange}
-              // onChange={e =>
-              //   setDetails({ ...details, confirmPassword: e.target.value })
-              //   }
             />
 
               {inputChangeState.confirmPassword &&
