@@ -21,6 +21,7 @@ cursor: pointer; /* Add a pointer on hover */
     background:white;
     width: 50%;
     min-width: 300px;
+    max-width: 400px;
     border-radius:10px;
     color: #666A7C;
 }
