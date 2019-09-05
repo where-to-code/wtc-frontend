@@ -9,6 +9,9 @@ import * as reducers from '../src/redux/reducers';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 dotenv.config();
 
@@ -33,6 +36,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <App />
+      <ToastContainer position="top-right" />
+
     </Router>
   </Provider>,
   document.getElementById('root')

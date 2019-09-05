@@ -18,6 +18,7 @@ const ResetPassword = props => {
   const [details, setDetails] = useState({
     password: '',
     id,
+    confirmPassword: ''
   });
 
   const submitPassword = event => {
