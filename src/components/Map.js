@@ -47,7 +47,7 @@ const Map = props => {
       // If we already got the mapObj we build the map
       if (mapsObj && singleLocCoord) {
         setGeolocationValue(singleLocCoord);
-        map = mapInit(mapsObj, singleLocCoord);
+        map = mapInit(mapsObj, geolocation);
       } 
       else if (mapsObj) map = mapInit(mapsObj, geolocation);
       //Or we fetch it from google API before
