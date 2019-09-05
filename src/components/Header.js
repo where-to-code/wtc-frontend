@@ -41,9 +41,8 @@ const Header = props => {
       }
       {
         !props.isEmailVerified &&
-        <TopNotif />
+        <TopNotif isVerified={props.isEmailVerified} />
       }
-        
       </div>
     </StyledHeader>
   );

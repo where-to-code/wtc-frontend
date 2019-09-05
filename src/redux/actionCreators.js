@@ -255,3 +255,10 @@ export const resendEmailVerification = email => dispatch => {
     });
 };
 
+export const setNewVerificationSent = () => ({
+  type: types.NEW_VERIFY_EMAIL_SENT
+});
+
+export const setPopupMessageSeen = () => ({
+  type: types.POPUP_MESSAGE_SEEN
+});

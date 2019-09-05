@@ -1,27 +1,47 @@
-import React , { useState } from 'react';
+import React , { useEffect } from 'react';
 import { StyledOverlayPopup } from '../components/componentStyles/OverlayPopupStyles';
 import { connect } from 'react-redux';
-import { resendEmailVerification } from '../redux/actionCreators';
+import { resendEmailVerification, setNewVerificationSent, setPopupMessageSeen } from '../redux/actionCreators';
 
 function OverlayMessage(props) {
-    const [verificationResent, setVerificationResent] = useState(false);
-    const { resendEmailVerification, userId, email } = props;
+
+    const { 
+        resendEmailVerification, 
+        setNewVerificationSent, 
+        newEmailVerification, 
+        setPopupMessageSeen, 
+        popupMessageSeen,
+        email } = props;
     const hideMessage = () =>{
+        setPopupMessageSeen();
         document.getElementById('popup').style.display = 'none';
     }
     const onResend = () =>{
         resendEmailVerification({email}).then(res => {
             if (res.status === 200){
-                setVerificationResent(true);
+                setNewVerificationSent();
             } 
           });
     }
+
+    useEffect(()=>{
+        // if the popup have been seen
+        // and a request to receive new email have not been triggered
+        // then we do not display
+        // but if there was a request triggered, it is displayed
+        // so the user can see the result
+        if(!newEmailVerification && popupMessageSeen){
+            document.getElementById('popup').style.display = 'none';
+        }
+    }
+
+    );
 
     return(
         <StyledOverlayPopup id="popup">
         <div className="message-container">
             {
-                verificationResent ?
+                newEmailVerification ?
                 <>
                     <div>
                     <h3>We have resent an email to this address</h3>
@@ -46,13 +66,15 @@ function OverlayMessage(props) {
 };
 
 const mapStatetoProps = state => {
+    console.log('thge state', state)
     return {
-        userId: state.auth.userId,
-        email: state.auth.email
+        email: state.auth.email,
+        newEmailVerification: state.verifyEmail.newEmailVerifRequested,
+        popupMessageSeen: state.verifyEmail.popupMessageSeen,
     };
   };
   
   export default connect(
     mapStatetoProps,
-    { resendEmailVerification }
+    { resendEmailVerification, setNewVerificationSent, setPopupMessageSeen }
   )(OverlayMessage);

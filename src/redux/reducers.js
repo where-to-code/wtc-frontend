@@ -86,6 +86,8 @@ const initialState = {
   email: '',
   loading: false,
   error: '',
+  newEmailVerifRequested: false,
+  popupMessageSeen: false,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -133,10 +135,23 @@ export const verifyEmailReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        email: action.payload
+        email: action.payload,
       };
 
-    case types.VERIFY_EMAIL_FAILURE:
+    case types.NEW_VERIFY_EMAIL_SENT:
+        return {
+          ...state,
+          newEmailVerifRequested: true,
+          popupMessageSeen: true,
+        };      
+
+    case types.POPUP_MESSAGE_SEEN:
+        return {
+          ...state,
+          popupMessageSeen: true,
+        };      
+
+        case types.VERIFY_EMAIL_FAILURE:
       return {
         ...state,
         email: '',
