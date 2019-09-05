@@ -3,7 +3,7 @@ import { StyledOverlayPopup } from '../components/componentStyles/OverlayPopupSt
 
 const TopNotif = props => {
     const showMessage = () =>{
-        document.getElementById('popup').style.display = 'block';
+        document.getElementById('popup').style.display = 'flex';
     }
     const hideMessage = () =>{
         document.getElementById('popup').style.display = 'none';
@@ -15,12 +15,18 @@ const TopNotif = props => {
         onClick={showMessage}>
         <div>?</div>
         </div>
+
             <StyledOverlayPopup id="popup">
-            <p>Please verify your email</p>
-            <p>We were not able to verify your email</p>
-            <p>Please check your mail box and follow the instruction</p>
-            <div onClick={hideMessage}>Ok</div>
+            <div className="message-container">
+            <h3>Please verify your email</h3>
+            <p>We have not been able to verify your email yet. Please check your mail box and follow the instruction</p>
+            <div className="actions-row">
+                <div className="ok" onClick={hideMessage}>OK</div>
+                <div className="resend" onClick={hideMessage}>Resend me a verification email</div>
+            </div>            
+            </div>
             </StyledOverlayPopup>
+
       </>
     );
 };
