@@ -82,7 +82,7 @@ export const activeLocation = (state = null, action) => {
 
 const initialState = {
   userId: '',
-  isEmailVerified: false,
+  isEmailVerified: true,
   loading: false,
   error: '',
 };
