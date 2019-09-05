@@ -46,7 +46,8 @@ const Header = props => {
 
 function mapStateToProps (state) {
   return{
-    userId: state.auth.userId
+    userId: state.auth.userId,
+    isEmailVerified: state.auth.isEmailVerified,
   }
 };
 

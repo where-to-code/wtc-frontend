@@ -33,14 +33,14 @@ export const login = user => async dispatch => {
       withCredentials: true
     })
     .then(res => {
-      dispatch(authSuccess(res.data.data.id));
+      dispatch(authSuccess(res.data.data));
       return res;
     })
     .catch(err => {
       dispatch(authFail(err.response.data.message));
       return err;
     });
-    dispatch(authSuccess(loginDetails.data.data.id));
+    dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
     dispatch(authFail(error.response.data.message));

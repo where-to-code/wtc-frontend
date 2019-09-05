@@ -16,7 +16,6 @@ import AverageRatings from '../components/AverageRatings';
 import MapIFrame from '../components/MapIFrame';
 
 const Location = props => {
-  console.log(props.location);
   const { fetchSingleLocation, location } = props;
   const loactionId = props.match.params.id;
   useEffect(() => {
