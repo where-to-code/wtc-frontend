@@ -1,22 +1,20 @@
 import React , { useState } from 'react';
 import { StyledOverlayPopup } from '../components/componentStyles/OverlayPopupStyles';
 import { connect } from 'react-redux';
-import { verifyEmail } from '../redux/actionCreators';
+import { resendEmailVerification } from '../redux/actionCreators';
 
 function OverlayMessage(props) {
     const [verificationResent, setVerificationResent] = useState(false);
-    const { verifyEmail, userId, email } = props;
+    const { resendEmailVerification, userId, email } = props;
     const hideMessage = () =>{
         document.getElementById('popup').style.display = 'none';
     }
     const onResend = () =>{
-        // verifyEmail(email).then(res => {
-        //     if (res.status === 200){
-        //         setVerificationResent(true);
-        //     } 
-        //   });
-        verifyEmail(email);
-        setVerificationResent(true);
+        resendEmailVerification({email}).then(res => {
+            if (res.status === 200){
+                setVerificationResent(true);
+            } 
+          });
     }
 
     return(
@@ -56,5 +54,5 @@ const mapStatetoProps = state => {
   
   export default connect(
     mapStatetoProps,
-    { verifyEmail }
+    { resendEmailVerification }
   )(OverlayMessage);

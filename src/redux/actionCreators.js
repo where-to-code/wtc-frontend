@@ -237,3 +237,21 @@ export const resetPassword = (password, id) => dispatch => {
     });
 };
 
+// when user have not completed email verification yet and
+// request to receive another one.
+export const resendEmailVerification = email => dispatch => {
+  dispatch(verifyEmailLoad());
+  return axios
+    .post(`${url}/auth/verify`, email, {
+      withCredentials: true
+    })
+    .then(res => {
+      dispatch(verifyEmailSuccess(res.data));
+      return res;
+    })
+    .catch(err => {
+      dispatch(verifyEmailFail(err.response.data.message));
+      return err;
+    });
+};
+
