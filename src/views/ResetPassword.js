@@ -47,7 +47,7 @@ const ResetPassword = props => {
     ) {
       return;
     }
-      resetPassword(details).then(res => {
+      resetPassword(details.password, details.id).then(res => {
         if (res.status === 200) props.history.push('/login');
       });
   };
