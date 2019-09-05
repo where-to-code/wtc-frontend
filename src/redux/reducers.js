@@ -141,6 +141,7 @@ export const verifyEmailReducer = (state = initialState, action) => {
     case types.NEW_VERIFY_EMAIL_SENT:
         return {
           ...state,
+          loading: true,
           newEmailVerifRequested: true,
           popupMessageSeen: true,
         };      

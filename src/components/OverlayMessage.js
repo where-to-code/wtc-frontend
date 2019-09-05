@@ -18,7 +18,7 @@ function OverlayMessage(props) {
         setPopupMessageSeen();
         document.getElementById('popup').style.display = 'none';
     }
-    const onResend = () =>{
+    const onResend = async () =>{
         resendEmailVerification({email}).then(res => {
             if (res.status === 200){
                 setNewVerificationSent();
@@ -35,7 +35,7 @@ function OverlayMessage(props) {
         if(!newEmailVerification && popupMessageSeen){
             document.getElementById('popup').style.display = 'none';
         }
-    }
+    }, [newEmailVerification , popupMessageSeen]
 
     );
 
@@ -76,7 +76,6 @@ function OverlayMessage(props) {
 };
 
 const mapStatetoProps = state => {
-    console.log('thge state', state)
     return {
         email: state.auth.email,
         loading: state.verifyEmail.loading,
