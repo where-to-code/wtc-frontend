@@ -28,7 +28,7 @@ const GitHub = ({ location, successGitlog }) => {
     axios(`${url}?code=${code}`)
       .then(res => {
         // dispatch successful auth to redux state
-        successGitlog(res.data.data.id);
+        successGitlog(res.data.data);
         // Login is successful so we write a cookie to auth the user
         setTempCookie(res.data.data.id, res.data.data.lastname);
         setIsAuth(true)

@@ -48,8 +48,8 @@ export const login = user => async dispatch => {
   }
 };
 
-export const successGitlog = (userId) => dispatch =>{
-  dispatch(authSuccess(userId));
+export const successGitlog = (userData) => dispatch =>{
+  dispatch(authSuccess(userData));
 };
 
 export const signup = userData => async dispatch => {
