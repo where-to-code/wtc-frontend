@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
+import TopNotif from '../components/TopNotif';
 import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing } = props;
-  const isCookie = getCookie(props.userId);
+  //const isCookie = getCookie(props.userId);
+  const isCookie = true;
   const onLogout = () => {
     logout(props.userId);
   }
@@ -40,9 +42,7 @@ const Header = props => {
       }
       {
         !props.isEmailVerified &&
-        <div className="top-notif">
-          <div>?</div>
-        </div>
+        <TopNotif />
       }
         
       </div>
@@ -53,7 +53,8 @@ const Header = props => {
 function mapStateToProps (state) {
   return{
     userId: state.auth.userId,
-    isEmailVerified: state.auth.isEmailVerified,
+//    isEmailVerified: state.auth.isEmailVerified,
+    isEmailVerified: false,
   }
 };
 
