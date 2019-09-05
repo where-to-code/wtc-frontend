@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledOverlayPopup = styled.div`
 position: fixed; /* Sit on top of the page content */
-display: none; /* Hidden by default */;
+display: flex; /* Hidden by default */;
 justify-content: center;
 align-items: center;
 text-align:center;

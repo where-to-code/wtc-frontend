@@ -8,8 +8,7 @@ import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing } = props;
-  //const isCookie = getCookie(props.userId);
-  const isCookie = true;
+  const isCookie = getCookie(props.userId);
   const onLogout = () => {
     logout(props.userId);
   }
@@ -53,8 +52,7 @@ const Header = props => {
 function mapStateToProps (state) {
   return{
     userId: state.auth.userId,
-//    isEmailVerified: state.auth.isEmailVerified,
-    isEmailVerified: false,
+    isEmailVerified: state.auth.isEmailVerified,
   }
 };
 
