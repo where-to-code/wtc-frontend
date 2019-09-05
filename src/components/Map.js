@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
-import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
+import { mapsLoading, locationLoads, setActive, setGeolocationValue } from '../redux/actionCreators';
 import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers';
 import markerBlue from '../assets/icons8-marker-40.png';
 
@@ -15,6 +15,7 @@ const Map = props => {
     singleLocCoord,
     setActive,
     activeLocation,
+    setGeolocationValue
   } = props;
 
   // Set the default position to Trafalgar Square, London
@@ -44,10 +45,16 @@ const Map = props => {
       mapCenter = await position(mapCenter);
       let map;
       // If we already got the mapObj we build the map
-      if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord);
+      if (mapsObj && singleLocCoord) {
+        setGeolocationValue(singleLocCoord);
+        map = mapInit(mapsObj, singleLocCoord);
+      } 
       else if (mapsObj) map = mapInit(mapsObj, geolocation);
       //Or we fetch it from google API before
-      else mapsLoading(mapCenter);
+      else {
+        setGeolocationValue(mapCenter);
+        mapsLoading();
+      } 
 
       // We add markers and modals to locations
       if (locations.length > 0) {
@@ -88,6 +95,7 @@ function mapDispatchToProps(dispatch) {
       mapsLoading,
       locationLoads,
       setActive,
+      setGeolocationValue
     },
     dispatch,
   );
