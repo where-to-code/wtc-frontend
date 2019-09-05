@@ -195,7 +195,6 @@ export const verifyEmail = email => dispatch => {
     })
     .catch(err => {
       dispatch(verifyEmailFail(err.response.data.message));
-      console.log(err, '..error action');
       toast.error('account verification not successful')
       return err;
     });
@@ -233,10 +232,12 @@ export const resetPassword = (password, id) => dispatch => {
     })
     .then(res => {
       dispatch(resetPasswordSuccess(res.data));
+      toast.success("password reset successful, please login!");
       return res;
     })
     .catch(err => { console.log(err)
       dispatch(resetPasswordFail(err.response.data.message));
+      toast.error('password reset not successful, try again')
       return err;
     });
 };
