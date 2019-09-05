@@ -10,6 +10,14 @@ const Home = () => {
     const autocomplete = new google.maps.places.Autocomplete(
       document.getElementById('mapSuggestions'),
     );
+
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+
+      const latitude = place.geometry.location.lat();
+      const longitude = place.geometry.location.lng();
+      console.log(latitude, longitude);
+    });
   });
 
   return (
