@@ -51,7 +51,10 @@ const Map = props => {
       } 
       else if (mapsObj) map = mapInit(mapsObj, geolocation);
       //Or we fetch it from google API before
-      else if (!geolocation) setGeolocationValue(mapCenter);
+      else if (!geolocation) {
+        setGeolocationValue(mapCenter);
+        mapsLoading();
+      }
       else {
         mapsLoading();
       } 
