@@ -26,7 +26,13 @@ const SearchPage = props => {
     setGeolocationTrue
   } = props;
 
-  const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useState(false);
+  const [choices, setChoice] = useState({
+    quiet: false,
+    wifi: false,
+    accessibility: false,
+    community: false
+  });
 
   useEffect(() => {
     if (navigator.geolocation) setGeolocationTrue();
@@ -35,22 +41,24 @@ const SearchPage = props => {
     locationLoads(geolocation);
   }, [geolocation]);
 
-  const show = () => setToggle(!toggle);
+  // const show = () => setToggle(!toggle);
 
   return (
     <>
       <Header />
       <StyledSearch>
         <div>
-          <FilterPane toggle={toggle} show={show} />
+          <FilterPane choices={choices} setChoice={setChoice} />
           {!isGeolocated && <NoGeoLocation />}
           {loadingLocation && (
             <StyledLoader>
               <Loader type="Oval" color="#56c1cb" height={80} width={80} />
             </StyledLoader>
           )}
-          {locationsErr && locationsErr !== "currentLocation is null" && <LocationErr />}
-          <CardContainer />
+          {locationsErr && locationsErr !== 'currentLocation is null' && (
+            <LocationErr />
+          )}
+          <CardContainer choices={choices} />
         </div>
         <StyledMap>
           <Map />
