@@ -40,7 +40,6 @@ export const login = user => async dispatch => {
       dispatch(authFail(err.response.data.message));
       return err;
     });
-    dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
     dispatch(authFail(error.response.data.message));
@@ -71,7 +70,6 @@ export const signup = userData => async dispatch => {
       dispatch(authFail(err.response.data.message));
       return err;
     });
-    dispatch(authSuccess(userDetails.data.data));
     return userDetails;
   } catch (error) {
     dispatch(authFail(error.response.data.message));
