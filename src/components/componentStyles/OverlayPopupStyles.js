@@ -47,5 +47,4 @@ h3{
     border:none;
     font-weight:bold;
 }
-
 `;

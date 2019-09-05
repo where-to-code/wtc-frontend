@@ -1,6 +1,7 @@
 import React , { useEffect } from 'react';
 import { StyledOverlayPopup } from '../components/componentStyles/OverlayPopupStyles';
 import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
 import { resendEmailVerification, setNewVerificationSent, setPopupMessageSeen } from '../redux/actionCreators';
 
 function OverlayMessage(props) {
@@ -11,6 +12,7 @@ function OverlayMessage(props) {
         newEmailVerification, 
         setPopupMessageSeen, 
         popupMessageSeen,
+        loading,
         email } = props;
     const hideMessage = () =>{
         setPopupMessageSeen();
@@ -55,7 +57,15 @@ function OverlayMessage(props) {
                     <p>We have not been able to verify your email yet. Please check your mail box and follow the instruction</p>
                     <div className="actions-row">
                         <div className="ok" onClick={hideMessage}>OK</div>
-                        <div className="resend" onClick={onResend}>Resend me a verification email</div>
+                        <div className="resend" onClick={onResend}>
+                            {
+                                loading 
+                                ? 
+                                <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
+                                : 
+                                <div>Resend me a verification email</div>
+                            }
+                        </div>
                     </div>            
                 </>
             }
@@ -69,6 +79,7 @@ const mapStatetoProps = state => {
     console.log('thge state', state)
     return {
         email: state.auth.email,
+        loading: state.verifyEmail.loading,
         newEmailVerification: state.verifyEmail.newEmailVerifRequested,
         popupMessageSeen: state.verifyEmail.popupMessageSeen,
     };
