@@ -63,7 +63,7 @@ export const signup = userData => async dispatch => {
       password
     }, { withCredentials: true } )
     .then(res => {
-      dispatch(authSuccess(res.data.data.id));
+      dispatch(authSuccess(res.data.data));
       return res;
     })
     .catch(err => {
@@ -71,7 +71,7 @@ export const signup = userData => async dispatch => {
       dispatch(authFail(err.response.data.message));
       return err;
     });
-    dispatch(authSuccess(userDetails.data.data.id));
+    dispatch(authSuccess(userDetails.data.data));
     return userDetails;
   } catch (error) {
     dispatch(authFail(error.response.data.message));
