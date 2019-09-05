@@ -21,12 +21,38 @@ const ResetPassword = props => {
     confirmPassword: ''
   });
 
+  const [inputChangeState, updateInputChangeState] = useState({
+    id,
+    password: false,
+    confirmPassword: false
+  });
+
+  const handleChange = e => {
+    setDetails({
+      ...details,
+      [e.target.name]: e.target.value
+    });
+
+    updateInputChangeState({
+      ...inputChangeState,
+      [e.target.name]: true
+    });
+  };
+
   const submitPassword = event => {
     event.preventDefault();
-    resetPassword(details.password, details.id)
-    .then(res => {
-      if (res.status === 200) props.history.push('/login');
-    });
+    const { password, confirmPassword } = details;
+    if (
+      !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
+      password !== confirmPassword
+    ) {
+      return;
+    }
+
+      resetPassword(details.password, details.id)
+      .then(res => {
+        if (res.status === 200) props.history.push('/login');
+      });
   };
 
   return (
@@ -47,11 +73,26 @@ const ResetPassword = props => {
               type="password"
               placeholder="Enter Password"
               value={details.password}
-              onChange={e =>
-                setDetails({ ...details, password: e.target.value })
-              }
+              onChange={handleChange}
+              // onChange={e =>
+              //   setDetails({ ...details, password: e.target.value })
+              // }
             />
-    
+
+             <input
+              type="password"
+              placeholder="Confirm Password"
+              value={details.confirmPassword}
+              onChange={handleChange}
+              // onChange={e =>
+              //   setDetails({ ...details, confirmPassword: e.target.value })
+              //   }
+            />
+
+              {inputChangeState.confirmPassword &&
+              !(details.confirmPassword === details.password) && (
+                <span>Password does not match.</span>
+              )}
             <button type="submit">
               {loading ? (
                 <Loader type="Oval" color="#fff" height={40} width={30} />
@@ -59,7 +100,7 @@ const ResetPassword = props => {
                 'Reset Password'
               )}
             </button>
-            {error && <div>{error}</div>}
+            {error && <div class="error-message">{error}</div>}
           </form>
   
         </StyledLeftSection>
