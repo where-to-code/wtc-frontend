@@ -18,9 +18,7 @@ const Map = props => {
   } = props;
 
   // Set the default position to Trafalgar Square, London
-  let defaultPos = { lat: 51.504831314, lng: -0.123499506 };
-  // if we receive coordinates from Single Location component we set the center with them
-  if (singleLocCoord) defaultPos = singleLocCoord;
+  let mapCenter = { lat: 51.504831314, lng: -0.123499506 };
 
   let center;
 
@@ -30,7 +28,7 @@ const Map = props => {
       lng: Number(activeLocation.longitude),
     };
 
-    defaultPos = center;
+    mapCenter = center;
   }
 
   const updateView = (location) =>{
@@ -40,15 +38,16 @@ const Map = props => {
   }
 
   useEffect(() => {
-    // we need to use a wrapper tp use async functions inside UseEffect
+    // we need to use a wrapper to use async functions inside UseEffect
     const asyncWrap = async () => {
-      const pos = await position(defaultPos);
+      // we get the user Geolocation, if we can't this return the default position
+      mapCenter = await position(mapCenter);
       let map;
       // If we already got the mapObj we build the map
       if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord);
-      else if (mapsObj) map = mapInit(mapsObj, pos);
+      else if (mapsObj) map = mapInit(mapsObj, geolocation);
       //Or we fetch it from google API before
-      else mapsLoading(pos);
+      else mapsLoading(mapCenter);
 
       // We add markers and modals to locations
       if (locations.length > 0) {

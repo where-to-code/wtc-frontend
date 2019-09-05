@@ -23,10 +23,10 @@ export const markerInit = (map, mapsObj, location, icon) => {
   });
 }
 
-export const mapInit = (mapsObj, defaultPos) => {
+export const mapInit = (mapsObj, geolocation) => {
   return new mapsObj.Map(document.getElementById('map'), {
     zoom: 11,
-    center: defaultPos,
+    center: geolocation,
   });
 }
 
