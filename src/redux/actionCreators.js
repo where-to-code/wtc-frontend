@@ -114,14 +114,14 @@ export const mapsFailure = error => ({
 });
 export const mapsLoading = () => async dispatch => {
   dispatch({ type: types.LOADING_MAP_API });
-  try {
-    // We import the Promise from helpers here
-    Promise.all([mapPromise]).then(value => {
-      dispatch(mapsSucces(value[0].maps));
-    });
-  } catch (error) {
-    dispatch(mapsFailure(error.message));
-  }
+  // try {
+  //   // We import the Promise from helpers here
+  //   Promise.all([mapPromise]).then(value => {
+  //     dispatch(mapsSucces(value[0].maps));
+  //   });
+  // } catch (error) {
+  //   dispatch(mapsFailure(error.message));
+  // }
 };
 export const setGeolocationTrue = () => ({
   type: types.SET_GEOLOCATION_TRUE
@@ -139,10 +139,12 @@ export const singleLocSuccess = locationList => ({
   type: types.FETCH_SINGLE_LOCATIONS_SUCCESS,
   payload: locationList
 });
+
 export const singleLocFailure = error => ({
   type: types.FETCH_SINGLE_LOCATIONS_FAILURE,
   payload: error
 });
+
 export const fetchSingleLocation = locId => async dispatch => {
   dispatch({ type: types.LOADING_SINGLE_LOCATION });
   try {
