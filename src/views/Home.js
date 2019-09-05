@@ -7,9 +7,9 @@ import { Redirect } from 'react-router-dom';
 import { StyledHome } from './ViewStyles/HomeStyles';
 import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
-import { setGeolocationValue } from '../redux/actionCreators';
+import { setGeolocationValue, clearLocations } from '../redux/actionCreators';
 
-const Home = ({ setGeolocationValue }) => {
+const Home = ({ setGeolocationValue, clearLocations }) => {
   const [pos, updatePos] = useState(false);
 
   Promise.resolve(mapPromise).then(() => {
@@ -17,7 +17,7 @@ const Home = ({ setGeolocationValue }) => {
     const autocomplete = new google.maps.places.Autocomplete(
       document.getElementById('mapSuggestions'),
     );
-
+      // console.log(google);
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
 
@@ -25,7 +25,7 @@ const Home = ({ setGeolocationValue }) => {
       const longitude = place.geometry.location.lng();
 
       setGeolocationValue({ lat: latitude, lng: longitude });
-
+      clearLocations();
       updatePos(true);
     });
   });
@@ -38,8 +38,8 @@ const Home = ({ setGeolocationValue }) => {
       <div className="container">
         <h2>Find the best places to code</h2>
         <form type="submit">
-          <input type="text" placeholder="Search" id="mapSuggestions" />
-          <input type="submit" value="" />
+          <input type="text" placeholder="Search for places" id="mapSuggestions" />
+          {/* <input type="submit" value="" /> */}
         </form>
         <Link to="/locations">
           <button>Find places near you</button>
@@ -53,6 +53,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       setGeolocationValue,
+      clearLocations
     },
     dispatch,
   );

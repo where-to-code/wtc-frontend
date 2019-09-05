@@ -51,11 +51,13 @@ const Map = props => {
       } 
       else if (mapsObj) map = mapInit(mapsObj, geolocation);
       //Or we fetch it from google API before
+      else if (!geolocation) setGeolocationValue(mapCenter);
       else {
-        setGeolocationValue(mapCenter);
         mapsLoading();
       } 
 
+      // if (!geolocation) setGeolocationValue(mapCenter);
+    
       // We add markers and modals to locations
       if (locations.length > 0) {
         locations.map(location => {
