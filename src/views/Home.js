@@ -7,57 +7,17 @@ import { Redirect } from 'react-router-dom';
 import { StyledHome } from './ViewStyles/HomeStyles';
 import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
-import {
-  setGeolocationValue,
-  clearLocations,
-  mapsLoading,
-  mapsSucces,
-} from '../redux/actionCreators';
+import { setGeolocationValue, clearLocations } from '../redux/actionCreators';
 
-const Home = ({
-  setGeolocationValue,
-  clearLocations,
-  mapsObj,
-  mapsLoading,
-  mapsSucces,
-}) => {
+const Home = ({ setGeolocationValue, clearLocations }) => {
   const [pos, updatePos] = useState(false);
 
-  // Promise.resolve(mapPromise).then(() => {
-  //   /*global google*/ // To disable any eslint 'google not defined' errors
-  //   const autocomplete = new google.maps.places.Autocomplete(
-  //     document.getElementById('mapSuggestions'),
-  //   );
-  //     // console.log(google);
-  //   autocomplete.addListener('place_changed', () => {
-  //     const place = autocomplete.getPlace();
-
-  //     const latitude = place.geometry.location.lat();
-  //     const longitude = place.geometry.location.lng();
-
-  //     setGeolocationValue({ lat: latitude, lng: longitude });
-  //     clearLocations();
-  //     updatePos(true);
-  //   });
-  // });
-
   useEffect(() => {
-    // if (!mapsObj) {
-    //   mapsLoading();
-    // } else {
-    //   console.log(mapsObj);
-    //   mapsObj.map.places.Autocomplete(document.getElementById('mapSuggestions'));
-    // }
-
     Promise.resolve(mapPromise).then(mapObject => {
-      /*global google*/ // To disable any eslint 'google not defined' errors
-      // mapsSucces(mapObject.maps);
-      // console.log(mapObject.maps)
-
-      const autocomplete = new google.maps.places.Autocomplete(
+      const autocomplete = new mapObject.maps.places.Autocomplete(
         document.getElementById('mapSuggestions'),
       );
-      // console.log(google);
+
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
 
@@ -94,25 +54,17 @@ const Home = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    mapsObj: state.maps.mapsObj,
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       setGeolocationValue,
       clearLocations,
-      mapsLoading,
-      mapsSucces,
     },
     dispatch,
   );
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Home);
