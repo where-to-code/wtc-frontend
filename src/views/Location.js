@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-// import Map from '../components/Map';
-// import ReviewItem from '../components/ReviewItem';
-// import OverallReview from '../components/OverallReview';
-import Map from '../components/Map';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleLocation } from '../redux/actionCreators';
@@ -36,29 +32,6 @@ const Location = props => {
           <div>
             <ReviewContainer reviews={location.reviews} />
           </div>
-
-          {/* Right column start
-          <div className="right-col">
-            <div className="desc-container">
-              <h3 className="centered">Overall review</h3>
-              <OverallReview />
-              <div className="centered">
-                <button>Add review</button>
-                <button>Add to favorite</button>
-              </div>
-            </div>
-            <div className="desc-container">
-              <Map
-                selectedLocation={{
-                  lat: parseFloat(props.location.latitude),
-                  lng: parseFloat(props.location.longitude)
-                }}
-              />
-              <div className="centered">
-                <button>Get me there</button>
-              </div>
-            </div>
-          </div> */}
         </LocationContainer>
       </>
     );
