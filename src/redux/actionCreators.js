@@ -180,6 +180,8 @@ export function verifyEmailFail(payload) {
 }
 
 
+
+
 export const verifyEmail = email => dispatch => {
   dispatch(verifyEmailLoad());
   return axios

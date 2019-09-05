@@ -83,6 +83,7 @@ export const activeLocation = (state = null, action) => {
 const initialState = {
   userId: '',
   isEmailVerified: true,
+  email: '',
   loading: false,
   error: '',
 };
@@ -102,6 +103,7 @@ export const authReducer = (state = initialState, action) => {
         loading: false,
         userId: action.payload.id,
         isEmailVerified: action.payload.isVerified,
+        email: action.payload.email,
       };
 
     case types.AUTH_FAILURE:
