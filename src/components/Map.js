@@ -44,57 +44,61 @@ const Map = props => {
 
   useEffect(
     () => {
-      if (document.getElementById('map')) {
-        Promise.resolve(mapPromise).then(async mapObject => {
-          // we need to use a wrapper to use async functions inside UseEffect
-          // const asyncWrap = async () => {
-          // we get the user Geolocation, if we can't this return the default position
+      // if (document.getElementById('map')) {
+      Promise.resolve(mapPromise).then(async mapObject => {
+        // we need to use a wrapper to use async functions inside UseEffect
+        // const asyncWrap = async () => {
+        // we get the user Geolocation, if we can't this return the default position
 
-          let map;
-          mapCenter = await position(mapCenter);
+        let map;
+        mapCenter = await position(mapCenter);
 
-          if (!geolocation) {
-            map = mapInit(mapObject.maps, mapCenter);
-            setGeolocationValue(mapCenter);
-            mapsLoading();
-          } else {
-            map = mapInit(mapObject.maps, geolocation);
-            mapsLoading();
-          }
-          // If we already got the mapObj we build the map
-          // if (mapObject) {
-          //   setGeolocationValue(singleLocCoord);
-
-          // if (mapObject) map = mapInit(mapObject.maps, geolocation);
-          // //Or we fetch it from google API before
-          // else if (!geolocation) {
-          //   setGeolocationValue(mapCenter);
-          //   mapsLoading();
-          // } else {
-          //   mapsLoading();
+        if (!geolocation) {
+          // if (document.getElementById('map')) {
+          map = mapInit(mapObject.maps, mapCenter);
+          setGeolocationValue(mapCenter);
+          mapsLoading();
           // }
+        } else {
+          // if (document.getElementById('map')) {
+          map = mapInit(mapObject.maps, geolocation);
+          mapsLoading();
+          // }
+        }
+        // If we already got the mapObj we build the map
+        // if (mapObject) {
+        //   setGeolocationValue(singleLocCoord);
 
-          // We add markers and modals to locations
-          if (locations.length > 0) {
-            locations.map(location => {
-              let marker;
-              const selectedLocation =
-                activeLocation && activeLocation.name === location.name;
+        // if (mapObject) map = mapInit(mapObject.maps, geolocation);
+        // //Or we fetch it from google API before
+        // else if (!geolocation) {
+        //   setGeolocationValue(mapCenter);
+        //   mapsLoading();
+        // } else {
+        //   mapsLoading();
+        // }
 
-              if (selectedLocation) {
-                const modal = modalInit(mapObject.maps, location);
-                marker = markerInit(map, mapObject.maps, location);
-                modal.open(map, marker);
-              } else {
-                marker = markerInit(map, mapObject.maps, location, markerBlue);
-              }
-              marker.addListener('click', () => updateView(location));
-            });
-          }
-          // };
-          // asyncWrap();
-        });
-      }
+        // We add markers and modals to locations
+        if (locations.length > 0) {
+          locations.map(location => {
+            let marker;
+            const selectedLocation =
+              activeLocation && activeLocation.name === location.name;
+
+            if (selectedLocation) {
+              const modal = modalInit(mapObject.maps, location);
+              marker = markerInit(map, mapObject.maps, location);
+              modal.open(map, marker);
+            } else {
+              marker = markerInit(map, mapObject.maps, location, markerBlue);
+            }
+            marker.addListener('click', () => updateView(location));
+          });
+        }
+        // };
+        // asyncWrap();
+      });
+      // }
     },
     // [activeLocation, locations.length, geolocation]
   );
