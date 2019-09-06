@@ -79,8 +79,12 @@ export const activeLocation = (state = null, action) => {
 
 const initialState = {
   userId: '',
+  isEmailVerified: true,
+  email: '',
   loading: false,
   error: '',
+  newEmailVerifRequested: false,
+  popupMessageSeen: false,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -96,7 +100,9 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        userId: action.payload
+        userId: action.payload.id,
+        isEmailVerified: action.payload.isVerified,
+        email: action.payload.email,
       };
 
     case types.AUTH_FAILURE:
@@ -126,10 +132,24 @@ export const verifyEmailReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        email: action.payload
+        email: action.payload,
       };
 
-    case types.VERIFY_EMAIL_FAILURE:
+    case types.NEW_VERIFY_EMAIL_SENT:
+        return {
+          ...state,
+          loading: true,
+          newEmailVerifRequested: true,
+          popupMessageSeen: true,
+        };      
+
+    case types.POPUP_MESSAGE_SEEN:
+        return {
+          ...state,
+          popupMessageSeen: true,
+        };      
+
+        case types.VERIFY_EMAIL_FAILURE:
       return {
         ...state,
         email: '',

@@ -35,14 +35,13 @@ export const login = user => async dispatch => {
       withCredentials: true
     })
     .then(res => {
-      dispatch(authSuccess(res.data.data.id));
+      dispatch(authSuccess(res.data.data));
       return res;
     })
     .catch(err => {
       dispatch(authFail(err.response.data.message));
       return err;
     });
-    dispatch(authSuccess(loginDetails.data.data.id));
     return loginDetails;
   } catch (error) {
     dispatch(authFail(error.response.data.message));
@@ -50,8 +49,8 @@ export const login = user => async dispatch => {
   }
 };
 
-export const successGitlog = (userId) => dispatch =>{
-  dispatch(authSuccess(userId));
+export const successGitlog = (userData) => dispatch =>{
+  dispatch(authSuccess(userData));
 };
 
 export const signup = userData => async dispatch => {
@@ -65,7 +64,7 @@ export const signup = userData => async dispatch => {
       password
     }, { withCredentials: true } )
     .then(res => {
-      dispatch(authSuccess(res.data.data.id));
+      dispatch(authSuccess(res.data.data));
       return res;
     })
     .catch(err => {
@@ -73,7 +72,6 @@ export const signup = userData => async dispatch => {
       dispatch(authFail(err.response.data.message));
       return err;
     });
-    dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
     dispatch(authFail(error.response.data.message));
@@ -186,6 +184,8 @@ export function verifyEmailFail(payload) {
 }
 
 
+
+
 export const verifyEmail = email => dispatch => {
   dispatch(verifyEmailLoad());
   return axios
@@ -246,3 +246,28 @@ export const resetPassword = (password, id) => dispatch => {
     });
 };
 
+// when user have not completed email verification yet and
+// request to receive another one.
+export const resendEmailVerification = email => dispatch => {
+  dispatch(verifyEmailLoad());
+  return axios
+    .post(`${url}/auth/verify`, email, {
+      withCredentials: true
+    })
+    .then(res => {
+      dispatch(verifyEmailSuccess(res.data));
+      return res;
+    })
+    .catch(err => {
+      dispatch(verifyEmailFail(err.response.data.message));
+      return err;
+    });
+};
+
+export const setNewVerificationSent = () => ({
+  type: types.NEW_VERIFY_EMAIL_SENT
+});
+
+export const setPopupMessageSeen = () => ({
+  type: types.POPUP_MESSAGE_SEEN
+});
