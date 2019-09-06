@@ -21,11 +21,11 @@ const TopNotif = props => {
 
     return(
         <>
-        <div 
-            className="top-notif"
-            onClick={showMessage}>
-            <div>?</div>
-        </div>
+            <div 
+                className="top-notif"
+                onClick={showMessage}>
+                <div>?</div>
+            </div>
         <OverlayMessage />
         </>
     );    

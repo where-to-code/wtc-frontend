@@ -36,6 +36,7 @@ export const StyledHeader = styled.header`
     }
   }
   .top-notif{
+    cursor:pointer
     display: flex;
     align-items: center;
     justify-content: center;
