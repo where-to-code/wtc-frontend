@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import configureMockStore from 'redux-mock-store';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
-import * as reducers from '../src/redux/reducers';
+import * as reducers from '../src/redux/reducers/reducers';
 
 const initialState = {
   loading: false,

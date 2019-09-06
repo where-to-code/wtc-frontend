@@ -1,5 +1,5 @@
 import { locationReducer } from './reducers';
-import * as types from './actionTypes';
+import * as types from '../actionTypes';
 
 describe('location reducer', () => {
   const locations = [
