@@ -1,6 +1,5 @@
 import * as types from './actionTypes';
 import axios from 'axios';
-// import { mapPromise } from './helpers';
 
 const url = 'https://where2code.herokuapp.com/api';
 
@@ -111,12 +110,6 @@ export const clearLocations = () => ({
   type: types.CLEAR_LOCATIONS,
 });
 
-// ACTIONS FOR MAPS REDUCER
-// export const mapsSucces = mapsObj => ({
-//   type: types.FETCH_MAP_API_SUCCESS,
-//   payload: mapsObj
-// });
-
 export const mapsFailure = error => ({
   type: types.FETCH_MAP_API_FAILURE,
   payload: error,
@@ -124,14 +117,6 @@ export const mapsFailure = error => ({
 
 export const mapsLoading = () => async dispatch => {
   dispatch({ type: types.LOADING_MAP_API });
-  // try {
-  //   // We import the Promise from helpers here
-  //   Promise.all([mapPromise]).then(value => {
-  //     dispatch(mapsSucces(value[0].maps));
-  //   });
-  // } catch (error) {
-  //   dispatch(mapsFailure(error.message));
-  // }
 };
 
 export const setGeolocationTrue = () => ({
@@ -240,7 +225,7 @@ export function resetPasswordFail(payload) {
 
 export const resetPassword = (password, id) => dispatch => {
   dispatch(resetPasswordLoad());
-  // console.log(password, id);
+
   return axios
     .post(
       `${url}/auth/change/${id}`,
