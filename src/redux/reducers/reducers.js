@@ -41,7 +41,6 @@ export const singleLocaReducer = (
 export const mapsReducer = (
   state = {
     loadingMaps: false,
-    // mapsObj: null,
     error: null,
     geolocation: null,
     isGeolocated: false,
@@ -51,8 +50,6 @@ export const mapsReducer = (
   switch (action.type) {
     case types.LOADING_MAP_API:
       return { ...state, loadingMaps: true };
-    // case types.FETCH_MAP_API_SUCCESS:
-    //   return { ...state, loadingLocation: false, mapsObj: action.payload };
     case types.FETCH_MAP_API_FAILURE:
       return { ...state, loadingLocation: false, error: action.payload };
     case types.SET_GEOLOCATION_TRUE:
