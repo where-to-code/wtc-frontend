@@ -1,6 +1,8 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 import { mapPromise } from './helpers';
+import { toast } from "react-toastify";
+
 
 const url = 'https://where2code.herokuapp.com/api';
 
@@ -192,10 +194,12 @@ export const verifyEmail = email => dispatch => {
     })
     .then(res => {
       dispatch(verifyEmailSuccess(res.data));
+      toast.success("successful, please check your email, thanks");
       return res;
     })
     .catch(err => {
       dispatch(verifyEmailFail(err.response.data.message));
+      toast.error('account verification not successful')
       return err;
     });
 };
@@ -211,7 +215,7 @@ export function resetPasswordLoad() {
 export function resetPasswordSuccess(password) {
   return {
     type: types.RESET_PASSWORD_SUCCESS,
-    payload: password
+    payload: password,
   };
 }
 
@@ -224,19 +228,20 @@ export function resetPasswordFail(payload) {
 
 
 export const resetPassword = (password, id) => dispatch => {
-  dispatch(resetPasswordLoad());
+  // dispatch(resetPasswordLoad());
   console.log(password , id)
   return axios
     .post(`${url}/auth/change/${id}`, {password}, {
       withCredentials: true
     })
     .then(res => {
-      console.log('creator', res)
       dispatch(resetPasswordSuccess(res.data));
+      toast.success("password reset successful, please login!");
       return res;
     })
-    .catch(err => {
+    .catch(err => { console.log(err)
       dispatch(resetPasswordFail(err.response.data.message));
+      toast.error('password reset not successful, try again')
       return err;
     });
 };
