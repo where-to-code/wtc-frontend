@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
 import {
   mapsLoading,
-  locationLoads,
+  // locationLoads,
   setActive,
   setGeolocationValue,
 } from '../redux/actionCreators';
@@ -14,11 +14,11 @@ import { mapPromise } from '../redux/helpers';
 
 const Map = props => {
   const {
-    mapsObj,
+    // mapsObj,
     geolocation,
     mapsLoading,
     locations,
-    singleLocCoord,
+    // singleLocCoord,
     setActive,
     activeLocation,
     setGeolocationValue,
@@ -27,7 +27,7 @@ const Map = props => {
   // Set the default position to Trafalgar Square, London
   let mapCenter = { lat: 51.504831314, lng: -0.123499506 };
 
-  let center;
+  // let center;
 
   if (activeLocation) {
     mapCenter = {
@@ -54,9 +54,11 @@ const Map = props => {
         if (!geolocation) {
           map = mapInit(mapObject.maps, mapCenter);
           setGeolocationValue(mapCenter);
+          mapsLoading()
         }
         else{
           map = mapInit(mapObject.maps, geolocation);
+          mapsLoading()
         }
         // If we already got the mapObj we build the map
         // if (mapObject) {
@@ -101,7 +103,7 @@ const Map = props => {
 
 function mapStateToProps(state) {
   return {
-    mapsObj: state.maps.mapsObj,
+    // mapsObj: state.maps.mapsObj,
     geolocation: state.maps.geolocation,
     locations: state.locations.locations,
     activeLocation: state.activeLocation,
@@ -112,7 +114,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       mapsLoading,
-      locationLoads,
+      // locationLoads,
       setActive,
       setGeolocationValue,
     },
