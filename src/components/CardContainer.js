@@ -7,7 +7,7 @@ const CardContainer = props => {
 
     return (
         <StyledCardContainer>
-        {locations.length > 0 &&
+        {locations && locations.length > 0 &&
           locations.map(place => {
             if (
               activeLocation &&

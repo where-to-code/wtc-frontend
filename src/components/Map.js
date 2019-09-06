@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
-import { mapsLoading, locationLoads, setActive } from '../redux/actionCreators';
+import { mapsLoading, locationLoads, setActive, setGeolocationValue } from '../redux/actionCreators';
 import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers';
 import markerBlue from '../assets/icons8-marker-40.png';
 
@@ -15,12 +15,11 @@ const Map = props => {
     singleLocCoord,
     setActive,
     activeLocation,
+    setGeolocationValue
   } = props;
 
   // Set the default position to Trafalgar Square, London
-  let defaultPos = { lat: 51.504831314, lng: -0.123499506 };
-  // if we receive coordinates from Single Location component we set the center with them
-  if (singleLocCoord) defaultPos = singleLocCoord;
+  let mapCenter = { lat: 51.504831314, lng: -0.123499506 };
 
   let center;
 
@@ -30,7 +29,7 @@ const Map = props => {
       lng: Number(activeLocation.longitude),
     };
 
-    defaultPos = center;
+    mapCenter = center;
   }
 
   const updateView = (location) =>{
@@ -40,15 +39,22 @@ const Map = props => {
   }
 
   useEffect(() => {
-    // we need to use a wrapper tp use async functions inside UseEffect
+    // we need to use a wrapper to use async functions inside UseEffect
     const asyncWrap = async () => {
-      const pos = await position(defaultPos);
+      // we get the user Geolocation, if we can't this return the default position
+      mapCenter = await position(mapCenter);
       let map;
       // If we already got the mapObj we build the map
-      if (mapsObj && singleLocCoord) map = mapInit(mapsObj, singleLocCoord);
-      else if (mapsObj) map = mapInit(mapsObj, pos);
+      if (mapsObj && singleLocCoord) {
+        setGeolocationValue(singleLocCoord);
+        map = mapInit(mapsObj, geolocation);
+      } 
+      else if (mapsObj) map = mapInit(mapsObj, geolocation);
       //Or we fetch it from google API before
-      else mapsLoading(pos);
+      else {
+        setGeolocationValue(mapCenter);
+        mapsLoading();
+      } 
 
       // We add markers and modals to locations
       if (locations.length > 0) {
@@ -89,6 +95,7 @@ function mapDispatchToProps(dispatch) {
       mapsLoading,
       locationLoads,
       setActive,
+      setGeolocationValue
     },
     dispatch,
   );
