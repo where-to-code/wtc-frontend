@@ -1,4 +1,3 @@
-
 export const modalInit = (mapsObj, location) => {
   // InfoWindow accept only strings as content
   const content =
@@ -8,9 +7,9 @@ export const modalInit = (mapsObj, location) => {
 
   return new mapsObj.InfoWindow({
     content: content,
-    maxWidth: 200
+    maxWidth: 200,
   });
-}
+};
 
 export const markerInit = (map, mapsObj, location, icon) => {
   return new mapsObj.Marker({
@@ -18,39 +17,38 @@ export const markerInit = (map, mapsObj, location, icon) => {
     icon: icon,
     position: {
       lat: parseFloat(location.latitude),
-      lng: parseFloat(location.longitude)
-    }
+      lng: parseFloat(location.longitude),
+    },
   });
-}
+};
 
 export const mapInit = (mapsObj, geolocation) => {
   return new mapsObj.Map(document.getElementById('map'), {
     zoom: 11,
     center: geolocation,
   });
-}
+};
 
 export const positionPromise = () => {
-  const geolocationExists = navigator.geolocation
+  const geolocationExists = navigator.geolocation;
   if (geolocationExists) {
     return new Promise((res, rej) => {
       geolocationExists.getCurrentPosition(res, rej);
-    })
+    });
   }
-}
+};
 
 export const position = async defaultPos => {
   try {
     const posObj = await positionPromise();
     return {
       lat: posObj.coords.latitude,
-      lng: posObj.coords.longitude
-    }
-  }
-  catch {
+      lng: posObj.coords.longitude,
+    };
+  } catch {
     return {
       lat: defaultPos.lat,
-      lng: defaultPos.lng
-    }
+      lng: defaultPos.lng,
+    };
   }
-}
+};
