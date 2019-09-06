@@ -49,13 +49,17 @@ h3{
 .closing-cross{
     display:flex;
     justify-content: flex-end;
-    color: #03525B;
     font-weight:bold;
     font-size: 1.3rem;
 }
 
 .closing-cross span{
     cursor:pointer;
+    color: #03525B;
+}
+
+.closing-cross span:hover{
+    color: #56C1CB;
 }
 
 `;
