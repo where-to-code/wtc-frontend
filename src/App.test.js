@@ -12,6 +12,7 @@ const initialState = {
   maps: reducers.mapsReducer,
   location: reducers.singleLocaReducer,
   activeLocation: reducers.activeLocation,
+  verifyEmail: reducers.verifyEmailReducer,
   auth: reducers.authReducer
 };
 
