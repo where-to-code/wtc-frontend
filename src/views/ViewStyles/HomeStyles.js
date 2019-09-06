@@ -41,7 +41,7 @@ export const StyledHome = styled.div`
         height: 35px;
         margin: 60px 0;
         border: none;
-        border-radius: 10px 0 0 10px;
+        border-radius: 10px;
         color: #fff;
         text-align: left;
         padding: 0 10px;
@@ -50,17 +50,6 @@ export const StyledHome = styled.div`
           color: #fff;
           font-size: 12px;
           padding: 8px;
-        }
-      }
-      input[type='submit'] {
-        margin: 60px 0;
-        background: url(${icon}) no-repeat scroll center rgba(255, 150, 1, 0.8);
-        border-radius: 0 10px 10px 0;
-        border: none;
-        height: 35px;
-        width: 50px;
-        &:hover {
-          cursor: pointer;
         }
       }
     }
