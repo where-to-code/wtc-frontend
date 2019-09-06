@@ -4,6 +4,7 @@ import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import logo from '../assets/logo.png';
 import { verifyEmail } from '../redux/actionCreators';
+import { toast } from "react-toastify";
 
 import {
   StyledWrapper,
@@ -37,6 +38,7 @@ const FindAccount = props => {
       </StyleMap>
       <StyledRegistration>
         <StyledLeftSection>
+
           <h3>First, let's find your account</h3>
           <h6>Please enter your email</h6>
           <form onSubmit={submitEmail}>
@@ -51,10 +53,10 @@ const FindAccount = props => {
               {loading ? (
                 <Loader type="Oval" color="#fff" height={40} width={30} />
               ) : (
-                'Find Account'
+                'Send Email'
               )}
             </button>
-            {error && <div>{error}</div>}
+            {error && <div class="error-message">{error}</div>}
           </form>
   
         </StyledLeftSection>

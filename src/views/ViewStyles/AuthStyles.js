@@ -136,6 +136,12 @@ export const StyledLeftSection = styled.div`
     color: #666a7c;
     padding: 6px 0;
   }
+  .error-message {
+    color: red;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
 `;
 
 export const StyleGit = styled.div`
