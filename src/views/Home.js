@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
@@ -50,11 +49,8 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
             placeholder="Search and select a place"
             id="mapSuggestions"
           />
-          {/* <input type="submit" value="" /> */}
         </form>
-        {/* <Link to="/locations"> */}
         <button onClick={handleClick}>Find places near you</button>
-        {/* </Link> */}
       </div>
     </StyledHome>
   );
