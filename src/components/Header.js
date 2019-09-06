@@ -40,7 +40,7 @@ const Header = props => {
           )
       }
       {
-        // !props.isEmailVerified &&
+        !props.isEmailVerified &&
         <TopNotif isVerified={props.isEmailVerified} />
       }
       </div>

@@ -42,6 +42,9 @@ function OverlayMessage(props) {
     return(
         <StyledOverlayPopup id="popup">
         <div className="message-container">
+            <div className="closing-cross">
+                <span onClick={hideMessage}>X</span>
+            </div>
             {
                 newEmailVerification ?
                 <>
@@ -49,14 +52,12 @@ function OverlayMessage(props) {
                     <h3>We have resent an email to this address</h3>
                     <p>{email}</p>
                     </div>
-                    <div className="ok" onClick={hideMessage}>OK</div>
                 </> 
                 : 
                 <>
                     <h3>Please verify your email</h3>
                     <p>We have not been able to verify your email yet. Please check your mail box and follow the instruction</p>
                     <div className="actions-row">
-                        <div className="ok" onClick={hideMessage}>OK</div>
                         <div className="resend" onClick={onResend}>
                             {
                                 loading 

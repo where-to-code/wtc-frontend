@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledOverlayPopup = styled.div`
 position: fixed; /* Sit on top of the page content */
-display: flex; /* Hidden by default */;
+display: none; /* Hidden by default */;
 justify-content: center;
 align-items: center;
 text-align:center;
@@ -36,16 +36,26 @@ h3{
     justify-content: center;
     align-items: center;
 }
-.ok, .resend{
+.resend{
     cursor:pointer;
     font-size: 1rem;
     padding:15px;
     border:1px solid #56C1CB;
     border-radius: 5px;
     color: #03525B;
+    margin-top:15px;
 }
-.ok{
-    border:none;
+
+.closing-cross{
+    display:flex;
+    justify-content: flex-end;
+    color: #03525B;
     font-weight:bold;
+    font-size: 1.3rem;
 }
+
+.closing-cross span{
+    cursor:pointer;
+}
+
 `;
