@@ -47,7 +47,7 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
         <form type="submit">
           <input
             type="text"
-            placeholder="Search for places"
+            placeholder="Search and select a place"
             id="mapSuggestions"
           />
           {/* <input type="submit" value="" /> */}
