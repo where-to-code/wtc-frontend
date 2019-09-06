@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
@@ -9,7 +9,7 @@ import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
 import { setGeolocationValue, clearLocations } from '../redux/actionCreators';
 
-const Home = ({ setGeolocationValue, clearLocations }) => {
+const Home = ({ setGeolocationValue, clearLocations, history }) => {
   const [pos, updatePos] = useState(false);
 
   useEffect(() => {
@@ -31,6 +31,12 @@ const Home = ({ setGeolocationValue, clearLocations }) => {
     });
   });
 
+  const handleClick = () => {
+    setGeolocationValue(null);
+    clearLocations();
+    history.push('/locations');
+  };
+
   return pos ? (
     <Redirect to="/locations" />
   ) : (
@@ -46,9 +52,9 @@ const Home = ({ setGeolocationValue, clearLocations }) => {
           />
           {/* <input type="submit" value="" /> */}
         </form>
-        <Link to="/locations">
-          <button>Find places near you</button>
-        </Link>
+        {/* <Link to="/locations"> */}
+        <button onClick={handleClick}>Find places near you</button>
+        {/* </Link> */}
       </div>
     </StyledHome>
   );
