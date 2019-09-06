@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledOverlayPopup = styled.div`
 position: fixed; /* Sit on top of the page content */
-display: none; /* Hidden by default */;
+display: flex; /* Hidden by default */;
 justify-content: center;
 align-items: center;
 text-align:center;
@@ -13,7 +13,7 @@ right: 0;
 bottom: 0;
 background-color: rgba(0,0,0,0.5); /* Black background with opacity */
 z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-cursor: pointer; /* Add a pointer on hover */
+cursor: default; 
 .message-container{
     padding: 20px;
     border:1px solid #E5E5E5;
@@ -37,6 +37,7 @@ h3{
     align-items: center;
 }
 .ok, .resend{
+    cursor:pointer;
     font-size: 1rem;
     padding:15px;
     border:1px solid #56C1CB;
