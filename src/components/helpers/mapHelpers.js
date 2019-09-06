@@ -23,10 +23,14 @@ export const markerInit = (map, mapsObj, location, icon) => {
 };
 
 export const mapInit = (mapsObj, geolocation) => {
-  return new mapsObj.Map(document.getElementById('map'), {
-    zoom: 11,
-    center: geolocation,
-  });
+  try {
+    return new mapsObj.Map(document.getElementById('map'), {
+      zoom: 11,
+      center: geolocation,
+    });
+  } catch (err) {
+    // console.error(err);
+  }
 };
 
 export const positionPromise = () => {
