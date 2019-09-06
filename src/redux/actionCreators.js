@@ -175,6 +175,7 @@ export const signup = userData => async dispatch => {
 };
 
 // Locations
+;
 export const locationSuccess = locationList => ({
   type: types.FETCH_LOCATIONS_SUCCESS,
   payload: locationList.data
@@ -195,6 +196,15 @@ export const locationLoads = currentLocation => async dispatch => {
   }
 };
 
+export const filterLocations = locations => async dispatch => {
+  console.log(locations);
+  debugger;
+  try {
+    dispatch(locationSuccess(locations));
+  } catch (error) {
+    dispatch(locationFailure(error));
+  }
+};
 
 export const clearLocations = () => ({
   type: types.CLEAR_LOCATIONS

@@ -9,6 +9,7 @@ import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
 import {
+  filterLocations,
   locationLoads,
   setGeolocationFalse,
   setGeolocationTrue
@@ -17,6 +18,8 @@ import {
 import NoGeoLocation from '../components/NoGeoLocation';
 const SearchPage = props => {
   const {
+    filterLocations,
+    locations,
     geolocation,
     locationLoads,
     loadingLocation,
@@ -43,12 +46,29 @@ const SearchPage = props => {
 
   // const show = () => setToggle(!toggle);
 
+  const setNewLocations = item => {
+    const filteredLocation = locations.filter(
+      loc =>
+        ((choices.wifi && loc.avg_wifi_speed >= 3) || !choices.wifi) &&
+        ((choices.quiet && loc.avg_quietness >= 3) || !choices.quiet) &&
+        ((choices.accessibility && loc.avg_accessibility >= 3) ||
+          !choices.accessibility) &&
+        ((choices.community && loc.avg_community >= 3) || !choices.community)
+    );
+    filterLocations({ data: filteredLocation });
+    setChoice({ ...choices, [item]: !choices[item] });
+  };
+
   return (
     <>
       <Header />
       <StyledSearch>
         <div>
-          <FilterPane choices={choices} setChoice={setChoice} />
+          <FilterPane
+            choices={choices}
+            setChoice={setChoice}
+            setNewLocations={setNewLocations}
+          />
           {!isGeolocated && <NoGeoLocation />}
           {loadingLocation && (
             <StyledLoader>
@@ -79,5 +99,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { locationLoads, setGeolocationFalse, setGeolocationTrue }
+  { locationLoads, setGeolocationFalse, setGeolocationTrue, filterLocations }
 )(SearchPage);
