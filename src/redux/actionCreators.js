@@ -1,8 +1,11 @@
 import * as types from './actionTypes';
 import axios from 'axios';
+import { mapPromise } from './helpers';
 import { toast } from "react-toastify";
 
+
 const url = 'https://where2code.herokuapp.com/api';
+
 
 // Auth
 export function authLoad() {
@@ -29,18 +32,17 @@ export const login = user => async dispatch => {
   dispatch(authLoad());
   try {
     const loginDetails = await axios
-      .post(`${url}/auth/login`, user, {
-        withCredentials: true,
-      })
-      .then(res => {
-        dispatch(authSuccess(res.data.data.id));
-        return res;
-      })
-      .catch(err => {
-        dispatch(authFail(err.response.data.message));
-        return err;
-      });
-    dispatch(authSuccess(loginDetails.data.data.id));
+    .post(`${url}/auth/login`, user, {
+      withCredentials: true,
+    })
+    .then(res => {
+      dispatch(authSuccess(res.data.data));
+      return res;
+    })
+    .catch(err => {
+      dispatch(authFail(err.response.data.message));
+      return err;
+    });
     return loginDetails;
   } catch (error) {
     dispatch(authFail(error.response.data.message));
@@ -48,8 +50,8 @@ export const login = user => async dispatch => {
   }
 };
 
-export const successGitlog = userId => dispatch => {
-  dispatch(authSuccess(userId));
+export const successGitlog = (userData) => dispatch =>{
+  dispatch(authSuccess(userData));
 };
 
 export const signup = userData => async dispatch => {
@@ -58,25 +60,24 @@ export const signup = userData => async dispatch => {
   try {
     const userDetails = await axios
       .post(
-        `${url}/auth/register`,
-        {
-          firstname,
-          lastname,
-          email,
-          password,
-        },
-        { withCredentials: true },
-      )
-      .then(res => {
-        dispatch(authSuccess(res.data.data.id));
-        return res;
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch(authFail(err.response.data.message));
-        return err;
-      });
-    dispatch(authSuccess(userDetails.data.data.id));
+        `${url}/auth/register`, 
+      {
+        firstname,
+        lastname,
+        email,
+        password,
+    }, 
+    { withCredentials: true }, 
+    )
+    .then(res => {
+      dispatch(authSuccess(res.data.data));
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch(authFail(err.response.data.message));
+      return err;
+    });
     return userDetails;
   } catch (error) {
     dispatch(authFail(error.response.data.message));
@@ -111,6 +112,11 @@ export const clearLocations = () => ({
   type: types.CLEAR_LOCATIONS,
 });
 
+// ACTIONS FOR MAPS REDUCER
+export const mapsSucces = mapsObj => ({
+  type: types.FETCH_MAP_API_SUCCESS,
+  payload: mapsObj
+});
 export const mapsFailure = error => ({
   type: types.FETCH_MAP_API_FAILURE,
   payload: error,
@@ -118,6 +124,14 @@ export const mapsFailure = error => ({
 
 export const mapsLoading = () => async dispatch => {
   dispatch({ type: types.LOADING_MAP_API });
+  try {
+    // We import the Promise from helpers here
+    Promise.all([mapPromise]).then(value => {
+      dispatch(mapsSucces(value[0].maps));
+    });
+  } catch (error) {
+    dispatch(mapsFailure(error.message));
+  }
 };
 
 export const setGeolocationTrue = () => ({
@@ -125,7 +139,7 @@ export const setGeolocationTrue = () => ({
 });
 
 export const setGeolocationFalse = () => ({
-  type: types.SET_GEOLOCATION_FALSE,
+  type: types.SET_GEOLOCATION_FALSE
 });
 
 export const setGeolocationValue = geolocation => ({
@@ -229,14 +243,13 @@ export const resetPassword = (password, id) => dispatch => {
 
   return axios
     .post(
-      `${url}/auth/change/${id}`,
-      { password },
+      `${url}/auth/change/${id}`, 
+      { password }, 
       {
         withCredentials: true,
       },
     )
     .then(res => {
-      console.log('creator', res);
       dispatch(resetPasswordSuccess(res.data));
       toast.success("password reset successful, please login!");
       return res;
