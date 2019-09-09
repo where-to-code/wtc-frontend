@@ -39,16 +39,14 @@ const Map = props => {
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(async mapObject => {
-      let map;
-      mapCenter = await position(mapCenter);
 
+      mapCenter = await position(mapCenter);
+      const map = mapInit(mapObject.maps, mapCenter);
+      mapsLoading();
       if (!geolocation) {
-        map = mapInit(mapObject.maps, mapCenter);
+
         setGeolocationValue(mapCenter);
-        mapsLoading();
-      } else {
-        map = mapInit(mapObject.maps, geolocation);
-        mapsLoading();
+
       }
 
       // We add markers and modals to locations
