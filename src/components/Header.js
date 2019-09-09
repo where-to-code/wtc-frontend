@@ -49,6 +49,7 @@ const Header = props => {
 };
 
 function mapStateToProps (state) {
+  console.log('state', state)
   return{
     userId: state.auth.userId,
     isEmailVerified: state.auth.isEmailVerified,
