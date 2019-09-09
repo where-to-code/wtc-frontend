@@ -44,9 +44,7 @@ const Map = props => {
       const map = mapInit(mapObject.maps, mapCenter);
       mapsLoading();
       if (!geolocation) {
-
         setGeolocationValue(mapCenter);
-
       }
 
       // We add markers and modals to locations
