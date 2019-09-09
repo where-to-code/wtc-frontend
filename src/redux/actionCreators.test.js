@@ -96,18 +96,3 @@ describe('fetch locations', () => {
     expect(store.getActions()).toEqual(expectedActions);
   });
 });
-
-describe('fetch maps', () => {
-  it('mapsSucces', () => {
-    expect(actions.mapsSucces({})).toBeTruthy;
-  });
-  it('mapsFailure', () => {
-    const error = 'There was an error';
-    const expectedAction = {
-      type: types.FETCH_MAP_API_FAILURE,
-      payload: error
-    };
-    expect(actions.mapsSucces({})).not.toEqual(expectedAction);
-    expect(actions.mapsFailure(error)).toEqual(expectedAction);
-  });
-});

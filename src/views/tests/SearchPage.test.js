@@ -30,27 +30,23 @@ describe('Search Page tests', () => {
         const { getByText } = renderWithRedux(<SearchPage />)
         expect(getByText('FilterPane Mock')).toBeTruthy();
     })
-    // it('render the noGeolocation component if user is not geolocated', () => {
-    //     const reducer = {
-    //         locations: {
-    //             locations: []
-    //         },
-    //         maps: {
-    //             geolocation: null,
-    //         }
-    //     }
-    //     const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
-    //     const { getByText } = renderWithRedux(<SearchPage />, { store })
-    //     expect(getByText('No Geo Location Mock')).toBeTruthy();
-    // })
+    it('render the noGeolocation component if user is not geolocated', () => {
+        const reducer = {
+            locations: {},
+            maps: {
+                isGeolocated: false,
+            }
+        }
+        const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
+        const { getByText } = renderWithRedux(<SearchPage />, { store })
+        expect(getByText('No Geo Location Mock')).toBeTruthy();
+    })
     it('render the loader while the locations are loading', () => {
         const reducer = {
             locations: {
                 loadingLocation: true,
             },
-            maps: {
-                geolocation: null,
-            }
+            maps: {}
         }
         const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
         const { getByText } = renderWithRedux(<SearchPage />, { store })
@@ -61,9 +57,7 @@ describe('Search Page tests', () => {
             locations: {
                 error: true,
             },
-            maps: {
-                geolocation: null,
-            }
+            maps: {}
         }
         const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
         const { getByText } = renderWithRedux(<SearchPage />, { store })
