@@ -18,14 +18,38 @@ const ResetPassword = props => {
   const [details, setDetails] = useState({
     password: '',
     id,
+    confirmPassword: ''
   });
+
+  const [inputChangeState, updateInputChangeState] = useState({
+    id,
+    password: false,
+    confirmPassword: false
+  });
+
+  const handleChange = e => {
+    setDetails({
+      ...details,
+      [e.target.name]: e.target.value
+    });
+
+    updateInputChangeState({
+      ...inputChangeState,
+      [e.target.name]: true
+    });
+  };
 
   const submitPassword = event => {
     event.preventDefault();
-    resetPassword(details.password, details.id)
-    .then(res => {
-      if (res.status === 200) props.history.push('/login');
-    });
+    const { password, confirmPassword } = details;
+    if (!/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
+      password !== confirmPassword
+    ) {
+      return;
+    }
+      resetPassword(details.password, details.id).then(res => {
+        if (res.status === 200) props.history.push('/login');
+      });
   };
 
   return (
@@ -45,12 +69,32 @@ const ResetPassword = props => {
           <input
               type="password"
               placeholder="Enter Password"
+              name="password"
               value={details.password}
-              onChange={e =>
-                setDetails({ ...details, password: e.target.value })
-              }
+              onChange={handleChange}
             />
-    
+
+              {inputChangeState.password &&
+              !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(
+                details.password
+              ) && (
+                <span>
+                  Must be between 6 and 15 characters and contain a number.
+                </span>
+              )}
+
+             <input
+              type="password"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              value={details.confirmPassword}
+              onChange={handleChange}
+            />
+
+              {inputChangeState.confirmPassword &&
+              !(details.confirmPassword === details.password) && (
+                <span>Password does not match.</span>
+              )}
             <button type="submit">
               {loading ? (
                 <Loader type="Oval" color="#fff" height={40} width={30} />
@@ -58,7 +102,7 @@ const ResetPassword = props => {
                 'Reset Password'
               )}
             </button>
-            {error && <div>{error}</div>}
+            {error && <div class="error-message">{error}</div>}
           </form>
   
         </StyledLeftSection>

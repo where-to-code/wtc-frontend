@@ -21,6 +21,7 @@ export const StyledHeader = styled.header`
   }
   .auth {
     display: flex;
+    align-items: center;
     button {
       height: 25px;
       width: 70px;
@@ -32,6 +33,24 @@ export const StyledHeader = styled.header`
         props.landing ? '0.5px solid #fff' : '0.5px solid #03525B'};
       border-radius: 5px;
       color: ${props => (props.landing ? '#fff' : '#666A7C')};
+    }
+  }
+  .top-notif{
+    cursor:pointer
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    width: 22px;
+    background: #EB5757;
+    border:1px solid #EB5757;
+    border-radius: 50%;
+    margin-right:10px;
+    div{
+      font-size: .8rem;
+      font-weight: bold;
+      color:white;
+      text-align:center;
     }
   }
   @media (min-width: 600px) {

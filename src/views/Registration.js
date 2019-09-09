@@ -127,6 +127,7 @@ const Registration = props => {
               value={formState.password}
               onChange={handleChange}
             />
+            
             {inputChangeState.password &&
               !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(
                 formState.password
