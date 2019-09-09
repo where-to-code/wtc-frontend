@@ -125,19 +125,20 @@ const locations = {
 // Auth
 export function authLoad() {
   return {
-    type: types.AUTH_LOAD
+    type: types.AUTH_LOAD,
   };
 }
 
 export function authSuccess(user) {
   return {
     type: types.AUTH_SUCCESS,
-    payload: user
+    payload: user,
   };
 }
 
 export function authFailSignup(payload) {
   return {
+<<<<<<< HEAD
     type: types.AUTH_FAILURE_SIGNUP,
     payload: payload
   };
@@ -147,21 +148,34 @@ export function authFailLogin(payload) {
   return {
     type: types.AUTH_FAILURE_LOGIN,
     payload: payload
+=======
+    type: types.AUTH_FAILURE,
+    payload: payload,
+>>>>>>> write more front-end tests
   };
 }
 
 export const login = user => async dispatch => {
-  dispatch(authLoad());
   try {
+<<<<<<< HEAD
     const loginDetails = await axios
     .post(`${url}/auth/login`, user, {
+=======
+    dispatch(authLoad());
+    const loginDetails = await axios.post(`${url}/auth/login`, user, {
+>>>>>>> write more front-end tests
       withCredentials: true,
     });
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
+<<<<<<< HEAD
     dispatch(authFailLogin(error.message));
     return error;
+=======
+    return dispatch(authFail(error.message));
+  
+>>>>>>> write more front-end tests
   }
 };
 
@@ -173,6 +187,7 @@ export const signup = userData => async dispatch => {
   const { firstname, lastname, email, password } = userData;
   dispatch(authLoad());
   try {
+<<<<<<< HEAD
     const userDetails = await axios
       .post(
         `${url}/auth/register`, 
@@ -188,6 +203,18 @@ export const signup = userData => async dispatch => {
     return userDetails;
   } catch (error) {
     dispatch(authFailSignup(error.message));
+=======
+    const userDetails = await axios.post(`${url}/auth/register`, {
+      firstname,
+      lastname,
+      email,
+      password,
+    });
+    dispatch(authSuccess(userDetails.data.data.id));
+    return userDetails;
+  } catch (error) {
+    dispatch(authFail(error.message));
+>>>>>>> write more front-end tests
     return error;
   }
 };
@@ -195,12 +222,12 @@ export const signup = userData => async dispatch => {
 // Locations
 export const locationSuccess = locationList => ({
   type: types.FETCH_LOCATIONS_SUCCESS,
-  payload: locationList.data
+  payload: locationList.data,
 });
 
 export const locationFailure = error => ({
   type: types.FETCH_LOCATIONS_FAILURE,
-  payload: error
+  payload: error,
 });
 
 export const allLocationsSuccess = locationList => ({
@@ -211,7 +238,7 @@ export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
     const locationsInfo = await axios.get(
-      `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
+      `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`,
     );
     dispatch(locationSuccess(locationsInfo.data));
     dispatch(allLocationsSuccess(locationsInfo.data));
@@ -229,17 +256,21 @@ export const filterLocations = locations => async dispatch => {
 };
 
 export const clearLocations = () => ({
-  type: types.CLEAR_LOCATIONS
+  type: types.CLEAR_LOCATIONS,
 });
 
 // ACTIONS FOR MAPS REDUCER
 export const mapsSucces = mapsObj => ({
   type: types.FETCH_MAP_API_SUCCESS,
+<<<<<<< HEAD
   payload: mapsObj
+=======
+  payload: { mapsObj, geolocation },
+>>>>>>> write more front-end tests
 });
 export const mapsFailure = error => ({
   type: types.FETCH_MAP_API_FAILURE,
-  payload: error
+  payload: error,
 });
 
 export const mapsLoading = () => async dispatch => {
@@ -255,11 +286,11 @@ export const mapsLoading = () => async dispatch => {
 };
 
 export const setGeolocationTrue = () => ({
-  type: types.SET_GEOLOCATION_TRUE
+  type: types.SET_GEOLOCATION_TRUE,
 });
 
 export const setGeolocationFalse = () => ({
-  type: types.SET_GEOLOCATION_FALSE
+  type: types.SET_GEOLOCATION_FALSE,
 });
 
 export const setGeolocationValue = geolocation => ({
@@ -270,12 +301,12 @@ export const setGeolocationValue = geolocation => ({
 // ACTIONS FOR SINGLE LOCATION REDUCER
 export const singleLocSuccess = locationList => ({
   type: types.FETCH_SINGLE_LOCATIONS_SUCCESS,
-  payload: locationList
+  payload: locationList,
 });
 
 export const singleLocFailure = error => ({
   type: types.FETCH_SINGLE_LOCATIONS_FAILURE,
-  payload: error
+  payload: error,
 });
 
 export const fetchSingleLocation = locId => async dispatch => {
@@ -291,11 +322,11 @@ export const fetchSingleLocation = locId => async dispatch => {
 // ACTIONS FOR ACTIVE LOCATION REDUCER
 export const setActive = location => ({
   type: types.SET_ACTIVE,
-  payload: location
+  payload: location,
 });
 
 export const clearActive = location => ({
-  type: types.CLEAR_ACTIVE
+  type: types.CLEAR_ACTIVE,
 });
 
 // verify email
