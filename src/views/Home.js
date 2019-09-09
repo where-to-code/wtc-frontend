@@ -16,10 +16,10 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
         document.getElementById('mapSuggestions'),
       );
-
+      
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
-
+        console.log(document.body.className)
         const latitude = place.geometry.location.lat();
         const longitude = place.geometry.location.lng();
 
@@ -66,7 +66,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withRouter(connect(
+export default connect(
   null,
   mapDispatchToProps,
-)(Home)) 
+)(Home)

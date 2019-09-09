@@ -9,7 +9,9 @@ import rootReducer from '../redux/reducers/rootReducer';
 
 export const TestingRouter = ({ ComponentWithRedirection, RedirectUrl }) => (
   <>
-      <Route path="/" exact={true} render={() => <ComponentWithRedirection />} />
+      <Route path="/" exact={true} render={props =>{
+        return <ComponentWithRedirection {...props} />}
+      }  />
       <Route path={RedirectUrl} render={() => <div>{RedirectUrl}</div>} />
   </>
 )
