@@ -97,7 +97,8 @@ export const activeLocation = (state = null, action) => {
 const initialState = {
   userId: '',
   loading: false,
-  error: ''
+  loginError: '',
+  signUpError: ''
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -116,12 +117,20 @@ export const authReducer = (state = initialState, action) => {
         userId: action.payload
       };
 
-    case types.AUTH_FAILURE:
+    case types.AUTH_FAILURE_SIGNUP:
       return {
         ...state,
         userId: '',
         loading: false,
-        error: action.payload
+        signUpError: action.payload
+      };
+      
+    case types.AUTH_FAILURE_LOGIN:
+      return {
+        ...state,
+        userId: '',
+        loading: false,
+        loginError: action.payload
       };
 
     default:

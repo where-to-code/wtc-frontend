@@ -16,7 +16,7 @@ import { signup } from '../redux/actionCreators';
 import logo from '../assets/logo.png';
 
 const Registration = props => {
-  const { signup, loading, error } = props;
+  const { signup, loading, signUpError } = props;
   const [formState, updateFormState] = useState({
     firstname: '',
     lastname: '',
@@ -159,7 +159,7 @@ const Registration = props => {
                 'Sign Up'
               )}
             </button>
-            {error && <div>{error}</div>}
+            {signUpError && <div>{signUpError}</div>}
             {allFields ? <span>All fields are required.</span> : null}
           </form>
 
@@ -186,7 +186,7 @@ const Registration = props => {
 const mapStatetoProps = state => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    signUpError: state.auth.signUpError
   };
 };
 

@@ -15,7 +15,7 @@ import {
 } from './ViewStyles/AuthStyles';
 
 const Login = props => {
-  const { loading, error, login } = props;
+  const { loading, loginError, login } = props;
   const [details, setDetails] = useState({
     email: '',
     password: ''
@@ -104,7 +104,7 @@ const Login = props => {
                 'Login'
               )}
             </button>
-            {error && <div>{error}</div>}
+            {loginError && <div>{loginError}</div>}
             {allFields ? <span>All fields are required.</span> : null}
           </form>
           <div>
@@ -132,7 +132,7 @@ const Login = props => {
 const mapStatetoProps = state => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    loginError: state.auth.loginError
   };
 };
 export default connect(

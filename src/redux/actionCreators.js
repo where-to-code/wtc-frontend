@@ -127,9 +127,16 @@ export function authSuccess(user) {
   };
 }
 
-export function authFail(payload) {
+export function authFailSignup(payload) {
   return {
-    type: types.AUTH_FAILURE,
+    type: types.AUTH_FAILURE_SIGNUP,
+    payload: payload
+  };
+}
+
+export function authFailLogin(payload) {
+  return {
+    type: types.AUTH_FAILURE_LOGIN,
     payload: payload
   };
 }
@@ -143,7 +150,7 @@ export const login = user => async dispatch => {
     dispatch(authSuccess(loginDetails.data.data.id));
     return loginDetails;
   } catch (error) {
-    dispatch(authFail(error.response.data.message));
+    dispatch(authFailLogin(error.response.data.message));
     return error;
   }
 };
@@ -169,7 +176,7 @@ export const signup = userData => async dispatch => {
     dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
-    dispatch(authFail(error.data.message));
+    dispatch(authFailSignup(error.response.data.message));
     return error;
   }
 };
