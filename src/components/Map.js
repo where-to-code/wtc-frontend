@@ -48,12 +48,10 @@ const Map = props => {
       mapsLoading();
       map = mapInit(mapObject.maps, mapCenter);
 
-      if (!geolocation) {
-        setGeolocationValue(mapCenter);
-      } else if (geolocation.lat === 51.504831314
-        && geolocation.lng === -0.123499506) {
-        setGeolocationFalse()
-      } else setGeolocationTrue();
+      if (!geolocation) setGeolocationValue(mapCenter);
+      else if (geolocation.lat === 51.504831314 && geolocation.lng === -0.123499506)
+        setGeolocationFalse();
+      else setGeolocationTrue();
       // We add markers and modals to locations
       if (locations.length > 0) {
         locations.map(location => {
