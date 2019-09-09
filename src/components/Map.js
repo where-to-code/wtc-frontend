@@ -12,7 +12,6 @@ const Map = props => {
     geolocation,
     mapsLoading,
     locations,
-    singleLocCoord,
     setActive,
     activeLocation,
     setGeolocationValue
@@ -43,13 +42,8 @@ const Map = props => {
     const asyncWrap = async () => {
       // we get the user Geolocation, if we can't this return the default position
       mapCenter = await position(mapCenter);
-      let map;
       // If we already got the mapObj we build the map
-      if (mapsObj && singleLocCoord) {
-        setGeolocationValue(singleLocCoord);
-        map = mapInit(mapsObj, geolocation);
-      } 
-      else if (mapsObj) map = mapInit(mapsObj, geolocation);
+      if (mapsObj) const map = mapInit(mapsObj, geolocation);
       //Or we fetch it from google API before
       else {
         setGeolocationValue(mapCenter);
