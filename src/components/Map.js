@@ -45,19 +45,15 @@ const Map = props => {
     Promise.resolve(mapPromise).then(async mapObject => {
       let map;
       mapCenter = await position(mapCenter);
+      mapsLoading();
+      map = mapInit(mapObject.maps, mapCenter);
 
       if (!geolocation) {
-        map = mapInit(mapObject.maps, mapCenter);
         setGeolocationValue(mapCenter);
-        mapsLoading();
-      } else {
-        map = mapInit(mapObject.maps, geolocation);
-        mapsLoading();
-        if(geolocation.lat === 51.504831314 
-          && geolocation.lng === -0.123499506)
-          setGeolocationFalse()
-        else setGeolocationTrue();
-      }
+      } else if (geolocation.lat === 51.504831314
+        && geolocation.lng === -0.123499506) {
+        setGeolocationFalse()
+      } else setGeolocationTrue();
       // We add markers and modals to locations
       if (locations.length > 0) {
         locations.map(location => {
