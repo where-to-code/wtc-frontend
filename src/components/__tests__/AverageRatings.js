@@ -12,4 +12,13 @@ describe('<AverageRatings />', () => {
 
     expect(getByRole('heading').textContent).toEqual('Average Rating');
   });
+
+  it('Renders the correct props', () => {
+    const { container } = render(
+      <AverageRatings location={{ averageRating: 2 }} />,
+    );
+    const paragraph = container.querySelector('p');
+
+    expect(paragraph.textContent).toEqual('2');
+  });
 });
