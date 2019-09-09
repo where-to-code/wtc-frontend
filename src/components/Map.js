@@ -6,6 +6,8 @@ import {
   mapsLoading,
   setActive,
   setGeolocationValue,
+  setGeolocationTrue,
+  setGeolocationFalse
 } from '../redux/actionCreators';
 import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers';
 import markerBlue from '../assets/icons8-marker-40.png';
@@ -19,6 +21,8 @@ const Map = props => {
     setActive,
     activeLocation,
     setGeolocationValue,
+    setGeolocationTrue,
+    setGeolocationFalse
   } = props;
 
   // Set the default position to Trafalgar Square, London
@@ -49,8 +53,11 @@ const Map = props => {
       } else {
         map = mapInit(mapObject.maps, geolocation);
         mapsLoading();
+        if(geolocation.lat === 51.504831314 
+          && geolocation.lng === -0.123499506)
+          setGeolocationFalse()
+        else setGeolocationTrue();
       }
-
       // We add markers and modals to locations
       if (locations.length > 0) {
         locations.map(location => {
@@ -88,6 +95,8 @@ function mapDispatchToProps(dispatch) {
       mapsLoading,
       setActive,
       setGeolocationValue,
+      setGeolocationTrue,
+      setGeolocationFalse
     },
     dispatch,
   );

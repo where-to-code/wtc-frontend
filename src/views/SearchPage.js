@@ -8,11 +8,7 @@ import { StyledSearch, StyledLoader } from './ViewStyles/SearchPageStyles';
 import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
-import {
-  locationLoads,
-  setGeolocationFalse,
-  setGeolocationTrue
-} from '../redux/actionCreators';
+import { locationLoads } from '../redux/actionCreators';
 
 import NoGeoLocation from '../components/NoGeoLocation';
 const SearchPage = props => {
@@ -22,16 +18,11 @@ const SearchPage = props => {
     loadingLocation,
     locationsErr,
     isGeolocated,
-    setGeolocationFalse,
-    setGeolocationTrue
   } = props;
 
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
-    if (navigator.geolocation) setGeolocationTrue();
-    else setGeolocationFalse();
-
     locationLoads(geolocation);
   }, [geolocation]);
 
@@ -71,5 +62,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { locationLoads, setGeolocationFalse, setGeolocationTrue }
+  { locationLoads }
 )(SearchPage);
