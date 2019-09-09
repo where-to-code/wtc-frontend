@@ -9,6 +9,39 @@ const mock = new axiosMock(axios);
 const middlewares = [thunk];
 const url = 'https://where2code.herokuapp.com/api';
 const mockStore = configureMockStore(middlewares);
+describe('authentication', () => {
+  const user = {
+    email: 'jn@john.com',
+    password: '12345abc'
+  }
+it('auth success', () => {
+  const expectedAction ={
+    type: types.AUTH_SUCCESS,
+    payload: user
+  }
+  expect(actions.authSuccess(user)).toEqual(expectedAction) 
+});
+it('auth failure',() => {
+  const error = 'There was an error'
+ const expectedAction = {
+  type:types.AUTH_FAILURE,
+  payload: error,
+}
+expect(actions.authFail(error)).toEqual(expectedAction) 
+});
+it('auth load' ,() => {
+  const expectedAction ={
+    type: types.AUTH_LOAD
+  }
+expect(actions.authLoad()).toEqual(expectedAction)
+});
+it('login', ()=> {
+
+});
+it('signup', () => {
+
+})
+})
 describe('fetch locations', () => {
   const mockLocations = {
     status: 200,
