@@ -160,7 +160,7 @@ export const login = user => async dispatch => {
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
-    dispatch(authFailLogin(error.response.data.message));
+    dispatch(authFailLogin(error.message));
     return error;
   }
 };
@@ -187,7 +187,7 @@ export const signup = userData => async dispatch => {
     dispatch(authSuccess(userDetails.data.data));
     return userDetails;
   } catch (error) {
-    dispatch(authFailSignup(error.response.data.message));
+    dispatch(authFailSignup(error.message));
     return error;
   }
 };
