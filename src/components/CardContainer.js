@@ -22,7 +22,7 @@ const CardContainer = props => {
             return <LocationCard key={place.name} location={place} />;
           }
         })}
-      {locations.length === 0 && <div>No Locations</div>}
+      {locations.length === 0 && <div>Sorry, no locations match these criterias</div>}
     </StyledCardContainer>
   );
 };

@@ -18,6 +18,7 @@ const FilterPane = props => {
       <div className="pane">
         {checkboxes.map(check => (
           <Checkbox
+            key={check}
             name={check}
             fiterCondition={setFilter}
             filter={filter}

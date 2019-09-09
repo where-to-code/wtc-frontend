@@ -1,6 +1,8 @@
 import * as types from './actionTypes';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { mapPromise } from './helpers';
+import { toast } from "react-toastify";
+
 
 const url = 'https://where2code.herokuapp.com/api';
 
@@ -18,7 +20,8 @@ const locations = {
       avg_quietness: 2,
       avg_wifi_speed: 4,
       avg_accessibility: 3,
-      avg_community: 4
+      avg_community: 4,
+      id:1
     },
     {
       name: 'Domino"s Pizza',
@@ -31,7 +34,8 @@ const locations = {
       avg_quietness: 3,
       avg_wifi_speed: 2,
       avg_accessibility: 5,
-      avg_community: 1
+      avg_community: 1,
+      id:1
     },
     {
       name: 'Babacorvee Plaza',
@@ -44,7 +48,8 @@ const locations = {
       avg_quietness: 4,
       avg_wifi_speed: 3,
       avg_accessibility: 2,
-      avg_community: 3
+      avg_community: 3,
+      id:1
     },
     {
       name: 'Chicken Republic',
@@ -57,7 +62,8 @@ const locations = {
       avg_quietness: 5,
       avg_wifi_speed: 2,
       avg_accessibility: 5,
-      avg_community: 2
+      avg_community: 2,
+      id:1
     },
     {
       name: 'Vintage Suites',
@@ -70,7 +76,8 @@ const locations = {
       avg_quietness: 3,
       avg_wifi_speed: 5,
       avg_accessibility: 1,
-      avg_community: 4
+      avg_community: 4,
+      id:1
     },
     {
       name: 'Swisscottage Suites',
@@ -83,7 +90,8 @@ const locations = {
       avg_quietness: 5,
       avg_wifi_speed: 4,
       avg_accessibility: 2,
-      avg_community: 1
+      avg_community: 1,
+      id:1
     },
     {
       name: 'Lagos State Digital Village',
@@ -145,27 +153,29 @@ export function authFailLogin(payload) {
 export const login = user => async dispatch => {
   dispatch(authLoad());
   try {
-    const loginDetails = await axios.post(`${url}/auth/login`, user, {
-      withCredentials: true
+    const loginDetails = await axios
+    .post(`${url}/auth/login`, user, {
+      withCredentials: true,
     });
-    dispatch(authSuccess(loginDetails.data.data.id));
+    dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
-    dispatch(authFailLogin(error.response.data.message));
+    dispatch(authFailLogin(error.message));
     return error;
   }
 };
 
-export const successGitlog = userId => dispatch => {
-  dispatch(authSuccess(userId));
+export const successGitlog = (userData) => dispatch =>{
+  dispatch(authSuccess(userData));
 };
 
 export const signup = userData => async dispatch => {
   const { firstname, lastname, email, password } = userData;
   dispatch(authLoad());
   try {
-    const userDetails = await axios.post(
-      `${url}/auth/register`,
+    const userDetails = await axios
+      .post(
+        `${url}/auth/register`, 
       {
         firstname,
         lastname,
@@ -174,10 +184,10 @@ export const signup = userData => async dispatch => {
       },
       { withCredentials: true }
     );
-    dispatch(authSuccess(userDetails.data.data.id));
+    dispatch(authSuccess(userDetails.data.data));
     return userDetails;
   } catch (error) {
-    dispatch(authFailSignup(error.response.data.message));
+    dispatch(authFailSignup(error.message));
     return error;
   }
 };
@@ -203,8 +213,8 @@ export const locationLoads = currentLocation => async dispatch => {
     const locationsInfo = await axios.get(
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
     );
-    dispatch(locationSuccess(locations));
-    dispatch(allLocationsSuccess(locations));
+    dispatch(locationSuccess(locationsInfo.data));
+    dispatch(allLocationsSuccess(locationsInfo.data));
   } catch (error) {
     dispatch(locationFailure(error.message));
   }
@@ -222,6 +232,11 @@ export const clearLocations = () => ({
   type: types.CLEAR_LOCATIONS
 });
 
+// ACTIONS FOR MAPS REDUCER
+export const mapsSucces = mapsObj => ({
+  type: types.FETCH_MAP_API_SUCCESS,
+  payload: mapsObj
+});
 export const mapsFailure = error => ({
   type: types.FETCH_MAP_API_FAILURE,
   payload: error
@@ -229,6 +244,14 @@ export const mapsFailure = error => ({
 
 export const mapsLoading = () => async dispatch => {
   dispatch({ type: types.LOADING_MAP_API });
+  try {
+    // We import the Promise from helpers here
+    Promise.all([mapPromise]).then(value => {
+      dispatch(mapsSucces(value[0].maps));
+    });
+  } catch (error) {
+    dispatch(mapsFailure(error.message));
+  }
 };
 
 export const setGeolocationTrue = () => ({
@@ -339,14 +362,13 @@ export const resetPassword = (password, id) => dispatch => {
   dispatch(resetPasswordLoad());
   return axios
     .post(
-      `${url}/auth/change/${id}`,
-      { password },
+      `${url}/auth/change/${id}`, 
+      { password }, 
       {
         withCredentials: true
       }
     )
     .then(res => {
-      console.log('creator', res);
       dispatch(resetPasswordSuccess(res.data));
       toast.success('password reset successful, please login!');
       return res;

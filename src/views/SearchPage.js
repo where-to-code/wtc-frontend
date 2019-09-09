@@ -82,6 +82,7 @@ const mapStateToProps = state => ({
   isGeolocated: state.maps.isGeolocated
 });
 
+
 export default connect(
   mapStateToProps,
   { locationLoads, setGeolocationFalse, setGeolocationTrue, filterLocations }
