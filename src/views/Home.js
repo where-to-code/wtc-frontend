@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
-
+import { withRouter } from 'react-router'
 import { StyledHome } from './ViewStyles/HomeStyles';
 import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
@@ -66,7 +66,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(
+export default withRouter(connect(
   null,
   mapDispatchToProps,
-)(Home);
+)(Home)) 

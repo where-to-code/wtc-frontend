@@ -71,5 +71,5 @@ describe('Search Page tests', () => {
         const { getByText } = renderWithRedux(<SearchPage />)
         expect(getByText('Map Mock')).toBeTruthy();
     })
-    
+    // todo test if LocationLoads is called on mount
 })
