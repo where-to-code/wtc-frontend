@@ -184,6 +184,11 @@ export const locationFailure = error => ({
   type: types.FETCH_LOCATIONS_FAILURE,
   payload: error
 });
+
+export const allLocationsSuccess = locations => ({
+  type: types.ALL_LOCATIONS_SUCCESS,
+  payload: locations.data
+})
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
@@ -191,14 +196,13 @@ export const locationLoads = currentLocation => async dispatch => {
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
     );
     dispatch(locationSuccess(locations));
+    dispatch(allLocationsSuccess(locations))
   } catch (error) {
     dispatch(locationFailure(error.message));
   }
 };
 
 export const filterLocations = locations => async dispatch => {
-  console.log(locations);
-  debugger;
   try {
     dispatch(locationSuccess(locations));
   } catch (error) {

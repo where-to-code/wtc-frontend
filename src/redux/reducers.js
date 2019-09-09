@@ -4,6 +4,7 @@ export const locationReducer = (
   state = {
     loadingLocation: false,
     locations: [],
+    allLocations: [],
     error: null
   },
   action
@@ -12,11 +13,24 @@ export const locationReducer = (
     case types.LOADING_LOCATIONS:
       return { ...state, loadingLocation: true };
     case types.FETCH_LOCATIONS_SUCCESS:
-      return { error: null, loadingLocation: false, locations: action.payload };
+      return {
+        ...state,
+        error: null,
+        loadingLocation: false,
+        locations: action.payload
+      };
+    case types.ALL_LOCATIONS_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        loadingLocation: false,
+        allLocations: action.payload,
+        locations: action.payload
+      };
     case types.FETCH_LOCATIONS_FAILURE:
       return { ...state, loadingLocation: false, error: action.payload };
     case types.CLEAR_LOCATIONS:
-      return { ...state, locations: []}
+      return { ...state, locations: [] };
     default:
       return state;
   }
@@ -74,7 +88,7 @@ export const activeLocation = (state = null, action) => {
     case types.SET_ACTIVE:
       return action.payload;
     case types.CLEAR_ACTIVE:
-      return null
+      return null;
     default:
       return state;
   }
@@ -83,7 +97,7 @@ export const activeLocation = (state = null, action) => {
 const initialState = {
   userId: '',
   loading: false,
-  error: '',
+  error: ''
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -115,7 +129,6 @@ export const authReducer = (state = initialState, action) => {
   }
 };
 
-
 export const verifyEmailReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.VERIFY_EMAIL_LOAD:
@@ -145,11 +158,10 @@ export const verifyEmailReducer = (state = initialState, action) => {
   }
 };
 
-
 const passwordState = {
   password: {},
   loading: false,
-  error: '',
+  error: ''
 };
 
 export const resetPasswordReducer = (state = passwordState, action) => {
