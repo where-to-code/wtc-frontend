@@ -21,6 +21,7 @@ describe('location reducer', () => {
     expect(locationReducer(undefined, {})).toEqual({
       loadingLocation: false,
       locations: [],
+      allLocations: [],
       error: null,
     });
   });
@@ -55,6 +56,10 @@ describe('location reducer', () => {
         { loadingLocation: false, locations: [], error: null },
         {
           type: types.FETCH_LOCATIONS_SUCCESS,
+          payload: locations
+        },
+        {
+          type: types.ALL_LOCATIONS_SUCCESS,
           payload: locations
         }
       )

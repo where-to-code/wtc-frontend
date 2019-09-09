@@ -169,13 +169,12 @@ export const signup = userData => async dispatch => {
     dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
-    dispatch(authFail(error.response.data.message));
+    dispatch(authFail(error.data.message));
     return error;
   }
 };
 
 // Locations
-;
 export const locationSuccess = locationList => ({
   type: types.FETCH_LOCATIONS_SUCCESS,
   payload: locationList.data
@@ -185,10 +184,10 @@ export const locationFailure = error => ({
   payload: error
 });
 
-export const allLocationsSuccess = locations => ({
+export const allLocationsSuccess = locationList => ({
   type: types.ALL_LOCATIONS_SUCCESS,
-  payload: locations.data
-})
+  payload: locationList.data
+});
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
@@ -196,7 +195,7 @@ export const locationLoads = currentLocation => async dispatch => {
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
     );
     dispatch(locationSuccess(locations));
-    dispatch(allLocationsSuccess(locations))
+    dispatch(allLocationsSuccess(locations));
   } catch (error) {
     dispatch(locationFailure(error.message));
   }

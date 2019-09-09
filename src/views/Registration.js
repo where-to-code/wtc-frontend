@@ -33,6 +33,8 @@ const Registration = props => {
     confirmPassword: false
   });
 
+  const [allFields, setAllFields] = useState(false);
+
   const handleChange = e => {
     updateFormState({
       ...formState,
@@ -58,8 +60,10 @@ const Registration = props => {
       !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
       password !== confirmPassword
     ) {
+      setAllFields(true);
       return;
     }
+    setAllFields(false);
     signup(formState).then(res => {
       if (res.status === 201) {
         // since the user is automatically looged in after sigin up 
@@ -156,6 +160,7 @@ const Registration = props => {
               )}
             </button>
             {error && <div>{error}</div>}
+            {allFields ? <span>All fields are required.</span> : null}
           </form>
 
           <div>
