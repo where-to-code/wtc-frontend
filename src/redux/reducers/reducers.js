@@ -4,15 +4,29 @@ export const locationReducer = (
   state = {
     loadingLocation: false,
     locations: [],
-    error: null,
+    allLocations: [],
+    error: null
   },
-  action,
+  action
 ) => {
   switch (action.type) {
     case types.LOADING_LOCATIONS:
       return { ...state, loadingLocation: true };
     case types.FETCH_LOCATIONS_SUCCESS:
-      return { error: null, loadingLocation: false, locations: action.payload };
+      return {
+        ...state,
+        error: null,
+        loadingLocation: false,
+        locations: action.payload
+      };
+    case types.ALL_LOCATIONS_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        loadingLocation: false,
+        allLocations: action.payload,
+        locations: action.payload
+      };
     case types.FETCH_LOCATIONS_FAILURE:
       return { ...state, loadingLocation: false, error: action.payload };
     case types.CLEAR_LOCATIONS:
@@ -24,7 +38,7 @@ export const locationReducer = (
 
 export const singleLocaReducer = (
   state = { loadingSingleLoc: false, location: null, error: null },
-  action,
+  action
 ) => {
   switch (action.type) {
     case types.LOADING_SINGLE_LOCATION:
@@ -43,9 +57,9 @@ export const mapsReducer = (
     loadingMaps: false,
     error: null,
     geolocation: null,
-    isGeolocated: false,
+    isGeolocated: false
   },
-  action,
+  action
 ) => {
   switch (action.type) {
     case types.LOADING_MAP_API:
@@ -79,9 +93,10 @@ const initialState = {
   isEmailVerified: true,
   email: '',
   loading: false,
-  error: '',
   newEmailVerifRequested: false,
   popupMessageSeen: false,
+  loginError: '',
+  signUpError: ''
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -90,7 +105,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: '',
+        error: ''
       };
 
     case types.AUTH_SUCCESS:
@@ -99,15 +114,23 @@ export const authReducer = (state = initialState, action) => {
         loading: false,
         userId: action.payload.id,
         isEmailVerified: action.payload.isVerified,
-        email: action.payload.email,
+        email: action.payload.email
       };
 
-    case types.AUTH_FAILURE:
+    case types.AUTH_FAILURE_SIGNUP:
       return {
         ...state,
         userId: '',
         loading: false,
-        error: action.payload,
+        signUpError: action.payload
+      };
+
+    case types.AUTH_FAILURE_LOGIN:
+      return {
+        ...state,
+        userId: '',
+        loading: false,
+        loginError: action.payload
       };
 
     default:
@@ -121,36 +144,36 @@ export const verifyEmailReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: '',
+        error: ''
       };
 
     case types.VERIFY_EMAIL_SUCCESS:
       return {
         ...state,
         loading: false,
-        email: action.payload,
+        email: action.payload
       };
 
     case types.NEW_VERIFY_EMAIL_SENT:
-        return {
-          ...state,
-          loading: true,
-          newEmailVerifRequested: true,
-          popupMessageSeen: true,
-        };      
+      return {
+        ...state,
+        loading: true,
+        newEmailVerifRequested: true,
+        popupMessageSeen: true
+      };
 
     case types.POPUP_MESSAGE_SEEN:
-        return {
-          ...state,
-          popupMessageSeen: true,
-        };      
+      return {
+        ...state,
+        popupMessageSeen: true
+      };
 
-        case types.VERIFY_EMAIL_FAILURE:
+    case types.VERIFY_EMAIL_FAILURE:
       return {
         ...state,
         email: '',
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
 
     default:
@@ -161,7 +184,7 @@ export const verifyEmailReducer = (state = initialState, action) => {
 const passwordState = {
   password: {},
   loading: false,
-  error: '',
+  error: ''
 };
 
 export const resetPasswordReducer = (state = passwordState, action) => {
@@ -170,14 +193,14 @@ export const resetPasswordReducer = (state = passwordState, action) => {
       return {
         ...state,
         loading: true,
-        error: '',
+        error: ''
       };
 
     case types.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
         loading: false,
-        password: action.payload,
+        password: action.payload
       };
 
     case types.RESET_PASSWORD_FAILURE:
@@ -185,7 +208,7 @@ export const resetPasswordReducer = (state = passwordState, action) => {
         ...state,
         password: '',
         loading: false,
-        error: action.payload,
+        error: action.payload
       };
 
     default:

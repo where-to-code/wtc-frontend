@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import Map from '../components/Map';
@@ -9,6 +9,7 @@ import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
 import {
+  filterLocations,
   locationLoads,
   setGeolocationFalse,
   setGeolocationTrue
@@ -17,6 +18,8 @@ import {
 import NoGeoLocation from '../components/NoGeoLocation';
 const SearchPage = props => {
   const {
+    filterLocations,
+    allLocations,
     geolocation,
     locationLoads,
     loadingLocation,
@@ -26,8 +29,6 @@ const SearchPage = props => {
     setGeolocationTrue
   } = props;
 
-  const [toggle, setToggle] = useState(false);
-
   useEffect(() => {
     if (navigator.geolocation) setGeolocationTrue();
     else setGeolocationFalse();
@@ -35,21 +36,33 @@ const SearchPage = props => {
     locationLoads(geolocation);
   }, [geolocation]);
 
-  const show = () => setToggle(!toggle);
+  function setNewLocations(choices) {
+    const filteredLocation = allLocations.filter(
+      loc =>
+        ((choices.wifi && loc.avg_wifi_speed >= 3) || !choices.wifi) &&
+        ((choices.quiet && loc.avg_quietness >= 3) || !choices.quiet) &&
+        ((choices.accessibility && loc.avg_accessibility >= 3) ||
+          !choices.accessibility) &&
+        ((choices.community && loc.avg_community >= 3) || !choices.community)
+    );
+    filterLocations({ data: filteredLocation });
+  }
 
   return (
     <>
       <Header />
       <StyledSearch>
         <div>
-          <FilterPane toggle={toggle} show={show} />
+          <FilterPane setNewLocations={setNewLocations} />
           {!isGeolocated && <NoGeoLocation />}
           {loadingLocation && (
             <StyledLoader>
               <Loader type="Oval" color="#56c1cb" height={80} width={80} />
             </StyledLoader>
           )}
-          {locationsErr && locationsErr !== "currentLocation is null" && <LocationErr />}
+          {locationsErr && locationsErr !== 'currentLocation is null' && (
+            <LocationErr />
+          )}
           <CardContainer />
         </div>
         <StyledMap>
@@ -61,7 +74,7 @@ const SearchPage = props => {
 };
 
 const mapStateToProps = state => ({
-  locations: state.locations.locations,
+  allLocations: state.locations.allLocations,
   locationsErr: state.locations.error,
   loadingLocation: state.locations.loadingLocation,
   geolocation: state.maps.geolocation,
@@ -71,5 +84,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { locationLoads, setGeolocationFalse, setGeolocationTrue }
+  { locationLoads, setGeolocationFalse, setGeolocationTrue, filterLocations }
 )(SearchPage);
