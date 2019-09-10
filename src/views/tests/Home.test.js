@@ -1,10 +1,8 @@
 import React from 'react';
-import { cleanup, fireEvent, getByPlaceholderText, } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { renderWithRedux, TestingRouter } from '../../utils/testHelpers';
 import Home from '../Home';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 
 jest.mock('../../components/Header', () => () => <div>Header Mock</div>);
 
@@ -19,7 +17,8 @@ describe('Search Page tests', () => {
     })
     it('push to /locations if button is clicked', () => {
         const redirectUrl = '/locations'
-        const { getByText, container } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Home {...props} />} RedirectUrl={redirectUrl} />)
+        const mainRoute ='/'
+        const { getByText, container } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Home {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />)
         fireEvent.click(getByText('Find places near you'))
         expect(container.innerHTML).toEqual(
             expect.stringContaining(redirectUrl)

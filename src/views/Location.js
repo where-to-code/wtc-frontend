@@ -17,7 +17,7 @@ const Location = props => {
   useEffect(() => {
     fetchSingleLocation(loactionId);
   }, []);
-  if (props.location) {
+  if (location) {
     return (
       <>
         <Header />

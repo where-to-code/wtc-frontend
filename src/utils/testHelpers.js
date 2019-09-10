@@ -7,9 +7,9 @@ import thunk from 'redux-thunk';
 import { createMemoryHistory } from 'history'
 import rootReducer from '../redux/reducers/rootReducer';
 
-export const TestingRouter = ({ ComponentWithRedirection, RedirectUrl }) => (
+export const TestingRouter = ({ ComponentWithRedirection, RedirectUrl, MainRoute }) => (
   <>
-      <Route path="/" exact={true} render={props =>{
+      <Route path={MainRoute} exact={true} render={props =>{
         return <ComponentWithRedirection {...props} />}
       }  />
       <Route path={RedirectUrl} render={() => <div>{RedirectUrl}</div>} />
