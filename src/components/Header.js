@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import TopNotif from '../components/TopNotif';
+import AddLocation from '../components/addLocation';
 import logo from '../assets/logo.png';
 
 const Header = props => {
@@ -13,6 +14,10 @@ const Header = props => {
     logout(props.userId);
   }
 
+  const displayAddForm = () => {
+    console.log('display adding location');
+    document.getElementById('add-location-form').style.display = 'flex';
+  }
   return (
     <StyledHeader landing={landing}>
       <div className="logo">
@@ -25,23 +30,24 @@ const Header = props => {
         isCookie 
           ? 
             <>
-            <button
-            onClick={onLogout}>
-              Logout
-            </button>
-            <button
-            onClick={onLogout}>
-              Add location
-            </button>
-            </>
-          : (
-            <>
             <Link to="/signup">
             <button>Sign Up</button>
            </Link>
             <Link to="/login">
               <button>Login</button>
             </Link>  
+            </>
+          : (
+            <>
+            <button
+            onClick={onLogout}>
+              Logout
+            </button>
+            <button
+            onClick={displayAddForm}>
+              Add Location
+            </button>
+            <AddLocation />
             </>
           )
       }

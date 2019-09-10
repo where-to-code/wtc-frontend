@@ -53,6 +53,11 @@ export const StyledHeader = styled.header`
       text-align:center;
     }
   }
+  .top-notif.green{
+    background: #56C1CB;
+    border:1px solid #ffffff;
+  }
+
   @media (min-width: 600px) {
     height: 65px;
     .logo {
