@@ -15,20 +15,46 @@ import {
 } from './ViewStyles/AuthStyles';
 
 const Login = props => {
-  const { loading, error, login } = props;
+  const { loading, loginError, login } = props;
   const [details, setDetails] = useState({
     email: '',
     password: ''
   });
+  const [inputChangeState, updateInputChangeState] = useState({
+    email: false,
+    password: false
+  });
+  const [allFields, setAllFields] = useState(false);
+
+  const handleChange = e => {
+    setDetails({ ...details, [e.target.name]: e.target.value });
+
+    updateInputChangeState({
+      ...inputChangeState,
+      [e.target.name]: true
+    });
+  };
 
   const submitLogin = event => {
     event.preventDefault();
+    const { email, password } = details;
+
+    if (
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) ||
+      !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password)
+    ) {
+      setAllFields(true);
+      return;
+    }
+
+    setAllFields(false);
+
     login(details).then(res => {
-      if (res.status === 200){
+      if (res.status === 200) {
         // Login is successful so we write a cookie to auth the user
         setTempCookie(res.data.data.id, res.data.data.lastname);
         props.history.push('/');
-      } 
+      }
     });
   };
 
@@ -47,18 +73,30 @@ const Login = props => {
           <form onSubmit={submitLogin}>
             <input
               type="email"
+              name="email"
               placeholder="Enter Email"
               value={details.email}
-              onChange={e => setDetails({ ...details, email: e.target.value })}
+              onChange={handleChange}
             />
+            {inputChangeState.email &&
+              !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+                details.email
+              ) && <span>You have entered an invalid email address!</span>}
             <input
               type="password"
+              name="password"
               placeholder="Enter Password"
               value={details.password}
-              onChange={e =>
-                setDetails({ ...details, password: e.target.value })
-              }
+              onChange={handleChange}
             />
+            {inputChangeState.password &&
+              !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(
+                details.password
+              ) && (
+                <span>
+                  Must be between 6 and 15 characters and contain a number.
+                </span>
+              )}
             <button type="submit">
               {loading ? (
                 <Loader type="Oval" color="#fff" height={40} width={30} />
@@ -66,7 +104,8 @@ const Login = props => {
                 'Login'
               )}
             </button>
-            {error && <div>{error}</div>}
+            {loginError && <div>{loginError}</div>}
+            {allFields ? <span>All fields are required.</span> : null}
           </form>
           <div>
             <span></span>
@@ -93,7 +132,7 @@ const Login = props => {
 const mapStatetoProps = state => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    loginError: state.auth.loginError
   };
 };
 export default connect(

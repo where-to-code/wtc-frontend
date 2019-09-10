@@ -16,7 +16,7 @@ import { signup } from '../redux/actionCreators';
 import logo from '../assets/logo.png';
 
 const Registration = props => {
-  const { signup, loading, error } = props;
+  const { signup, loading, signUpError } = props;
   const [formState, updateFormState] = useState({
     firstname: '',
     lastname: '',
@@ -32,6 +32,8 @@ const Registration = props => {
     password: false,
     confirmPassword: false
   });
+
+  const [allFields, setAllFields] = useState(false);
 
   const handleChange = e => {
     updateFormState({
@@ -58,8 +60,10 @@ const Registration = props => {
       !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
       password !== confirmPassword
     ) {
+      setAllFields(true);
       return;
     }
+    setAllFields(false);
     signup(formState).then(res => {
       if (res.status === 201) {
         // since the user is automatically looged in after sigin up 
@@ -156,7 +160,8 @@ const Registration = props => {
                 'Sign Up'
               )}
             </button>
-            {error && <div>{error}</div>}
+            {signUpError && <div>{signUpError}</div>}
+            {allFields ? <span>All fields are required.</span> : null}
           </form>
 
           <div>
@@ -182,7 +187,7 @@ const Registration = props => {
 const mapStatetoProps = state => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    signUpError: state.auth.signUpError
   };
 };
 

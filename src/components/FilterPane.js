@@ -1,32 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FilterPaneStyle } from './componentStyles/FilterPaneStyles';
+import Checkbox from './Checkbox';
 
 const FilterPane = props => {
-  const { toggle, show } = props;
+  const { setNewLocations } = props;
+  const [filter, setFilter] = useState({
+    quiet: false,
+    wifi: false,
+    accessibility: false,
+    community: false
+  });
+
+  const checkboxes = ['quiet', 'wifi', 'accessibility', 'community'];
   return (
-    <FilterPaneStyle show={toggle}>
-      <div className="filter" onClick={show}>
-        Filter
-      </div>
+    <FilterPaneStyle show={true}>
+      <div className="filter">Filter</div>
       <div className="pane">
-        <div className="check">
-          <div className="content">
-            <input type="checkbox" name="option1" value="Quiet" />
-            <div>Quiet</div>
-          </div>
-        </div>
-        <div className="check">
-          <div className="content">
-            <input type="checkbox" name="option3" value="wifi" />
-            <div>Fast Wifi</div>
-          </div>
-        </div>
-        <div className="check">
-          <div className="content">
-            <input type="checkbox" name="option3" value="public" />
-            <div>Public Space</div>
-          </div>
-        </div>
+        {checkboxes.map(check => (
+          <Checkbox
+            key={check}
+            name={check}
+            fiterCondition={setFilter}
+            filter={filter}
+            setNewLocations={setNewLocations}
+          />
+        ))}
       </div>
     </FilterPaneStyle>
   );
