@@ -21,7 +21,7 @@ cursor: default;
     background:white;
     width: 50%;
     min-width: 300px;
-    max-width: 400px;
+    max-width: 600px;
     border-radius:10px;
     color: #666A7C;
 }
