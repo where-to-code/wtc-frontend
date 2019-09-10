@@ -65,4 +65,18 @@ h2{
     color: #56C1CB;
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
+
+.left-box{
+    width: 50%;
+    margin: 10px
+}
+.right-box{
+    width: 100%;
+    margin: 10px
+}
+
 `;

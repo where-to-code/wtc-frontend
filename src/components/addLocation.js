@@ -13,6 +13,7 @@ import { mapPromise } from '../redux/helpers';
 export default function AddLocation (props){
     const [loadingForm, setLoading] = useState(false);
     const [uploadingImage, setUploadingImage] = useState(false);
+    const [locationPhotos, setLocationPhotos] = useState(null);
     const hideMessage = () =>{
         console.log('hiding message');
         document.getElementById('add-location-form').style.display = 'none';
@@ -37,11 +38,11 @@ export default function AddLocation (props){
         
         // force auto-complete to return only business
         autocomplete.setTypes(['establishment']);
-        autocomplete.setFields(
-            ['formatted_address']);
+        // autocomplete.setFields(
+        //     ['formatted_address']);
         autocomplete.addListener('place_changed', () => {
             const place = autocomplete.getPlace();
-            console.log('Place', place);
+            setLocationPhotos(place.photos[0].getUrl())
         });
         });
     });
@@ -59,39 +60,28 @@ export default function AddLocation (props){
                     <h2>Add a new location</h2>
                     </div>
                     <Row>
-                    <div className="upload-box">
-                        <StyledButton onClick={uploadImage}>
+                    
                         {
-                        uploadingImage 
-                        ? 
-                        <Loader type="Grid" color="#56C1CB" height={40} width={30} /> 
-                        : 
-                        <>Upload image</>
+                            locationPhotos && 
+                            <>
+                                <div className="left-box">
+                                <img className="location-photos" alt="location" src={locationPhotos} />    
+                                </div>
+                                
+                            </>
                         }
-                        </StyledButton>
-                    </div>
-                    <div className="input-field-box">
+                    <div className="right-box">
                         <StyledInput
                             type="text"
-                            placeholder="Location name"
+                            placeholder="Location Name or Address "
                             id="location-name-field"
                         >
                         </StyledInput>
-                        <StyledInput
-                            type="text"
-                            placeholder="Location address"
-                        >
-                        </StyledInput>
-                    </div>
-                    </Row>
-                    <Row>
-                    <StyledTextarea 
+                        <StyledTextarea 
                         rows="5"
-                        placeholder="Location description"
+                        placeholder="General Location Description"
                         >
                         </StyledTextarea>
-                    </Row>
-                    <div className="actions-row">
                         <StyledButton type="submit">
                         {
                             loadingForm 
@@ -101,7 +91,8 @@ export default function AddLocation (props){
                             <>Add location</>
                         }
                         </StyledButton>
-                    </div>    
+                    </div>
+                    </Row>  
                 </form>
                 </>        
             }
