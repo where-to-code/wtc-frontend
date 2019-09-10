@@ -12,11 +12,11 @@ env:
    
 before_script:
   - psql -c 'create database frontend_test;' -U postgres
-  - npm install jest-coverage-badges
+  - npm install make-coverage-badge
 script:
   - npm test
   - sudo /etc/init.d/postgresql stop 
 after_script:
-  - jest-coverage-badges
+  - make-coverage-badge
 notifications:
   email: false
