@@ -13,8 +13,8 @@ import {
 } from './ViewStyles/AuthStyles';
 
 const ResetPassword = props => {
-  const { loading, error, resetPassword } = props;
-  const id =  Number(props.location.search.split('=')[1])
+  const { loading, error, resetPassword, location } = props;
+  const id =  Number(location.search.split('=')[1])
   const [details, setDetails] = useState({
     password: '',
     id,
@@ -102,7 +102,7 @@ const ResetPassword = props => {
                 'Reset Password'
               )}
             </button>
-            {error && <div class="error-message">{error}</div>}
+            {error && <div className="error-message">{error}</div>}
           </form>
   
         </StyledLeftSection>
