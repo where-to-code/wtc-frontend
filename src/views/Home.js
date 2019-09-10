@@ -25,7 +25,7 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
 
         setGeolocationValue({ lat: latitude, lng: longitude });
         clearLocations();
-        //updatePos(true);
+        updatePos(true);
       });
     });
   });

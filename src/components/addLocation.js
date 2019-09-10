@@ -12,8 +12,9 @@ import { mapPromise } from '../redux/helpers';
 
 export default function AddLocation (props){
     const [loadingForm, setLoading] = useState(false);
-    const [uploadingImage, setUploadingImage] = useState(false);
+    //const [uploadingImage, setUploadingImage] = useState(false);
     const [locationPhotos, setLocationPhotos] = useState(null);
+    const [placeData, setPlaceData] = useState(null);
     const hideMessage = () =>{
         console.log('hiding message');
         document.getElementById('add-location-form').style.display = 'none';
@@ -21,15 +22,15 @@ export default function AddLocation (props){
     const submitLocation = (event) =>{
         event.preventDefault();
         setLoading(true);
-        console.log('Submitting form');
     }
 
-    const uploadImage = (event) =>{
-        event.preventDefault();
-        setUploadingImage(true);
-        console.log('Submitting form');
-    }
+    // const uploadImage = (event) =>{
+    //     event.preventDefault();
+    //     setUploadingImage(true);
+    //     console.log('Submitting form');
+    // }
 
+    // useEffect to use the Map place API autocomplete
     useEffect(() => {
         Promise.resolve(mapPromise).then(mapObject => {
         const autocomplete = new mapObject.maps.places.Autocomplete(
@@ -38,11 +39,10 @@ export default function AddLocation (props){
         
         // force auto-complete to return only business
         autocomplete.setTypes(['establishment']);
-        // autocomplete.setFields(
-        //     ['formatted_address']);
         autocomplete.addListener('place_changed', () => {
             const place = autocomplete.getPlace();
             setLocationPhotos(place.photos[0].getUrl())
+            setPlaceData(place);
         });
         });
     });
@@ -60,7 +60,6 @@ export default function AddLocation (props){
                     <h2>Add a new location</h2>
                     </div>
                     <Row>
-                    
                         {
                             locationPhotos && 
                             <>
@@ -73,6 +72,7 @@ export default function AddLocation (props){
                     <div className="right-box">
                         <StyledInput
                             type="text"
+                            name="name-adress"
                             placeholder="Location Name or Address "
                             id="location-name-field"
                         >
