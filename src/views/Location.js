@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleLocation } from '../redux/actionCreators';
 import { StyledLoader } from './ViewStyles/SearchPageStyles';
-import { LocationContainer, TopContainer, TopRightContainer } from './ViewStyles/LocationStyles';
+import {
+  LocationContainer,
+  TopContainer,
+  TopRightContainer
+} from './ViewStyles/LocationStyles';
 import Header from '../components/Header';
 import ReviewContainer from '../components/ReviewContainer';
 import LocationBanner from '../components/LocationBanner';

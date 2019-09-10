@@ -11,17 +11,17 @@ export const StyledLoader = styled.div`
 `;
 
 export const StyledSearch = styled.div`
+  text-align: center;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 60px;
+  margin-top: 50px;
+  width: 100%;
   @media (min-width: 600px) {
     flex-direction: row;
+    margin-top: 60px;
     .filter {
     }
-  }
-  #map {
-    width: 35vw;
   }
 `;
 
@@ -29,11 +29,17 @@ export const CardContainer = styled.div`
   margin: 20px 30px;
   display: flex;
   flex-direction: column;
+  width: 100%;
   @media (min-width: 600px) {
     flex-direction: row;
-    margin: 20px 40px;
-    width: 60vw;
     flex-wrap: wrap;
     justify-content: space-evenly;
+  }
+`;
+
+export const LeftPane = styled.div`
+  width: 100%;
+  @media (min-width: 600px) {
+    width: 65vw;
   }
 `;

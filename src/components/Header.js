@@ -11,7 +11,7 @@ const Header = props => {
   const isCookie = getCookie(props.userId);
   const onLogout = () => {
     logout(props.userId);
-  }
+  };
 
   return (
     <StyledHeader landing={landing}>
@@ -21,40 +21,34 @@ const Header = props => {
         </Link>
       </div>
       <div className="auth">
-      {
-        isCookie 
-          ? 
-            <button
-            onClick={onLogout}>
-              Logout
-            </button>
-          : (
-            <>
+        {isCookie ? (
+          <button onClick={onLogout}>Logout</button>
+        ) : (
+          <>
             <Link to="/signup">
-            <button>Sign Up</button>
-           </Link>
+              <button>Sign Up</button>
+            </Link>
             <Link to="/login">
               <button>Login</button>
-            </Link>  
-            </>
-          )
-      }
-      {
-        !props.isEmailVerified &&
-        <TopNotif isVerified={props.isEmailVerified} />
-      }
+            </Link>
+          </>
+        )}
+        {!props.isEmailVerified && (
+          <TopNotif isVerified={props.isEmailVerified} />
+        )}
       </div>
     </StyledHeader>
   );
 };
 
-function mapStateToProps (state) {
-  return{
+function mapStateToProps(state) {
+  return {
     userId: state.auth.userId,
-    isEmailVerified: state.auth.isEmailVerified,
-  }
-};
+    isEmailVerified: state.auth.isEmailVerified
+  };
+}
 
 export default connect(
-  mapStateToProps, null
+  mapStateToProps,
+  null
 )(Header);

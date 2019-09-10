@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import icon from '../../assets/searchicon.png';
 
 export const StyledHome = styled.div`
   height: 100vh;

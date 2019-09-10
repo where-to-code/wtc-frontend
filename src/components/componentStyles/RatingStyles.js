@@ -36,7 +36,7 @@ export const StyledAverage = styled.div`
     h3 {
       font-size: 36px;
     }
-    p{
+    p {
       font-size: 100px;
     }
     button {

@@ -7,7 +7,6 @@ import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 import { setTempCookie } from '../components/helpers/authHelpers';
 
-
 const url = 'https://where2code.herokuapp.com/api/auth/gitAuth';
 
 const StyledSpinner = styled.div`
@@ -31,7 +30,7 @@ const GitHub = ({ location, successGitlog }) => {
         successGitlog(res.data.data);
         // Login is successful so we write a cookie to auth the user
         setTempCookie(res.data.data.id, res.data.data.lastname);
-        setIsAuth(true)
+        setIsAuth(true);
       })
       .catch(err => setIsAuth(false));
   }, []);
@@ -45,7 +44,6 @@ const GitHub = ({ location, successGitlog }) => {
 
   return isAuth ? <Redirect to="/" /> : <Redirect to="signup" />;
 };
-
 
 const mapStatetoProps = state => {
   return {
