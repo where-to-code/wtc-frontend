@@ -125,14 +125,14 @@ const locations = {
 // Auth
 export function authLoad() {
   return {
-    type: types.AUTH_LOAD
+    type: types.AUTH_LOAD,
   };
 }
 
 export function authSuccess(user) {
   return {
     type: types.AUTH_SUCCESS,
-    payload: user
+    payload: user,
   };
 }
 
@@ -151,8 +151,8 @@ export function authFailLogin(payload) {
 }
 
 export const login = user => async dispatch => {
-  dispatch(authLoad());
   try {
+    dispatch(authLoad());
     const loginDetails = await axios
     .post(`${url}/auth/login`, user, {
       withCredentials: true,
@@ -160,7 +160,8 @@ export const login = user => async dispatch => {
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
-    dispatch(authFailLogin(error.message));
+    const errorValue = error.response ? error.response.data.message : error.message
+    dispatch(authFailLogin(errorValue));
     return error;
   }
 };
@@ -171,36 +172,32 @@ export const successGitlog = (userData) => dispatch =>{
 
 export const signup = userData => async dispatch => {
   const { firstname, lastname, email, password } = userData;
-  dispatch(authLoad());
   try {
-    const userDetails = await axios
-      .post(
-        `${url}/auth/register`, 
-      {
-        firstname,
-        lastname,
-        email,
-        password
-      },
-      { withCredentials: true }
-    );
-    dispatch(authSuccess(userDetails.data.data));
+    dispatch(authLoad());
+    const userDetails = await axios.post(`${url}/auth/register`, {
+      firstname,
+      lastname,
+      email,
+      password,
+    });
+    dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
-    dispatch(authFailSignup(error.message));
-    return error;
+    const errorValue = error.response ? error.response.data.message : error.message
+    return dispatch(authFailSignup(errorValue));
+    
   }
 };
 
 // Locations
 export const locationSuccess = locationList => ({
   type: types.FETCH_LOCATIONS_SUCCESS,
-  payload: locationList.data
+  payload: locationList.data,
 });
 
 export const locationFailure = error => ({
   type: types.FETCH_LOCATIONS_FAILURE,
-  payload: error
+  payload: error,
 });
 
 export const allLocationsSuccess = locationList => ({
@@ -211,25 +208,26 @@ export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
     const locationsInfo = await axios.get(
-      `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`
+      `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`,
     );
     dispatch(locationSuccess(locationsInfo.data));
     dispatch(allLocationsSuccess(locationsInfo.data));
   } catch (error) {
-    dispatch(locationFailure(error.message));
+    const errorValue = error.response ? error.response.data.message : error.message
+    dispatch(locationFailure(errorValue));
   }
 };
 
 export const filterLocations = locations => async dispatch => {
   try {
-    dispatch(locationSuccess(locations));
+    return dispatch(locationSuccess(locations));
   } catch (error) {
-    dispatch(locationFailure(error));
+    return dispatch(locationFailure(error));
   }
 };
 
 export const clearLocations = () => ({
-  type: types.CLEAR_LOCATIONS
+  type: types.CLEAR_LOCATIONS,
 });
 
 // ACTIONS FOR MAPS REDUCER
@@ -239,7 +237,7 @@ export const mapsSucces = mapsObj => ({
 });
 export const mapsFailure = error => ({
   type: types.FETCH_MAP_API_FAILURE,
-  payload: error
+  payload: error,
 });
 
 export const mapsLoading = () => async dispatch => {
@@ -250,16 +248,17 @@ export const mapsLoading = () => async dispatch => {
       dispatch(mapsSucces(value[0].maps));
     });
   } catch (error) {
-    dispatch(mapsFailure(error.message));
+    const errorValue = error.response.data ? error.response.data.message : error.message
+    dispatch(mapsFailure(errorValue));
   }
 };
 
 export const setGeolocationTrue = () => ({
-  type: types.SET_GEOLOCATION_TRUE
+  type: types.SET_GEOLOCATION_TRUE,
 });
 
 export const setGeolocationFalse = () => ({
-  type: types.SET_GEOLOCATION_FALSE
+  type: types.SET_GEOLOCATION_FALSE,
 });
 
 export const setGeolocationValue = geolocation => ({
@@ -270,12 +269,12 @@ export const setGeolocationValue = geolocation => ({
 // ACTIONS FOR SINGLE LOCATION REDUCER
 export const singleLocSuccess = locationList => ({
   type: types.FETCH_SINGLE_LOCATIONS_SUCCESS,
-  payload: locationList
+  payload: locationList,
 });
 
 export const singleLocFailure = error => ({
   type: types.FETCH_SINGLE_LOCATIONS_FAILURE,
-  payload: error
+  payload: error,
 });
 
 export const fetchSingleLocation = locId => async dispatch => {
@@ -284,18 +283,19 @@ export const fetchSingleLocation = locId => async dispatch => {
     const locationInfo = await axios.get(`${url}/locations/${locId}`);
     dispatch(singleLocSuccess(locationInfo.data.data));
   } catch (error) {
-    dispatch(singleLocFailure(error.message));
+    const errorValue = error.response ? error.response.data.message : error.message
+    dispatch(singleLocFailure(errorValue));
   }
 };
 
 // ACTIONS FOR ACTIVE LOCATION REDUCER
 export const setActive = location => ({
   type: types.SET_ACTIVE,
-  payload: location
+  payload: location,
 });
 
 export const clearActive = location => ({
-  type: types.CLEAR_ACTIVE
+  type: types.CLEAR_ACTIVE,
 });
 
 // verify email
@@ -331,7 +331,7 @@ export const verifyEmail = email => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(verifyEmailFail(err.response.data.message));
+      dispatch(verifyEmailFail(err.response.data.message || err.message));
       toast.error('account verification not successful');
       return err;
     });
@@ -374,8 +374,8 @@ export const resetPassword = (password, id) => dispatch => {
       return res;
     })
     .catch(err => {
-      console.log(err);
-      dispatch(resetPasswordFail(err.response.data.message));
+      const errorValue = err.response ? err.response.data.message : err.message
+      dispatch(resetPasswordFail(errorValue));
       toast.error('password reset not successful, try again');
       return err;
     });
@@ -394,7 +394,8 @@ export const resendEmailVerification = email => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(verifyEmailFail(err.response.data.message));
+      const errorValue = err.response ? err.response.data.message : err.message
+      dispatch(verifyEmailFail(errorValue));
       return err;
     });
 };
