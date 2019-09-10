@@ -26,7 +26,7 @@ describe('Registartion tests', () => {
     it('render the error if present', () => {
         const reducer = {
             auth: {
-                error: 'error'
+                signUpError: 'error'
             }
         }
         const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
@@ -67,6 +67,15 @@ describe('Registartion tests', () => {
         fireEvent.change(getByPlaceholderText('Confirm Password'), { target: { value: 'giacomo2' } })
         fireEvent.click(getByText('Sign Up'))
         expect(getByDisplayValue('giacomobenati@mailbox.org')).toBeTruthy()
+    })
+    it('push to /login if Login is clicked', () => {
+        const redirectUrl = '/login'
+        const mainRoute = '/signup'
+        const { getByText, container } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Registration {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />, {}, { route: mainRoute })
+        fireEvent.click(getByText('Login'))
+        expect(container.innerHTML).toEqual(
+            expect.stringContaining(redirectUrl)
+        )
     })
     describe("display an error message if validation don't pass", () => {
         it('test first name validation', () => {
