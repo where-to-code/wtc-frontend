@@ -160,8 +160,8 @@ export const login = user => async dispatch => {
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
-    console.log(error)
-    dispatch(authFailLogin(error.response.data.message || error.message));
+    const errorValue = error.response ? error.response.data.message : error.message
+    dispatch(authFailLogin(errorValue));
     return error;
   }
 };
@@ -183,7 +183,8 @@ export const signup = userData => async dispatch => {
     dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
-    return dispatch(authFailSignup(error.response.data.message || error.message));
+    const errorValue = error.response ? error.response.data.message : error.message
+    return dispatch(authFailSignup(errorValue));
     
   }
 };
@@ -212,15 +213,16 @@ export const locationLoads = currentLocation => async dispatch => {
     dispatch(locationSuccess(locationsInfo.data));
     dispatch(allLocationsSuccess(locationsInfo.data));
   } catch (error) {
-    dispatch(locationFailure(error.response.data.message || error.message));
+    const errorValue = error.response ? error.response.data.message : error.message
+    dispatch(locationFailure(errorValue));
   }
 };
 
 export const filterLocations = locations => async dispatch => {
   try {
-    dispatch(locationSuccess(locations));
+    return dispatch(locationSuccess(locations));
   } catch (error) {
-    dispatch(locationFailure(error));
+    return dispatch(locationFailure(error));
   }
 };
 
@@ -246,7 +248,8 @@ export const mapsLoading = () => async dispatch => {
       dispatch(mapsSucces(value[0].maps));
     });
   } catch (error) {
-    dispatch(mapsFailure(error.message));
+    const errorValue = error.response.data ? error.response.data.message : error.message
+    dispatch(mapsFailure(errorValue));
   }
 };
 
@@ -280,7 +283,8 @@ export const fetchSingleLocation = locId => async dispatch => {
     const locationInfo = await axios.get(`${url}/locations/${locId}`);
     dispatch(singleLocSuccess(locationInfo.data.data));
   } catch (error) {
-    dispatch(singleLocFailure(error.response.data.message || error.message));
+    const errorValue = error.response ? error.response.data.message : error.message
+    dispatch(singleLocFailure(errorValue));
   }
 };
 
@@ -370,7 +374,8 @@ export const resetPassword = (password, id) => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(resetPasswordFail(err.response.data.message || err.message));
+      const errorValue = err.response ? err.response.data.message : err.message
+      dispatch(resetPasswordFail(errorValue));
       toast.error('password reset not successful, try again');
       return err;
     });
@@ -389,7 +394,8 @@ export const resendEmailVerification = email => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(verifyEmailFail(err.response.data.message || err.message));
+      const errorValue = err.response ? err.response.data.message : err.message
+      dispatch(verifyEmailFail(errorValue));
       return err;
     });
 };

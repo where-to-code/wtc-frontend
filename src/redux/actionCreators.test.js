@@ -62,18 +62,14 @@ describe('authentication', () => {
 })
 it('fail login with 404', async()=>{
   const error = {
-    response:{
-      data:{
         message:'Request failed with status code 404'
-      }
-    }
   }
   mock.onPost(`${url}/auth/login`).reply(404, error)
   const expectedActions = [
     { type: types.AUTH_LOAD },
     {
       type: types.AUTH_FAILURE_LOGIN,
-      payload: error.response.data.message,
+      payload: error.message,
     },
   ];
   const store = mockStore({ userId: '' });
@@ -82,18 +78,14 @@ it('fail login with 404', async()=>{
 })
 it('fail login  with 500', async()=>{
   const error = {
-    response:{
-      data:{
         message:'Request failed with status code 500'
-      }
-    }
   }
   mock.onPost(`${url}/auth/login`).reply(500, error)
   const expectedActions = [
     { type: types.AUTH_LOAD },
     {
       type: types.AUTH_FAILURE_LOGIN,
-      payload: error.response.data.message
+      payload: error.message
     },
   ];
   const store = mockStore({ userId: '' });
@@ -103,11 +95,8 @@ it('fail login  with 500', async()=>{
 
 it('fail login  with 400', async()=>{
   const error = {
-    response:{
-      data:{
+   
         message:'Request failed with status code 400'
-      }
-    }
   }
   mock.onPost(`${url}/auth/login`).reply(400, error)
 
@@ -115,7 +104,7 @@ it('fail login  with 400', async()=>{
     { type: types.AUTH_LOAD },
     {
       type: types.AUTH_FAILURE_LOGIN,
-      payload: error.response.data.message,
+      payload: error.message,
     },
   ];
   const store = mockStore({ userId: '' });
@@ -124,19 +113,13 @@ it('fail login  with 400', async()=>{
 })
 
 it('fail login if there is network issue', async()=>{
-  const error = {
-    response:{
-      data:{
-        message:'Network Error'
-      }
-    }
-  }
-  mock.onPost(`${url}/auth/login`).networkError(error)
+
+  mock.onPost(`${url}/auth/login`).networkError()
   const expectedActions = [
     { type: types.AUTH_LOAD },
     {
       type: types.AUTH_FAILURE_LOGIN,
-      payload: error.response.data.message,
+      payload: 'Network Error',
     },
   ];
   const store = mockStore({ userId: '' });
@@ -251,46 +234,52 @@ describe('fetch locations', () => {
       activeLocation: {}
     });
     await store.dispatch(actions.locationLoads(currentPosition));
-    // expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions()).toEqual(expectedActions);
   });
 
   it('location_loading failure', async () => {
+    const error = {
+      message:'Request failed with status code 500'
+    }
     mock
       .onGet(
         `${url}/locations?lat=${currentPosition.lat}&long=${currentPosition.lng}`
       )
-      .reply(404);
+      .reply(404, error);
     //mock the get method when path is not found
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
       {
         type: types.FETCH_LOCATIONS_FAILURE,
-        payload: 'Request failed with status code 404',
+        payload: error.message,
       },
     ];
     const store = mockStore({ locations: [] });
     await store.dispatch(actions.locationLoads(currentPosition));
     expect(store.getActions()).toEqual(expectedActions);
   });
-  it('location_loading failure', async () => {
+  it('location_loading failure with 500', async () => {
+    const error = {
+      message:'Request failed with status code 500'
+    }
     mock
       .onGet(
         `${url}/locations?lat=${currentPosition.lat}&long=${currentPosition.lng}`
       )
-      .reply(500);
+      .reply(500, error);
     //mock the get method for other causes of error
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
       {
         type: types.FETCH_LOCATIONS_FAILURE,
-        payload: 'Request failed with status code 500',
+        payload: error.message,
       },
     ];
     const store = mockStore({ locations: [] });
     await store.dispatch(actions.locationLoads(currentPosition));
     expect(store.getActions()).toEqual(expectedActions);
   });
-  it('location_loading failure', async () => {
+  it('location_loading failure with network error', async () => {
     //mock the get method when network fails
     mock
       .onGet(
@@ -301,12 +290,46 @@ describe('fetch locations', () => {
       { type: types.LOADING_LOCATIONS },
       { type: types.FETCH_LOCATIONS_FAILURE, payload: 'Network Error' },
     ];
-    const store = mockStore({ mockLocations });
+    const store = mockStore({ locations:mockLocations });
     await store.dispatch(actions.locationLoads(currentPosition));
     expect(store.getActions()).toEqual(expectedActions);
   });
 });
-
+describe('filter locations',() =>{
+  const mockLocations = {
+    status: 200,
+    data: [
+      {
+        id: 1,
+        description: '123 Arizona road',
+        name: 'Ariz Coffee Shop',
+        image_url: 'image',
+        address: 'some address',
+        longitude: '0.999923',
+        latitude: '0.273444',
+        created_at: ''
+      }
+    ]
+  };
+  it('filter location successful',async()=>{
+    const expectedActions = [
+      { type: types.FETCH_LOCATIONS_SUCCESS,
+        payload: mockLocations.data }
+    ];
+    const store = mockStore({ locations: []});
+    await store.dispatch(actions.locationSuccess(mockLocations));
+    expect(store.getActions()).toEqual(expectedActions);
+  })
+  it('filter location failure',async()=>{
+    const expectedActions = [
+      { type: types.FETCH_LOCATIONS_FAILURE,
+        payload: 'There was an error' }
+    ];
+    const store = mockStore({ locations: []});
+    await store.dispatch(actions.locationFailure('There was an error'));
+    expect(store.getActions()).toEqual(expectedActions);
+  })
+})
 describe('fetch maps', () => {
   it('mapsSucces', () => {
     expect(actions.mapsSucces({})).toBeTruthy();
