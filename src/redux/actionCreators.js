@@ -293,7 +293,7 @@ export const setActive = location => ({
   payload: location,
 });
 
-export const clearActive = location => ({
+export const clearActive = ()=> ({
   type: types.CLEAR_ACTIVE,
 });
 
@@ -319,7 +319,7 @@ export function verifyEmailFail(payload) {
 }
 
 export const verifyEmail = email => dispatch => {
-  dispatch(verifyEmailLoad());
+  dispatch({ type: types.VERIFY_EMAIL_LOAD });
   return axios
     .post(`${url}/auth/forgot`, email, {
       withCredentials: true
