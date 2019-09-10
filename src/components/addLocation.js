@@ -14,14 +14,23 @@ export default function AddLocation (props){
     const [loadingForm, setLoading] = useState(false);
     //const [uploadingImage, setUploadingImage] = useState(false);
     const [locationPhotos, setLocationPhotos] = useState(null);
+    const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
     const hideMessage = () =>{
-        console.log('hiding message');
         document.getElementById('add-location-form').style.display = 'none';
     }
     const submitLocation = (event) =>{
         event.preventDefault();
         setLoading(true);
+        const locationsDetailsToStore =  {
+            name: placeData.name,
+            description: description,
+            image_url: locationPhotos,
+            address: placeData.formatted_address,
+            longitude: placeData.geometry.location.lng(),
+            latitude: placeData.geometry.location.lat(),
+            place_id: placeData.place_id
+        }
     }
 
     // const uploadImage = (event) =>{
@@ -29,6 +38,10 @@ export default function AddLocation (props){
     //     setUploadingImage(true);
     //     console.log('Submitting form');
     // }
+
+    const handleChange = event => {
+        setDescription(event.target.value);
+      };
 
     // useEffect to use the Map place API autocomplete
     useEffect(() => {
@@ -80,6 +93,8 @@ export default function AddLocation (props){
                         <StyledTextarea 
                         rows="5"
                         placeholder="General Location Description"
+                        value={description}
+                        onChange={handleChange}
                         >
                         </StyledTextarea>
                         <StyledButton type="submit">
