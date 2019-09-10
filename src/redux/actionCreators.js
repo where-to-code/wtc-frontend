@@ -430,9 +430,8 @@ export function addNewLocationFail(error) {
 }
 
 export const addNewLocation = locationData => dispatch => {
-  console.log('locationData', locationData);
-  
-  // dispatch(addNewLocationLoad());
+  dispatch(addNewLocationLoad());
+  return
   // return axios
   //   .post(`${url}/locations/add`, locationData, {
   //     withCredentials: true

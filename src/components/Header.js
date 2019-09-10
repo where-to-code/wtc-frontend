@@ -15,7 +15,6 @@ const Header = props => {
   }
 
   const displayAddForm = () => {
-    console.log('display adding location');
     document.getElementById('add-location-form').style.display = 'flex';
   }
   return (

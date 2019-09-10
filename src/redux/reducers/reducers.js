@@ -215,3 +215,45 @@ export const resetPasswordReducer = (state = passwordState, action) => {
       return state;
   }
 };
+
+// Adding new location
+
+const newLocation = {
+  id: '',
+  name: '',
+  description: '',
+  image_url: '',
+  address: '',
+  longitude: '',
+  latitude: '',
+  place_id: '',
+  loading: false,
+  error: ''
+};
+
+export const addLocationReducer = (state = newLocation, action) => {
+  switch (action.type) {
+    case types.ADD_NEW_LOCATION_LOAD:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case types.ADD_NEW_LOCATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        password: action.payload
+      };
+
+    case types.ADD_NEW_LOCATION_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
+
+    default:
+      return state;
+  }
+};

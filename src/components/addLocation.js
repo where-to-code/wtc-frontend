@@ -14,7 +14,6 @@ import { mapPromise } from '../redux/helpers';
 
 function AddLocation (props){
 
-    const [loadingForm, setLoading] = useState(false);
     //const [uploadingImage, setUploadingImage] = useState(false);
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
@@ -24,7 +23,6 @@ function AddLocation (props){
     }
     const submitLocation = (event) =>{
         event.preventDefault();
-        setLoading(true);
         props.addNewLocation({
             name: placeData.name,
             description: description,
@@ -102,7 +100,7 @@ function AddLocation (props){
                         </StyledTextarea>
                         <StyledButton type="submit">
                         {
-                            loadingForm 
+                            props.loading 
                             ? 
                             <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
                             : 
@@ -120,7 +118,10 @@ function AddLocation (props){
 };
 
 const mapStatetoProps = state => {
-    return {};
+    console.log('state', state)
+    return {
+        loading: state.newLocation.loading
+    };
   };
   
   export default connect(
