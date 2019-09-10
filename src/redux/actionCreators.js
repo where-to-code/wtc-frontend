@@ -430,17 +430,19 @@ export function addNewLocationFail(error) {
 }
 
 export const addNewLocation = locationData => dispatch => {
-  dispatch(addNewLocationLoad());
-  return axios
-    .post(`${url}/locations/add`, locationData, {
-      withCredentials: true
-    })
-    .then(res => {
-      dispatch(addNewLocationSuccess(res.data));
-      return res;
-    })
-    .catch(err => {
-      dispatch(addNewLocationFail(err.response.data.message));
-      return err;
-    });
+  console.log('locationData', locationData);
+  
+  // dispatch(addNewLocationLoad());
+  // return axios
+  //   .post(`${url}/locations/add`, locationData, {
+  //     withCredentials: true
+  //   })
+  //   .then(res => {
+  //     dispatch(addNewLocationSuccess(res.data));
+  //     return res;
+  //   })
+  //   .catch(err => {
+  //     dispatch(addNewLocationFail(err.response.data.message));
+  //     return err;
+  //   });
 };

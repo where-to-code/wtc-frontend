@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { StyledOverlayPopup } from '../components/componentStyles/OverlayPopupStyles';
+import { connect } from 'react-redux';
+import { addNewLocation } from '../redux/actionCreators';
+import { StyledOverlayPopup } from './componentStyles/OverlayPopupStyles';
 import { 
     StyledButton,
     StyledInput,
     StyledTextarea,
     Row
- } from '../components/componentStyles/FormElementsStyles';
+ } from './componentStyles/FormElementsStyles';
 import Loader from 'react-loader-spinner';
 import { mapPromise } from '../redux/helpers';
 
 
-export default function AddLocation (props){
+function AddLocation (props){
+
     const [loadingForm, setLoading] = useState(false);
     //const [uploadingImage, setUploadingImage] = useState(false);
     const [locationPhotos, setLocationPhotos] = useState(null);
@@ -22,7 +25,7 @@ export default function AddLocation (props){
     const submitLocation = (event) =>{
         event.preventDefault();
         setLoading(true);
-        const locationsDetailsToStore =  {
+        props.addNewLocation({
             name: placeData.name,
             description: description,
             image_url: locationPhotos,
@@ -30,7 +33,7 @@ export default function AddLocation (props){
             longitude: placeData.geometry.location.lng(),
             latitude: placeData.geometry.location.lat(),
             place_id: placeData.place_id
-        }
+        })
     }
 
     // const uploadImage = (event) =>{
@@ -114,4 +117,13 @@ export default function AddLocation (props){
         </div>
         </StyledOverlayPopup>
     );
-}
+};
+
+const mapStatetoProps = state => {
+    return {};
+  };
+  
+  export default connect(
+    mapStatetoProps,
+    { addNewLocation }
+  )(AddLocation);

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import TopNotif from '../components/TopNotif';
-import AddLocation from '../components/addLocation';
+import AddLocation from '../components/AddLocation';
 import logo from '../assets/logo.png';
 
 const Header = props => {
