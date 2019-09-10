@@ -5,7 +5,7 @@ const LocationBanner = props => {
   const { location } = props;
   return (
     <StyledLocationBanner>
-      <div className='banner-img'>
+      <div className="banner-img">
         <img src={location.image_url} alt="Location visual" />
         <h3>{location.name}</h3>
       </div>

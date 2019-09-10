@@ -1,8 +1,7 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 import { mapPromise } from './helpers';
-import { toast } from "react-toastify";
-
+import { toast } from 'react-toastify';
 
 const url = 'https://where2code.herokuapp.com/api';
 
@@ -21,7 +20,7 @@ const locations = {
       avg_wifi_speed: 4,
       avg_accessibility: 3,
       avg_community: 4,
-      id:1
+      id: 1
     },
     {
       name: 'Domino"s Pizza',
@@ -35,7 +34,7 @@ const locations = {
       avg_wifi_speed: 2,
       avg_accessibility: 5,
       avg_community: 1,
-      id:1
+      id: 1
     },
     {
       name: 'Babacorvee Plaza',
@@ -49,7 +48,7 @@ const locations = {
       avg_wifi_speed: 3,
       avg_accessibility: 2,
       avg_community: 3,
-      id:1
+      id: 1
     },
     {
       name: 'Chicken Republic',
@@ -63,7 +62,7 @@ const locations = {
       avg_wifi_speed: 2,
       avg_accessibility: 5,
       avg_community: 2,
-      id:1
+      id: 1
     },
     {
       name: 'Vintage Suites',
@@ -77,7 +76,7 @@ const locations = {
       avg_wifi_speed: 5,
       avg_accessibility: 1,
       avg_community: 4,
-      id:1
+      id: 1
     },
     {
       name: 'Swisscottage Suites',
@@ -91,7 +90,7 @@ const locations = {
       avg_wifi_speed: 4,
       avg_accessibility: 2,
       avg_community: 1,
-      id:1
+      id: 1
     },
     {
       name: 'Lagos State Digital Village',
@@ -153,9 +152,8 @@ export function authFailLogin(payload) {
 export const login = user => async dispatch => {
   dispatch(authLoad());
   try {
-    const loginDetails = await axios
-    .post(`${url}/auth/login`, user, {
-      withCredentials: true,
+    const loginDetails = await axios.post(`${url}/auth/login`, user, {
+      withCredentials: true
     });
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
@@ -165,7 +163,7 @@ export const login = user => async dispatch => {
   }
 };
 
-export const successGitlog = (userData) => dispatch =>{
+export const successGitlog = userData => dispatch => {
   dispatch(authSuccess(userData));
 };
 
@@ -173,9 +171,8 @@ export const signup = userData => async dispatch => {
   const { firstname, lastname, email, password } = userData;
   dispatch(authLoad());
   try {
-    const userDetails = await axios
-      .post(
-        `${url}/auth/register`, 
+    const userDetails = await axios.post(
+      `${url}/auth/register`,
       {
         firstname,
         lastname,
@@ -362,8 +359,8 @@ export const resetPassword = (password, id) => dispatch => {
   dispatch(resetPasswordLoad());
   return axios
     .post(
-      `${url}/auth/change/${id}`, 
-      { password }, 
+      `${url}/auth/change/${id}`,
+      { password },
       {
         withCredentials: true
       }

@@ -4,7 +4,11 @@ import Loader from 'react-loader-spinner';
 import Map from '../components/Map';
 import Header from '../components/Header';
 import CardContainer from '../components/CardContainer';
-import { StyledSearch, StyledLoader } from './ViewStyles/SearchPageStyles';
+import {
+  StyledSearch,
+  StyledLoader,
+  LeftPane
+} from './ViewStyles/SearchPageStyles';
 import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
@@ -52,7 +56,7 @@ const SearchPage = props => {
     <>
       <Header />
       <StyledSearch>
-        <div>
+        <LeftPane>
           <FilterPane setNewLocations={setNewLocations} />
           {!isGeolocated && <NoGeoLocation />}
           {loadingLocation && (
@@ -64,7 +68,7 @@ const SearchPage = props => {
             <LocationErr />
           )}
           <CardContainer />
-        </div>
+        </LeftPane>
         <StyledMap>
           <Map />
         </StyledMap>
@@ -81,7 +85,6 @@ const mapStateToProps = state => ({
   activeLocation: state.activeLocation,
   isGeolocated: state.maps.isGeolocated
 });
-
 
 export default connect(
   mapStateToProps,
