@@ -8,8 +8,9 @@ export const StyledAverage = styled.div`
   align-items: center;
   h3 {
     font-family: 'Lexend Giga', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
+    text-align: center;
   }
   p {
     font-size: 80px;
@@ -27,11 +28,10 @@ export const StyledAverage = styled.div`
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 14px;
+    padding: 10px;
     margin: 0 5px;
   }
   @media (min-width: 600px) {
-    width: 40vw;
     margin: 20px;
     h3 {
       font-size: 36px;
@@ -40,8 +40,8 @@ export const StyledAverage = styled.div`
       font-size: 100px;
     }
     button {
-      width: 170px;
-      font-size: 16px;
+      width: 130px;
+      font-size: 12px;
     }
   }
 `;

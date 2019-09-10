@@ -7,7 +7,8 @@ import { StyledLoader } from './ViewStyles/SearchPageStyles';
 import {
   LocationContainer,
   TopContainer,
-  TopRightContainer
+  TopRightContainer,
+  StyledLocation
 } from './ViewStyles/LocationStyles';
 import Header from '../components/Header';
 import ReviewContainer from '../components/ReviewContainer';
@@ -23,7 +24,7 @@ const Location = props => {
   }, []);
   if (props.location) {
     return (
-      <>
+      <StyledLocation>
         <Header />
         <LocationContainer>
           <TopContainer>
@@ -37,7 +38,7 @@ const Location = props => {
             <ReviewContainer reviews={location.reviews} />
           </div>
         </LocationContainer>
-      </>
+      </StyledLocation>
     );
   } else {
     return (

@@ -25,4 +25,11 @@ export const TopRightContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (min-width: 600px) {
+    width: 45vw;
+  }
+`;
+
+export const StyledLocation = styled.div`
+  width: 100vw;
 `;
