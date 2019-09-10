@@ -25,10 +25,13 @@ cursor: default;
     border-radius:10px;
     color: #666A7C;
 }
-h3{
+h3, h2{
     font-size: 1.5rem;
     padding-bottom:20px;
     color: #03525B;
+}
+h2{
+    font-size: 1.7rem;
 }
 .actions-row{
     display:flex;

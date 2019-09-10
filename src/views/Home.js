@@ -19,13 +19,13 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
 
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
-
+        console.log('Place', place);
         const latitude = place.geometry.location.lat();
         const longitude = place.geometry.location.lng();
 
         setGeolocationValue({ lat: latitude, lng: longitude });
         clearLocations();
-        updatePos(true);
+        //updatePos(true);
       });
     });
   });

@@ -39,6 +39,9 @@ const Header = props => {
             </>
           : (
             <>
+            <Link to="/login">
+              <button>Login</button>
+            </Link>  
             <button
             onClick={onLogout}>
               Logout

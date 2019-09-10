@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyledOverlayPopup } from '../components/componentStyles/OverlayPopupStyles';
 import { 
     StyledButton,
@@ -7,10 +7,12 @@ import {
     Row
  } from '../components/componentStyles/FormElementsStyles';
 import Loader from 'react-loader-spinner';
+import { mapPromise } from '../redux/helpers';
 
 
 export default function AddLocation (props){
-    const [loading, setLoading] = useState(false)
+    const [loadingForm, setLoading] = useState(false);
+    const [uploadingImage, setUploadingImage] = useState(false);
     const hideMessage = () =>{
         console.log('hiding message');
         document.getElementById('add-location-form').style.display = 'none';
@@ -23,9 +25,26 @@ export default function AddLocation (props){
 
     const uploadImage = (event) =>{
         event.preventDefault();
-        setLoading(true);
+        setUploadingImage(true);
         console.log('Submitting form');
     }
+
+    useEffect(() => {
+        Promise.resolve(mapPromise).then(mapObject => {
+        const autocomplete = new mapObject.maps.places.Autocomplete(
+            document.getElementById('location-name-field'),
+        );
+        
+        // force auto-complete to return only business
+        autocomplete.setTypes(['establishment']);
+        autocomplete.setFields(
+            ['formatted_address']);
+        autocomplete.addListener('place_changed', () => {
+            const place = autocomplete.getPlace();
+            console.log('Place', place);
+        });
+        });
+    });
 
     return (
         <StyledOverlayPopup id="add-location-form">
@@ -37,26 +56,33 @@ export default function AddLocation (props){
                 <>
                 <form onSubmit={submitLocation}>
                     <div>
-                    <h3>Add a new location</h3>
+                    <h2>Add a new location</h2>
                     </div>
                     <Row>
                     <div className="upload-box">
-                            <StyledButton onClick={uploadImage}>
-                                Upload photo
-                            </StyledButton>
-                        </div>
-                        <div className="input-field-box">
-                            <StyledInput
-                                type="text"
-                                placeholder="Location name"
-                            >
-                            </StyledInput>
-                            <StyledInput
-                                type="text"
-                                placeholder="Location address"
-                            >
-                            </StyledInput>
-                        </div>
+                        <StyledButton onClick={uploadImage}>
+                        {
+                        uploadingImage 
+                        ? 
+                        <Loader type="Grid" color="#56C1CB" height={40} width={30} /> 
+                        : 
+                        <>Upload image</>
+                        }
+                        </StyledButton>
+                    </div>
+                    <div className="input-field-box">
+                        <StyledInput
+                            type="text"
+                            placeholder="Location name"
+                            id="location-name-field"
+                        >
+                        </StyledInput>
+                        <StyledInput
+                            type="text"
+                            placeholder="Location address"
+                        >
+                        </StyledInput>
+                    </div>
                     </Row>
                     <Row>
                     <StyledTextarea 
@@ -68,7 +94,7 @@ export default function AddLocation (props){
                     <div className="actions-row">
                         <StyledButton type="submit">
                         {
-                            loading 
+                            loadingForm 
                             ? 
                             <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
                             : 
