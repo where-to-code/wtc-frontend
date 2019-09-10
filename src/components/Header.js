@@ -47,7 +47,6 @@ const Header = props => {
             onClick={displayAddForm}>
               Add Location
             </button>
-            <AddLocation />
             </>
           )
       }
@@ -56,6 +55,7 @@ const Header = props => {
         <TopNotif isVerified={props.isEmailVerified} />
       }
       </div>
+      <AddLocation />
     </StyledHeader>
   );
 };
