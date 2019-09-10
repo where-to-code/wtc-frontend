@@ -79,15 +79,8 @@ In order for the app to function correctly, the user must set up their own envir
 🚫These are just examples, replace them with the specifics for your app
 
     *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+    
 
 # 5️⃣ Content Licenses
 
@@ -95,25 +88,29 @@ In order for the app to function correctly, the user must set up their own envir
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
+| Homepage image | Free stock       | [Splash](https://www.splash.com)                                             |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
 # 4️⃣ Testing
+ - Jest
 
-🚫Document what you used for testing and why
+-    Fast and safe
+-    Easy mocking
+-    Stable
+-    Great API
 
 # 4️⃣ Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+- Clone this repo 
+- change directory to root folder
 
 ## Other Scripts
 
-🚫replace these examples with your own
+To get the server running locally:
 
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+- **npm install** to install all required dependencies
+- **npm start** to start the local server
+- **npm test** to start server using testing environment
 
 # Contributing
 
@@ -153,4 +150,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [WhereToCode API](https://where2code.herokuapp.com/) for details on the backend of our project.
