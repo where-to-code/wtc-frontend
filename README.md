@@ -1,9 +1,7 @@
 
-![](./badges/badge-branches.svg) ![](./badges/badge-functions.svg) ![](./badges/badge-lines.svg) ![](./badges/badge-statements.svg) 
+# WhereToCode [![Build Status](https://travis-ci.org/where-to-code/wtc-frontend.svg?branch=master)](https://travis-ci.org/where-to-code/wtc-frontend) ![](./badges.svg)
 
-# WhereToCode
-
-1You can find the deployed project at [wWhereToCode](https://wheretocode-frontend.herokuapp.com).
+WhereToCode deployed at [wWhereToCode](https://wheretocode-frontend.herokuapp.com).
 
 ## 4️⃣ Contributors
 
@@ -18,99 +16,63 @@
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
-
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board](https://trello.com/b/m8ODKAUQ/where-to-code)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas](https://www.notion.so/c8df3ac7800c43eab824326ff3fa7f69?v=49e8e84308cc4fd592a8b94da6207fac)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://www.figma.com/file/8m6CSQm80ihqBHspgJBIb4/Where-to-Code?node-id=0%3A1) 
 
-🚫 Replace lorem ipsum with a description of your project
+Description
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Finding out details about public places to work can be tedious. WhereToCode enables you to get the information you need, and only that information, to work and code on the go.
 
 
-### 4️⃣ Key Features
+### Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
+-    Find locations around you
+-    Clear information on each location for people to determine if it will work
+-    New spaces are easy to make
+-    Locations with most use/activity/rating show up first
 -    feature five
 
-## 1️⃣ Tech Stack
+## Tech Stack
+- HTML, CSS, Javascript
+- [Google Map API](https://cloud.google.com/maps-platform/)
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### React
 
-🚫 Why did you choose this framework?
+Why did you choose this framework?
 
--    point one
--    point two
--    point three
--    point four
+-    Scalable
+-    Flexible
+-    Highly performant
+-    Stable
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+#### Front end deployed to `https://wheretocode-frontend.herokuapp.com`
 
-#### Front end deployed to `🚫insert service here`
+#### [WhereToCode API](https://where2code.herokuapp.com/) built using:
 
-#### [Back end](🚫link to back end repo here) built using:
+#### Node/Express
 
-#### 🚫 back end framework goes here
-
--    point one
--    point two
--    point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+- Express is fast.
+- Express is efficient.
+- Express is scalable.
+- Express is a lightweight framework
 
 # APIs
 
 ## 2️⃣ Authentication API here
 
-🚫Replace text below with a description of the API
+A person can never just look at a place on the internet to determine whether or not it is a good place to post up and code. They have to go look through reviews on yelp and try to scroll through to find the information they need.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+Imani is a web developer who works with a remote team. She enjoys getting out and being around people and so she is always looking to get out of the house to do so. She also has needs she needs to meet, like secure fast internet, in order to work with her coworkers. Finding this information out with 100% certainty before going somewhere is often a challenge.
 
-## 2️⃣ Payment API here
 
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+#  Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
