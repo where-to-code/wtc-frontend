@@ -20,16 +20,6 @@ export const FilterPaneStyle = styled.div`
     margin: 0 auto;
     align-items: center;
     justify-content: space-around;
-    .check {
-      margin: 5px;
-      .content {
-        display: flex;
-      }
-      div {
-        padding: 0 10px;
-        font-size: 12px;
-      }
-    }
   }
   @media (min-width: 600px) {
     .pane {
