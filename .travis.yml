@@ -17,6 +17,6 @@ script:
   - npm test
   - sudo /etc/init.d/postgresql stop 
 after_script:
-  - make-coverage-badge
+  - make-coverage-badge --output-path ./badges
 notifications:
   email: false
