@@ -30,10 +30,10 @@ describe('authentication', () => {
   it('auth failure', () => {
     const error = 'There was an error';
     const expectedAction = {
-      type: types.AUTH_FAILURE,
+      type: types.AUTH_FAILURE_LOGIN,
       payload: error,
     };
-    expect(actions.authFail(error)).toEqual(expectedAction);
+    expect(actions.authFailLogin(error)).toEqual(expectedAction);
   });
   it('auth load', () => {
     const expectedAction = {
@@ -52,7 +52,7 @@ describe('authentication', () => {
     mock.onPost(`${url}/auth/login`).reply(200, userDetails);
     const expectedActions = [
       { type: types.AUTH_LOAD },
-      { type: types.AUTH_SUCCESS, payload: userDetails.data.id },
+      { type: types.AUTH_SUCCESS, payload: userDetails.data },
     ];
   const store = mockStore({
     userId: '',
@@ -61,12 +61,19 @@ describe('authentication', () => {
   expect(store.getActions()).toEqual(expectedActions);
 })
 it('fail login with 404', async()=>{
-  mock.onPost(`${url}/auth/login`).reply(404)
+  const error = {
+    response:{
+      data:{
+        message:'Request failed with status code 404'
+      }
+    }
+  }
+  mock.onPost(`${url}/auth/login`).reply(404, error)
   const expectedActions = [
     { type: types.AUTH_LOAD },
     {
-      type: types.AUTH_FAILURE,
-      payload: 'Request failed with status code 404',
+      type: types.AUTH_FAILURE_LOGIN,
+      payload: error.response.data.message,
     },
   ];
   const store = mockStore({ userId: '' });
@@ -74,12 +81,19 @@ it('fail login with 404', async()=>{
   expect(store.getActions()).toEqual(expectedActions);
 })
 it('fail login  with 500', async()=>{
-  mock.onPost(`${url}/auth/login`).reply(500)
+  const error = {
+    response:{
+      data:{
+        message:'Request failed with status code 500'
+      }
+    }
+  }
+  mock.onPost(`${url}/auth/login`).reply(500, error)
   const expectedActions = [
     { type: types.AUTH_LOAD },
     {
-      type: types.AUTH_FAILURE,
-      payload: 'Request failed with status code 500',
+      type: types.AUTH_FAILURE_LOGIN,
+      payload: error.response.data.message
     },
   ];
   const store = mockStore({ userId: '' });
@@ -88,12 +102,20 @@ it('fail login  with 500', async()=>{
 })
 
 it('fail login  with 400', async()=>{
-  mock.onPost(`${url}/auth/login`).reply(400)
+  const error = {
+    response:{
+      data:{
+        message:'Request failed with status code 400'
+      }
+    }
+  }
+  mock.onPost(`${url}/auth/login`).reply(400, error)
+
   const expectedActions = [
     { type: types.AUTH_LOAD },
     {
-      type: types.AUTH_FAILURE,
-      payload: 'Request failed with status code 400',
+      type: types.AUTH_FAILURE_LOGIN,
+      payload: error.response.data.message,
     },
   ];
   const store = mockStore({ userId: '' });
@@ -102,12 +124,19 @@ it('fail login  with 400', async()=>{
 })
 
 it('fail login if there is network issue', async()=>{
-  mock.onPost(`${url}/auth/login`).networkError()
+  const error = {
+    response:{
+      data:{
+        message:'Network Error'
+      }
+    }
+  }
+  mock.onPost(`${url}/auth/login`).networkError(error)
   const expectedActions = [
     { type: types.AUTH_LOAD },
     {
-      type: types.AUTH_FAILURE,
-      payload: 'Network Error',
+      type: types.AUTH_FAILURE_LOGIN,
+      payload: error.response.data.message,
     },
   ];
   const store = mockStore({ userId: '' });
@@ -149,7 +178,7 @@ it('signup should fail', async() =>{
   mock.onPost(`${url}/auth/register`).networkError()
   const expectedActions = [
     { type: types.AUTH_LOAD },
-    { type: types.AUTH_FAILURE, payload: 'Network Error' },
+    { type: types.AUTH_FAILURE_SIGNUP, payload: 'Network Error' },
   ];
   const store = mockStore({ userId: '' });
   await store.dispatch(actions.signup(userValue));

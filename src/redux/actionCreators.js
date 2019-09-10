@@ -152,6 +152,7 @@ export function authFailLogin(payload) {
 
 export const login = user => async dispatch => {
   try {
+    dispatch(authLoad());
     const loginDetails = await axios
     .post(`${url}/auth/login`, user, {
       withCredentials: true,
@@ -159,7 +160,8 @@ export const login = user => async dispatch => {
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
-    dispatch(authFailLogin(error.message));
+    console.log(error)
+    dispatch(authFailLogin(error.response.data.message || error.message));
     return error;
   }
 };
@@ -170,8 +172,8 @@ export const successGitlog = (userData) => dispatch =>{
 
 export const signup = userData => async dispatch => {
   const { firstname, lastname, email, password } = userData;
-  dispatch(authLoad());
   try {
+    dispatch(authLoad());
     const userDetails = await axios.post(`${url}/auth/register`, {
       firstname,
       lastname,
@@ -181,9 +183,7 @@ export const signup = userData => async dispatch => {
     dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
-
-    dispatch(authFail(error.message));
-    return dispatch(authFail(error.message));
+    return dispatch(authFailSignup(error.response.data.message || error.message));
     
   }
 };
@@ -212,7 +212,7 @@ export const locationLoads = currentLocation => async dispatch => {
     dispatch(locationSuccess(locationsInfo.data));
     dispatch(allLocationsSuccess(locationsInfo.data));
   } catch (error) {
-    dispatch(locationFailure(error.message));
+    dispatch(locationFailure(error.response.data.message || error.message));
   }
 };
 
@@ -280,7 +280,7 @@ export const fetchSingleLocation = locId => async dispatch => {
     const locationInfo = await axios.get(`${url}/locations/${locId}`);
     dispatch(singleLocSuccess(locationInfo.data.data));
   } catch (error) {
-    dispatch(singleLocFailure(error.message));
+    dispatch(singleLocFailure(error.response.data.message || error.message));
   }
 };
 
@@ -327,7 +327,7 @@ export const verifyEmail = email => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(verifyEmailFail(err.response.data.message));
+      dispatch(verifyEmailFail(err.response.data.message || err.message));
       toast.error('account verification not successful');
       return err;
     });
@@ -370,8 +370,7 @@ export const resetPassword = (password, id) => dispatch => {
       return res;
     })
     .catch(err => {
-      console.log(err);
-      dispatch(resetPasswordFail(err.response.data.message));
+      dispatch(resetPasswordFail(err.response.data.message || err.message));
       toast.error('password reset not successful, try again');
       return err;
     });
@@ -390,7 +389,7 @@ export const resendEmailVerification = email => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(verifyEmailFail(err.response.data.message));
+      dispatch(verifyEmailFail(err.response.data.message || err.message));
       return err;
     });
 };
