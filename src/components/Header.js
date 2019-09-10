@@ -24,10 +24,16 @@ const Header = props => {
       {
         isCookie 
           ? 
+            <>
             <button
             onClick={onLogout}>
               Logout
             </button>
+            <button
+            onClick={onLogout}>
+              Add location
+            </button>
+            </>
           : (
             <>
             <Link to="/signup">
