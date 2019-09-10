@@ -396,57 +396,226 @@ describe('geolocation', () => {
 });
 
 describe('Single Location', () => {
-  const singleLocation =
-  {
+  const singleLocation = {
     status: 200,
-    data: 
-      {
-        id: 1,
-        description: '123 Arizona road',
-        name: 'Ariz Coffee Shop',
-        image_url: 'image',
-        address: 'some address',
-        longitude: '0.999923',
-        latitude: '0.273444',
-        created_at: '',
-      },
+    data: {
+      id: 1,
+      description: '123 Arizona road',
+      name: 'Ariz Coffee Shop',
+      image_url: 'image',
+      address: 'some address',
+      longitude: '0.999923',
+      latitude: '0.273444',
+      created_at: '',
+    },
   };
   it('single location success', () => {
     const expectedAction = {
       type: types.FETCH_SINGLE_LOCATIONS_SUCCESS,
-      payload: singleLocation
+      payload: singleLocation,
     };
     expect(actions.singleLocSuccess(singleLocation)).toEqual(expectedAction);
-
   });
-  it('single location success', ()=> {
+  it('single location success', () => {
     const expectedAction = {
       type: types.FETCH_SINGLE_LOCATIONS_FAILURE,
-      payload: 'There was an error'
+      payload: 'There was an error',
     };
-    expect(actions.singleLocFailure('There was an error')).toEqual(expectedAction);
+    expect(actions.singleLocFailure('There was an error')).toEqual(
+      expectedAction,
+    );
   });
-  it('should fetch locations', async() => {
-    mock.onGet(`${url}/locations/1`).reply(200 , singleLocation);
+  it('should fetch locations', async () => {
+    mock.onGet(`${url}/locations/1`).reply(200, singleLocation);
     const expectedActions = [
       { type: types.LOADING_SINGLE_LOCATION },
-      { type: types.FETCH_SINGLE_LOCATIONS_SUCCESS, payload: singleLocation.data  },
+      {
+        type: types.FETCH_SINGLE_LOCATIONS_SUCCESS,
+        payload: singleLocation.data,
+      },
     ];
     const store = mockStore({ location: singleLocation.data });
     await store.dispatch(actions.fetchSingleLocation(1));
     expect(store.getActions()).toEqual(expectedActions);
   });
-  it('should fail to fetch locations', async() => {
-    const error ={
-      message: 'Request failed with status code 404'
+  it('should fail to fetch locations', async () => {
+    const error = {
+      message: 'Request failed with status code 404',
+    };
+    mock.onGet(`${url}/locations/1`).reply(404, error);
+    const expectedActions = [
+      { type: types.LOADING_SINGLE_LOCATION },
+      { type: types.FETCH_SINGLE_LOCATIONS_FAILURE, payload: error.message },
+    ];
+    const store = mockStore({ location: singleLocation.data });
+    await store.dispatch(actions.fetchSingleLocation(1));
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+});
+
+describe('Active locations', () => {
+  const location = {
+    data: {
+      id: 1,
+      description: '123 Arizona road',
+      name: 'Ariz Coffee Shop',
+      image_url: 'image',
+      address: 'some address',
+      longitude: '0.999923',
+      latitude: '0.273444',
+      created_at: '',
+    },
+  };
+  it('set active', () => {
+    const expectedAction = {
+      type: types.SET_ACTIVE,
+      payload: location.data,
+    };
+    expect(actions.setActive(location.data)).toEqual(expectedAction);
+  });
+  it('clear active', () => {
+    const expectedAction = {
+      type: types.CLEAR_ACTIVE,
+    };
+    expect(actions.clearActive()).toEqual(expectedAction);
+  });
+});
+
+describe('Verify Email', () => {
+  const email = 'basi@g.com';
+  it('verify load', () => {
+    const expectedAction = {
+      type: types.VERIFY_EMAIL_LOAD,
+    };
+    expect(actions.verifyEmailLoad()).toEqual(expectedAction);
+  });
+  it('verify success', () => {
+    const expectedAction = {
+      type: types.VERIFY_EMAIL_SUCCESS,
+      payload: email,
+    };
+    expect(actions.verifyEmailSuccess(email)).toEqual(expectedAction);
+  });
+  it('verify failure', () => {
+    const expectedAction = {
+      type: types.VERIFY_EMAIL_FAILURE,
+      payload: 'There was an error',
+    };
+    expect(actions.verifyEmailFail('There was an error')).toEqual(
+      expectedAction,
+    );
+  });
+  it('should successfully verify mail', async () => {
+    mock.onPost(`${url}/auth/forgot`).reply(201, email);
+    const expectedActions = [
+      { type: types.VERIFY_EMAIL_LOAD },
+      { type: types.VERIFY_EMAIL_SUCCESS, payload: email },
+    ];
+    const store = mockStore({ verifyEmail: [] });
+    await store.dispatch(actions.verifyEmail(email));
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+  it('should fail verify mail', async () => {
+    const error = {
+      message: 'Request failed with status code 400',
+    };
+    mock.onPost(`${url}/auth/forgot`).reply(400, error);
+    const expectedActions = [
+      { type: types.VERIFY_EMAIL_LOAD },
+      { type: types.VERIFY_EMAIL_FAILURE, payload: error.message },
+    ];
+    const store = mockStore({ verifyEmail: [] });
+    await store.dispatch(actions.verifyEmail(email));
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+  it('should resend email verification', async () => {
+    mock.onPost(`${url}/auth/verify`).reply(201, email);
+    const expectedActions = [
+      { type: types.VERIFY_EMAIL_LOAD },
+      { type: types.VERIFY_EMAIL_SUCCESS, payload: email },
+    ];
+    const store = mockStore({ verifyEmail: [] });
+    await store.dispatch(actions.resendEmailVerification(email));
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+  it('should fail resend email verification', async () => {
+    const error = {
+      message: 'Request failed with status code 400',
+    };
+    mock.onPost(`${url}/auth/verify`).reply(400, error);
+    const expectedActions = [
+      { type: types.VERIFY_EMAIL_LOAD },
+      { type: types.VERIFY_EMAIL_FAILURE, payload: error.message },
+    ];
+    const store = mockStore({ verifyEmail: [] });
+    await store.dispatch(actions.resendEmailVerification(email));
+    expect(store.getActions()).toEqual(expectedActions);
+  });
+});
+describe('Reset Password', () => {
+  const password = '12345abc';
+  it('reset password load', () => {
+    const expectedAction = {
+      type: types.RESET_PASSWORD_LOAD,
+    };
+    expect(actions.resetPasswordLoad()).toEqual(expectedAction);
+  });
+  it('reset password success', () => {
+    const expectedAction = {
+      type: types.RESET_PASSWORD_SUCCESS,
+      payload: password,
+    };
+    expect(actions.resetPasswordSuccess(password)).toEqual(expectedAction);
+  });
+  it('reset password failure', () => {
+    const expectedAction = {
+      type: types.RESET_PASSWORD_FAILURE,
+      payload: 'There was an error',
+    };
+    expect(actions.resetPasswordFail('There was an error')).toEqual(
+      expectedAction,
+    );
+  });
+  it('should successfully reset password', async () => {
+    const user={
+      id:1,
+      firstname:'first',
+      lastname:'last',
+      password: '12345abc'
     }
-    mock.onGet(`${url}/locations/1`).reply(404 , error);
+    mock.onPost(`${url}/auth/change/1`).reply(200, user);
     const expectedActions = [
-      { type: types.LOADING_SINGLE_LOCATION },
-      { type: types.FETCH_SINGLE_LOCATIONS_FAILURE, payload: error.message  },
+      { type: types.RESET_PASSWORD_LOAD },
+      {
+        type: types.RESET_PASSWORD_SUCCESS,
+        payload: user,
+      },
     ];
-    const store = mockStore({ location: singleLocation.data });
-    await store.dispatch(actions.fetchSingleLocation(1));
+    const store = mockStore({ resetPassword: user.password });
+    await store.dispatch(actions.resetPassword(user.password ,user.id ));
+    expect(store.getActions()).toEqual(expectedActions);
+
+  });
+  it('should fail reset password', async () => {
+    const user={
+      id:1,
+      firstname:'first',
+      lastname:'last',
+      password: '12345abc'
+    }
+    const error ={
+      message:'Request failed with status 400'
+    }
+    mock.onPost(`${url}/auth/change/1`).reply(404, error);
+    const expectedActions = [
+      { type: types.RESET_PASSWORD_LOAD },
+      {
+        type: types.RESET_PASSWORD_FAILURE,
+        payload: error.message
+      },
+    ];
+    const store = mockStore({ resetPassword: user.password });
+    await store.dispatch(actions.resetPassword(user.password ,user.id ));
     expect(store.getActions()).toEqual(expectedActions);
   });
-})
+});
