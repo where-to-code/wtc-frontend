@@ -138,7 +138,6 @@ export function authSuccess(user) {
 
 export function authFailSignup(payload) {
   return {
-<<<<<<< HEAD
     type: types.AUTH_FAILURE_SIGNUP,
     payload: payload
   };
@@ -148,34 +147,20 @@ export function authFailLogin(payload) {
   return {
     type: types.AUTH_FAILURE_LOGIN,
     payload: payload
-=======
-    type: types.AUTH_FAILURE,
-    payload: payload,
->>>>>>> write more front-end tests
   };
 }
 
 export const login = user => async dispatch => {
   try {
-<<<<<<< HEAD
     const loginDetails = await axios
     .post(`${url}/auth/login`, user, {
-=======
-    dispatch(authLoad());
-    const loginDetails = await axios.post(`${url}/auth/login`, user, {
->>>>>>> write more front-end tests
       withCredentials: true,
     });
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
-<<<<<<< HEAD
     dispatch(authFailLogin(error.message));
     return error;
-=======
-    return dispatch(authFail(error.message));
-  
->>>>>>> write more front-end tests
   }
 };
 
@@ -187,23 +172,6 @@ export const signup = userData => async dispatch => {
   const { firstname, lastname, email, password } = userData;
   dispatch(authLoad());
   try {
-<<<<<<< HEAD
-    const userDetails = await axios
-      .post(
-        `${url}/auth/register`, 
-      {
-        firstname,
-        lastname,
-        email,
-        password
-      },
-      { withCredentials: true }
-    );
-    dispatch(authSuccess(userDetails.data.data));
-    return userDetails;
-  } catch (error) {
-    dispatch(authFailSignup(error.message));
-=======
     const userDetails = await axios.post(`${url}/auth/register`, {
       firstname,
       lastname,
@@ -213,14 +181,10 @@ export const signup = userData => async dispatch => {
     dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
-<<<<<<< HEAD
+
     dispatch(authFail(error.message));
->>>>>>> write more front-end tests
-    return error;
-=======
     return dispatch(authFail(error.message));
     
->>>>>>> test signup actions and reducers
   }
 };
 
@@ -267,11 +231,7 @@ export const clearLocations = () => ({
 // ACTIONS FOR MAPS REDUCER
 export const mapsSucces = mapsObj => ({
   type: types.FETCH_MAP_API_SUCCESS,
-<<<<<<< HEAD
   payload: mapsObj
-=======
-  payload: { mapsObj, geolocation },
->>>>>>> write more front-end tests
 });
 export const mapsFailure = error => ({
   type: types.FETCH_MAP_API_FAILURE,
