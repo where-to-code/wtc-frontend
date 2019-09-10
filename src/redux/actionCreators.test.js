@@ -330,8 +330,16 @@ describe('filter locations',() =>{
     expect(store.getActions()).toEqual(expectedActions);
   })
 })
+describe('clear locations' ,() => {
+  it('should clear locations',()=>{
+    const expectedAction = {
+      type: types.CLEAR_LOCATIONS,
+    };
+    expect(actions.clearLocations()).toEqual(expectedAction);
+  })
+})
 describe('fetch maps', () => {
-  it('mapsSucces', () => {
+  it('mapsSuccess', () => {
     expect(actions.mapsSucces({})).toBeTruthy();
   });
   it('mapsFailure', () => {
@@ -343,4 +351,7 @@ describe('fetch maps', () => {
     expect(actions.mapsSucces({})).not.toEqual(expectedAction);
     expect(actions.mapsFailure(error)).toEqual(expectedAction);
   });
+  it('should get maps',()=>{
+    
+  })
 });
