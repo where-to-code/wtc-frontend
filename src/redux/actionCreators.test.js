@@ -114,26 +114,48 @@ it('fail login if there is network issue', async()=>{
   await store.dispatch(actions.login(user));
   expect(store.getActions()).toEqual(expectedActions);
 })
-  it('signup', () => {
+  it('signup', async() => {
+    const userValue = {
+      firstname:'nab',
+      lastname:'gai',
+      email:'nabgai@gmail.com',
+      password:'1234abc'
+    }
     const userInfo = {
       data:{
         id:1,
         firstname:'nab',
         lastname:'gai',
         email:'nabgai@gmail.com',
-        password:'12345abc',
       }
     }
-  mock.onPost(`${url}/auth/register`, userInfo)
+  mock.onPost(`${url}/auth/register`).reply(201, userInfo)
   const expectedActions = [
     { type: types.AUTH_LOAD },
-    { type: types.AUTH_SUCCESS, payload: userDetails.data.id },
+    { type: types.AUTH_SUCCESS, payload: userInfo.data.id },
   ];
 const store = mockStore({ userId: ''});
-await store.dispatch(actions.login(user));
+await store.dispatch(actions.signup(userValue));
 expect(store.getActions()).toEqual(expectedActions);
   });
 });
+it('signup should fail', async() =>{
+  const userValue = {
+    firstname:'nab',
+    lastname:'gai',
+    email:'nabgai@gmail.com',
+    password:'1234abc'
+  }
+  mock.onPost(`${url}/auth/register`).networkError()
+  const expectedActions = [
+    { type: types.AUTH_LOAD },
+    { type: types.AUTH_FAILURE, payload: 'Network Error' },
+  ];
+  const store = mockStore({ userId: '' });
+  await store.dispatch(actions.signup(userValue));
+  expect(store.getActions()).toEqual(expectedActions);
+})
+
 describe('fetch locations', () => {
   const mockLocations = {
     status: 200,

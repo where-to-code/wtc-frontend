@@ -213,9 +213,14 @@ export const signup = userData => async dispatch => {
     dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
+<<<<<<< HEAD
     dispatch(authFail(error.message));
 >>>>>>> write more front-end tests
     return error;
+=======
+    return dispatch(authFail(error.message));
+    
+>>>>>>> test signup actions and reducers
   }
 };
 
