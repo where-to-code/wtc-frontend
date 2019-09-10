@@ -25,13 +25,16 @@ describe('Search Page tests', () => {
             expect.stringContaining(redirectUrl)
           )
     })
-    it('push to /locations on autocomplete', () => {
-        const redirectUrl = '/locations'
-        const { debug, getByPlaceholderText, container } = renderWithRedux(<TestingRouter ComponentWithRedirection={() => <Home />} RedirectUrl={redirectUrl} />)
-        fireEvent.change(getByPlaceholderText('Search and select a place'), {target: {value: 'London, UK'}})
-        
-        // expect(container.innerHTML).toEqual(
-        //     expect.stringContaining(redirectUrl)
-        //   )
-    })
+
+    // Todo find a way to test when a user use the autocomplete function
+    // Problem with it is that a new div is attacched to the body but I can't find a way to reference it from here
+    // it('push to /locations on autocomplete', () => {
+    //     const redirectUrl = '/locations'
+    //     const { getByPlaceholderText, container } = renderWithRedux(<TestingRouter ComponentWithRedirection={() => <Home />} RedirectUrl={redirectUrl} />)
+    //     fireEvent.change(getByPlaceholderText('Search and select a place'), {target: {value: 'London, UK'}})
+    // Here we need to find a way to reference to an item in the div attached to the body from google autocomplete and click on it
+    //     expect(container.innerHTML).toEqual(
+    //         expect.stringContaining(redirectUrl)
+    //       )
+    // })
 })
