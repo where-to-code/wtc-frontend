@@ -4,15 +4,12 @@ import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import logo from '../assets/logo.png';
 import { verifyEmail } from '../redux/actionCreators';
-import { toast } from "react-toastify";
-
 import {
   StyledWrapper,
   StyleMap,
   StyledRegistration,
   StyledLeftSection,
 } from './ViewStyles/AuthStyles';
-// import { connect } from 'net';
 
 const FindAccount = props => {
   const { loading, error, verifyEmail } = props;
@@ -56,7 +53,7 @@ const FindAccount = props => {
                 'Send Email'
               )}
             </button>
-            {error && <div class="error-message">{error}</div>}
+            {error && <div className="error-message">{error}</div>}
           </form>
   
         </StyledLeftSection>
