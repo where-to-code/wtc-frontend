@@ -14,8 +14,6 @@ export const StyledRegistration = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 99vw;
-  height: 100vh;
   @media screen and (min-width: 800px) {
     display: flex;
     width: 60vw;
@@ -117,7 +115,7 @@ export const StyledLeftSection = styled.div`
   }
 
   @media screen and (min-width: 800px) {
-    width: 30vw;
+    width: 40vw;
     height: 600px;
 
     h2 {

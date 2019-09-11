@@ -7,7 +7,7 @@ export const modalInit = (mapsObj, location) => {
 
   return new mapsObj.InfoWindow({
     content: content,
-    maxWidth: 200,
+    maxWidth: 200
   });
 };
 
@@ -17,8 +17,8 @@ export const markerInit = (map, mapsObj, location, icon) => {
     icon: icon,
     position: {
       lat: parseFloat(location.latitude),
-      lng: parseFloat(location.longitude),
-    },
+      lng: parseFloat(location.longitude)
+    }
   });
 };
 
@@ -26,7 +26,7 @@ export const mapInit = (mapsObj, geolocation) => {
   try {
     return new mapsObj.Map(document.getElementById('map'), {
       zoom: 11,
-      center: geolocation,
+      center: geolocation
     });
   } catch (err) {
     // console.error(err);
@@ -47,12 +47,12 @@ export const position = async defaultPos => {
     const posObj = await positionPromise();
     return {
       lat: posObj.coords.latitude,
-      lng: posObj.coords.longitude,
+      lng: posObj.coords.longitude
     };
   } catch {
     return {
       lat: defaultPos.lat,
-      lng: defaultPos.lng,
+      lng: defaultPos.lng
     };
   }
 };

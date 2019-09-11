@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledTopNotif = styled.div`
-    cursor:pointer
-    display: ${props =>
-        props.display ? 'flex' : 'none'};
+    cursor:pointer;
+    display: ${props => (props.display ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     height: 22px;

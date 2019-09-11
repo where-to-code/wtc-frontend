@@ -31,7 +31,7 @@ const Map = props => {
   if (activeLocation) {
     mapCenter = {
       lat: Number(activeLocation.latitude),
-      lng: Number(activeLocation.longitude),
+      lng: Number(activeLocation.longitude)
     };
   }
 
@@ -43,10 +43,9 @@ const Map = props => {
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(async mapObject => {
-      let map;
       mapCenter = await position(mapCenter);
       mapsLoading();
-      map = mapInit(mapObject.maps, mapCenter);
+      const map = mapInit(mapObject.maps, mapCenter);
 
       if (!geolocation) setGeolocationValue(mapCenter);
       else if (geolocation.lat === 51.504831314 && geolocation.lng === -0.123499506)
@@ -79,7 +78,7 @@ function mapStateToProps(state) {
   return {
     geolocation: state.maps.geolocation,
     locations: state.locations.locations,
-    activeLocation: state.activeLocation,
+    activeLocation: state.activeLocation
   };
 }
 
@@ -92,11 +91,11 @@ function mapDispatchToProps(dispatch) {
       setGeolocationTrue,
       setGeolocationFalse
     },
-    dispatch,
+    dispatch
   );
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Map);

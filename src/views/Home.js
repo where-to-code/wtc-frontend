@@ -12,7 +12,7 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
-        document.getElementById('mapSuggestions'),
+        document.getElementById('mapSuggestions')
       );
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
@@ -55,13 +55,13 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       setGeolocationValue,
-      clearLocations,
+      clearLocations
     },
-    dispatch,
+    dispatch
   );
 }
 
 export default connect(
   null,
-  mapDispatchToProps,
-)(Home)
+  mapDispatchToProps
+)(Home);
