@@ -436,13 +436,11 @@ export const addNewLocation = locationData => dispatch => {
       withCredentials: true
     })
     .then(res => {
-      debugger
       dispatch(addNewLocationSuccess(res.data));
       return res;
     })
     .catch(err => {
-      debugger
-      dispatch(addNewLocationFail(err.response.data.message));
+      dispatch(addNewLocationFail(err.response.data.error));
       return err;
     });
 };

@@ -22,6 +22,8 @@ function AddLocation (props){
     }
     const submitLocation = (event) =>{
         event.preventDefault();
+
+        // if fields have no data
         if(!placeData || !description) {
             setFormError(true);
             return;
@@ -72,6 +74,7 @@ function AddLocation (props){
                     <h2>Add a new location</h2>
                     </div>
                     {formError && <div className="error"> All fields are required</div>}
+                    {props.remoteError && <div className="error"> We are unable to process your request. <br/> Please try again later </div>}
                     <Row>
                         {
                             locationPhotos && 
@@ -118,7 +121,8 @@ function AddLocation (props){
 
 const mapStatetoProps = state => {
     return {
-        loading: state.newLocation.loading
+        loading: state.newLocation.loading,
+        remoteError: state.newLocation.error, 
     };
   };
   
