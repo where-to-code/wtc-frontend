@@ -15,8 +15,6 @@ import FilterPane from '../components/FilterPane';
 import {
   filterLocations,
   locationLoads,
-  setGeolocationFalse,
-  setGeolocationTrue
 } from '../redux/actionCreators';
 
 import NoGeoLocation from '../components/NoGeoLocation';
@@ -29,14 +27,9 @@ const SearchPage = props => {
     loadingLocation,
     locationsErr,
     isGeolocated,
-    setGeolocationFalse,
-    setGeolocationTrue
   } = props;
 
   useEffect(() => {
-    if (navigator.geolocation) setGeolocationTrue();
-    else setGeolocationFalse();
-
     locationLoads(geolocation);
   }, [geolocation]);
 
@@ -88,5 +81,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { locationLoads, setGeolocationFalse, setGeolocationTrue, filterLocations }
+  { locationLoads, filterLocations }
 )(SearchPage);

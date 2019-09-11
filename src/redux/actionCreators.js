@@ -158,7 +158,6 @@ export const login = user => async dispatch => {
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
-    console.log(error)
     const errorValue = error.response ? error.response.data.message : error.message
     dispatch(authFailLogin(errorValue));
     return error;

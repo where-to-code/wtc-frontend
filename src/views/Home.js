@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
-
 import { StyledHome } from './ViewStyles/HomeStyles';
 import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
@@ -16,16 +14,15 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
         document.getElementById('mapSuggestions')
       );
-
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
-
         const latitude = place.geometry.location.lat();
         const longitude = place.geometry.location.lng();
 
         setGeolocationValue({ lat: latitude, lng: longitude });
         clearLocations();
         updatePos(true);
+        history.push('/locations');
       });
     });
   });
@@ -36,9 +33,7 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
     history.push('/locations');
   };
 
-  return pos ? (
-    <Redirect to="/locations" />
-  ) : (
+  return (
     <StyledHome>
       <Header landing={true} />
       <div className="container">
