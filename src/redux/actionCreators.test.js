@@ -144,7 +144,7 @@ it('fail login if there is network issue', async()=>{
   mock.onPost(`${url}/auth/register`).reply(201, userInfo)
   const expectedActions = [
     { type: types.AUTH_LOAD },
-    { type: types.AUTH_SUCCESS, payload: userInfo.data.id },
+    { type: types.AUTH_SUCCESS, payload: userInfo.data },
   ];
 const store = mockStore({ userId: ''});
 await store.dispatch(actions.signup(userValue));

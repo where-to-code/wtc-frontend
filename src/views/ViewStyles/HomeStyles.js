@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import icon from '../../assets/searchicon.png';
+import home from '../../assets/home.jpeg';
 
 export const StyledHome = styled.div`
   height: 100vh;
-  width: 100vw;
-  background-image: url('https://images.unsplash.com/photo-1517502884422-41eaead166d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3025&q=80');
+  background-image: url(${home});
   background-size: cover;
   background-position: center;
   box-shadow: inset 0 0 0 2000px rgba(102, 106, 124, 0.5);
@@ -21,7 +20,7 @@ export const StyledHome = styled.div`
     align-items: center;
     height: 500px;
     width: 300px;
-    margin-top: 5%;
+    margin: auto 0;
     h2 {
       font-weight: bolder;
       font-size: 24px;

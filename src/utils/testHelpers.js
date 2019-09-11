@@ -7,18 +7,21 @@ import thunk from 'redux-thunk';
 import rootReducer from '../redux/reducers/rootReducer';
 
 export const renderWithRedux = (
-    ui,
-    { initialState, store = createStore(
-        rootReducer,
-        initialState || compose(applyMiddleware(thunk))
-      )} = {}
-  ) => {
-    return {
-      ...render(
-        <Provider store={store}>
-          <BrowserRouter>{ui}</BrowserRouter>
-        </Provider>
-      ),
-      store,
-    };
+  ui,
+  {
+    initialState,
+    store = createStore(
+      rootReducer,
+      initialState || compose(applyMiddleware(thunk))
+    )
+  } = {}
+) => {
+  return {
+    ...render(
+      <Provider store={store}>
+        <BrowserRouter>{ui}</BrowserRouter>
+      </Provider>
+    ),
+    store
   };
+};

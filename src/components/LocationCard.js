@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { setActive, clearLocations } from '../redux/actionCreators'
+import { setActive, clearLocations } from '../redux/actionCreators';
 import { StyledCard } from './componentStyles/LocationCardStyles';
 
 const LocationCard = props => {
@@ -13,7 +13,7 @@ const LocationCard = props => {
       active={active}
       onMouseEnter={() => setActive(location)}
       onClick={() => {
-        clearLocations()
+        clearLocations();
       }}
       id={location.id}
     >

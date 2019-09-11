@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleLocation } from '../redux/actionCreators';
 import { StyledLoader } from './ViewStyles/SearchPageStyles';
-import { LocationContainer, TopContainer, TopRightContainer } from './ViewStyles/LocationStyles';
+import {
+  LocationContainer,
+  TopContainer,
+  TopRightContainer,
+  StyledLocation
+} from './ViewStyles/LocationStyles';
 import Header from '../components/Header';
 import ReviewContainer from '../components/ReviewContainer';
 import LocationBanner from '../components/LocationBanner';
@@ -19,7 +24,7 @@ const Location = props => {
   }, []);
   if (props.location) {
     return (
-      <>
+      <StyledLocation>
         <Header />
         <LocationContainer>
           <TopContainer>
@@ -33,7 +38,7 @@ const Location = props => {
             <ReviewContainer reviews={location.reviews} />
           </div>
         </LocationContainer>
-      </>
+      </StyledLocation>
     );
   } else {
     return (
