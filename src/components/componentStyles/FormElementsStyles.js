@@ -6,6 +6,7 @@ export const StyledButton = styled.button`
     font-weight: 300;
     margin: 0 10px;
     padding: 15px;
+    margin-top: 15px;
     background: none;
     border: ${props =>
     props.landing ? '0.5px solid #fff' : '0.5px solid #03525B'};

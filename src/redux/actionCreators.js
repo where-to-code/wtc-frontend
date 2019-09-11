@@ -416,6 +416,8 @@ export function addNewLocationLoad() {
 }
 
 export function addNewLocationSuccess(newLocation) {
+  console.log(newLocation)
+  debugger
   return {
     type: types.ADD_NEW_LOCATION_SUCCESS,
     payload: newLocation
@@ -431,15 +433,19 @@ export function addNewLocationFail(error) {
 
 export const addNewLocation = locationData => dispatch => {
   dispatch(addNewLocationLoad());
+  console.log(locationData)
   return axios
-    .post(`${url}/locations`, locationData, {
+    //.post(`${url}/locations`, locationData, {
+    .post(`https://where-to-code-staging.herokuapp.com/api/locations`, locationData, {
       withCredentials: true
     })
     .then(res => {
-      dispatch(addNewLocationSuccess(res.data));
+      debugger
+      dispatch(addNewLocationSuccess(res.data.data[0]));
       return res;
     })
     .catch(err => {
+      debugger
       dispatch(addNewLocationFail(err.response.data.error));
       return err;
     });

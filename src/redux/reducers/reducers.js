@@ -219,15 +219,9 @@ export const resetPasswordReducer = (state = passwordState, action) => {
 // Adding new location
 
 const newLocation = {
-  id: '',
-  name: '',
-  description: '',
-  image_url: '',
-  address: '',
-  longitude: '',
-  latitude: '',
-  place_id: '',
+  location: null,
   loading: false,
+  isAdded:false,
   error: ''
 };
 
@@ -240,10 +234,12 @@ export const addLocationReducer = (state = newLocation, action) => {
       };
 
     case types.ADD_NEW_LOCATION_SUCCESS:
+      debugger
       return {
         ...state,
         loading: false,
-        password: action.payload
+        isAdded: true,
+        location: action.payload
       };
 
     case types.ADD_NEW_LOCATION_FAIL:

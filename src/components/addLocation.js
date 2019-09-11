@@ -13,7 +13,12 @@ import { mapPromise } from '../redux/helpers';
 
 
 function AddLocation (props){
-    const { addNewLocation, remoteError, loading} = props
+    const { 
+        addNewLocation, 
+        remoteError, 
+        loading,
+        isAdded 
+    } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
@@ -74,44 +79,60 @@ function AddLocation (props){
                     <div>
                     <h2>Add a new location</h2>
                     </div>
-                    {formError && <div className="error"> All fields are required</div>}
-                    {remoteError && <div className="error"> We are unable to process your request. <br/> Please try again later </div>}
-                    <Row>
-                        {
-                            locationPhotos && 
+                    {
+                        isAdded 
+                        ? (
                             <>
-                                <div className="left-box">
-                                <img className="location-photos" alt="location" src={locationPhotos} />    
-                                </div>
-                                
+                            <p> Thank you for adding this location </p>
+                            <StyledButton>
+                                OK
+                            </StyledButton>
                             </>
-                        }
-                    <div className="right-box">
-                        <StyledInput
-                            type="text"
-                            name="name-adress"
-                            placeholder="Location Name or Address "
-                            id="location-name-field"
-                        >
-                        </StyledInput>
-                        <StyledTextarea 
-                        rows="5"
-                        placeholder="General Location Description"
-                        value={description}
-                        onChange={handleChange}
-                        >
-                        </StyledTextarea>
-                        <StyledButton type="submit">
-                        {
-                            loading 
-                            ? 
-                            <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
-                            : 
-                            <>Add location</>
-                        }
-                        </StyledButton>
-                    </div>
-                    </Row>  
+                        )
+                        :
+                        (
+                            <Row>
+                                {
+                                    locationPhotos && 
+                                    <>
+                                        <div className="left-box">
+                                        <img className="location-photos" alt="location" src={locationPhotos} />    
+                                        </div>
+                                        
+                                    </>
+                                }
+                            <div className="right-box">
+                                { formError && <div className="error"> All fields are required</div> }
+                                { remoteError && <div className="error"> We are unable to process your request. <br/> Please try again later </div> }
+                                <StyledInput
+                                    type="text"
+                                    name="name-adress"
+                                    placeholder="Location Name or Address "
+                                    id="location-name-field"
+                                >
+                                </StyledInput>
+                                <StyledTextarea 
+                                rows="5"
+                                placeholder="General Location Description"
+                                value={description}
+                                onChange={handleChange}
+                                >
+                                </StyledTextarea>
+                                <StyledButton type="submit">
+                                {
+                                    loading 
+                                    ? 
+                                    <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
+                                    : 
+                                    <>Add location</>
+                                }
+                                </StyledButton>
+                            </div>
+                            </Row>       
+                        )
+
+                    
+                    }
                 </form>
                 </>        
             }
@@ -121,9 +142,12 @@ function AddLocation (props){
 };
 
 const mapStatetoProps = state => {
+    console.log('state', state);
     return {
         loading: state.newLocation.loading,
         remoteError: state.newLocation.error, 
+        location: state.newLocation.location, 
+        isAdded: state.newLocation.isAdded,
     };
   };
   
