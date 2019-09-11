@@ -7,11 +7,7 @@ const AverageRatings = props => {
     <StyledAverage>
       <h3>Average Rating</h3>
       <p>{location.averageRating}</p>
-<<<<<<< HEAD
       {location.averageRating.message && <p>{location.averageRating.message}</p>}
-=======
-      {location.averageRating.message && <p>{location.averageRating.message }</p>}
->>>>>>> modify front-end to accept disclaimer
       <div>
         <button>Add a Review</button>
         <button>Add to Favourites</button>
