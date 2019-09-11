@@ -4,20 +4,17 @@ import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import logo from '../assets/logo.png';
 import { verifyEmail } from '../redux/actionCreators';
-import { toast } from "react-toastify";
-
 import {
   StyledWrapper,
   StyleMap,
   StyledRegistration,
-  StyledLeftSection,
+  StyledLeftSection
 } from './ViewStyles/AuthStyles';
-// import { connect } from 'net';
 
 const FindAccount = props => {
   const { loading, error, verifyEmail } = props;
   const [details, setDetails] = useState({
-    email: '',
+    email: ''
   });
 
   const submitEmail = event => {
@@ -38,7 +35,6 @@ const FindAccount = props => {
       </StyleMap>
       <StyledRegistration>
         <StyledLeftSection>
-
           <h3>First, let's find your account</h3>
           <h6>Please enter your email</h6>
           <form onSubmit={submitEmail}>
@@ -48,7 +44,7 @@ const FindAccount = props => {
               value={details.email}
               onChange={e => setDetails({ ...details, email: e.target.value })}
             />
-    
+
             <button type="submit">
               {loading ? (
                 <Loader type="Oval" color="#fff" height={40} width={30} />
@@ -56,9 +52,8 @@ const FindAccount = props => {
                 'Send Email'
               )}
             </button>
-            {error && <div class="error-message">{error}</div>}
+            {error && <div className="error-message">{error}</div>}
           </form>
-  
         </StyledLeftSection>
       </StyledRegistration>
     </StyledWrapper>
@@ -76,4 +71,3 @@ export default connect(
   mapStateToProps,
   { verifyEmail }
 )(FindAccount);
-

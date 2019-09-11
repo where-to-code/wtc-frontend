@@ -9,12 +9,12 @@ import {
   StyledWrapper,
   StyleMap,
   StyledRegistration,
-  StyledLeftSection,
+  StyledLeftSection
 } from './ViewStyles/AuthStyles';
 
 const ResetPassword = props => {
-  const { loading, error, resetPassword } = props;
-  const id =  Number(props.location.search.split('=')[1])
+  const { loading, error, resetPassword, location } = props;
+  const id =  Number(location.search.split('=')[1])
   const [details, setDetails] = useState({
     password: '',
     id,
@@ -42,14 +42,15 @@ const ResetPassword = props => {
   const submitPassword = event => {
     event.preventDefault();
     const { password, confirmPassword } = details;
-    if (!/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
+    if (
+      !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
       password !== confirmPassword
     ) {
       return;
     }
-      resetPassword(details.password, details.id).then(res => {
-        if (res.status === 200) props.history.push('/login');
-      });
+    resetPassword(details.password, details.id).then(res => {
+      if (res.status === 200) props.history.push('/login');
+    });
   };
 
   return (
@@ -66,7 +67,7 @@ const ResetPassword = props => {
           <h3>Reset Password</h3>
           <h6>Please enter your new password</h6>
           <form onSubmit={submitPassword}>
-          <input
+            <input
               type="password"
               placeholder="Enter Password"
               name="password"
@@ -74,7 +75,7 @@ const ResetPassword = props => {
               onChange={handleChange}
             />
 
-              {inputChangeState.password &&
+            {inputChangeState.password &&
               !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(
                 details.password
               ) && (
@@ -83,7 +84,7 @@ const ResetPassword = props => {
                 </span>
               )}
 
-             <input
+            <input
               type="password"
               placeholder="Confirm Password"
               name="confirmPassword"
@@ -91,7 +92,7 @@ const ResetPassword = props => {
               onChange={handleChange}
             />
 
-              {inputChangeState.confirmPassword &&
+            {inputChangeState.confirmPassword &&
               !(details.confirmPassword === details.password) && (
                 <span>Password does not match.</span>
               )}
@@ -102,9 +103,8 @@ const ResetPassword = props => {
                 'Reset Password'
               )}
             </button>
-            {error && <div class="error-message">{error}</div>}
+            {error && <div className="error-message">{error}</div>}
           </form>
-  
         </StyledLeftSection>
       </StyledRegistration>
     </StyledWrapper>
@@ -120,6 +120,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {resetPassword}
+  { resetPassword }
 )(ResetPassword);
-

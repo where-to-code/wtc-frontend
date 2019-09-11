@@ -1,5 +1,7 @@
 
+
 # WhereToCode [![Build Status](https://travis-ci.org/where-to-code/wtc-frontend.svg?branch=master)](https://travis-ci.org/where-to-code/wtc-frontend) ![](./badges.svg)
+![](./badges.svg) 
 
 WhereToCode deployed at [wWhereToCode](https://wheretocode-frontend.herokuapp.com).
 
