@@ -42,6 +42,7 @@ Finding out details about public places to work can be tedious. WhereToCode enab
 -    Locations with most use/activity/rating show up first
 -    feature five
 
+
 ## Tech Stack
 - HTML, CSS, Javascript
 - [Google Map API](https://cloud.google.com/maps-platform/)
@@ -70,7 +71,7 @@ Why did you choose this framework?
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Authentication API here
 
 A person can never just look at a place on the internet to determine whether or not it is a good place to post up and code. They have to go look through reviews on yelp and try to scroll through to find the information they need.
 
@@ -81,30 +82,26 @@ Imani is a web developer who works with a remote team. She enjoys getting out an
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
-
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
+Sample
+    *  REACT_APP_GOOGLE_API_KEY - xxxxxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxx
     
 
-# 5️⃣ Content Licenses
+# Content Licenses
 
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
 | Homepage image | Free stock       | [Splash](https://www.splash.com)                                             |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-# 4️⃣ Testing
- - Jest
-
+# Testing
+ #### Jest
 -    Fast and safe
 -    Easy mocking
 -    Stable
 -    Great API
 
-# 4️⃣ Installation Instructions
+# Installation Instructions
 
 - Clone this repo 
 - change directory to root folder
