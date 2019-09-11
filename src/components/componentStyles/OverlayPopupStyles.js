@@ -21,18 +21,21 @@ export const StyledOverlayPopup = styled.div`
     background: white;
     width: 50%;
     min-width: 300px;
-    max-width: 400px;
-    border-radius: 10px;
-    color: #666a7c;
-  }
-  h3 {
+    max-width: 600px;
+    border-radius:10px;
+    color: #666A7C;
+}
+h3, h2{
     font-size: 1.5rem;
-    padding-bottom: 20px;
-    color: #03525b;
-  }
-  .actions-row {
-    display: flex;
-    flex-direction: column;
+    padding-bottom:20px;
+    color: #03525B;
+}
+h2{
+    font-size: 1.7rem;
+}
+.actions-row{
+    display:flex;
+    flex-direction:column;
     justify-content: center;
     align-items: center;
   }
@@ -58,7 +61,28 @@ export const StyledOverlayPopup = styled.div`
     color: #03525b;
   }
 
-  .closing-cross span:hover {
-    color: #56c1cb;
-  }
+.closing-cross span:hover{
+    color: #56C1CB;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.left-box{
+    width: 50%;
+    margin: 10px
+}
+.right-box{
+    width: 100%;
+    margin: 10px
+}
+
+.error{
+    color: red;
+    font-size: .8rem;
+    padding: 10px;
+}
+
 `;
