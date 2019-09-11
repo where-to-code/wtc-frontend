@@ -66,7 +66,7 @@ const Registration = props => {
     setAllFields(false);
     signup(formState).then(res => {
       if (res.status === 201) {
-        // since the user is automatically looged in after sigin up 
+        // since the user is automatically looged in after sigin up
         // we set the cookie to flag the auth
         setTempCookie(res.data.data.id, res.data.data.lastname);
         props.history.push('/');
@@ -131,7 +131,7 @@ const Registration = props => {
               value={formState.password}
               onChange={handleChange}
             />
-            
+
             {inputChangeState.password &&
               !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(
                 formState.password

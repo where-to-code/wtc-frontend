@@ -2,40 +2,30 @@ import styled from 'styled-components';
 
 export const FilterPaneStyle = styled.div`
   display: flex;
-  width: 100%;
-  box-shadow: ${props =>
-    props.show ? '0px 3px 2px 1px rgba(86, 193, 203, 0.5)' : 'none'};
+  flex-direction: column;
+  box-shadow: 0px 3px 2px 1px rgba(86, 193, 203, 0.5);
   .filter {
     color: #56c1cb;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    margin: 20px;
+    margin: 10px;
     &:hover {
       cursor: pointer;
     }
   }
   .pane {
-    display: ${props => (props.show ? 'flex' : 'none')};
+    display: flex;
+    flex-wrap: wrap;
     margin: 0 auto;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
-    .check {
-      .content {
-        display: flex;
-      }
-      div {
-        padding: 0 10px;
-        font-size: 12px;
-      }
-    }
+    justify-content: space-around;
   }
   @media (min-width: 600px) {
     .pane {
       .check {
         div {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
     }

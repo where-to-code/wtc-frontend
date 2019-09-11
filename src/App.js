@@ -12,7 +12,6 @@ import FindAccount from './views/FindAccount';
 import ResetPassword from './views/ResetPassword';
 import EmailConfirmationMessage from './views/EmailConfirmationMessage';
 
-
 library.add(fab);
 const App = () => {
   return (

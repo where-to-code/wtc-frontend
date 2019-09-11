@@ -8,5 +8,6 @@ export const StyledMap = styled.div`
     top: 32px;
     right: 0px;
     height: 100%;
+    width: 35vw;
   }
 `;

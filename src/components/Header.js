@@ -12,7 +12,7 @@ const Header = props => {
   const isCookie = getCookie(props.userId);
   const onLogout = () => {
     logout(props.userId);
-  }
+  };
 
   const displayAddForm = () => {
     document.getElementById('add-location-form').style.display = 'flex';
@@ -43,27 +43,26 @@ const Header = props => {
             </Link>
             <Link to="/login">
               <button>Login</button>
-            </Link>  
-            </>
-          )
-      }
-      {
-        !props.isEmailVerified &&
-        <TopNotif isVerified={props.isEmailVerified} />
-      }
+            </Link>
+          </>
+        )}
+        {!props.isEmailVerified && (
+          <TopNotif isVerified={props.isEmailVerified} />
+        )}
       </div>
       <AddLocation />
     </StyledHeader>
   );
 };
 
-function mapStateToProps (state) {
-  return{
+function mapStateToProps(state) {
+  return {
     userId: state.auth.userId,
-    isEmailVerified: state.auth.isEmailVerified,
-  }
-};
+    isEmailVerified: state.auth.isEmailVerified
+  };
+}
 
 export default connect(
-  mapStateToProps, null
+  mapStateToProps,
+  null
 )(Header);
