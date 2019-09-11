@@ -407,13 +407,8 @@ describe('Single Location', () => {
       longitude: '0.999923',
       latitude: '0.273444',
       created_at: '',
-<<<<<<< HEAD
       averageRating: 3.5,
       place_id: 'ChIJrTLr-GyuEmsRBfy61i59si0',
-=======
-      averageRating:3.5,
-      place_id:'ChIJrTLr-GyuEmsRBfy61i59si0'
->>>>>>> 15aac2462b97b5a09ae3728bc4efb60238e831c7
     },
   };
   it('single location success', () => {
@@ -434,15 +429,11 @@ describe('Single Location', () => {
   });
   it('should fetch locations', async () => {
     await mock.onGet(`${url}/locations/1`).reply(200, singleLocation);
-<<<<<<< HEAD
     await mock
       .onGet(
         `https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
       )
       .reply(200, { rating: 3.5 });
-=======
-    await mock.onGet(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`).reply(200, {rating:3.5})
->>>>>>> 15aac2462b97b5a09ae3728bc4efb60238e831c7
 
     const expectedActions = [
       { type: types.LOADING_SINGLE_LOCATION },
@@ -460,15 +451,11 @@ describe('Single Location', () => {
       message: 'Request failed with status code 404',
     };
     await mock.onGet(`${url}/locations/1`).reply(404, error);
-<<<<<<< HEAD
     await mock
       .onGet(
         `https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
       )
       .reply(404, error);
-=======
-    await mock.onGet(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`).reply(404, error);
->>>>>>> 15aac2462b97b5a09ae3728bc4efb60238e831c7
     const expectedActions = [
       { type: types.LOADING_SINGLE_LOCATION },
       { type: types.FETCH_SINGLE_LOCATIONS_FAILURE, payload: error.message },
@@ -603,21 +590,12 @@ describe('Reset Password', () => {
     );
   });
   it('should successfully reset password', async () => {
-<<<<<<< HEAD
     const user = {
       id: 1,
       firstname: 'first',
       lastname: 'last',
       password: '12345abc',
     };
-=======
-    const user={
-      id:1,
-      firstname:'first',
-      lastname:'last',
-      password: '12345abc'
-    }
->>>>>>> 15aac2462b97b5a09ae3728bc4efb60238e831c7
     mock.onPost(`${url}/auth/change/1`).reply(200, user);
     const expectedActions = [
       { type: types.RESET_PASSWORD_LOAD },
@@ -627,7 +605,6 @@ describe('Reset Password', () => {
       },
     ];
     const store = mockStore({ resetPassword: user.password });
-<<<<<<< HEAD
     await store.dispatch(actions.resetPassword(user.password, user.id));
     expect(store.getActions()).toEqual(expectedActions);
   });
@@ -641,40 +618,16 @@ describe('Reset Password', () => {
     const error = {
       message: 'Request failed with status 400',
     };
-=======
-    await store.dispatch(actions.resetPassword(user.password ,user.id ));
-    expect(store.getActions()).toEqual(expectedActions);
-
-  });
-  it('should fail reset password', async () => {
-    const user={
-      id:1,
-      firstname:'first',
-      lastname:'last',
-      password: '12345abc'
-    }
-    const error ={
-      message:'Request failed with status 400'
-    }
->>>>>>> 15aac2462b97b5a09ae3728bc4efb60238e831c7
     mock.onPost(`${url}/auth/change/1`).reply(404, error);
     const expectedActions = [
       { type: types.RESET_PASSWORD_LOAD },
       {
         type: types.RESET_PASSWORD_FAILURE,
-<<<<<<< HEAD
         payload: error.message,
       },
     ];
     const store = mockStore({ resetPassword: user.password });
     await store.dispatch(actions.resetPassword(user.password, user.id));
-=======
-        payload: error.message
-      },
-    ];
-    const store = mockStore({ resetPassword: user.password });
-    await store.dispatch(actions.resetPassword(user.password ,user.id ));
->>>>>>> 15aac2462b97b5a09ae3728bc4efb60238e831c7
     expect(store.getActions()).toEqual(expectedActions);
   });
 });
