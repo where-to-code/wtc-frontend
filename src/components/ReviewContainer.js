@@ -41,11 +41,11 @@ const ReviewContainer = props => {
       {reviews.map(review => (
         <StyledReviewCard key={review.id}>
           <StyledReviewRatings>
-            <Review title="Quietness" starNumber={review.quietness} />
-            <Review title="Wifi Speed" starNumber={review.wifi_speed} />
-            <Review title="Close Late" starNumber={review.close_late} />
-            <Review title="Community" starNumber={review.community} />
-            <Review title="Accessibility" starNumber={review.accessibility} />
+            <Review isStatic={true} title="Quietness" starNumber={review.quietness} />
+            <Review isStatic={true} title="Wifi Speed" starNumber={review.wifi_speed} />
+            <Review isStatic={true} title="Close Late" starNumber={review.close_late} />
+            <Review isStatic={true} title="Community" starNumber={review.community} />
+            <Review isStatic={true} title="Accessibility" starNumber={review.accessibility} />
           </StyledReviewRatings>
           <Comment description={review.description} />
         </StyledReviewCard>

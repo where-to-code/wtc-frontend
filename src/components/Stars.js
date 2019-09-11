@@ -20,7 +20,6 @@ const Stars = props => {
     setActiveStars(starsArray)
   }, [])
   const onMouseEnter = index => {
-    console.log(staticStars)
     if (!staticStars) {
       starsArray = [];
       for (let i = 0; i <= index; i++) {
@@ -36,7 +35,6 @@ const Stars = props => {
     }
   }
   const onClick = index => {
-    console.log('click')
     if (!isStatic) {
       starsArray = [];
       for (let i = 0; i <= index; i++) {

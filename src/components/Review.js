@@ -3,12 +3,12 @@ import Stars from './Stars';
 import { StyledReview } from './componentStyles/ReviewStyles';
 
 const Review = props => {
-  const { title, starNumber } = props;
+  const { title, starNumber, isStatic } = props;
   return (
     <StyledReview>
       <label>{title}</label>
       <div>
-        <Stars starNumber={starNumber} />
+        <Stars isStatic={isStatic} starNumber={starNumber} />
       </div>
     </StyledReview>
   );
