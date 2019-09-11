@@ -143,11 +143,7 @@ describe('authentication', () => {
     mock.onPost(`${url}/auth/register`).reply(201, userInfo);
     const expectedActions = [
       { type: types.AUTH_LOAD },
-<<<<<<< HEAD
       { type: types.AUTH_SUCCESS, payload: userInfo.data },
-=======
-      { type: types.AUTH_SUCCESS, payload: userInfo.data.id },
->>>>>>> 15aac2462b97b5a09ae3728bc4efb60238e831c7
     ];
     const store = mockStore({ userId: '' });
     await store.dispatch(actions.signup(userValue));
