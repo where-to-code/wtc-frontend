@@ -30,7 +30,6 @@ const App = () => {
         path="/email-message"
         render={props => <EmailConfirmationMessage {...props} />}
       />
-      <Route path="/add-review" render={props => <AddReview {...props} />} />
     </div>
   );
 };

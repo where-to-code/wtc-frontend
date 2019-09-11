@@ -215,3 +215,16 @@ export const resetPasswordReducer = (state = passwordState, action) => {
       return state;
   }
 };
+
+export const addReviewReducer = (state = {
+  isShown: false
+}, action) => {
+  switch (action.type) {
+    case types.SET_ADD_REVIEW_FALSE:
+      return { ...state, isShown: false };
+    case types.SET_ADD_REVIEW_TRUE:
+      return { ...state, isShown: true };
+    default:
+      return state;
+  }
+}

@@ -409,3 +409,11 @@ export const setNewVerificationSent = () => ({
 export const setPopupMessageSeen = () => ({
   type: types.POPUP_MESSAGE_SEEN
 });
+
+// Add Review
+export const setAddReviewTrue = () => ({
+  type: types.SET_ADD_REVIEW_TRUE
+})
+export const setAddReviewFalse = () => ({
+  type: types.SET_ADD_REVIEW_FALSE
+})

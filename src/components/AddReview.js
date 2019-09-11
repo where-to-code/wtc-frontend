@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
-import Stars from './Stars';
-import Review from './Review'
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Review from './Review';
+import { setAddReviewFalse } from '../redux/actionCreators'
+import { StyledAddRating, StyledAddReview } from './componentStyles/AddReviewStyles';
 
 const AddReview = props => {
+    const { setAddReviewFalse, isShown } = props;
+
     const [input, setInput] = useState({
         review: '',
     });
     const [inputChangeState, updateInputChangeState] = useState({
         review: false,
     });
+
     const handleChange = e => {
         setInput({ ...input, [e.target.name]: e.target.value });
 
@@ -20,26 +26,49 @@ const AddReview = props => {
     const submitReview = e => {
         e.preventDefault();
     }
+    const closeModal = () => {
+        setAddReviewFalse();
+    }
 
     return (
-        <div className="container">
+        <StyledAddReview isShown={isShown}>
             <h2>Add a Review</h2>
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
                 <h4>Please rate the following</h4>
-                <div className="stars-rating">
-                <Review title="Quietness"  />
-            <Review title="Wifi Speed"  />
-            <Review title="Close Late"  />
-            <Review title="Community"  />
-            <Review title="Accessibility" />
-                </div>
+                <StyledAddRating>
+                    <Review title="Quietness" />
+                    <Review title="Wifi Speed" />
+                    <Review title="Close Late" />
+                    <Review title="Community" />
+                    <Review title="Accessibility" />
+                </StyledAddRating>
                 <div className="text-review">
                     <h4>What do you think about this place?</h4>
-                    <input type="text" name="review" onChange={handleChange} />
+                    <textarea name="review" onChange={handleChange} />
                 </div>
-            </form>
 
-        </div>
+                <button>Add Review</button>
+            </form>
+            <p onClick={closeModal}>X</p>
+        </StyledAddReview>
     )
 }
-export default AddReview;
+function mapStateToProps(state) {
+    return {
+        isShown: state.addReview.isShown
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(
+        {
+            setAddReviewFalse,
+        },
+        dispatch,
+    );
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(AddReview);

@@ -38,7 +38,7 @@ const ReviewContainer = props => {
       <Comment description={reviews.description} /> */}
 
       <h3>Reviews</h3>
-      {reviews.map(review => (
+      {reviews && reviews.map(review => (
         <StyledReviewCard key={review.id}>
           <StyledReviewRatings>
             <Review isStatic={true} title="Quietness" starNumber={review.quietness} />
