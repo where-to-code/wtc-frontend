@@ -13,6 +13,7 @@ import { mapPromise } from '../redux/helpers';
 
 
 function AddLocation (props){
+    const { addNewLocation, remoteError, loading} = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
@@ -28,7 +29,7 @@ function AddLocation (props){
             setFormError(true);
             return;
         } 
-        props.addNewLocation({
+        addNewLocation({
             name: placeData.name,
             description: description,
             image_url: locationPhotos,
@@ -74,7 +75,7 @@ function AddLocation (props){
                     <h2>Add a new location</h2>
                     </div>
                     {formError && <div className="error"> All fields are required</div>}
-                    {props.remoteError && <div className="error"> We are unable to process your request. <br/> Please try again later </div>}
+                    {remoteError && <div className="error"> We are unable to process your request. <br/> Please try again later </div>}
                     <Row>
                         {
                             locationPhotos && 
@@ -102,7 +103,7 @@ function AddLocation (props){
                         </StyledTextarea>
                         <StyledButton type="submit">
                         {
-                            props.loading 
+                            loading 
                             ? 
                             <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
                             : 
