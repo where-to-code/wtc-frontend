@@ -133,21 +133,21 @@ describe('authentication', () => {
       password: '1234abc',
     };
     const userInfo = {
-      data:{
-        id:1,
-        firstname:'nab',
-        lastname:'gai',
-        email:'nabgai@gmail.com',
-      }
-    }
-  mock.onPost(`${url}/auth/register`).reply(201, userInfo)
-  const expectedActions = [
-    { type: types.AUTH_LOAD },
-    { type: types.AUTH_SUCCESS, payload: userInfo.data },
-  ];
-const store = mockStore({ userId: ''});
-await store.dispatch(actions.signup(userValue));
-expect(store.getActions()).toEqual(expectedActions);
+      data: {
+        id: 1,
+        firstname: 'nab',
+        lastname: 'gai',
+        email: 'nabgai@gmail.com',
+      },
+    };
+    mock.onPost(`${url}/auth/register`).reply(201, userInfo);
+    const expectedActions = [
+      { type: types.AUTH_LOAD },
+      { type: types.AUTH_SUCCESS, payload: userInfo.data },
+    ];
+    const store = mockStore({ userId: '' });
+    await store.dispatch(actions.signup(userValue));
+    expect(store.getActions()).toEqual(expectedActions);
   });
 });
 it('signup should fail', async () => {
@@ -407,6 +407,8 @@ describe('Single Location', () => {
       longitude: '0.999923',
       latitude: '0.273444',
       created_at: '',
+      averageRating: 3.5,
+      place_id: 'ChIJrTLr-GyuEmsRBfy61i59si0',
     },
   };
   it('single location success', () => {
@@ -426,7 +428,13 @@ describe('Single Location', () => {
     );
   });
   it('should fetch locations', async () => {
-    mock.onGet(`${url}/locations/1`).reply(200, singleLocation);
+    await mock.onGet(`${url}/locations/1`).reply(200, singleLocation);
+    await mock
+      .onGet(
+        `https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+      )
+      .reply(200, { rating: 3.5 });
+
     const expectedActions = [
       { type: types.LOADING_SINGLE_LOCATION },
       {
@@ -442,7 +450,12 @@ describe('Single Location', () => {
     const error = {
       message: 'Request failed with status code 404',
     };
-    mock.onGet(`${url}/locations/1`).reply(404, error);
+    await mock.onGet(`${url}/locations/1`).reply(404, error);
+    await mock
+      .onGet(
+        `https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+      )
+      .reply(404, error);
     const expectedActions = [
       { type: types.LOADING_SINGLE_LOCATION },
       { type: types.FETCH_SINGLE_LOCATIONS_FAILURE, payload: error.message },
@@ -577,12 +590,12 @@ describe('Reset Password', () => {
     );
   });
   it('should successfully reset password', async () => {
-    const user={
-      id:1,
-      firstname:'first',
-      lastname:'last',
-      password: '12345abc'
-    }
+    const user = {
+      id: 1,
+      firstname: 'first',
+      lastname: 'last',
+      password: '12345abc',
+    };
     mock.onPost(`${url}/auth/change/1`).reply(200, user);
     const expectedActions = [
       { type: types.RESET_PASSWORD_LOAD },
@@ -592,30 +605,29 @@ describe('Reset Password', () => {
       },
     ];
     const store = mockStore({ resetPassword: user.password });
-    await store.dispatch(actions.resetPassword(user.password ,user.id ));
+    await store.dispatch(actions.resetPassword(user.password, user.id));
     expect(store.getActions()).toEqual(expectedActions);
-
   });
   it('should fail reset password', async () => {
-    const user={
-      id:1,
-      firstname:'first',
-      lastname:'last',
-      password: '12345abc'
-    }
-    const error ={
-      message:'Request failed with status 400'
-    }
+    const user = {
+      id: 1,
+      firstname: 'first',
+      lastname: 'last',
+      password: '12345abc',
+    };
+    const error = {
+      message: 'Request failed with status 400',
+    };
     mock.onPost(`${url}/auth/change/1`).reply(404, error);
     const expectedActions = [
       { type: types.RESET_PASSWORD_LOAD },
       {
         type: types.RESET_PASSWORD_FAILURE,
-        payload: error.message
+        payload: error.message,
       },
     ];
     const store = mockStore({ resetPassword: user.password });
-    await store.dispatch(actions.resetPassword(user.password ,user.id ));
+    await store.dispatch(actions.resetPassword(user.password, user.id));
     expect(store.getActions()).toEqual(expectedActions);
   });
 });
