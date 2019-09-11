@@ -280,7 +280,9 @@ export const fetchSingleLocation = locId => async dispatch => {
   dispatch({ type: types.LOADING_SINGLE_LOCATION });
   try {
     const locationInfo = await axios.get(`${url}/locations/${locId}`);
-    return dispatch(singleLocSuccess(locationInfo.data.data));
+    const rating = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${locationInfo.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
+    const locationData = {...locationInfo.data.data , averageRating:rating}
+    dispatch(singleLocSuccess(locationData));
   } catch (error) {
     const errorValue = error.response ? error.response.data.message : error.message
     dispatch(singleLocFailure(errorValue));
