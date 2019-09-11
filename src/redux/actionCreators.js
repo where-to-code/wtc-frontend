@@ -1,8 +1,7 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 import { mapPromise } from './helpers';
-import { toast } from "react-toastify";
-
+import { toast } from 'react-toastify';
 
 const url = 'https://where2code.herokuapp.com/api';
 
@@ -21,7 +20,7 @@ const locations = {
       avg_wifi_speed: 4,
       avg_accessibility: 3,
       avg_community: 4,
-      id:1
+      id: 1,
     },
     {
       name: 'Domino"s Pizza',
@@ -35,7 +34,7 @@ const locations = {
       avg_wifi_speed: 2,
       avg_accessibility: 5,
       avg_community: 1,
-      id:1
+      id: 1,
     },
     {
       name: 'Babacorvee Plaza',
@@ -49,7 +48,7 @@ const locations = {
       avg_wifi_speed: 3,
       avg_accessibility: 2,
       avg_community: 3,
-      id:1
+      id: 1,
     },
     {
       name: 'Chicken Republic',
@@ -63,7 +62,7 @@ const locations = {
       avg_wifi_speed: 2,
       avg_accessibility: 5,
       avg_community: 2,
-      id:1
+      id: 1,
     },
     {
       name: 'Vintage Suites',
@@ -77,7 +76,7 @@ const locations = {
       avg_wifi_speed: 5,
       avg_accessibility: 1,
       avg_community: 4,
-      id:1
+      id: 1,
     },
     {
       name: 'Swisscottage Suites',
@@ -91,7 +90,7 @@ const locations = {
       avg_wifi_speed: 4,
       avg_accessibility: 2,
       avg_community: 1,
-      id:1
+      id: 1,
     },
     {
       name: 'Lagos State Digital Village',
@@ -104,7 +103,7 @@ const locations = {
       avg_quietness: 4,
       avg_wifi_speed: 2,
       avg_accessibility: 5,
-      avg_community: 5
+      avg_community: 5,
     },
     {
       name: 'Apex B Shopping Mall/Boluke Pharmacy',
@@ -117,9 +116,9 @@ const locations = {
       avg_quietness: 2,
       avg_wifi_speed: 3,
       avg_accessibility: 1,
-      avg_community: 3
-    }
-  ]
+      avg_community: 3,
+    },
+  ],
 };
 
 // Auth
@@ -139,34 +138,35 @@ export function authSuccess(user) {
 export function authFailSignup(payload) {
   return {
     type: types.AUTH_FAILURE_SIGNUP,
-    payload: payload
+    payload: payload,
   };
 }
 
 export function authFailLogin(payload) {
   return {
     type: types.AUTH_FAILURE_LOGIN,
-    payload: payload
+    payload: payload,
   };
 }
 
 export const login = user => async dispatch => {
   try {
     dispatch(authLoad());
-    const loginDetails = await axios
-    .post(`${url}/auth/login`, user, {
+    const loginDetails = await axios.post(`${url}/auth/login`, user, {
       withCredentials: true,
     });
     dispatch(authSuccess(loginDetails.data.data));
     return loginDetails;
   } catch (error) {
-    const errorValue = error.response ? error.response.data.message : error.message
+    const errorValue = error.response
+      ? error.response.data.message
+      : error.message;
     dispatch(authFailLogin(errorValue));
     return error;
   }
 };
 
-export const successGitlog = (userData) => dispatch =>{
+export const successGitlog = userData => dispatch => {
   dispatch(authSuccess(userData));
 };
 
@@ -183,9 +183,10 @@ export const signup = userData => async dispatch => {
     dispatch(authSuccess(userDetails.data.data.id));
     return userDetails;
   } catch (error) {
-    const errorValue = error.response ? error.response.data.message : error.message
+    const errorValue = error.response
+      ? error.response.data.message
+      : error.message;
     return dispatch(authFailSignup(errorValue));
-    
   }
 };
 
@@ -202,7 +203,7 @@ export const locationFailure = error => ({
 
 export const allLocationsSuccess = locationList => ({
   type: types.ALL_LOCATIONS_SUCCESS,
-  payload: locationList.data
+  payload: locationList.data,
 });
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
@@ -213,7 +214,9 @@ export const locationLoads = currentLocation => async dispatch => {
     dispatch(locationSuccess(locationsInfo.data));
     dispatch(allLocationsSuccess(locationsInfo.data));
   } catch (error) {
-    const errorValue = error.response ? error.response.data.message : error.message
+    const errorValue = error.response
+      ? error.response.data.message
+      : error.message;
     dispatch(locationFailure(errorValue));
   }
 };
@@ -232,7 +235,7 @@ export const clearLocations = () => ({
 
 // ACTIONS FOR MAPS REDUCER
 export const mapsSucces = () => ({
-  type: types.FETCH_MAP_API_SUCCESS
+  type: types.FETCH_MAP_API_SUCCESS,
 });
 export const mapsFailure = error => ({
   type: types.FETCH_MAP_API_FAILURE,
@@ -247,7 +250,9 @@ export const mapsLoading = () => async dispatch => {
       dispatch(mapsSucces(value[0].maps));
     });
   } catch (error) {
-    const errorValue = error.response.data ? error.response.data.message : error.message
+    const errorValue = error.response.data
+      ? error.response.data.message
+      : error.message;
     dispatch(mapsFailure(errorValue));
   }
 };
@@ -262,7 +267,7 @@ export const setGeolocationFalse = () => ({
 
 export const setGeolocationValue = geolocation => ({
   type: types.SET_GEOLOCATION_VALUE,
-  payload: geolocation
+  payload: geolocation,
 });
 
 // ACTIONS FOR SINGLE LOCATION REDUCER
@@ -280,11 +285,23 @@ export const fetchSingleLocation = locId => async dispatch => {
   dispatch({ type: types.LOADING_SINGLE_LOCATION });
   try {
     const locationInfo = await axios.get(`${url}/locations/${locId}`);
-    const rating = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${locationInfo.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
-    const locationData = {...locationInfo.data.data , averageRating:rating}
+    const googleRating = await axios.get(
+      `https://maps.googleapis.com/maps/api/place/details/json?placeid=${locationInfo.data.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+    );
+    const locationData = {
+      ...locationInfo.data.data,
+      averageRating:
+        locationInfo.data.data.averageRating ||
+        googleRating.data.rating ||
+        'No ratings for this place',
+    };
+    console.log(locationData);
     dispatch(singleLocSuccess(locationData));
   } catch (error) {
-    const errorValue = error.response ? error.response.data.message : error.message
+    console.log(error);
+    const errorValue = error.response
+      ? error.response.data.message
+      : error.message;
     dispatch(singleLocFailure(errorValue));
   }
 };
@@ -295,28 +312,28 @@ export const setActive = location => ({
   payload: location,
 });
 
-export const clearActive = ()=> ({
+export const clearActive = () => ({
   type: types.CLEAR_ACTIVE,
 });
 
 // verify email
 export function verifyEmailLoad() {
   return {
-    type: types.VERIFY_EMAIL_LOAD
+    type: types.VERIFY_EMAIL_LOAD,
   };
 }
 
 export function verifyEmailSuccess(email) {
   return {
     type: types.VERIFY_EMAIL_SUCCESS,
-    payload: email
+    payload: email,
   };
 }
 
 export function verifyEmailFail(payload) {
   return {
     type: types.VERIFY_EMAIL_FAILURE,
-    payload: payload
+    payload: payload,
   };
 }
 
@@ -324,7 +341,7 @@ export const verifyEmail = email => dispatch => {
   dispatch({ type: types.VERIFY_EMAIL_LOAD });
   return axios
     .post(`${url}/auth/forgot`, email, {
-      withCredentials: true
+      withCredentials: true,
     })
     .then(res => {
       dispatch(verifyEmailSuccess(res.data));
@@ -341,21 +358,21 @@ export const verifyEmail = email => dispatch => {
 // password reset
 export function resetPasswordLoad() {
   return {
-    type: types.RESET_PASSWORD_LOAD
+    type: types.RESET_PASSWORD_LOAD,
   };
 }
 
 export function resetPasswordSuccess(password) {
   return {
     type: types.RESET_PASSWORD_SUCCESS,
-    payload: password
+    payload: password,
   };
 }
 
 export function resetPasswordFail(payload) {
   return {
     type: types.RESET_PASSWORD_FAILURE,
-    payload: payload
+    payload: payload,
   };
 }
 
@@ -363,11 +380,11 @@ export const resetPassword = (password, id) => dispatch => {
   dispatch(resetPasswordLoad());
   return axios
     .post(
-      `${url}/auth/change/${id}`, 
-      { password }, 
+      `${url}/auth/change/${id}`,
+      { password },
       {
-        withCredentials: true
-      }
+        withCredentials: true,
+      },
     )
     .then(res => {
       dispatch(resetPasswordSuccess(res.data));
@@ -375,7 +392,7 @@ export const resetPassword = (password, id) => dispatch => {
       return res;
     })
     .catch(err => {
-      const errorValue = err.response ? err.response.data.message : err.message
+      const errorValue = err.response ? err.response.data.message : err.message;
       dispatch(resetPasswordFail(errorValue));
       toast.error('password reset not successful, try again');
       return err;
@@ -388,23 +405,23 @@ export const resendEmailVerification = email => dispatch => {
   dispatch(verifyEmailLoad());
   return axios
     .post(`${url}/auth/verify`, email, {
-      withCredentials: true
+      withCredentials: true,
     })
     .then(res => {
       dispatch(verifyEmailSuccess(res.data));
       return res;
     })
     .catch(err => {
-      const errorValue = err.response ? err.response.data.message : err.message
+      const errorValue = err.response ? err.response.data.message : err.message;
       dispatch(verifyEmailFail(errorValue));
       return err;
     });
 };
 
 export const setNewVerificationSent = () => ({
-  type: types.NEW_VERIFY_EMAIL_SENT
+  type: types.NEW_VERIFY_EMAIL_SENT,
 });
 
 export const setPopupMessageSeen = () => ({
-  type: types.POPUP_MESSAGE_SEEN
+  type: types.POPUP_MESSAGE_SEEN,
 });

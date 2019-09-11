@@ -407,6 +407,8 @@ describe('Single Location', () => {
       longitude: '0.999923',
       latitude: '0.273444',
       created_at: '',
+      averageRating:3.5,
+      place_id:'ChIJrTLr-GyuEmsRBfy61i59si0'
     },
   };
   it('single location success', () => {
@@ -426,7 +428,9 @@ describe('Single Location', () => {
     );
   });
   it('should fetch locations', async () => {
-    mock.onGet(`${url}/locations/1`).reply(200, singleLocation);
+    await mock.onGet(`${url}/locations/1`).reply(200, singleLocation);
+    await mock.onGet(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`).reply(200, {rating:3.5})
+
     const expectedActions = [
       { type: types.LOADING_SINGLE_LOCATION },
       {
@@ -442,7 +446,8 @@ describe('Single Location', () => {
     const error = {
       message: 'Request failed with status code 404',
     };
-    mock.onGet(`${url}/locations/1`).reply(404, error);
+    await mock.onGet(`${url}/locations/1`).reply(404, error);
+    await mock.onGet(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`).reply(404, error);
     const expectedActions = [
       { type: types.LOADING_SINGLE_LOCATION },
       { type: types.FETCH_SINGLE_LOCATIONS_FAILURE, payload: error.message },
