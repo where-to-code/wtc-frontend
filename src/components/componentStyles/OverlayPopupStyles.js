@@ -79,4 +79,10 @@ img {
     margin: 10px
 }
 
+.error{
+    color: red;
+    font-size: .8rem;
+    padding: 10px;
+}
+
 `;

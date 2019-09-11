@@ -13,16 +13,19 @@ import { mapPromise } from '../redux/helpers';
 
 
 function AddLocation (props){
-
-    //const [uploadingImage, setUploadingImage] = useState(false);
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
+    const [formError, setFormError] = useState(null);
     const hideMessage = () =>{
         document.getElementById('add-location-form').style.display = 'none';
     }
     const submitLocation = (event) =>{
         event.preventDefault();
+        if(!placeData || !description) {
+            setFormError(true);
+            return;
+        } 
         props.addNewLocation({
             name: placeData.name,
             description: description,
@@ -34,15 +37,11 @@ function AddLocation (props){
         })
     }
 
-    // const uploadImage = (event) =>{
-    //     event.preventDefault();
-    //     setUploadingImage(true);
-    //     console.log('Submitting form');
-    // }
-
     const handleChange = event => {
         setDescription(event.target.value);
-      };
+        // if any error is being displayed, we remove it if user type in again
+        setFormError(false);
+    };
 
     // useEffect to use the Map place API autocomplete
     useEffect(() => {
@@ -50,7 +49,6 @@ function AddLocation (props){
         const autocomplete = new mapObject.maps.places.Autocomplete(
             document.getElementById('location-name-field'),
         );
-        
         // force auto-complete to return only business
         autocomplete.setTypes(['establishment']);
         autocomplete.addListener('place_changed', () => {
@@ -73,6 +71,7 @@ function AddLocation (props){
                     <div>
                     <h2>Add a new location</h2>
                     </div>
+                    {formError && <div className="error"> All fields are required</div>}
                     <Row>
                         {
                             locationPhotos && 
@@ -118,7 +117,6 @@ function AddLocation (props){
 };
 
 const mapStatetoProps = state => {
-    console.log('state', state)
     return {
         loading: state.newLocation.loading
     };
