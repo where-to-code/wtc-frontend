@@ -429,3 +429,42 @@ export const setNewVerificationSent = () => ({
 export const setPopupMessageSeen = () => ({
   type: types.POPUP_MESSAGE_SEEN,
 });
+
+// Adding a new Location
+
+export function addNewLocationLoad() {
+  return {
+    type: types.ADD_NEW_LOCATION_LOAD
+  };
+}
+
+export function addNewLocationSuccess(newLocation) {
+  return {
+    type: types.ADD_NEW_LOCATION_SUCCESS,
+    payload: newLocation
+  };
+}
+
+export function addNewLocationFail(error) {
+  return {
+    type: types.ADD_NEW_LOCATION_FAIL,
+    payload: error
+  };
+}
+
+export const addNewLocation = locationData => dispatch => {
+  dispatch(addNewLocationLoad());
+  return axios
+    //.post(`https://where-to-code-staging.herokuapp.com/api/locations`, locationData, {
+    .post(`${url}/locations`, locationData, {
+      withCredentials: true
+    })
+    .then(res => {
+      dispatch(addNewLocationSuccess(res.data.data[0]));
+      return res;
+    })
+    .catch(err => {
+      dispatch(addNewLocationFail(err.response.data.error));
+      return err;
+    });
+};

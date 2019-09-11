@@ -3,6 +3,7 @@ import * as reducers from './reducers';
 
 const rootReducer = combineReducers({
   locations: reducers.locationReducer,
+  newLocation: reducers.addLocationReducer,
   maps: reducers.mapsReducer,
   location: reducers.singleLocaReducer,
   activeLocation: reducers.activeLocation,
