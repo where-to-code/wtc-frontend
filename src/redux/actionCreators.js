@@ -292,13 +292,11 @@ export const fetchSingleLocation = locId => async dispatch => {
       ...locationInfo.data.data,
       averageRating:
         locationInfo.data.data.averageRating ||
-        googleRating.data.rating ||
+        {...googleRating.result, message:'Disclaimer: Google Ratings'} ||
         'No ratings for this place',
     };
-    console.log(locationData);
     dispatch(singleLocSuccess(locationData));
   } catch (error) {
-    console.log(error);
     const errorValue = error.response
       ? error.response.data.message
       : error.message;
