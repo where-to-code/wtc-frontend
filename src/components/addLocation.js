@@ -17,12 +17,14 @@ function AddLocation (props){
         addNewLocation, 
         remoteError, 
         loading,
+        location,
         isAdded 
     } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
     const [formError, setFormError] = useState(null);
+
     const hideMessage = () =>{
         document.getElementById('add-location-form').style.display = 'none';
     }
@@ -84,8 +86,8 @@ function AddLocation (props){
                         ? (
                             <>
                             <p> Thank you for adding this location </p>
-                            <StyledButton>
-                                OK
+                            <StyledButton onClick={hideMessage}>
+                            OK
                             </StyledButton>
                             </>
                         )
@@ -142,7 +144,6 @@ function AddLocation (props){
 };
 
 const mapStatetoProps = state => {
-    console.log('state', state);
     return {
         loading: state.newLocation.loading,
         remoteError: state.newLocation.error, 

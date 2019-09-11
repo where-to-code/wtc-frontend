@@ -234,7 +234,6 @@ export const addLocationReducer = (state = newLocation, action) => {
       };
 
     case types.ADD_NEW_LOCATION_SUCCESS:
-      debugger
       return {
         ...state,
         loading: false,

@@ -28,24 +28,22 @@ const Header = props => {
       {
         isCookie 
           ? 
-            <>
-            <Link to="/signup">
-            <button>Sign Up</button>
-           </Link>
-            <Link to="/login">
-              <button>Login</button>
-            </Link>  
+          <>
+            <button onClick={onLogout}>
+              Logout
+            </button>
+            <button onClick={displayAddForm}>
+              Add Location
+            </button>
             </>
           : (
             <>
-            <button
-            onClick={onLogout}>
-              Logout
-            </button>
-            <button
-            onClick={displayAddForm}>
-              Add Location
-            </button>
+            <Link to="/signup">
+              <button>Sign Up</button>
+            </Link>
+            <Link to="/login">
+              <button>Login</button>
+            </Link>  
             </>
           )
       }
