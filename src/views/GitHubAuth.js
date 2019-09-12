@@ -21,18 +21,20 @@ const StyledSpinner = styled.div`
 const GitHub = ({ location, successGitlog }) => {
   const [isAuth, setIsAuth] = useState(null);
 
-  useEffect(() => {
+  useEffect(async() => {
     const code = location.search.split('=')[1];
-
-    axios(`${url}?code=${code}`)
-      .then(res => {
+    try{
+    const res = await axios(`${url}?code=${code}`)
+    await successGitlog(res.data.data);
         // dispatch successful auth to redux state
-        successGitlog(res.data.data);
+     await setTempCookie(res.data.data.id, res.data.data.lastname);
+       await setIsAuth(true);
         // Login is successful so we write a cookie to auth the user
-        setTempCookie(res.data.data.id, res.data.data.lastname);
-        setIsAuth(true);
-      })
-      .catch(err => setIsAuth(false));
+       
+      }
+      catch(err){
+        setIsAuth(false));
+      } 
   }, []);
 
   if (isAuth === null)
