@@ -28,7 +28,8 @@ const AddReview = props => {
         const newReview = review;
         newReview.description = input.review;
         newReview.user_id = id;
-        addReview(newReview, locId)
+        addReview(newReview, locId);
+        closeModal();
     }
     const closeModal = () => {
         setAddReviewFalse();

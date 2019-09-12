@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import TopNotif from '../components/TopNotif';
+import AddLocation from '../components/AddLocation';
 import logo from '../assets/logo.png';
 
 const Header = props => {
@@ -11,8 +12,11 @@ const Header = props => {
   const isCookie = getCookie(props.userId);
   const onLogout = () => {
     logout(props.userId);
-  }
+  };
 
+  const displayAddForm = () => {
+    document.getElementById('add-location-form').style.display = 'flex';
+  }
   return (
     <StyledHeader landing={landing}>
       <div className="logo">
@@ -24,37 +28,41 @@ const Header = props => {
       {
         isCookie 
           ? 
-            <button
-            onClick={onLogout}>
+          <>
+            <button onClick={onLogout}>
               Logout
             </button>
+            <button onClick={displayAddForm}>
+              Add Location
+            </button>
+            </>
           : (
             <>
             <Link to="/signup">
-            <button>Sign Up</button>
-           </Link>
+              <button>Sign Up</button>
+            </Link>
             <Link to="/login">
               <button>Login</button>
-            </Link>  
-            </>
-          )
-      }
-      {
-        !props.isEmailVerified &&
-        <TopNotif isVerified={props.isEmailVerified} />
-      }
+            </Link>
+          </>
+        )}
+        {!props.isEmailVerified && (
+          <TopNotif isVerified={props.isEmailVerified} />
+        )}
       </div>
+      <AddLocation />
     </StyledHeader>
   );
 };
 
-function mapStateToProps (state) {
-  return{
+function mapStateToProps(state) {
+  return {
     userId: state.auth.userId,
-    isEmailVerified: state.auth.isEmailVerified,
-  }
-};
+    isEmailVerified: state.auth.isEmailVerified
+  };
+}
 
 export default connect(
-  mapStateToProps, null
+  mapStateToProps,
+  null
 )(Header);

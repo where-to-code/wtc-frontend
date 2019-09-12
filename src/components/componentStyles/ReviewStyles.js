@@ -27,7 +27,7 @@ export const StyledReviewCard = styled.div`
   flex-direction: column;
   width: 95%;
   justify-content: space-between;
-  margin: 15px;
+  margin: 10px 0;
   background-color: #fff;
   border-radius: 10px;
   padding: 10px 0;

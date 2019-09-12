@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import thankYou from '../assets/thanks.svg';
 import {
   StyledMessage,
-  StyledConfirmationPage,
+  StyledConfirmationPage
 } from './ViewStyles/EmailConfirmationMessageStyles';
 
 export default () => (

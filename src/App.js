@@ -13,7 +13,6 @@ import ResetPassword from './views/ResetPassword';
 import EmailConfirmationMessage from './views/EmailConfirmationMessage';
 import AddReview from './components/AddReview';
 
-
 library.add(fab);
 const App = () => {
   return (

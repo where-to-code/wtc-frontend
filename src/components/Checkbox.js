@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { StyledCheckbox } from './componentStyles/CheckboxStyles';
 
 const Checkbox = props => {
   const { name, setNewLocations, fiterCondition, filter } = props;
@@ -22,17 +23,16 @@ const Checkbox = props => {
   }, [filter]);
 
   return (
-    <div className="check">
-      <div className="content">
-        <input
-          type="checkbox"
-          name={name}
-          checked={checked}
-          onChange={e => handleChange(e)}
-        />
-        <div>{capitalize(name)}</div>
-      </div>
-    </div>
+    <StyledCheckbox>
+      {capitalize(name)}
+      <input
+        type="checkbox"
+        name={name}
+        checked={checked}
+        onChange={e => handleChange(e)}
+      />
+      <span></span>
+    </StyledCheckbox>
   );
 };
 

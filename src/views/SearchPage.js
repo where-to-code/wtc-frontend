@@ -4,15 +4,17 @@ import Loader from 'react-loader-spinner';
 import Map from '../components/Map';
 import Header from '../components/Header';
 import CardContainer from '../components/CardContainer';
-import { StyledSearch, StyledLoader } from './ViewStyles/SearchPageStyles';
+import {
+  StyledSearch,
+  StyledLoader,
+  LeftPane
+} from './ViewStyles/SearchPageStyles';
 import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
 import {
   filterLocations,
   locationLoads,
-  setGeolocationFalse,
-  setGeolocationTrue
 } from '../redux/actionCreators';
 
 import NoGeoLocation from '../components/NoGeoLocation';
@@ -25,14 +27,9 @@ const SearchPage = props => {
     loadingLocation,
     locationsErr,
     isGeolocated,
-    setGeolocationFalse,
-    setGeolocationTrue
   } = props;
 
   useEffect(() => {
-    if (navigator.geolocation) setGeolocationTrue();
-    else setGeolocationFalse();
-
     locationLoads(geolocation);
   }, [geolocation]);
 
@@ -52,7 +49,7 @@ const SearchPage = props => {
     <>
       <Header />
       <StyledSearch>
-        <div>
+        <LeftPane>
           <FilterPane setNewLocations={setNewLocations} />
           {!isGeolocated && <NoGeoLocation />}
           {loadingLocation && (
@@ -64,7 +61,7 @@ const SearchPage = props => {
             <LocationErr />
           )}
           <CardContainer />
-        </div>
+        </LeftPane>
         <StyledMap>
           <Map />
         </StyledMap>
@@ -82,8 +79,7 @@ const mapStateToProps = state => ({
   isGeolocated: state.maps.isGeolocated
 });
 
-
 export default connect(
   mapStateToProps,
-  { locationLoads, setGeolocationFalse, setGeolocationTrue, filterLocations }
+  { locationLoads, filterLocations }
 )(SearchPage);
