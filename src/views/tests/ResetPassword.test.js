@@ -10,11 +10,11 @@ jest.mock('react-loader-spinner', () => () => <div>Loader Mock</div>)
 
 afterEach(cleanup);
 describe('Reset Password tests', () => {
-    it('render without crashing ', () => {
+    it('render without crashing ', async() => {
         const mainRoute = '/reset'
-        renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, {}, { route: '/reset?id=1' });
+        await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, {}, { route: '/reset?id=1' });
     })
-    it('render the loader while loading', () => {
+    it('render the loader while loading', async() => {
         const reducer = {
             resetPassword: {
                 loading: true
@@ -22,10 +22,10 @@ describe('Reset Password tests', () => {
         }
         const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
         const mainRoute = '/reset'
-        const { getByText } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, { store }, { route: '/reset?id=1' });
+        const { getByText } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, { store }, { route: '/reset?id=1' });
         expect(getByText('Loader Mock')).toBeTruthy()
     })
-    it('render the error if present', () => {
+    it('render the error if present', async() => {
         const reducer = {
             resetPassword: {
                 error: 'error'
@@ -33,21 +33,21 @@ describe('Reset Password tests', () => {
         }
         const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
         const mainRoute = '/reset'
-        const { getByText } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, { store }, { route: '/reset?id=1' });
+        const { getByText } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, { store }, { route: '/reset?id=1' });
         expect(getByText('error')).toBeTruthy()
     })
-    it('push to / if logo is clicked', () => {
+    it('push to / if logo is clicked', async() => {
         const redirectUrl = '/'
         const mainRoute = '/reset'
-        const { getByAltText, container } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, {}, { route: '/reset?id=1' });
+        const { getByAltText, container } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, {}, { route: '/reset?id=1' });
         fireEvent.click(getByAltText('logo'))
         expect(container.innerHTML).toEqual(
             expect.stringContaining(redirectUrl)
         )
     })
-    it("does anything if signup is clicked and inputs don't pass validation", () => {
+    it("does anything if signup is clicked and inputs don't pass validation", async() => {
         const mainRoute = '/reset'
-        const { getAllByText, getByPlaceholderText, getByDisplayValue } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, {}, { route: '/reset?id=1' });
+        const { getAllByText, getByPlaceholderText, getByDisplayValue } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <ResetPassword {...props} />} MainRoute={mainRoute} />, {}, { route: '/reset?id=1' });
         fireEvent.change(getByPlaceholderText('Enter Password'), { target: { value: 'giacomo1' } })
         fireEvent.change(getByPlaceholderText('Confirm Password'), { target: { value: 'giacomo2' } })
         fireEvent.click(getAllByText('Reset Password')[1])

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import Map from '../components/Map';
@@ -7,7 +7,7 @@ import CardContainer from '../components/CardContainer';
 import {
   StyledSearch,
   StyledLoader,
-  LeftPane
+  LeftPane,
 } from './ViewStyles/SearchPageStyles';
 import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
@@ -51,13 +51,13 @@ const SearchPage = props => {
         ((choices.quiet && loc.avg_quietness >= 3) || !choices.quiet) &&
         ((choices.accessibility && loc.avg_accessibility >= 3) ||
           !choices.accessibility) &&
-        ((choices.community && loc.avg_community >= 3) || !choices.community)
+        ((choices.community && loc.avg_community >= 3) || !choices.community),
     );
     filterLocations({ data: filteredLocation });
   }
 
   return (
-    <>
+    <Fragment>
       <Header />
       <StyledSearch>
         <LeftPane>
@@ -77,7 +77,7 @@ const SearchPage = props => {
           <Map />
         </StyledMap>
       </StyledSearch>
-    </>
+    </Fragment>
   );
 };
 
@@ -87,7 +87,7 @@ const mapStateToProps = state => ({
   loadingLocation: state.locations.loadingLocation,
   geolocation: state.maps.geolocation,
   activeLocation: state.activeLocation,
-  isGeolocated: state.maps.isGeolocated
+  isGeolocated: state.maps.isGeolocated,
 });
 
 export default connect(
