@@ -431,7 +431,7 @@ describe('Single Location', () => {
     await mock.onGet(`${url}/locations/1`).reply(200, singleLocation);
     await mock
       .onGet(
-        `https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+        `https://cors-wahala.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
       )
       .reply(200, { rating: 3.5 });
 
