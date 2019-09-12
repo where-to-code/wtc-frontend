@@ -15,8 +15,8 @@ export const LOADING_SINGLE_LOCATION = 'LOADING_SINGLE_LOCATION';
 export const FETCH_SINGLE_LOCATIONS_SUCCESS = 'FETCH_SINGLE_LOCATIONS_SUCCESS';
 export const FETCH_SINGLE_LOCATIONS_FAILURE = 'FETCH_SINGLE_LOCATIONS_FAILURE';
 
-// activeLocation types
-export const SET_ACTIVE = 'SET_ACTIVE';
+// activeLocation types   
+export const SET_ACTIVE = 'SET_ACTIVE';   
 export const CLEAR_ACTIVE = 'CLEAR_ACTIVE';
 
 // Geolocation
@@ -44,3 +44,4 @@ export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
 // Add Review
 export const SET_ADD_REVIEW_FALSE = "SET_ADD_REVIEW_FALSE";
 export const SET_ADD_REVIEW_TRUE = "SET_ADD_REVIEW_TRUE";
+export const ADD_RATING_VALUE = "ADD_RATING_VALUE"; 

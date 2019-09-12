@@ -38,7 +38,6 @@ const AddReview = props => {
                 <StyledAddRating>
                     <Review title="Quietness" />
                     <Review title="Wifi Speed" />
-                    <Review title="Close Late" />
                     <Review title="Community" />
                     <Review title="Accessibility" />
                 </StyledAddRating>

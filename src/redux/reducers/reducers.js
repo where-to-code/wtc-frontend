@@ -217,13 +217,25 @@ export const resetPasswordReducer = (state = passwordState, action) => {
 };
 
 export const addReviewReducer = (state = {
-  isShown: false
+  isShown: false,
+  loading: false,
+  error: null,
+  review: {
+    quietness: null,
+    wifi_speed: null,
+    community: null,
+    accessibility: null,
+    description: '',
+    user_id: null,
+  },
 }, action) => {
   switch (action.type) {
     case types.SET_ADD_REVIEW_FALSE:
       return { ...state, isShown: false };
     case types.SET_ADD_REVIEW_TRUE:
       return { ...state, isShown: true };
+      case types.ADD_RATING_VALUE:
+        return {...state, review: action.payload }
     default:
       return state;
   }

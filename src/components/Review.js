@@ -8,7 +8,7 @@ const Review = props => {
     <StyledReview>
       <label>{title}</label>
       <div>
-        <Stars isStatic={isStatic} starNumber={starNumber} />
+        <Stars title={title} isStatic={isStatic} starNumber={starNumber} />
       </div>
     </StyledReview>
   );
