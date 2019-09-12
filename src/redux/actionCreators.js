@@ -305,7 +305,7 @@ export const fetchSingleLocation = locId => async dispatch => {
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
-        locationInfo.data.data.averageRating || (googleRating.data.result.rating && {...googleRating.data.result.rating, Disclaimer:'Google ratings' }) || 'No ratings for this place',
+        locationInfo.data.data.averageRating || (googleRating.data.result.rating && [...googleRating.data.result.rating, 'Google ratings' ]) || 'No ratings for this place',
     };
     dispatch(singleLocSuccess(locationData));
   } catch (error) {
