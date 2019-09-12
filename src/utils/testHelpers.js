@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Fragment} from 'react';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
@@ -8,12 +8,12 @@ import { createMemoryHistory } from 'history'
 import rootReducer from '../redux/reducers/rootReducer';
 
 export const TestingRouter = ({ ComponentWithRedirection, RedirectUrl, MainRoute }) => (
-  <>
+  <Fragment>
       <Route path={MainRoute} exact={true} render={props =>{
         return <ComponentWithRedirection {...props} />}
       }  />
       <Route path={RedirectUrl} render={() => <div>{RedirectUrl}</div>} />
-  </>
+  </Fragment>
 )
 
 export const renderWithRedux = (
