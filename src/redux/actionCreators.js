@@ -304,6 +304,7 @@ export const fetchSingleLocation = locId => async dispatch => {
         }
       }
     }
+    console.log(googleRating, locationInfo.data)
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
