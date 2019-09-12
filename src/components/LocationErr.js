@@ -3,8 +3,13 @@ import { mapPromise } from '../redux/helpers';
 import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 
 const LocationErr = (props) => {
+  const { clearLocations } = props;
   const { newSearch } = props
   useEffect(() => {
+    // clearLocations is called to wipe away 
+    // any previous locations stored in state 
+    // from previous search to avoid the cards to render
+    clearLocations();
     Promise.resolve(mapPromise).then(mapObject => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
         document.getElementById('location-seach')
@@ -13,7 +18,7 @@ const LocationErr = (props) => {
         const place = autocomplete.getPlace();
         const latitude = place.geometry.location.lat();
         const longitude = place.geometry.location.lng();
-        
+
         newSearch({ lat: latitude, lng: longitude });
       });
     });

@@ -69,7 +69,7 @@ const SearchPage = props => {
             </StyledLoader>
           )}
           {locationsErr && locationsErr !== 'currentLocation is null' && (
-            <LocationErr newSearch={newSearch} />
+            <LocationErr newSearch={newSearch} clearLocations={clearLocations} />
           )}
           <CardContainer />
         </LeftPane>
