@@ -11,7 +11,7 @@ import {
   StyledWrapper
 } from './ViewStyles/AuthStyles';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaGithub } from 'react-icons/fa';
 import { signup } from '../redux/actionCreators';
 import logo from '../assets/logo.png';
 
@@ -171,7 +171,7 @@ const Registration = props => {
           </div>
           <StyleGit>
             <a href="https://github.com/login/oauth/authorize?client_id=86d82ca50b3aad5948e7">
-              <FontAwesomeIcon icon={['fab', 'github']} />
+              <FaGithub />
             </a>
           </StyleGit>
 

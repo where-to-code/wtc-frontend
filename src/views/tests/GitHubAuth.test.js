@@ -10,13 +10,13 @@ jest.mock('react-loader-spinner', () => () => <div>Loader Mock</div>)
 
 afterEach(cleanup);
 describe('Registartion tests', () => {
-    it('render without crashing', () => {
+    it('render without crashing', async() => {
         const mainRoute = '/gitAuth'
-        renderWithRedux(<TestingRouter ComponentWithRedirection={props => <GitHubAuth {...props} />} MainRoute={mainRoute} />, {}, { route: '/gitAuth?code=1' });
+        await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <GitHubAuth {...props} />} MainRoute={mainRoute} />, {}, { route: '/gitAuth?code=1' });
     })
-    it('render the loader while loading', () => {
+    it('render the loader while loading', async() => {
         const mainRoute = '/gitAuth'
-        const { getByText } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <GitHubAuth {...props} />} MainRoute={mainRoute} />, {}, { route: '/gitAuth?code=1' });
+        const { getByText } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <GitHubAuth {...props} />} MainRoute={mainRoute} />, {}, { route: '/gitAuth?code=1' });
         expect(getByText('Loader Mock')).toBeTruthy()
     })
     // todo test the component after the request to the server is done
