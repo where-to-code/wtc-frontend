@@ -295,14 +295,19 @@ export const fetchSingleLocation = locId => async dispatch => {
         `https://maps.googleapis.com/maps/api/place/details/json?placeid=${locationInfo.data.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
       );
     }
+    else{
+      googleRating={
+        data:{
+          result:{
+            rating:''
+          }
+        }
+      }
+    }
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
-        locationInfo.data.data.averageRating || {
-          ...googleRating.data.result.rating,
-          message: 'Disclaimer: Google Ratings',
-        } ||
-        'No ratings for this place',
+        locationInfo.data.data.averageRating || googleRating.data.result.rating || 'No ratings for this place',
     };
     dispatch(singleLocSuccess(locationData));
   } catch (error) {
