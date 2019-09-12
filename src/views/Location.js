@@ -25,7 +25,7 @@ const Location = props => {
           <TopContainer>
             <LocationBanner location={location} />
             <TopRightContainer>
-              <AverageRatings location={location} />
+              <AverageRatings locId={loactionId} location={location} />
               <MapIFrame location={location} />
             </TopRightContainer>
           </TopContainer>

@@ -6,7 +6,7 @@ import AddReview from './AddReview';
 import { setAddReviewTrue } from '../redux/actionCreators';
 
 const AverageRatings = props => {
-  const { location, setAddReviewTrue } = props;
+  const { location, setAddReviewTrue, locId } = props;
 
   const onClick = () => {
     setAddReviewTrue();
@@ -20,7 +20,7 @@ const AverageRatings = props => {
         <button onClick={onClick}>Add a Review</button>
         <button>Add to Favourites</button>
       </div>
-      <AddReview />
+      <AddReview locId={locId} />
     </StyledAverage>
   );
 };
