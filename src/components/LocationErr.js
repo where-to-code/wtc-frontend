@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { mapPromise } from '../redux/helpers';
 import { StyledLocationErr } from './componentStyles/LocationErrStyles';
+import { connect } from 'react-redux';
+import { getCookie } from './helpers/authHelpers';
+import AddLocation from '../components/AddLocation';
+import { Redirect } from 'react-router-dom';
 
 const LocationErr = (props) => {
-  const { clearLocations } = props;
-  const { newSearch } = props
+  const { clearLocations, newSearch } = props;
+  const [ addNewLocationReq, setAddNewLocationReq ] = useState(false);
+  const [ authRequired, setAuthRequired ] = useState(false)
   useEffect(() => {
     // clearLocations is called to wipe away 
     // any previous locations stored in state 
@@ -24,6 +29,22 @@ const LocationErr = (props) => {
     });
   });
 
+  const onAddLocation = () =>{
+    if(getCookie(props.userId)) {
+      setAddNewLocationReq(true);
+      document.getElementById('add-location-form').style.display = 'flex';
+    }
+    else {
+      setAuthRequired(true);
+    }
+  }
+
+  if (authRequired) {
+    return (
+      <Redirect to="/login" />
+    );
+  }
+
   return (
     <StyledLocationErr>
       <h4>Sorry, we couldn't find any location around you</h4>
@@ -32,14 +53,26 @@ const LocationErr = (props) => {
         Find places near you
       </button>
       <p>Or suggest us a location</p>
-      <button>Add a Location</button>
+      <button onClick={onAddLocation}>Add a Location</button>
       <p>Or use our search feature</p>
       <form type="submit">
         <input id="location-seach" type="text" placeholder="Search" />
         <input type="submit" value="" />
       </form>
+      {
+        addNewLocationReq && <AddLocation />
+      }
     </StyledLocationErr>
   );
 };
 
-export default LocationErr;
+function mapStateToProps(state) {
+  return {
+    userId: state.auth.userId,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(LocationErr);
