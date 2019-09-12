@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { getCookie } from './helpers/authHelpers';
 import AddLocation from '../components/AddLocation';
 import { Redirect } from 'react-router-dom';
+import { clearLocations } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
-  const { clearLocations, newSearch } = props;
+  const { newSearch, clearLocations } = props;
   const [ addNewLocationReq, setAddNewLocationReq ] = useState(false);
   const [ authRequired, setAuthRequired ] = useState(false)
   useEffect(() => {
@@ -74,5 +75,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  null
+  { clearLocations }
 )(LocationErr);
