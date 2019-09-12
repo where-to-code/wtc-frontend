@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import axios from 'axios';
-import { mapPromise } from './helpers';
+import { mapPromise} from './helpers';
 import { toast } from 'react-toastify';
 
 const url = 'https://where2code.herokuapp.com/api';
@@ -291,10 +291,7 @@ export const fetchSingleLocation = locId => async dispatch => {
     const locationInfo = await axios.get(`${url}/locations/${locId}`);
     let googleRating;
     if(locationInfo.data.data.place_id){
-      googleRating = await axios.get(
-        `https://maps.googleapis.com/maps/api/place/details/json?placeid=${locationInfo.data.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
-        {withCredentials:true}
-      );
+      googleRating = await axios.get( `https://cors-wahala.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${locationInfo.data.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
     }
     else{
       googleRating={
