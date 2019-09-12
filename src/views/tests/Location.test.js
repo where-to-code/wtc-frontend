@@ -82,21 +82,21 @@ const reducer = {
 expect()
 afterEach(cleanup);
 describe('Location tests', () => {
-    it('render without crashing (with or without location in the store)', () => {
+    it('render without crashing (with or without location in the store)', async() => {
         const mainRoute = '/location/1'
         const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
-        renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Location {...props} />} MainRoute={mainRoute} />, { store }, { route: mainRoute });
-        renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Location {...props} />} MainRoute={mainRoute} />, {}, { route: mainRoute });
+        await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Location {...props} />} MainRoute={mainRoute} />, { store }, { route: mainRoute });
+        await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Location {...props} />} MainRoute={mainRoute} />, {}, { route: mainRoute });
     })
-    it('render the loader without location in the store', () => {
+    it('render the loader without location in the store', async() => {
         const mainRoute = '/location/1'
-        const { getByText } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Location {...props} />} MainRoute={mainRoute} />, {}, { route: mainRoute });
+        const { getByText } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Location {...props} />} MainRoute={mainRoute} />, {}, { route: mainRoute });
         expect(getByText('Loader Mock')).toBeTruthy();
     })
-    it('render every component with location in the store', () => {
+    it('render every component with location in the store', async() => {
         const mainRoute = '/location/1'
         const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
-        const { getByText } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Location {...props} />} MainRoute={mainRoute} />, { store }, { route: mainRoute });
+        const { getByText } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Location {...props} />} MainRoute={mainRoute} />, { store }, { route: mainRoute });
         expect(getByText('Header Mock')).toBeTruthy();
         expect(getByText('Review Container Mock')).toBeTruthy();
         expect(getByText('Location Banner Mock')).toBeTruthy();
