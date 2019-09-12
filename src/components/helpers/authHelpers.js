@@ -37,5 +37,5 @@ function readCookie(name) {
 export const setTempCookie = (id, lastname) => {
   const value = uuid(lastname);
   console.log(document)
-  document.cookie = `${id}=${value}`;
+  window.document.cookie = `${id}=${value}`;
 };
