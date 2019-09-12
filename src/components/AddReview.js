@@ -61,6 +61,7 @@ const AddReview = props => {
                 <div >
                     <h4>What do you think about this place?</h4>
                     <textarea name="review" onChange={handleChange} />
+                    {allFields ? <span>All fields are required.</span> : null}
                 </div>
 
                 <button onClick={submitReview}>{loading ? (
@@ -68,7 +69,6 @@ const AddReview = props => {
                 ) : (
                         'Add Review'
                     )}</button>
-                {allFields ? <span>All fields are required.</span> : null}
             </form>
             <p onClick={closeModal}>X</p>
         </StyledAddReview>

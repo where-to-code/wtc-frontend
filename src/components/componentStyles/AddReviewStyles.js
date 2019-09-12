@@ -41,6 +41,9 @@ export const StyledAddReview = styled.div`
         color: #0000008a;
         font-size: 2rem;
     }
+    span {
+        text-align: center
+    }
 `
 
 export const StyledAddRating = styled.div`
