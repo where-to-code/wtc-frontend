@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { renderWithRedux, TestingRouter } from '../../utils/testHelpers';
 import Login from '../Login';
-import mockDocument from 'document.cookie.mock';
+
 
 jest.mock('react-loader-spinner', () => () => <div>Loader Mock</div>)
 
@@ -44,7 +44,6 @@ describe('Login tests', () => {
         )
     })
     it('push to / if login is clicked and a succesful response is given', async() => {
-        const document= new mockDocument();
         const redirectUrl = '/'
         const mainRoute = '/login'
         const { getByPlaceholderText, getByText, container } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Login {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />, {}, { route: mainRoute })

@@ -30,15 +30,15 @@ const AddReview = props => {
         newReview.description = input.review;
         newReview.user_id = id;
         if (
-            !newReview.quietness || !newReview.wifi_speed || 
+            !newReview.quietness || !newReview.wifi_speed ||
             !newReview.community || !newReview.accessibility ||
             !newReview.description
-          ) {
+        ) {
             setAllFields(true);
             return;
-          }
-      
-          setAllFields(false);
+        }
+
+        setAllFields(false);
         addReview(newReview, locId);
         closeModal();
     }
@@ -58,17 +58,17 @@ const AddReview = props => {
                     <Review title="Community" />
                     <Review title="Accessibility" />
                 </StyledAddRating>
-                <div className="text-review">
+                <div >
                     <h4>What do you think about this place?</h4>
                     <textarea name="review" onChange={handleChange} />
                 </div>
 
                 <button onClick={submitReview}>{loading ? (
-                <Loader type="Oval" color="#fff" height={40} width={30} />
-              ) : (
-                'Add Review'
-              )}</button>
-              {allFields ? <span>All fields are required.</span> : null}
+                    <Loader type="Oval" color="#fff" height={40} width={30} />
+                ) : (
+                        'Add Review'
+                    )}</button>
+                {allFields ? <span>All fields are required.</span> : null}
             </form>
             <p onClick={closeModal}>X</p>
         </StyledAddReview>
