@@ -33,6 +33,7 @@ const LocationErr = (props) => {
   const onAddLocation = () =>{
     if(getCookie(props.userId)) {
       setAddNewLocationReq(true);
+      // to be managed with props later
       document.getElementById('add-location-form').style.display = 'flex';
     }
     else {
