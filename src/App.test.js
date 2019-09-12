@@ -9,6 +9,7 @@ import * as reducers from '../src/redux/reducers/reducers';
 const initialState = {
   loading: false,
   locations: reducers.locationReducer,
+  newLocation: reducers.addLocationReducer,
   maps: reducers.mapsReducer,
   location: reducers.singleLocaReducer,
   activeLocation: reducers.activeLocation,

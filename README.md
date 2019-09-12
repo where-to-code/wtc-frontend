@@ -1,165 +1,120 @@
 
+
+# WhereToCode [![Build Status](https://travis-ci.org/where-to-code/wtc-frontend.svg?branch=master)](https://travis-ci.org/where-to-code/wtc-frontend) ![](./badges.svg)
 ![](./badges.svg) 
 
-# wtc-frontend
+WhereToCode deployed at [wWhereToCode](https://wheretocode-frontend.herokuapp.com).
 
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+## Contributors
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
-# 1️⃣ Title of project goes here
-
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       [Giacomo Benati](https://github.com/GianBarGian)                                        |                                       [Nabeelah Yousuph](https://github.com/NabeelahY)                                        |                                       [Basil Ogbonna](https://github.com/basilcea)                                        |                                       [Haja Andriamaro](https://github.com/Haja-andri)                                        |                                       
+[Oyekunle Oloyede](https://github.com/orgs/where-to-code/people/Oyekunle-Mark)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
+|                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UF5K6A3DG-38936a732753-72" width = "200" />](https://github.com/GianBarGian)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ1UFCGT1-13862a6caa72-72" width = "200" />](https://github.com/NabeelahY)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ27SUD9C-206bdd8a888a-72" width = "200" />](https://github.com/basilcea)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UHVBU95RC-172e03a5b4a2-72" width = "200" />](https://github.com/haja-andri)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ1U2KTAB-1264a8dfb314-72" width = "200" />](https://github.com/Oyekunle-Mark)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://it.linkedin.com/in/giacomobenati) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nabeelah-yousuph/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/https://linkedin.com/in/ogbonna-basil-cea/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/haja-andriamaro-b145412/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/oyekunlemac/) |
+
+| [Anuoluwapo Apiti](https://github.com/anuoluwa) 	|  [Anubhav Bhambri](https://github.com/Anubhav311) - Team Lead	|
+|:--------------------------:| :--------------------------------------: |
+|  [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ04TNP16-fb9f464fbf25-72" width = "200" />](https://github.com/anuoluwa) 	| [<img src="https://ca.slack-edge.com/T4JUEB3ME-UDE69S4RM-1da4d2b3f6c0-72" width = "200" />](https://github.com/Anubhav311) |
+| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/anuoluwa) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Anubhav311)|
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/anuoluwapo-apiti-4bb969131/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/anubhav-bhambri/) |
 
 <br>
 <br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board](https://trello.com/b/m8ODKAUQ/where-to-code)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas](https://www.notion.so/c8df3ac7800c43eab824326ff3fa7f69?v=49e8e84308cc4fd592a8b94da6207fac)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://www.figma.com/file/8m6CSQm80ihqBHspgJBIb4/Where-to-Code?node-id=0%3A1) 
 
-🚫 Replace lorem ipsum with a description of your project
+Description
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Finding out details about public places to work can be tedious. WhereToCode enables you to get the information you need, and only that information, to work and code on the go.
 
 
-### 4️⃣ Key Features
+### Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
+-    Find locations around you
+-    Clear information on each location for people to determine if it will work
+-    New spaces are easy to make
+-    Locations with most use/activity/rating show up first
 -    feature five
 
-## 1️⃣ Tech Stack
+
+## Tech Stack
+- HTML, CSS, Javascript
+- [Google Map API](https://cloud.google.com/maps-platform/)
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### React
 
-🚫 Why did you choose this framework?
+Why did you choose this framework?
 
--    point one
--    point two
--    point three
--    point four
+-    Scalable
+-    Flexible
+-    Highly performant
+-    Stable
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+#### Front end deployed to `https://wheretocode-frontend.herokuapp.com`
 
-#### Front end deployed to `🚫insert service here`
+#### [WhereToCode API](https://where2code.herokuapp.com/) built using:
 
-#### [Back end](🚫link to back end repo here) built using:
+#### Node/Express
 
-#### 🚫 back end framework goes here
-
--    point one
--    point two
--    point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+- Express is fast.
+- Express is efficient.
+- Express is scalable.
+- Express is a lightweight framework
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Authentication API here
 
-🚫Replace text below with a description of the API
+A person can never just look at a place on the internet to determine whether or not it is a good place to post up and code. They have to go look through reviews on yelp and try to scroll through to find the information they need.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+Imani is a web developer who works with a remote team. She enjoys getting out and being around people and so she is always looking to get out of the house to do so. She also has needs she needs to meet, like secure fast internet, in order to work with her coworkers. Finding this information out with 100% certainty before going somewhere is often a challenge.
 
-## 2️⃣ Payment API here
 
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+#  Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
+Sample
+    *  REACT_APP_GOOGLE_API_KEY - xxxxxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxx
+    
 
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+# Content Licenses
 
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
+| Homepage image | Free stock       | [Splash](https://www.splash.com)                                             |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-# 4️⃣ Testing
+# Testing
+ #### Jest
+-    Fast and safe
+-    Easy mocking
+-    Stable
+-    Great API
 
-🚫Document what you used for testing and why
+# Installation Instructions
 
-# 4️⃣ Installation Instructions
-
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+- Clone this repo 
+- change directory to root folder
 
 ## Other Scripts
 
-🚫replace these examples with your own
+To get the server running locally:
 
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+- **npm install** to install all required dependencies
+- **npm start** to start the local server
+- **npm test** to start server using testing environment
 
 # Contributing
 
@@ -199,4 +154,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [WhereToCode API](https://where2code.herokuapp.com/) for details on the backend of our project.
