@@ -31,7 +31,8 @@ const AddReview = props => {
         newReview.user_id = id;
         if (
             !newReview.quietness || !newReview.wifi_speed || 
-            !newReview.community || !newReview.accessibility
+            !newReview.community || !newReview.accessibility ||
+            !newReview.description
           ) {
             setAllFields(true);
             return;
@@ -67,6 +68,7 @@ const AddReview = props => {
               ) : (
                 'Add Review'
               )}</button>
+              {allFields ? <span>All fields are required.</span> : null}
             </form>
             <p onClick={closeModal}>X</p>
         </StyledAddReview>
