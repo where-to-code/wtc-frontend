@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { mapPromise } from '../redux/helpers';
 import { StyledLocationErr } from './componentStyles/LocationErrStyles';
-import { setGeolocationValue, clearLocations } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
-  const { history } = props
+  const { newSearch } = props
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
@@ -14,10 +13,8 @@ const LocationErr = (props) => {
         const place = autocomplete.getPlace();
         const latitude = place.geometry.location.lat();
         const longitude = place.geometry.location.lng();
-
-        setGeolocationValue({ lat: latitude, lng: longitude });
-        clearLocations();
-        history.push('/');
+        
+        newSearch({ lat: latitude, lng: longitude });
       });
     });
   });
