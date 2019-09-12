@@ -8,6 +8,7 @@ import { StyledAddRating, StyledAddReview } from './componentStyles/AddReviewSty
 
 const AddReview = props => {
     const { setAddReviewFalse, isShown, review, id, clearReview, addReview, locId, loading } = props;
+    const [allFields, setAllFields] = useState(false);
 
     const [input, setInput] = useState({
         review: '',
@@ -28,6 +29,15 @@ const AddReview = props => {
         const newReview = review;
         newReview.description = input.review;
         newReview.user_id = id;
+        if (
+            !newReview.quietness || !newReview.wifi_speed || 
+            !newReview.community || !newReview.accessibility
+          ) {
+            setAllFields(true);
+            return;
+          }
+      
+          setAllFields(false);
         addReview(newReview, locId);
         closeModal();
     }

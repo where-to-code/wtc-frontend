@@ -173,15 +173,9 @@ export const fetchSingleLocation = locId => async dispatch => {
   dispatch({ type: types.LOADING_SINGLE_LOCATION });
   try {
     const locationInfo = await axios.get(`${url}/locations/${locId}`);
-    let googleRating;
-    if (locationInfo.data.data.place_id) {
-      googleRating = await axios.get(
-        `https://maps.googleapis.com/maps/api/place/details/json?placeid=${locationInfo.data.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
-      );
-    } 
-    else {
-      googleRating = 5;
-    }
+    const googleRating = await axios.get(
+      `https://maps.googleapis.com/maps/api/place/details/json?placeid=${locationInfo.data.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+    );
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
@@ -380,8 +374,8 @@ export function addNewLocationFail(error) {
 export const addNewLocation = locationData => dispatch => {
   dispatch(addNewLocationLoad());
   return axios
-    //.post(`https://where-to-code-staging.herokuapp.com/api/locations`, locationData, {
-    .post(`${url}/locations`, locationData, {
+    .post(`https://where-to-code-staging.herokuapp.com/api/locations`, locationData, {
+    //.post(`${url}/locations`, locationData, {
       withCredentials: true
     })
     .then(res => {
