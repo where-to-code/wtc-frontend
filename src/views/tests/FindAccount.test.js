@@ -9,9 +9,9 @@ import FindAccount from '../FindAccount';
 jest.mock('react-loader-spinner', () => () => <div>Loader Mock</div>)
 
 afterEach(cleanup);
-describe('Find Account tests', () => {
+describe('Find Account tests', async() => {
     it('render without crashing', () => {
-        renderWithRedux(<FindAccount />);
+        await renderWithRedux(<FindAccount />);
     })
     it('render the loader while loading', () => {
         const reducer = {
