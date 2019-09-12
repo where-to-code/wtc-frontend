@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaGithub } from 'react-icons/fa';
 import Loader from 'react-loader-spinner';
 import logo from '../assets/logo.png';
 import { login } from '../redux/actionCreators';
@@ -114,7 +114,7 @@ const Login = props => {
           </div>
           <StyleGit>
             <a href="https://github.com/login/oauth/authorize?client_id=86d82ca50b3aad5948e7">
-              <FontAwesomeIcon icon={['fab', 'github']} />
+              <FaGithub/>
             </a>
           </StyleGit>
           <span>

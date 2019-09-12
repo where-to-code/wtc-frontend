@@ -19,15 +19,15 @@ jest.mock('../../components/LocationErr', () => () => <div>LocationErr Mock</div
 
 afterEach(cleanup);
 describe('Search Page tests', () => {
-    it('render without crashing', () => {
-        renderWithRedux(<SearchPage />);
+    it('render without crashing', async() => {
+        await renderWithRedux(<SearchPage />);
     })
-    it('render the Header component', () => {
-        const { getByText } = renderWithRedux(<SearchPage />)
+    it('render the Header component', async() => {
+        const { getByText } = await renderWithRedux(<SearchPage />)
         expect(getByText('Header Mock')).toBeTruthy();
     })
-    it('render the FilterPane component', () => {
-        const { getByText } = renderWithRedux(<SearchPage />)
+    it('render the FilterPane component', async() => {
+        const { getByText } = await renderWithRedux(<SearchPage />)
         expect(getByText('FilterPane Mock')).toBeTruthy();
     })
     it('render the noGeolocation component if user is not geolocated', () => {

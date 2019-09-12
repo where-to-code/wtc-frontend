@@ -10,17 +10,17 @@ jest.mock('react-loader-spinner', () => () => <div>Loader Mock</div>)
 
 afterEach(cleanup);
 describe('Find Account tests', () => {
-    it('render without crashing', () => {
-        renderWithRedux(<FindAccount />);
+    it('render without crashing', async() => {
+        await renderWithRedux(<FindAccount />);
     })
-    it('render the loader while loading', () => {
+    it('render the loader while loading', async() => {
         const reducer = {
             verifyEmail: {
                 loading: true
             }
         }
         const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
-        const { getByText } = renderWithRedux(<FindAccount />, { store });
+        const { getByText } = await renderWithRedux(<FindAccount />, { store });
         expect(getByText('Loader Mock')).toBeTruthy()
     })
     it('render the error if present', () => {
@@ -33,10 +33,10 @@ describe('Find Account tests', () => {
         const { getByText } = renderWithRedux(<FindAccount />, { store });
         expect(getByText('error')).toBeTruthy()
     })
-    it('push to / if logo is clicked', () => {
+    it('push to / if logo is clicked', async() => {
         const redirectUrl = '/'
         const mainRoute = '/account'
-        const { getByAltText, container } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <FindAccount {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />, {}, { route: mainRoute })
+        const { getByAltText, container } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <FindAccount {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />, {}, { route: mainRoute })
         fireEvent.click(getByAltText('logo'))
         expect(container.innerHTML).toEqual(
             expect.stringContaining(redirectUrl)

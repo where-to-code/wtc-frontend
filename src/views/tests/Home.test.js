@@ -8,17 +8,17 @@ jest.mock('../../components/Header', () => () => <div>Header Mock</div>);
 
 afterEach(cleanup);
 describe('Search Page tests', () => {
-    it('render without crashing', () => {
-        renderWithRedux(<Home />);
+    it('render without crashing', async() => {
+        await renderWithRedux(<Home />);
     })
-    it('render the Header component', () => {
-        const { getByText } = renderWithRedux(<Home />)
+    it('render the Header component', async() => {
+        const { getByText } = await renderWithRedux(<Home />)
         expect(getByText('Header Mock')).toBeTruthy();
     })
-    it('push to /locations if button is clicked', () => {
+    it('push to /locations if button is clicked', async() => {
         const redirectUrl = '/locations'
         const mainRoute ='/'
-        const { getByText, container } = renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Home {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />)
+        const { getByText, container } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Home {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />)
         fireEvent.click(getByText('Find places near you'))
         expect(container.innerHTML).toEqual(
             expect.stringContaining(redirectUrl)
