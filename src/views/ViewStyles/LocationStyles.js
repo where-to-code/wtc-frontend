@@ -16,7 +16,7 @@ export const TopContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media (min-width: 600px) {
+  @media (min-width: 950px) {
     flex-direction: row;
   }
 `;
@@ -25,7 +25,8 @@ export const TopRightContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media (min-width: 600px) {
+  width:100%;
+  @media (min-width: 950px) {
     width: 45vw;
   }
 `;

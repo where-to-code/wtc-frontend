@@ -57,3 +57,6 @@ export const StyledStars = styled.div`
     padding: 2px;
   }
 `;
+export const StyledNoReviews = styled.div`
+  text-align: center;
+`

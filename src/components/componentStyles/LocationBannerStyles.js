@@ -32,7 +32,7 @@ export const StyledLocationBanner = styled.div`
       }
     }
   }
-  @media (min-width: 600px) {
+  @media (min-width: 950px) {
     width: 40vw;
     .banner-img {
       div {
