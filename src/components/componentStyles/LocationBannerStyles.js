@@ -32,6 +32,12 @@ export const StyledLocationBanner = styled.div`
       }
     }
   }
+
+  span {
+    color: red;
+    cursor: pointer;
+  }
+
   @media (min-width: 600px) {
     width: 40vw;
     .banner-img {
