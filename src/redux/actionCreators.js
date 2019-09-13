@@ -469,3 +469,7 @@ export const addNewLocation = locationData => dispatch => {
       return err;
     });
 };
+
+export const clearNewLocation = () => ({
+  type: types.CLEAR_NEW_LOCATION
+})

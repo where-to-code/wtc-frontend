@@ -221,7 +221,7 @@ export const resetPasswordReducer = (state = passwordState, action) => {
 const newLocation = {
   location: null,
   loading: false,
-  isAdded:false,
+  isAdded: false,
   error: ''
 };
 
@@ -247,7 +247,8 @@ export const addLocationReducer = (state = newLocation, action) => {
         loading: false,
         error: action.payload
       };
-
+    case types.CLEAR_NEW_LOCATION:
+      return { ...state, isAdded: false }
     default:
       return state;
   }
