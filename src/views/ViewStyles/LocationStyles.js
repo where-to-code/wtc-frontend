@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LocationContainer = styled.div`
-  width: 100vw;
+  width: 98vw;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -32,5 +32,5 @@ export const TopRightContainer = styled.div`
 `;
 
 export const StyledLocation = styled.div`
-  width: 100vw;
+  width: 98vw;
 `;

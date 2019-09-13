@@ -59,4 +59,26 @@ export const StyledStars = styled.div`
 `;
 export const StyledNoReviews = styled.div`
   text-align: center;
+  h4 {
+    color: #03525b;
+    font-size: 3rem;
+    padding: 30px 0;
+  }
+
+  p {
+    font-size: 1.5rem;
+    padding-bottom: 35px;
+  }
+  button {
+    width: 250px;
+    height: 50px;
+    background-color: #56c1cb;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 0 5px;
+  }
 `
