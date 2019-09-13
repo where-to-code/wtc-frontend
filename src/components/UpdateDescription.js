@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { singleLocSuccess } from '../redux/actionCreators';
 import UpdateDescriptionStyle from './componentStyles/updateDescriptionStyles';
 
-export default ({ editing, setEditing, currentDescription, locationId }) => {
+const UpdateDescription = ({
+  editing,
+  setEditing,
+  currentDescription,
+  locationId,
+  singleLocSuccess,
+}) => {
   const [description, updateDescription] = useState(currentDescription);
 
   const handleChange = e => {
@@ -28,6 +38,7 @@ export default ({ editing, setEditing, currentDescription, locationId }) => {
         },
       )
       .then(res => {
+        singleLocSuccess(res.data.data[0]);
         setEditing(false);
       });
   };
@@ -50,3 +61,17 @@ export default ({ editing, setEditing, currentDescription, locationId }) => {
     </UpdateDescriptionStyle>
   );
 };
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      singleLocSuccess,
+    },
+    dispatch,
+  );
+}
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(UpdateDescription);
