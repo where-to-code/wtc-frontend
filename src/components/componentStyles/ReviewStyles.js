@@ -83,15 +83,11 @@ export const StyledNoReviews = styled.div`
   }
   @media (min-width: 600px) {
     h4 {
-    
-    font-size: 3rem;
-
-  }
-
-  p {
-    font-size: 1.5rem;
-    padding-bottom: 35px;
-  }
- 
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.5rem;
+      padding-bottom: 35px;
+    }
   }
 `
