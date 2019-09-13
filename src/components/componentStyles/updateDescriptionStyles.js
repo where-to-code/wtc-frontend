@@ -56,4 +56,23 @@ export default styled.div`
       }
     }
   }
+
+  section {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    background: white;
+    width: 50%;
+    min-width: 100px;
+    max-width: 200px;
+    border-radius: 10px;
+    color: #666a7c;
+
+    button {
+      margin-top: 5px;
+    }
+  }
 `;
