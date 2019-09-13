@@ -205,10 +205,6 @@ export const locationFailure = error => ({
   payload: error,
 });
 
-export const allLocationsSuccess = locationList => ({
-  type: types.ALL_LOCATIONS_SUCCESS,
-  payload: locationList.data,
-});
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
@@ -216,7 +212,6 @@ export const locationLoads = currentLocation => async dispatch => {
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`,
     );
     dispatch(locationSuccess(locationsInfo.data));
-    dispatch(allLocationsSuccess(locationsInfo.data));
   } catch (error) {
     const errorValue = error.response
       ? error.response.data.message
@@ -302,7 +297,6 @@ export const fetchSingleLocation = locId => async dispatch => {
         }
       }
     }
-    console.log(googleRating.data)
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
