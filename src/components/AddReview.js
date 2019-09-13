@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
@@ -9,6 +9,7 @@ import { StyledAddRating, StyledAddReview } from './componentStyles/AddReviewSty
 const AddReview = props => {
     const { setAddReviewFalse, isShown, review, id, clearReview, addReview, locId, loading } = props;
     const [allFields, setAllFields] = useState(false);
+    const [notAuthed, setNotAuthed] = useState(false);
 
     const [input, setInput] = useState({
         review: '',
@@ -16,7 +17,9 @@ const AddReview = props => {
     const [inputChangeState, updateInputChangeState] = useState({
         review: false,
     });
+    useEffect(() => {
 
+    }, [id])
     const handleChange = e => {
         setInput({ ...input, [e.target.name]: e.target.value });
 
@@ -29,15 +32,20 @@ const AddReview = props => {
         const newReview = review;
         newReview.description = input.review;
         newReview.user_id = id;
+        console.log(id)
         if (
             !newReview.quietness || !newReview.wifi_speed ||
             !newReview.community || !newReview.accessibility ||
-            !newReview.description
+            !newReview.description 
         ) {
             setAllFields(true);
             return;
         }
-
+        console.log(newReview)
+        if(!newReview.user_id) {
+            setNotAuthed(true);
+            return
+        }
         setAllFields(false);
         addReview(newReview, locId);
         closeModal();
@@ -62,6 +70,7 @@ const AddReview = props => {
                     <h4>What do you think about this place?</h4>
                     <textarea name="review" onChange={handleChange} />
                     {allFields ? <span>All fields are required.</span> : null}
+                    {notAuthed ? <span>You need to login to add a review.</span> : null}
                 </div>
 
                 <button onClick={submitReview}>{loading ? (
