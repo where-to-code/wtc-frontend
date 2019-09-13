@@ -450,7 +450,6 @@ describe('Single Location', () => {
     ];
     const store = mockStore({ location: singleLocation.data });
     await store.dispatch(actions.fetchSingleLocation(1));
-    console.log(store.getState(), store.getActions())
     expect(store.getActions()).toEqual(expectedActions);
   });
   it('should fail to fetch locations', async () => {
