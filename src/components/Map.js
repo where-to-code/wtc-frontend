@@ -69,7 +69,7 @@ const Map = props => {
         });
       }
     });
-  });
+  }, [geolocation, locations.length]);
 
   return <StyledMap id="map" />;
 };

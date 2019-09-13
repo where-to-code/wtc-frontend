@@ -440,10 +440,9 @@ export function addNewLocationLoad() {
   };
 }
 
-export function addNewLocationSuccess(newLocation) {
+export function addNewLocationSuccess() {
   return {
     type: types.ADD_NEW_LOCATION_SUCCESS,
-    payload: newLocation
   };
 }
 
@@ -462,7 +461,7 @@ export const addNewLocation = locationData => dispatch => {
       withCredentials: true
     })
     .then(res => {
-      dispatch(addNewLocationSuccess(res.data.data[0]));
+      dispatch(addNewLocationSuccess());
       return res;
     })
     .catch(err => {
