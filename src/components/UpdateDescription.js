@@ -32,6 +32,9 @@ const UpdateDescription = ({
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (description.trim().length === 0) return;
+
     setUpdating(true);
 
     axios
