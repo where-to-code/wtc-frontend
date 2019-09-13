@@ -122,6 +122,12 @@ const locations = {
 };
 
 // Auth
+
+export const setCookieToState = cookieData => ({
+  type: types.SET_COOKIE_TO_STATE,
+  payload: JSON.parse(cookieData),
+});
+
 export function authLoad() {
   return {
     type: types.AUTH_LOAD,

@@ -3,15 +3,15 @@ const uuid = require('uuid');
 export const getCookie = userId => {
   const cookieData = readCookie(userId);
   if (cookieData) {
-    return true;
+    return cookieData;
   } else {
     return false;
   }
 };
 
-export const logout = userId => {
+export const logout = () => {
   // delete cookie and redirect to home
-  eraseCookie(userId);
+  eraseCookie();
   window.location = '/';
 };
 
@@ -19,14 +19,14 @@ export const logout = userId => {
 // We just need to set the value of the cookie to empty and
 // set the value of expires to a passed date.
 function eraseCookie(userId) {
-  document.cookie = `${userId}= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`;
+  document.cookie = `wtc= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`;
 }
 
 // Stackover flow to read cookie value by name
-function readCookie(name) {
+function readCookie() {
   let result;
   return (result = new RegExp(
-    '(?:^|; )' + encodeURIComponent(name) + '=([^;]*)'
+    '(?:^|; )' + encodeURIComponent('wtc') + '=([^;]*)'
   ).exec(document.cookie))
     ? result[1]
     : null;
@@ -34,7 +34,10 @@ function readCookie(name) {
 
 // function that write a cookie on successful login
 // using userId as cookie name and uuid(lastname) as value
-export const setTempCookie = (id, lastname) => {
-  const value = uuid(lastname);
-  document.cookie = `${id}=${value}`;
+export const setTempCookie = (userState) => {
+  // to make the cookie accessible even if the user
+  // reload the page, we give a static name to the cookie
+  // to retrieve it and also store current state
+  const value = JSON.stringify(userState)
+  document.cookie = `wtc=${value}`;
 };
