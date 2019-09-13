@@ -61,7 +61,7 @@ export const StyledNoReviews = styled.div`
   text-align: center;
   h4 {
     color: #03525b;
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 30px 0;
   }
 
@@ -79,6 +79,19 @@ export const StyledNoReviews = styled.div`
     border: none;
     border-radius: 5px;
     padding: 8px;
-    margin: 0 5px;
+    margin-bottom: 30px;
+  }
+  @media (min-width: 600px) {
+    h4 {
+    
+    font-size: 3rem;
+
+  }
+
+  p {
+    font-size: 1.5rem;
+    padding-bottom: 35px;
+  }
+ 
   }
 `
