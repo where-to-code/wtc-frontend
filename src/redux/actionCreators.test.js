@@ -194,13 +194,6 @@ describe('fetch locations', () => {
     };
     expect(actions.locationSuccess(mockLocations)).toEqual(expectedAction);
   });
-  it('all_location_success', () => {
-    const expectedAction = {
-      type: types.ALL_LOCATIONS_SUCCESS,
-      payload: mockLocations.data,
-    };
-    expect(actions.allLocationsSuccess(mockLocations)).toEqual(expectedAction);
-  });
   it('location_failure', () => {
     const error = 'There was an error';
     const expectedAction = {
@@ -223,7 +216,6 @@ describe('fetch locations', () => {
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
       { type: types.FETCH_LOCATIONS_SUCCESS, payload: mockLocations.data },
-      { type: types.ALL_LOCATIONS_SUCCESS, payload: mockLocations.data },
     ];
     const store = mockStore({
       locations: [],
