@@ -48,6 +48,7 @@ const Location = props => {
           editing={editLocation}
           setEditing={setEditLocation}
           currentDescription={location.description}
+          locationId={location.id}
         />
       </StyledLocation>
     );
