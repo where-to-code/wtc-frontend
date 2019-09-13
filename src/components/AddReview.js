@@ -41,7 +41,6 @@ const AddReview = props => {
             setAllFields(true);
             return;
         }
-        console.log(newReview)
         if(!newReview.user_id) {
             setNotAuthed(true);
             return

@@ -21,7 +21,7 @@ const Stars = props => {
       starsArray.push(<img className="star" key={i} src={star} alt="star" />);
     }
     setActiveStars(starsArray)
-    if (!isShown) {
+    if (!isShown && !isStatic) {
       setStatic(false)
       setActiveStars([])
     }
