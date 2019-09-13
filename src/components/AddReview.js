@@ -32,7 +32,6 @@ const AddReview = props => {
         const newReview = review;
         newReview.description = input.review;
         newReview.user_id = id;
-        console.log(id)
         if (
             !newReview.quietness || !newReview.wifi_speed ||
             !newReview.community || !newReview.accessibility ||
