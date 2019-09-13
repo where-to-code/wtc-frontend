@@ -302,7 +302,6 @@ export const fetchSingleLocation = locId => async dispatch => {
         }
       }
     }
-    console.log(googleRating.data)
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
@@ -472,7 +471,7 @@ export const addNewLocation = locationData => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(addNewLocationFail(err.response.data.error));
+      dispatch(addNewLocationFail(err.message));
       return err;
     });
 };
