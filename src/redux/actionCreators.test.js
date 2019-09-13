@@ -409,6 +409,7 @@ describe('Single Location', () => {
       created_at: '',
       averageRating: 3.5,
       place_id: 'ChIJrTLr-GyuEmsRBfy61i59si0',
+      isGoogleRating:true
     },
   };
   it('single location success', () => {
@@ -418,7 +419,7 @@ describe('Single Location', () => {
     };
     expect(actions.singleLocSuccess(singleLocation)).toEqual(expectedAction);
   });
-  it('single location success', () => {
+  it('single location failure', () => {
     const expectedAction = {
       type: types.FETCH_SINGLE_LOCATIONS_FAILURE,
       payload: 'There was an error',
@@ -431,9 +432,14 @@ describe('Single Location', () => {
     await mock.onGet(`${url}/locations/1`).reply(200, singleLocation);
     await mock
       .onGet(
-        `https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
+        `https://cors-wahala.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=${singleLocation.data.place_id}&fields=rating&key=${process.env.REACT_APP_GOOGLE_API_KEY}`,
       )
-      .reply(200, { rating: 3.5 });
+      .reply(200, ({
+          result:{
+            rating:3.5
+          }
+      })
+    );
 
     const expectedActions = [
       { type: types.LOADING_SINGLE_LOCATION },
@@ -444,6 +450,7 @@ describe('Single Location', () => {
     ];
     const store = mockStore({ location: singleLocation.data });
     await store.dispatch(actions.fetchSingleLocation(1));
+    console.log(store.getState(), store.getActions())
     expect(store.getActions()).toEqual(expectedActions);
   });
   it('should fail to fetch locations', async () => {
