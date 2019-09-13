@@ -1,9 +1,9 @@
 const uuid = require('uuid');
 
 export const getCookie = userId => {
-  const cookieData = readCookie(userId);
+  let cookieData = readCookie(userId);
   if (cookieData) {
-    return cookieData;
+    return decodeURIComponent(cookieData);
   } else {
     return false;
   }
@@ -38,6 +38,7 @@ export const setTempCookie = (userState) => {
   // to make the cookie accessible even if the user
   // reload the page, we give a static name to the cookie
   // to retrieve it and also store current state
-  const value = JSON.stringify(userState)
+  const value = encodeURIComponent(JSON.stringify(userState));
+  console.log(value);
   document.cookie = `wtc=${value}`;
 };
