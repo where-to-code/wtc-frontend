@@ -13,7 +13,7 @@ const ReviewContainer = props => {
   return (
     <StyledReviewContainer>
       <h3>Reviews</h3>
-      {reviews.map(review => (
+      {reviews && reviews.map(review => (
         <StyledReviewCard key={review.id}>
           <StyledReviewRatings>
             <Review title="Quietness" starNumber={review.quietness} />

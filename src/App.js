@@ -1,7 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
 import Home from './views/Home';
 import Location from './views/Location';
 import SearchPage from './views/SearchPage';
@@ -12,7 +10,6 @@ import FindAccount from './views/FindAccount';
 import ResetPassword from './views/ResetPassword';
 import EmailConfirmationMessage from './views/EmailConfirmationMessage';
 
-library.add(fab);
 const App = () => {
   return (
     <div>
