@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import UpdateDescriptionStyle from './componentStyles/updateDescriptionStyles';
 
-export default ({ editing, setEditing, currentDescription }) => {
+export default ({ editing, setEditing, currentDescription, locationId }) => {
   const [description, updateDescription] = useState(currentDescription);
 
   const handleChange = e => {
@@ -13,9 +14,27 @@ export default ({ editing, setEditing, currentDescription }) => {
     setEditing(false);
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    axios
+      .put(
+        `https://where2code.herokuapp.com/api/locations/${locationId}`,
+        {
+          description,
+        },
+        {
+          withCredentials: true,
+        },
+      )
+      .then(res => {
+        setEditing(false);
+      });
+  };
+
   return (
     <UpdateDescriptionStyle editing={editing}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <textarea
           placeholder="Enter new description..."
           cols="30"
@@ -25,7 +44,7 @@ export default ({ editing, setEditing, currentDescription }) => {
         />
         <div>
           <button onClick={handleCancel}>Cancel</button>
-          <button>Save</button>
+          <button type="submit">Save</button>
         </div>
       </form>
     </UpdateDescriptionStyle>
