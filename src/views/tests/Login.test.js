@@ -55,7 +55,6 @@ describe('Login tests', () => {
     //         expect.stringContaining(redirectUrl)
     //     )
     // })
-
     it("return an error if login is clicked while missing fields", async() => {
         const redirectUrl = '/'
         const mainRoute = '/login'

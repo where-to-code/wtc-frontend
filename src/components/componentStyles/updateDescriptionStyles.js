@@ -20,7 +20,6 @@ export default styled.div`
   form {
     display: flex;
     flex-direction: column;
-
     padding: 20px;
     border: 1px solid #e5e5e5;
     text-align: center;
@@ -35,7 +34,10 @@ export default styled.div`
       resize: none;
       font-size: 12px;
       outline: none;
-      padding: 5px;
+      padding: 10px;
+      margin: 20px 0;
+      border-radius: 5px;
+      border: 0.5px solid #e5e5e5;
     }
 
     div {
