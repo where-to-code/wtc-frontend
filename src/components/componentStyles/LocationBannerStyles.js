@@ -33,9 +33,16 @@ export const StyledLocationBanner = styled.div`
     }
   }
 
-  span {
-    color: red;
-    cursor: pointer;
+  .edit {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    span {
+      font-size: 28px;
+      cursor: pointer;
+      color: #03525b;
+      font-weight: bold;
+    }
   }
 
   @media (min-width: 600px) {

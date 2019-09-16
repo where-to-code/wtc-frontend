@@ -19,12 +19,12 @@ import UpdateDescription from '../components/UpdateDescription';
 
 const Location = props => {
   const { fetchSingleLocation, location } = props;
-  const loactionId = props.match.params.id;
+  const locationId = props.match.params.id;
 
   const [editLocation, setEditLocation] = useState(false);
 
   useEffect(() => {
-    fetchSingleLocation(loactionId);
+    fetchSingleLocation(locationId);
   }, []);
 
   if (location) {

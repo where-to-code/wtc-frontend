@@ -19,6 +19,11 @@ export const StyledAverage = styled.div`
     font-family: 'Lexend Giga', sans-serif;
     margin: 20px 0;
   }
+  span {
+    color: #03525b;
+    display: block;
+    margin: 0 0 20px 0;
+  }
   button {
     width: 130px;
     height: 50px;
