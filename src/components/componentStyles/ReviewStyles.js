@@ -57,3 +57,37 @@ export const StyledStars = styled.div`
     padding: 2px;
   }
 `;
+export const StyledNoReviews = styled.div`
+  text-align: center;
+  h4 {
+    color: #03525b;
+    font-size: 2rem;
+    padding: 30px 0;
+  }
+
+  p {
+    font-size: 1.5rem;
+    padding-bottom: 35px;
+  }
+  button {
+    width: 250px;
+    height: 50px;
+    background-color: #56c1cb;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 30px;
+  }
+  @media (min-width: 600px) {
+    h4 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.5rem;
+      padding-bottom: 35px;
+    }
+  }
+`

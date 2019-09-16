@@ -122,6 +122,12 @@ const locations = {
 };
 
 // Auth
+
+export const setCookieToState = cookieData => ({
+  type: types.SET_COOKIE_TO_STATE,
+  payload: JSON.parse(cookieData),
+});
+
 export function authLoad() {
   return {
     type: types.AUTH_LOAD,
@@ -300,7 +306,7 @@ export const fetchSingleLocation = locId => async dispatch => {
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
-        locationInfo.data.data.averageRating || googleRating.data.result.rating || 'No ratings for this place',
+        locationInfo.data.data.averageRating || googleRating.data.result.rating || "There aren't reviews for this location yet",
       isGoogleRating: googleRating.data.result.rating ? true:false
     };
     dispatch(singleLocSuccess(locationData));
@@ -456,7 +462,6 @@ export function addNewLocationFail(error) {
 export const addNewLocation = locationData => dispatch => {
   dispatch(addNewLocationLoad());
   return axios
-    //.post(`https://where-to-code-staging.herokuapp.com/api/locations`, locationData, {
     .post(`${url}/locations`, locationData, {
       withCredentials: true
     })
@@ -465,7 +470,8 @@ export const addNewLocation = locationData => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(addNewLocationFail(err.response.data.error));
+      const errorValue = err.response ? err.response.data.error : err.message;
+      dispatch(addNewLocationFail(errorValue));
       return err;
     });
 };

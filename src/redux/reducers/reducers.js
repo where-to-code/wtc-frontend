@@ -133,6 +133,15 @@ export const authReducer = (state = initialState, action) => {
         loginError: action.payload
       };
 
+    case types.SET_COOKIE_TO_STATE:
+      return {
+        ...state,
+        loading: false,
+        userId: action.payload.id,
+        isEmailVerified: action.payload.isVerified,
+        email: action.payload.email
+      }
+
     default:
       return state;
   }

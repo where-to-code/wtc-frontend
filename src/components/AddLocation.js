@@ -110,7 +110,7 @@ function AddLocation (props){
                                 }
                             <div className="right-box">
                                 { formError && <div className="error"> All fields are required</div> }
-                                { remoteError && <div className="error"> We are unable to process your request. <br/> Please try again later </div> }
+                                { remoteError && <div className="error"> We are unable to process your request. <br/> {remoteError} </div> }
                                 <StyledInput
                                     type="text"
                                     name="name-adress"

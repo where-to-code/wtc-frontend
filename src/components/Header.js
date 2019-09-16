@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { setCookieToState } from '../redux/actionCreators';
 import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import TopNotif from '../components/TopNotif';
@@ -8,15 +9,21 @@ import AddLocation from '../components/AddLocation';
 import logo from '../assets/logo.png';
 
 const Header = props => {
-  const { landing } = props;
-  const isCookie = getCookie(props.userId);
+  const { landing, userId, isEmailVerified, setCookieToState } = props;
+  const cookieData = getCookie();
+  // we have a cookie but no user ID (user relaoded the page/app)
+  if(cookieData && !userId){
+    // we reinitialise the state with the data from the cookie
+    setCookieToState(cookieData);
+  }
   const onLogout = () => {
-    logout(props.userId);
+    logout();
   };
 
   const displayAddForm = () => {
     document.getElementById('add-location-form').style.display = 'flex';
   }
+
   return (
     <StyledHeader landing={landing}>
       <div className="logo">
@@ -26,7 +33,7 @@ const Header = props => {
       </div>
       <div className="auth">
       {
-        isCookie 
+        cookieData 
           ? 
           <>
             <button onClick={onLogout}>
@@ -46,8 +53,8 @@ const Header = props => {
             </Link>
           </>
         )}
-        {!props.isEmailVerified && (
-          <TopNotif isVerified={props.isEmailVerified} />
+        {!isEmailVerified && (
+          <TopNotif isVerified={isEmailVerified} />
         )}
       </div>
       <AddLocation />
@@ -64,5 +71,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  null
+  { setCookieToState }
 )(Header);
