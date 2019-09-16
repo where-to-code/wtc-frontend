@@ -216,6 +216,7 @@ describe('fetch locations', () => {
     const expectedActions = [
       { type: types.LOADING_LOCATIONS },
       { type: types.FETCH_LOCATIONS_SUCCESS, payload: mockLocations.data },
+      { type: types.ALL_LOCATIONS_SUCCESS, payload: mockLocations.data }
     ];
     const store = mockStore({
       locations: [],
