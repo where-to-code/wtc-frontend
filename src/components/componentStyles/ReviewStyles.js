@@ -47,8 +47,24 @@ export const StyledReview = styled.div`
     min-width: 100px;
   }
 `;
+export const StyledStarsContainer = styled.div`
+  position: absolute;
+`
 
 export const StyledStars = styled.div`
+  position: relative;
+  top: -20px;
+  display: flex;
+  align-content: space-between;
+  img {
+    width: 20px;
+    height: auto;
+    padding: 2px;
+  }
+`;
+
+export const StyledEmptyStars = styled.div`
+  position: relative;
   display: flex;
   align-content: space-between;
   img {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
+import { renderWithRedux } from '../../utils/testHelpers'
 import ReviewContainer from '../ReviewContainer';
 
 afterEach(cleanup);
@@ -64,7 +65,7 @@ describe('<ReviewContainer />', () => {
   ];
 
   it('Renders the component', () => {
-    const { container } = render(<ReviewContainer reviews={reviews} />);
+    const { container } = renderWithRedux(<ReviewContainer reviews={reviews} />);
 
     expect(container).toBeTruthy();
   });

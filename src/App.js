@@ -9,6 +9,7 @@ import GitHub from './views/GitHubAuth';
 import FindAccount from './views/FindAccount';
 import ResetPassword from './views/ResetPassword';
 import EmailConfirmationMessage from './views/EmailConfirmationMessage';
+import AddReview from './components/AddReview';
 
 const App = () => {
   return (

@@ -9,7 +9,8 @@ const rootReducer = combineReducers({
   activeLocation: reducers.activeLocation,
   auth: reducers.authReducer,
   verifyEmail: reducers.verifyEmailReducer,
-  resetPassword: reducers.resetPasswordReducer
+  resetPassword: reducers.resetPasswordReducer,
+  addReview: reducers.addReviewReducer
 });
 
 export default rootReducer;
