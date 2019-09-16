@@ -29,7 +29,7 @@ const ReviewContainer = props => {
         </StyledReviewCard>
       ))}
       </StyledReviewContainer>
-      {!reviews &&
+      {!reviews.length &&
         <StyledNoReviews>
           <h4>There aren't reviews for this location yet</h4>
           <p>You could be the first to add one </p>
