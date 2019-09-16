@@ -4,6 +4,7 @@ import { locationsReducer } from './locationsReducer'
 import { singleLocationReducer } from './singleLocationReducer'
 import { mapsReducer } from './mapsReducer'
 import { activeLocationReducer } from './activeLocationReducer'
+import { authReducer } from './authReducer'
 
 const rootReducer = combineReducers({
   locations: locationsReducer,
@@ -11,7 +12,7 @@ const rootReducer = combineReducers({
   maps: mapsReducer,
   location: singleLocationReducer,
   activeLocation: activeLocationReducer,
-  auth: reducers.authReducer,
+  auth: authReducer,
   verifyEmail: reducers.verifyEmailReducer,
   resetPassword: reducers.resetPasswordReducer,
   addReview: reducers.addReviewReducer
