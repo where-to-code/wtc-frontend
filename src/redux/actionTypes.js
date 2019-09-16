@@ -29,6 +29,7 @@ export const AUTH_LOAD = 'AUTH_LOAD';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE_LOGIN = 'AUTH_FAILURE_LOGIN';
 export const AUTH_FAILURE_SIGNUP = 'AUTH_FAILURE_SIGNUP';
+export const SET_COOKIE_TO_STATE = 'SET_COOKIE_TO_STATE';
 
 //Email verification
 export const VERIFY_EMAIL_LOAD = 'VERIFY_EMAIL_LOAD';
