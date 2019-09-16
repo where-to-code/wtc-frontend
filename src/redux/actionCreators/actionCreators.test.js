@@ -1,6 +1,6 @@
 import * as actions from './actionCreators';
 import thunk from 'redux-thunk';
-import * as types from './actionTypes';
+import * as types from '../actionTypes';
 import configureMockStore from 'redux-mock-store';
 import axios from 'axios';
 import axiosMock from 'axios-mock-adapter';
