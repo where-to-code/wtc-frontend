@@ -1,7 +1,5 @@
 import * as types from '../actionTypes';
 
-// Adding new location
-
 const newLocation = {
   location: null,
   loading: false,

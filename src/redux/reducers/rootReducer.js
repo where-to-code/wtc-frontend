@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as reducers from './reducers';
+import { addLocationReducer } from './addLocationReducer';
 import { locationsReducer } from './locationsReducer'
 import { singleLocationReducer } from './singleLocationReducer'
 import { mapsReducer } from './mapsReducer'
@@ -10,7 +10,7 @@ import { addReviewReducer } from './addReviewReducer'
 
 const rootReducer = combineReducers({
   locations: locationsReducer,
-  newLocation: reducers.addLocationReducer,
+  newLocation: addLocationReducer,
   maps: mapsReducer,
   location: singleLocationReducer,
   activeLocation: activeLocationReducer,
