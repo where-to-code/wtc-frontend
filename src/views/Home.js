@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux';
 import { StyledHome } from './ViewStyles/HomeStyles';
 import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
-import { setGeolocationValue, clearLocations } from '../redux/actionCreators';
+import { setGeolocationValue } from '../redux/actionCreators/mapsActionCreators';
+import { clearLocations } from '../redux/actionCreators/locationsActionCreators';
 
 const Home = ({ setGeolocationValue, clearLocations, history }) => {
   const [pos, updatePos] = useState(false);

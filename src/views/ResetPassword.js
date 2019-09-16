@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import logo from '../assets/logo.png';
-import { resetPassword } from '../redux/actionCreators';
+import { resetPassword } from '../redux/actionCreators/passwordResetActionCreators';
 
 import {
   StyledWrapper,

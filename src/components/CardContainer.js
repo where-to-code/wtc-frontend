@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyledCardContainer } from './componentStyles/CardContStyles';
 import LocationCard from './LocationCard';
-import { filterLocations } from '../redux/actionCreators';
+import { filterLocations } from '../redux/actionCreators/locationsActionCreators';
 const CardContainer = props => {
   const { locations, activeLocation } = props;
 

@@ -12,7 +12,7 @@ import {
 } from './ViewStyles/AuthStyles';
 
 import { FaGithub } from 'react-icons/fa';
-import { signup } from '../redux/actionCreators';
+import { signup } from '../redux/actionCreators/authActionCreators';
 import logo from '../assets/logo.png';
 
 const Registration = props => {

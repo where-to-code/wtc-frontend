@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
 import {
   mapsLoading,
-  setActive,
   setGeolocationValue,
   setGeolocationTrue,
   setGeolocationFalse
-} from '../redux/actionCreators';
+} from '../redux/actionCreators/mapsActionCreators';
+import { setActive } from '../redux/actionCreators/activeLocationActionCreators'
 import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers';
 import markerBlue from '../assets/icons8-marker-40.png';
 import { mapPromise } from '../redux/helpers';
@@ -46,15 +46,15 @@ const Map = props => {
       // mapCenter give the current position of the user if autorized
       // or London if not authorized
       mapCenter = await position(mapCenter);
-      if(geolocation) {
+      if (geolocation) {
         mapCenter = geolocation;
       }
       mapsLoading();
       const map = mapInit(mapObject.maps, mapCenter);
-      if (!geolocation){
+      if (!geolocation) {
         setGeolocationValue(mapCenter);
-      } 
-      else if (geolocation.lat === 51.504831314 && geolocation.lng === -0.123499506){
+      }
+      else if (geolocation.lat === 51.504831314 && geolocation.lng === -0.123499506) {
         setGeolocationFalse();
       }
       else {
@@ -62,7 +62,7 @@ const Map = props => {
         // it means that the user has triggerd a search with a different geoloc
         setGeolocationValue(geolocation);
         setGeolocationTrue();
-      } 
+      }
       // We add markers and modals to locations
       if (locations.length > 0) {
         locations.map(location => {

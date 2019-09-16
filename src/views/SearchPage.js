@@ -12,14 +12,10 @@ import {
 import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
-import {
-  filterLocations,
-  locationLoads,
-  setGeolocationValue, 
-  clearLocations,
-} from '../redux/actionCreators';
-
+import { locationLoads, clearLocations, filterLocations } from '../redux/actionCreators/locationsActionCreators'
+import { setGeolocationValue } from '../redux/actionCreators/mapsActionCreators'
 import NoGeoLocation from '../components/NoGeoLocation';
+
 const SearchPage = props => {
   const {
     filterLocations,
@@ -92,9 +88,10 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { locationLoads, 
-    filterLocations, 
-    setGeolocationValue, 
-    clearLocations, 
+  {
+    locationLoads,
+    filterLocations,
+    setGeolocationValue,
+    clearLocations,
   }
 )(SearchPage);

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { FaGithub } from 'react-icons/fa';
 import Loader from 'react-loader-spinner';
 import logo from '../assets/logo.png';
-import { login } from '../redux/actionCreators';
+import { login } from '../redux/actionCreators/authActionCreators';
 import { setTempCookie } from '../components/helpers/authHelpers';
 import {
   StyledWrapper,

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import star from '../assets/star_rating.png';
 import emptyStar from '../assets/empty-star.png'
 import { StyledStars, StyledEmptyStars, StyledStarsContainer } from './componentStyles/ReviewStyles';
-import { addRatingValue } from '../redux/actionCreators';
+import { addRatingValue } from '../redux/actionCreators/addReviewActionCreators';
 
 const Stars = props => {
   const { starNumber, isStatic, isShown, title, review, addRatingValue } = props;

@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { setActive, clearLocations } from '../redux/actionCreators';
+import { setActive } from '../redux/actionCreators/activeLocationActionCreators';
+import { clearLocations } from '../redux/actionCreators/locationsActionCreators'
 import { StyledCard } from './componentStyles/LocationCardStyles';
 
 const LocationCard = props => {

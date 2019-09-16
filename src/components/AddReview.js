@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
 import Review from './Review';
-import { setAddReviewFalse, clearReview, addReview } from '../redux/actionCreators'
+import { setAddReviewFalse, clearReview, addReview } from '../redux/actionCreators/addReviewActionCreators'
 import { StyledAddRating, StyledAddReview } from './componentStyles/AddReviewStyles';
 
 const AddReview = props => {

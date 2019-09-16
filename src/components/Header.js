@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setCookieToState } from '../redux/actionCreators';
+import { setCookieToState } from '../redux/actionCreators/authActionCreators';
 import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import TopNotif from '../components/TopNotif';

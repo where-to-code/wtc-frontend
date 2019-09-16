@@ -6,7 +6,7 @@ import {
   resendEmailVerification,
   setNewVerificationSent,
   setPopupMessageSeen
-} from '../redux/actionCreators';
+} from '../redux/actionCreators/authActionCreators';
 
 function OverlayMessage(props) {
   const {

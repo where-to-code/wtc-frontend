@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledAverage } from './componentStyles/RatingStyles';
 import AddReview from './AddReview';
-import { setAddReviewTrue } from '../redux/actionCreators';
+import { setAddReviewTrue } from '../redux/actionCreators/addReviewActionCreators';
 
 const AverageRatings = props => {
   const { location, setAddReviewTrue, locId } = props;

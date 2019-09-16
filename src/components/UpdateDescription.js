@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
 
-import { singleLocSuccess } from '../redux/actionCreators';
+import { singleLocSuccess } from '../redux/actionCreators/singleLocationActionCreators';
 import UpdateDescriptionStyle from './componentStyles/updateDescriptionStyles';
 
 const UpdateDescription = ({

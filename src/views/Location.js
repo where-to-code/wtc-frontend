@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchSingleLocation } from '../redux/actionCreators';
+import { fetchSingleLocation } from '../redux/actionCreators/singleLocationActionCreators';
 import { StyledLoader } from './ViewStyles/SearchPageStyles';
 import {
   LocationContainer,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addNewLocation, clearNewLocation } from '../redux/actionCreators';
+import { addNewLocation, clearNewLocation } from '../redux/actionCreators/addLocationActionCreators';
 import { StyledOverlayPopup } from './componentStyles/OverlayPopupStyles';
 import { 
     StyledButton,

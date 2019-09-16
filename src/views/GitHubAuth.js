@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { successGitlog } from '../redux/actionCreators';
+import { successGitlog } from '../redux/actionCreators/authActionCreators';
 import { Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';

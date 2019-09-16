@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import logo from '../assets/logo.png';
-import { verifyEmail } from '../redux/actionCreators';
+import { verifyEmail } from '../redux/actionCreators/authActionCreators';
 import {
   StyledWrapper,
   StyleMap,

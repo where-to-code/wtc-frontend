@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getCookie } from './helpers/authHelpers';
 import AddLocation from '../components/AddLocation';
 import { Redirect } from 'react-router-dom';
-import { clearLocations } from '../redux/actionCreators';
+import { clearLocations } from '../redux/actionCreators/locationsActionCreators';
 
 const LocationErr = (props) => {
   const { newSearch, clearLocations } = props;
