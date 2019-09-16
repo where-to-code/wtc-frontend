@@ -122,6 +122,12 @@ const locations = {
 };
 
 // Auth
+
+export const setCookieToState = cookieData => ({
+  type: types.SET_COOKIE_TO_STATE,
+  payload: JSON.parse(cookieData),
+});
+
 export function authLoad() {
   return {
     type: types.AUTH_LOAD,
@@ -302,11 +308,10 @@ export const fetchSingleLocation = locId => async dispatch => {
         }
       }
     }
-    console.log(googleRating.data)
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
-        locationInfo.data.data.averageRating || googleRating.data.result.rating || 'No ratings for this place',
+        locationInfo.data.data.averageRating || googleRating.data.result.rating || "There aren't reviews for this location yet",
       isGoogleRating: googleRating.data.result.rating ? true:false
     };
     dispatch(singleLocSuccess(locationData));

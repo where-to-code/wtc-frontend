@@ -12,7 +12,12 @@ import {
 import { StyledMap } from '../components/componentStyles/MapStyles';
 import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
-import { filterLocations, locationLoads } from '../redux/actionCreators';
+import {
+  filterLocations,
+  locationLoads,
+  setGeolocationValue, 
+  clearLocations,
+} from '../redux/actionCreators';
 
 import NoGeoLocation from '../components/NoGeoLocation';
 const SearchPage = props => {
@@ -23,12 +28,21 @@ const SearchPage = props => {
     locationLoads,
     loadingLocation,
     locationsErr,
+    setGeolocationValue,
+    clearLocations,
     isGeolocated,
   } = props;
 
   useEffect(() => {
     locationLoads(geolocation);
-  }, [geolocation]);
+  }, [geolocation, locationLoads]);
+
+  // When a new search is triggered from search field 
+  // case where there was no location arround current search coordinate
+  const newSearch = (newCoordinates) => {
+    clearLocations();
+    setGeolocationValue(newCoordinates);
+  }
 
   function setNewLocations(choices) {
     const filteredLocation = allLocations.filter(
@@ -55,7 +69,7 @@ const SearchPage = props => {
             </StyledLoader>
           )}
           {locationsErr && locationsErr !== 'currentLocation is null' && (
-            <LocationErr />
+            <LocationErr newSearch={newSearch} />
           )}
           <CardContainer />
         </LeftPane>
@@ -78,5 +92,9 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { locationLoads, filterLocations },
+  { locationLoads, 
+    filterLocations, 
+    setGeolocationValue, 
+    clearLocations, 
+  }
 )(SearchPage);

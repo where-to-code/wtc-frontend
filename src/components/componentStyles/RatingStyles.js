@@ -13,7 +13,8 @@ export const StyledAverage = styled.div`
     text-align: center;
   }
   p {
-    font-size: 80px;
+    text-align: center;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #03525b;
     font-family: 'Lexend Giga', sans-serif;
@@ -37,11 +38,19 @@ export const StyledAverage = styled.div`
       font-size: 36px;
     }
     p {
-      font-size: 100px;
+      font-size: 1.5rem;
     }
     button {
       width: 130px;
       font-size: 12px;
     }
+  }
+  @media (min-width: 1100px) {
+    margin: 20px;
+   
+    p {
+      font-size: 2rem;
+    }
+   
   }
 `;
