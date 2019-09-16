@@ -15,7 +15,7 @@ describe('Find Account tests', () => {
     })
     it('render the loader while loading', async() => {
         const reducer = {
-            verifyEmail: {
+            auth: {
                 loading: true
             }
         }
@@ -25,7 +25,7 @@ describe('Find Account tests', () => {
     })
     it('render the error if present', () => {
         const reducer = {
-            verifyEmail: {
+            auth: {
                 error: 'error'
             }
         }
