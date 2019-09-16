@@ -80,9 +80,9 @@ function OverlayMessage(props) {
 const mapStatetoProps = state => {
   return {
     email: state.auth.email,
-    loading: state.verifyEmail.loading,
-    newEmailVerification: state.verifyEmail.newEmailVerifRequested,
-    popupMessageSeen: state.verifyEmail.popupMessageSeen
+    loading: state.auth.loading,
+    newEmailVerification: state.auth.newEmailVerifRequested,
+    popupMessageSeen: state.auth.popupMessageSeen
   };
 };
 

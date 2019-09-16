@@ -32,7 +32,7 @@ const TopNotif = props => {
 
 const mapStatetoProps = state => {
   return {
-    popupMessageSeen: state.verifyEmail.popupMessageSeen
+    popupMessageSeen: state.auth.popupMessageSeen
   };
 };
 

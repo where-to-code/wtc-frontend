@@ -62,8 +62,8 @@ const FindAccount = props => {
 
 const mapStateToProps = state => {
   return {
-    loading: state.verifyEmail.loading,
-    error: state.verifyEmail.error
+    loading: state.auth.loading,
+    error: state.auth.error
   };
 };
 

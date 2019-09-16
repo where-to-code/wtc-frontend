@@ -13,7 +13,6 @@ const rootReducer = combineReducers({
   location: singleLocationReducer,
   activeLocation: activeLocationReducer,
   auth: authReducer,
-  verifyEmail: reducers.verifyEmailReducer,
   resetPassword: reducers.resetPasswordReducer,
   addReview: reducers.addReviewReducer
 });
