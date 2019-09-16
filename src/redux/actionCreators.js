@@ -211,10 +211,6 @@ export const locationFailure = error => ({
   payload: error,
 });
 
-export const allLocationsSuccess = locationList => ({
-  type: types.ALL_LOCATIONS_SUCCESS,
-  payload: locationList.data,
-});
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
@@ -222,7 +218,6 @@ export const locationLoads = currentLocation => async dispatch => {
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`,
     );
     dispatch(locationSuccess(locationsInfo.data));
-    dispatch(allLocationsSuccess(locationsInfo.data));
   } catch (error) {
     const errorValue = error.response
       ? error.response.data.message
@@ -451,10 +446,9 @@ export function addNewLocationLoad() {
   };
 }
 
-export function addNewLocationSuccess(newLocation) {
+export function addNewLocationSuccess() {
   return {
     type: types.ADD_NEW_LOCATION_SUCCESS,
-    payload: newLocation
   };
 }
 
@@ -472,7 +466,7 @@ export const addNewLocation = locationData => dispatch => {
       withCredentials: true
     })
     .then(res => {
-      dispatch(addNewLocationSuccess(res.data.data[0]));
+      dispatch(addNewLocationSuccess());
       return res;
     })
     .catch(err => {
@@ -481,3 +475,7 @@ export const addNewLocation = locationData => dispatch => {
       return err;
     });
 };
+
+export const clearNewLocation = () => ({
+  type: types.CLEAR_NEW_LOCATION
+})

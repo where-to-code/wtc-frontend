@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addNewLocation } from '../redux/actionCreators';
+import { addNewLocation, clearNewLocation } from '../redux/actionCreators';
 import { StyledOverlayPopup } from './componentStyles/OverlayPopupStyles';
 import { 
     StyledButton,
@@ -17,8 +17,8 @@ function AddLocation (props){
         addNewLocation, 
         remoteError, 
         loading,
-        location,
-        isAdded 
+        isAdded,
+        clearNewLocation 
     } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
@@ -26,6 +26,11 @@ function AddLocation (props){
     const [formError, setFormError] = useState(null);
 
     const hideMessage = () =>{
+        clearNewLocation();
+        setLocationPhotos(null);
+        setDescription('');
+        setPlaceData(null);
+        setFormError(null)
         document.getElementById('add-location-form').style.display = 'none';
     }
     const submitLocation = (event) =>{
@@ -147,12 +152,11 @@ const mapStatetoProps = state => {
     return {
         loading: state.newLocation.loading,
         remoteError: state.newLocation.error, 
-        location: state.newLocation.location, 
         isAdded: state.newLocation.isAdded,
     };
   };
   
   export default connect(
     mapStatetoProps,
-    { addNewLocation }
+    { addNewLocation, clearNewLocation }
   )(AddLocation);
