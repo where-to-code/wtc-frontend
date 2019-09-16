@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledLocationBanner } from './componentStyles/LocationBannerStyles';
 
 const LocationBanner = props => {
-  const { location } = props;
+  const { location, setEditing } = props;
   return (
     <StyledLocationBanner>
       <div className="banner-img">
@@ -17,6 +17,7 @@ const LocationBanner = props => {
         <div>
           <h3>Description</h3>
           <p>{location.description}</p>
+          <span onClick={() => setEditing(true)}>Update Description</span>
         </div>
       </div>
     </StyledLocationBanner>
