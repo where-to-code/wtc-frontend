@@ -39,6 +39,5 @@ export const setTempCookie = (userState) => {
   // reload the page, we give a static name to the cookie
   // to retrieve it and also store current state
   const value = encodeURIComponent(JSON.stringify(userState));
-  console.log(value);
   document.cookie = `wtc=${value}`;
 };
