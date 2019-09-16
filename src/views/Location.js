@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,27 +8,32 @@ import {
   LocationContainer,
   TopContainer,
   TopRightContainer,
-  StyledLocation
+  StyledLocation,
 } from './ViewStyles/LocationStyles';
 import Header from '../components/Header';
 import ReviewContainer from '../components/ReviewContainer';
 import LocationBanner from '../components/LocationBanner';
 import AverageRatings from '../components/AverageRatings';
 import MapIFrame from '../components/MapIFrame';
+import UpdateDescription from '../components/UpdateDescription';
 
 const Location = props => {
   const { fetchSingleLocation, location } = props;
   const loactionId = props.match.params.id;
+
+  const [editLocation, setEditLocation] = useState(false);
+
   useEffect(() => {
     fetchSingleLocation(loactionId);
   }, []);
+
   if (location) {
     return (
       <StyledLocation>
         <Header />
         <LocationContainer>
           <TopContainer>
-            <LocationBanner location={location} />
+            <LocationBanner location={location} setEditing={setEditLocation} />
             <TopRightContainer>
               <AverageRatings location={location} />
               <MapIFrame location={location} />
@@ -38,6 +43,13 @@ const Location = props => {
             <ReviewContainer reviews={location.reviews} />
           </div>
         </LocationContainer>
+
+        <UpdateDescription
+          editing={editLocation}
+          setEditing={setEditLocation}
+          currentDescription={location.description}
+          locationId={location.id}
+        />
       </StyledLocation>
     );
   } else {
@@ -51,20 +63,20 @@ const Location = props => {
 
 function mapStateToProps(state) {
   return {
-    location: state.location.location
+    location: state.location.location,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      fetchSingleLocation
+      fetchSingleLocation,
     },
-    dispatch
+    dispatch,
   );
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Location);
