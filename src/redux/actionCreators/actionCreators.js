@@ -1,6 +1,6 @@
-import * as types from './actionTypes';
+import * as types from '../actionTypes';
 import axios from 'axios';
-import { mapPromise} from './helpers';
+import { mapPromise} from '../helpers';
 import { toast } from 'react-toastify';
 
 const url = 'https://where2code.herokuapp.com/api';
