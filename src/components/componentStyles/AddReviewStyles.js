@@ -5,6 +5,7 @@ export const StyledAddReview = styled.div`
     z-index: 1;
     border-radius: 3%;
     position: fixed;
+    text-align: center;
     width: 500px;
     height: 580px;
     top: 50%;
@@ -29,10 +30,9 @@ export const StyledAddReview = styled.div`
         margin-left:12px;
         width: 95%;
         padding-bottom: 135px;
+        outline: none;
+        resize: none;
 
-    }
-    button {
-        margin: 10px 150px;
     }
     p {
         position: fixed;
