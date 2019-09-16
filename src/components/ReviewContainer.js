@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Review from './Review';
 import Comment from './Comment';
+import { setAddReviewTrue } from '../redux/actionCreators';
 import {
   StyledReviewCard,
   StyledReviewContainer,
@@ -10,7 +13,11 @@ import {
 
 
 const ReviewContainer = props => {
-  const { reviews } = props;
+  const { reviews, setAddReviewTrue } = props;
+
+  const onClick = () => {
+    setAddReviewTrue();
+  }
 
   return (
     <>
@@ -32,11 +39,27 @@ const ReviewContainer = props => {
         <StyledNoReviews>
           <h4>There aren't reviews for this location yet</h4>
           <p>You could be the first to add one </p>
-          <button>Add a Review</button>
+          <button onClick={onClick}>Add a Review</button>
         </StyledNoReviews>
       }
     </>
   );
 };
 
-export default ReviewContainer;
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      setAddReviewTrue,
+    },
+    dispatch,
+  );
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ReviewContainer);
