@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import * as reducers from './reducers';
+import { locationsReducer } from './locationsReducer'
 
 const rootReducer = combineReducers({
-  locations: reducers.locationReducer,
+  locations: locationsReducer,
   newLocation: reducers.addLocationReducer,
   maps: reducers.mapsReducer,
   location: reducers.singleLocaReducer,
