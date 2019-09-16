@@ -468,7 +468,6 @@ export function addNewLocationFail(error) {
 export const addNewLocation = locationData => dispatch => {
   dispatch(addNewLocationLoad());
   return axios
-    //.post(`https://where-to-code-staging.herokuapp.com/api/locations`, locationData, {
     .post(`${url}/locations`, locationData, {
       withCredentials: true
     })
@@ -477,7 +476,8 @@ export const addNewLocation = locationData => dispatch => {
       return res;
     })
     .catch(err => {
-      dispatch(addNewLocationFail(err.response.data.error));
+      const errorValue = err.response ? err.response.data.error : err.message;
+      dispatch(addNewLocationFail(errorValue));
       return err;
     });
 };
