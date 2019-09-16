@@ -6,6 +6,12 @@ import { toast } from 'react-toastify';
 const url = 'https://where2code.herokuapp.com/api';
 
 // Auth
+
+export const setCookieToState = cookieData => ({
+  type: types.SET_COOKIE_TO_STATE,
+  payload: JSON.parse(cookieData),
+});
+
 export function authLoad() {
   return {
     type: types.AUTH_LOAD,
@@ -89,10 +95,6 @@ export const locationFailure = error => ({
   payload: error,
 });
 
-export const allLocationsSuccess = locationList => ({
-  type: types.ALL_LOCATIONS_SUCCESS,
-  payload: locationList.data,
-});
 export const locationLoads = currentLocation => async dispatch => {
   dispatch({ type: types.LOADING_LOCATIONS });
   try {
@@ -100,7 +102,6 @@ export const locationLoads = currentLocation => async dispatch => {
       `${url}/locations?lat=${currentLocation.lat}&long=${currentLocation.lng}`,
     );
     dispatch(locationSuccess(locationsInfo.data));
-    dispatch(allLocationsSuccess(locationsInfo.data));
   } catch (error) {
     const errorValue = error.response
       ? error.response.data.message
@@ -189,7 +190,7 @@ export const fetchSingleLocation = locId => async dispatch => {
     const locationData = {
       ...locationInfo.data.data,
       averageRating:
-        locationInfo.data.data.averageRating || googleRating.data.result.rating || 'No ratings for this place',
+        locationInfo.data.data.averageRating || googleRating.data.result.rating || "There aren't reviews for this location yet",
       isGoogleRating: googleRating.data.result.rating ? true:false
     };
     dispatch(singleLocSuccess(locationData));
@@ -364,10 +365,9 @@ export function addNewLocationLoad() {
   };
 }
 
-export function addNewLocationSuccess(newLocation) {
+export function addNewLocationSuccess() {
   return {
     type: types.ADD_NEW_LOCATION_SUCCESS,
-    payload: newLocation
   };
 }
 
@@ -381,16 +381,20 @@ export function addNewLocationFail(error) {
 export const addNewLocation = locationData => dispatch => {
   dispatch(addNewLocationLoad());
   return axios
-    //.post(`https://where-to-code-staging.herokuapp.com/api/locations`, locationData, {
     .post(`${url}/locations`, locationData, {
       withCredentials: true
     })
     .then(res => {
-      dispatch(addNewLocationSuccess(res.data.data[0]));
+      dispatch(addNewLocationSuccess());
       return res;
     })
     .catch(err => {
-      dispatch(addNewLocationFail(err.response.data.error));
+      const errorValue = err.response ? err.response.data.error : err.message;
+      dispatch(addNewLocationFail(errorValue));
       return err;
     });
 };
+
+export const clearNewLocation = () => ({
+  type: types.CLEAR_NEW_LOCATION
+})

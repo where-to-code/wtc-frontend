@@ -4,13 +4,16 @@ import Comment from './Comment';
 import {
   StyledReviewCard,
   StyledReviewContainer,
-  StyledReviewRatings
+  StyledReviewRatings,
+  StyledNoReviews
 } from './componentStyles/ReviewStyles';
+
 
 const ReviewContainer = props => {
   const { reviews } = props;
-  
+
   return (
+    <>
     <StyledReviewContainer>
       <h3>Reviews</h3>
       {reviews && reviews.map(review => (
@@ -24,7 +27,15 @@ const ReviewContainer = props => {
           <Comment description={review.description} />
         </StyledReviewCard>
       ))}
-    </StyledReviewContainer>
+      </StyledReviewContainer>
+      {!reviews.length &&
+        <StyledNoReviews>
+          <h4>There aren't reviews for this location yet</h4>
+          <p>You could be the first to add one </p>
+          <button>Add a Review</button>
+        </StyledNoReviews>
+      }
+    </>
   );
 };
 

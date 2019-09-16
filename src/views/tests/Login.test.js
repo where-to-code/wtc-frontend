@@ -6,7 +6,6 @@ import thunk from 'redux-thunk';
 import { renderWithRedux, TestingRouter } from '../../utils/testHelpers';
 import Login from '../Login';
 
-
 jest.mock('react-loader-spinner', () => () => <div>Loader Mock</div>)
 
 afterEach(cleanup);

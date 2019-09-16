@@ -43,14 +43,26 @@ const Map = props => {
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(async mapObject => {
+      // mapCenter give the current position of the user if autorized
+      // or London if not authorized
       mapCenter = await position(mapCenter);
+      if(geolocation) {
+        mapCenter = geolocation;
+      }
       mapsLoading();
       const map = mapInit(mapObject.maps, mapCenter);
-
-      if (!geolocation) setGeolocationValue(mapCenter);
-      else if (geolocation.lat === 51.504831314 && geolocation.lng === -0.123499506)
+      if (!geolocation){
+        setGeolocationValue(mapCenter);
+      } 
+      else if (geolocation.lat === 51.504831314 && geolocation.lng === -0.123499506){
         setGeolocationFalse();
-      else setGeolocationTrue();
+      }
+      else {
+        // we have a value in geolocation and its not the default value
+        // it means that the user has triggerd a search with a different geoloc
+        setGeolocationValue(geolocation);
+        setGeolocationTrue();
+      } 
       // We add markers and modals to locations
       if (locations.length > 0) {
         locations.map(location => {
@@ -69,7 +81,7 @@ const Map = props => {
         });
       }
     });
-  });
+  }, [geolocation, locations.length]);
 
   return <StyledMap id="map" />;
 };

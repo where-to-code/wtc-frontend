@@ -133,6 +133,15 @@ export const authReducer = (state = initialState, action) => {
         loginError: action.payload
       };
 
+    case types.SET_COOKIE_TO_STATE:
+      return {
+        ...state,
+        loading: false,
+        userId: action.payload.id,
+        isEmailVerified: action.payload.isVerified,
+        email: action.payload.email
+      }
+
     default:
       return state;
   }
@@ -262,7 +271,7 @@ export const addReviewReducer = (state = {
 const newLocation = {
   location: null,
   loading: false,
-  isAdded:false,
+  isAdded: false,
   error: ''
 };
 
@@ -288,7 +297,8 @@ export const addLocationReducer = (state = newLocation, action) => {
         loading: false,
         error: action.payload
       };
-
+    case types.CLEAR_NEW_LOCATION:
+      return { ...state, isAdded: false }
     default:
       return state;
   }
