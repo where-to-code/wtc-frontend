@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
 
-import { singleLocSuccess } from '../redux/actionCreators';
+import { singleLocSuccess, fetchSingleLocation } from '../redux/actionCreators';
 import UpdateDescriptionStyle from './componentStyles/updateDescriptionStyles';
 
 const UpdateDescription = ({
@@ -12,7 +12,7 @@ const UpdateDescription = ({
   setEditing,
   currentDescription,
   locationId,
-  singleLocSuccess,
+  fetchSingleLocation
 }) => {
   const [description, updateDescription] = useState(currentDescription);
   const [updating, setUpdating] = useState(null);
@@ -41,16 +41,16 @@ const UpdateDescription = ({
       .put(
         `https://where2code.herokuapp.com/api/locations/${locationId}`,
         {
-          description,
+          description
         },
         {
-          withCredentials: true,
-        },
+          withCredentials: true
+        }
       )
       .then(res => {
-        singleLocSuccess(res.data.data[0]);
         setUpdating(false);
         setEditing(false);
+        fetchSingleLocation(locationId);
       })
       .catch(() => {
         setUpdateError(true);
@@ -96,12 +96,13 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       singleLocSuccess,
+      fetchSingleLocation
     },
-    dispatch,
+    dispatch
   );
 }
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(UpdateDescription);

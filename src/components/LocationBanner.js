@@ -16,8 +16,10 @@ const LocationBanner = props => {
         </div>
         <div>
           <h3>Description</h3>
-          <p>{location.description}</p>
-          <span onClick={() => setEditing(true)}>Update Description</span>
+          <div className='edit'>
+            <p>{location.description}</p>
+            <span onClick={() => setEditing(true)}>&#x270E;</span>
+          </div>
         </div>
       </div>
     </StyledLocationBanner>
