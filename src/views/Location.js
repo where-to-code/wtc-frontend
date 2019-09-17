@@ -19,12 +19,12 @@ import UpdateDescription from '../components/UpdateDescription';
 
 const Location = props => {
   const { fetchSingleLocation, location } = props;
-  const loactionId = props.match.params.id;
+  const locationId = props.match.params.id;
 
   const [editLocation, setEditLocation] = useState(false);
 
   useEffect(() => {
-    fetchSingleLocation(loactionId);
+    fetchSingleLocation(locationId);
   }, []);
 
   if (location) {
@@ -35,7 +35,7 @@ const Location = props => {
           <TopContainer>
             <LocationBanner location={location} setEditing={setEditLocation} />
             <TopRightContainer>
-              <AverageRatings locId={loactionId} location={location} />
+              <AverageRatings locId={locationId} location={location} />
               <MapIFrame location={location} />
             </TopRightContainer>
           </TopContainer>

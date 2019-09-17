@@ -6,8 +6,6 @@ import {
   mapsLoading,
   setActive,
   setGeolocationValue,
-  setGeolocationTrue,
-  setGeolocationFalse
 } from '../redux/actionCreators';
 import { modalInit, markerInit, mapInit, position } from './helpers/mapHelpers';
 import markerBlue from '../assets/icons8-marker-40.png';
@@ -21,8 +19,6 @@ const Map = props => {
     setActive,
     activeLocation,
     setGeolocationValue,
-    setGeolocationTrue,
-    setGeolocationFalse
   } = props;
 
   // Set the default position to Trafalgar Square, London
@@ -31,7 +27,7 @@ const Map = props => {
   if (activeLocation) {
     mapCenter = {
       lat: Number(activeLocation.latitude),
-      lng: Number(activeLocation.longitude)
+      lng: Number(activeLocation.longitude),
     };
   }
 
@@ -43,26 +39,18 @@ const Map = props => {
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(async mapObject => {
-      // mapCenter give the current position of the user if autorized
-      // or London if not authorized
+      let map;
       mapCenter = await position(mapCenter);
-      if(geolocation) {
-        mapCenter = geolocation;
-      }
-      mapsLoading();
-      const map = mapInit(mapObject.maps, mapCenter);
-      if (!geolocation){
+
+      if (!geolocation) {
+        map = mapInit(mapObject.maps, mapCenter);
         setGeolocationValue(mapCenter);
-      } 
-      else if (geolocation.lat === 51.504831314 && geolocation.lng === -0.123499506){
-        setGeolocationFalse();
+        mapsLoading();
+      } else {
+        map = mapInit(mapObject.maps, geolocation);
+        mapsLoading();
       }
-      else {
-        // we have a value in geolocation and its not the default value
-        // it means that the user has triggerd a search with a different geoloc
-        setGeolocationValue(geolocation);
-        setGeolocationTrue();
-      } 
+
       // We add markers and modals to locations
       if (locations.length > 0) {
         locations.map(location => {
@@ -81,7 +69,7 @@ const Map = props => {
         });
       }
     });
-  }, [geolocation, locations.length]);
+  });
 
   return <StyledMap id="map" />;
 };
@@ -90,7 +78,7 @@ function mapStateToProps(state) {
   return {
     geolocation: state.maps.geolocation,
     locations: state.locations.locations,
-    activeLocation: state.activeLocation
+    activeLocation: state.activeLocation,
   };
 }
 
@@ -100,14 +88,12 @@ function mapDispatchToProps(dispatch) {
       mapsLoading,
       setActive,
       setGeolocationValue,
-      setGeolocationTrue,
-      setGeolocationFalse
     },
-    dispatch
+    dispatch,
   );
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Map);
