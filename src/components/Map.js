@@ -41,7 +41,6 @@ const Map = props => {
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(async mapObject => {
-      let map;
       mapCenter = await position(mapCenter);
       if (geolocation) {
         mapCenter = geolocation;
