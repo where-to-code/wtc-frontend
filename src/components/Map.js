@@ -21,8 +21,6 @@ const Map = props => {
     setActive,
     activeLocation,
     setGeolocationValue,
-    setGeolocationTrue,
-    setGeolocationFalse
   } = props;
 
   // Set the default position to Trafalgar Square, London
@@ -31,7 +29,7 @@ const Map = props => {
   if (activeLocation) {
     mapCenter = {
       lat: Number(activeLocation.latitude),
-      lng: Number(activeLocation.longitude)
+      lng: Number(activeLocation.longitude),
     };
   }
 
@@ -43,8 +41,7 @@ const Map = props => {
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(async mapObject => {
-      // mapCenter give the current position of the user if autorized
-      // or London if not authorized
+      let map;
       mapCenter = await position(mapCenter);
       if (geolocation) {
         mapCenter = geolocation;
@@ -81,7 +78,7 @@ const Map = props => {
         });
       }
     });
-  }, [geolocation, locations.length]);
+  });
 
   return <StyledMap id="map" />;
 };
@@ -90,7 +87,7 @@ function mapStateToProps(state) {
   return {
     geolocation: state.maps.geolocation,
     locations: state.locations.locations,
-    activeLocation: state.activeLocation
+    activeLocation: state.activeLocation,
   };
 }
 
@@ -100,14 +97,12 @@ function mapDispatchToProps(dispatch) {
       mapsLoading,
       setActive,
       setGeolocationValue,
-      setGeolocationTrue,
-      setGeolocationFalse
     },
-    dispatch
+    dispatch,
   );
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Map);
