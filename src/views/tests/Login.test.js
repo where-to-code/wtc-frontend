@@ -42,7 +42,9 @@ describe('Login tests', () => {
             expect.stringContaining(redirectUrl)
         )
     })
+
     // it('push to / if login is clicked and a succesful response is given', async() => {
+    //    jest.spyOn(authHelpers ,'setTempCookie').mockResolvedValue({success:true})
     //     const redirectUrl = '/'
     //     const mainRoute = '/login'
     //     const { getByPlaceholderText, getByText, container } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Login {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />, {}, { route: mainRoute })

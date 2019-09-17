@@ -29,7 +29,7 @@ const GitHub = ({ location, successGitlog }) => {
         // dispatch successful auth to redux state
         successGitlog(res.data.data);
         // Login is successful so we write a cookie to auth the user
-        setTempCookie(res.data.data.id, res.data.data.lastname);
+        setTempCookie(res.data.data);
         setIsAuth(true);
       })
       .catch(err => setIsAuth(false));
