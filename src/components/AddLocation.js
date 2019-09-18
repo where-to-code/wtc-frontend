@@ -18,12 +18,15 @@ function AddLocation (props){
         remoteError, 
         loading,
         isAdded,
-        clearNewLocation 
+        clearNewLocation,
+        authRequired 
     } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
     const [formError, setFormError] = useState(null);
+
+    console.log(props);
 
     const hideMessage = () =>{
         clearNewLocation();
@@ -58,6 +61,10 @@ function AddLocation (props){
         setFormError(false);
     };
 
+    const redirectToLogin = () => {
+        console.log(props);
+    }
+
     // useEffect to use the Map place API autocomplete
     useEffect(() => {
         Promise.resolve(mapPromise).then(mapObject => {
@@ -81,67 +88,79 @@ function AddLocation (props){
                 <span onClick={hideMessage}>X</span>
             </div>
             {
-                <>
-                <form onSubmit={submitLocation}>
+                authRequired && (
+                    <>
                     <div>
-                    <h2>Add a new location</h2>
+                    <h2>You must login first {authRequired}</h2>
                     </div>
-                    {
-                        isAdded 
-                        ? (
-                            <>
-                            <p> Thank you for adding this location </p>
-                            <StyledButton onClick={hideMessage}>
-                            OK
-                            </StyledButton>
-                            </>
-                        )
-                        :
-                        (
-                            <Row>
-                                {
-                                    locationPhotos && 
-                                    <>
-                                        <div className="left-box">
-                                        <img className="location-photos" alt="location" src={locationPhotos} />    
-                                        </div>
-                                        
-                                    </>
-                                }
-                            <div className="right-box">
-                                { formError && <div className="error"> All fields are required</div> }
-                                { remoteError && <div className="error"> We are unable to process your request. <br/> {remoteError} </div> }
-                                <StyledInput
-                                    type="text"
-                                    name="name-adress"
-                                    placeholder="Location Name or Address "
-                                    id="location-name-field"
-                                >
-                                </StyledInput>
-                                <StyledTextarea 
-                                rows="5"
-                                placeholder="General Location Description"
-                                value={description}
-                                onChange={handleChange}
-                                >
-                                </StyledTextarea>
-                                <StyledButton type="submit">
-                                {
-                                    loading 
-                                    ? 
-                                    <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
-                                    : 
-                                    <>Add location</>
-                                }
+                    <StyledButton onClick={redirectToLogin}>
+                        OK
+                    </StyledButton>
+                    </>
+                )
+            }
+            {
+                !authRequired && (
+                    <>
+                    <form onSubmit={submitLocation}>
+                        <div>
+                        <h2>Add a new location here {authRequired}</h2>
+                        </div>
+                        {
+                            isAdded 
+                            ? (
+                                <>
+                                <p> Thank you for adding this location </p>
+                                <StyledButton onClick={hideMessage}>
+                                OK
                                 </StyledButton>
-                            </div>
-                            </Row>       
-                        )
-
-                    
-                    }
-                </form>
-                </>        
+                                </>
+                            )
+                            :
+                            (
+                                <Row>
+                                    {
+                                        locationPhotos && 
+                                        <>
+                                            <div className="left-box">
+                                            <img className="location-photos" alt="location" src={locationPhotos} />    
+                                            </div>
+                                            
+                                        </>
+                                    }
+                                <div className="right-box">
+                                    { formError && <div className="error"> All fields are required</div> }
+                                    { remoteError && <div className="error"> We are unable to process your request. <br/> {remoteError} </div> }
+                                    <StyledInput
+                                        type="text"
+                                        name="name-adress"
+                                        placeholder="Location Name or Address "
+                                        id="location-name-field"
+                                    >
+                                    </StyledInput>
+                                    <StyledTextarea 
+                                    rows="5"
+                                    placeholder="General Location Description"
+                                    value={description}
+                                    onChange={handleChange}
+                                    >
+                                    </StyledTextarea>
+                                    <StyledButton type="submit">
+                                    {
+                                        loading 
+                                        ? 
+                                        <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
+                                        : 
+                                        <>Add location</>
+                                    }
+                                    </StyledButton>
+                                </div>
+                                </Row>       
+                            )
+                        }
+                    </form>
+                    </>    
+                )
             }
         </div>
         </StyledOverlayPopup>

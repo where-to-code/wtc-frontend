@@ -33,19 +33,19 @@ const LocationErr = (props) => {
   const onAddLocation = () =>{
     if(getCookie(props.userId)) {
       setAddNewLocationReq(true);
-      // to be managed with props later
-      document.getElementById('add-location-form').style.display = 'flex';
     }
     else {
       setAuthRequired(true);
     }
+      // to be managed with props later
+      document.getElementById('add-location-form').style.display = 'flex';
   }
 
-  if (authRequired) {
-    return (
-      <Redirect to="/login" />
-    );
-  }
+  // if (authRequired) {
+  //   return (
+  //     <Redirect to="/login" />
+  //   );
+  // }
 
   return (
     <StyledLocationErr>
@@ -62,7 +62,7 @@ const LocationErr = (props) => {
         <input type="submit" value="" />
       </form>
       {
-        addNewLocationReq && <AddLocation />
+        addNewLocationReq && <AddLocation authRequired={authRequired}/>
       }
     </StyledLocationErr>
   );
