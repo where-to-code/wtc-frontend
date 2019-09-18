@@ -53,7 +53,7 @@ const Header = props => {
             </Link>
           </>
         )}
-        {!isEmailVerified && (
+        {userId && !isEmailVerified && (
           <TopNotif isVerified={isEmailVerified} />
         )}
       </div>
