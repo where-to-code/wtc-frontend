@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';    
 import { connect } from 'react-redux';
 import { addNewLocation, clearNewLocation } from '../redux/actionCreators';
 import { StyledOverlayPopup } from './componentStyles/OverlayPopupStyles';
@@ -28,6 +28,7 @@ function AddLocation (props){
     const [placeData, setPlaceData] = useState(null);
     const [formError, setFormError] = useState(null);
     const [redirect, setRedirect] = useState(false);
+    
 
     const hideMessage = () =>{
         clearNewLocation();
