@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addNewLocation, clearNewLocation } from '../redux/actionCreators';
 import { StyledOverlayPopup } from './componentStyles/OverlayPopupStyles';
@@ -19,14 +20,14 @@ function AddLocation (props){
         loading,
         isAdded,
         clearNewLocation,
-        authRequired 
+        authRequired,
+        closePopup 
     } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
     const [formError, setFormError] = useState(null);
-
-    console.log(props);
+    const [redirect, setRedirect] = useState(false);
 
     const hideMessage = () =>{
         clearNewLocation();
@@ -34,7 +35,7 @@ function AddLocation (props){
         setDescription('');
         setPlaceData(null);
         setFormError(null)
-        document.getElementById('add-location-form').style.display = 'none';
+        closePopup();
     }
     const submitLocation = (event) =>{
         event.preventDefault();
@@ -62,7 +63,7 @@ function AddLocation (props){
     };
 
     const redirectToLogin = () => {
-        console.log(props);
+        setRedirect(true);
     }
 
     // useEffect to use the Map place API autocomplete
@@ -81,6 +82,12 @@ function AddLocation (props){
         });
     });
 
+    if(redirect){
+        return(
+            <Redirect to="/login" />
+        )
+    }
+
     return (
         <StyledOverlayPopup id="add-location-form">
         <div className="message-container">
@@ -91,7 +98,7 @@ function AddLocation (props){
                 authRequired && (
                     <>
                     <div>
-                    <h2>You must login first {authRequired}</h2>
+                    <h2>You must login first</h2>
                     </div>
                     <StyledButton onClick={redirectToLogin}>
                         OK
@@ -104,7 +111,7 @@ function AddLocation (props){
                     <>
                     <form onSubmit={submitLocation}>
                         <div>
-                        <h2>Add a new location here {authRequired}</h2>
+                        <h2>Add a new location</h2>
                         </div>
                         {
                             isAdded 

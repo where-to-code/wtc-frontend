@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCookieToState } from '../redux/actionCreators';
@@ -10,6 +10,7 @@ import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing, userId, isEmailVerified, setCookieToState } = props;
+  const [ showAddLocationForm, setShowAddLocationForm ] = useState(false);
   const cookieData = getCookie();
   // we have a cookie but no user ID (user relaoded the page/app)
   if(cookieData && !userId){
@@ -20,8 +21,12 @@ const Header = props => {
     logout();
   };
 
+  const closePopup = () => {
+    setShowAddLocationForm(false)
+  }
+
   const displayAddForm = () => {
-    document.getElementById('add-location-form').style.display = 'flex';
+    setShowAddLocationForm(true);
   }
 
   return (
@@ -57,7 +62,9 @@ const Header = props => {
           <TopNotif isVerified={isEmailVerified} />
         )}
       </div>
-      <AddLocation />
+      {
+        showAddLocationForm && <AddLocation authRequired={false} closePopup={closePopup}/>
+      }
     </StyledHeader>
   );
 };
