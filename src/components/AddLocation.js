@@ -24,6 +24,7 @@ function AddLocation (props){
     const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
     const [formError, setFormError] = useState(null);
+    const [fromUnsplash, setFromUnsplash] = useState(false);
 
     const hideMessage = () =>{
         clearNewLocation();
@@ -68,7 +69,16 @@ function AddLocation (props){
         autocomplete.setTypes(['establishment']);
         autocomplete.addListener('place_changed', () => {
             const place = autocomplete.getPlace();
-            setLocationPhotos(place.photos[0].getUrl())
+            if(place.photos && place.photos[0]){
+                setLocationPhotos(place.photos[0].getUrl());
+            }
+            else {
+                // no photo was received from place API. We set random picture from Unsplash
+                // but we dont display on the form
+                setLocationPhotos('https://source.unsplash.com/1600x900/?coworking');
+                setFromUnsplash(true);
+            }
+            
             setPlaceData(place);
         });
         });
@@ -101,12 +111,14 @@ function AddLocation (props){
                             <Row>
                                 {
                                     locationPhotos && 
-                                    <>
+                                    (
+                                        !fromUnsplash &&
+                                        <>
                                         <div className="left-box">
                                         <img className="location-photos" alt="location" src={locationPhotos} />    
                                         </div>
-                                        
-                                    </>
+                                        </>
+                                    )
                                 }
                             <div className="right-box">
                                 { formError && <div className="error"> All fields are required</div> }
