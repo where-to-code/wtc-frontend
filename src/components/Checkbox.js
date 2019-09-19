@@ -20,7 +20,7 @@ const Checkbox = props => {
 
   useEffect(() => {
     setNewLocations(filter);
-  }, [filter]);
+  }, [filter, setNewLocations]);
 
   return (
     <StyledCheckbox>
