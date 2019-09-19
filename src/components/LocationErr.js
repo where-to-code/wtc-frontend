@@ -4,13 +4,13 @@ import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 import { connect } from 'react-redux';
 import { getCookie } from './helpers/authHelpers';
 import AddLocation from '../components/AddLocation';
-import { Redirect } from 'react-router-dom';
 import { clearLocations } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
   const { newSearch, clearLocations } = props;
-  const [ addNewLocationReq, setAddNewLocationReq ] = useState(false);
-  const [ authRequired, setAuthRequired ] = useState(false)
+  const [ authRequired, setAuthRequired ] = useState(false);
+  const [showAddLocationForm , setShowAddLocationForm] = useState(false);
+
   useEffect(() => {
     // clearLocations is called to wipe away 
     // any previous locations stored in state 
@@ -30,21 +30,15 @@ const LocationErr = (props) => {
     });
   });
 
-  const onAddLocation = () =>{
-    if(getCookie(props.userId)) {
-      setAddNewLocationReq(true);
-      // to be managed with props later
-      document.getElementById('add-location-form').style.display = 'flex';
-    }
-    else {
-      setAuthRequired(true);
-    }
+  const closePopup = () => {
+    setShowAddLocationForm(false)
   }
 
-  if (authRequired) {
-    return (
-      <Redirect to="/login" />
-    );
+  const onAddLocation = () =>{
+    if(!getCookie(props.userId)) {
+      setAuthRequired(true);
+    }
+    setShowAddLocationForm(true);
   }
 
   return (
@@ -62,7 +56,7 @@ const LocationErr = (props) => {
         <input type="submit" value="" />
       </form>
       {
-        addNewLocationReq && <AddLocation />
+        showAddLocationForm && <AddLocation authRequired={authRequired} closePopup={closePopup}/>
       }
     </StyledLocationErr>
   );
