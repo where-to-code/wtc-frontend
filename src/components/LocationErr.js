@@ -46,7 +46,7 @@ const LocationErr = (props) => {
         <input id="location-seach" type="text" placeholder="Search" />
         <input type="submit" value="" />
       </form>
-      <p>Or suggest us a new place to add</p>
+      <p>Or just add a new place here</p>
       <button onClick={onAddLocation}>Add a Place</button>
       {
         showAddLocationForm && <AddLocation authRequired={authRequired} closePopup={closePopup}/>
