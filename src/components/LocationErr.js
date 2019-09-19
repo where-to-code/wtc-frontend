@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { mapPromise } from '../redux/helpers';
 import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 import { connect } from 'react-redux';
-import { showAddLocation } from '../redux/actionCreators';
+import { showAddLocation, setGeolocationValue } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
-  const { newSearch, showAddLocation } = props;
+  const { showAddLocation, setGeolocationValue } = props;
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
@@ -15,9 +15,8 @@ const LocationErr = (props) => {
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
         const latitude = place.geometry.location.lat();
-        const longitude = place.geometry.location.lng();
-
-        newSearch({ lat: latitude, lng: longitude });
+        const longitude = place.geometry.location.lng();;
+        setGeolocationValue({ lat: latitude, lng: longitude });
       });
     });
   });
@@ -49,5 +48,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { showAddLocation }
+  { setGeolocationValue, showAddLocation }
 )(LocationErr);

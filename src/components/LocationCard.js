@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { setActive, clearLocations } from '../redux/actionCreators';
+import { setActive, clearLocations, clearAllLocations } from '../redux/actionCreators';
 import { StyledCard } from './componentStyles/LocationCardStyles';
 
 const LocationCard = props => {
-  const { location, active, setActive, clearLocations } = props;
+  const { location, active, setActive, clearLocations, clearAllLocations } = props;
 
   return (
     <StyledCard
@@ -14,6 +14,7 @@ const LocationCard = props => {
       onMouseEnter={() => setActive(location)}
       onClick={() => {
         clearLocations();
+        clearAllLocations();
       }}
       id={location.id}
     >
@@ -32,7 +33,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       setActive,
-      clearLocations
+      clearLocations,
+      clearAllLocations
     },
     dispatch
   );

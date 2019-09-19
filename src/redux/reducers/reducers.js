@@ -31,6 +31,8 @@ export const locationReducer = (
       return { ...state, loadingLocation: false, error: action.payload };
     case types.CLEAR_LOCATIONS:
       return { ...state, locations: [] };
+    case types.CLEAR_ALL_LOCATIONS:
+      return { ...state, allLocations: [] };
     default:
       return state;
   }

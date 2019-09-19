@@ -127,6 +127,10 @@ export const clearLocations = () => ({
   type: types.CLEAR_LOCATIONS
 });
 
+export const clearAllLocations = () => ({
+  type: types.CLEAR_ALL_LOCATIONS
+})
+
 // ACTIONS FOR MAPS REDUCER
 export const mapsSucces = () => ({
   type: types.FETCH_MAP_API_SUCCESS
