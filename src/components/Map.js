@@ -53,7 +53,7 @@ const Map = props => {
 
       // We add markers and modals to locations
       if (locations.length > 0) {
-        locations.map(location => {
+        locations.forEach(location => {
           let marker;
           const selectedLocation =
             activeLocation && activeLocation.name === location.name;
