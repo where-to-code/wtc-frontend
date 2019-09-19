@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
@@ -21,15 +21,17 @@ const Map = props => {
     setGeolocationValue,
   } = props;
 
+  const [mapCenter, setMapCenter] = useState({ lat: 51.504831314, lng: -0.123499506 })
   // Set the default position to Trafalgar Square, London
-  let mapCenter = { lat: 51.504831314, lng: -0.123499506 };
+  useEffect(() => {
+    if (activeLocation) {
+      setMapCenter({
+        lat: Number(activeLocation.latitude),
+        lng: Number(activeLocation.longitude),
+      });
+    }
+  }, [activeLocation])
 
-  if (activeLocation) {
-    mapCenter = {
-      lat: Number(activeLocation.latitude),
-      lng: Number(activeLocation.longitude),
-    };
-  }
 
   const updateView = location => {
     let elm = document.getElementById(location.id);
@@ -40,7 +42,7 @@ const Map = props => {
   useEffect(() => {
     Promise.resolve(mapPromise).then(async mapObject => {
       let map;
-      mapCenter = await position(mapCenter);
+      setMapCenter(await position(mapCenter));
 
       if (!geolocation) {
         map = mapInit(mapObject.maps, mapCenter);
@@ -69,7 +71,7 @@ const Map = props => {
         });
       }
     });
-  });
+  }, [locations.length, geolocation]);
 
   return <StyledMap id="map" />;
 };
