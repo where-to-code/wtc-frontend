@@ -21,7 +21,14 @@ export const StyledHome = styled.div`
     height: 500px;
     width: 300px;
     margin: auto 0;
-    border:1px solid red;
+    .row{
+      display: flex;
+      justify-content: space-between;
+    }
+    .row-half{
+      width: 48%;
+      background: white;
+    }
     h2 {
       font-weight: bolder;
       font-size: 24px;
@@ -37,7 +44,6 @@ export const StyledHome = styled.div`
 
       input[type='text'] {
         background: rgba(219, 219, 219, 0.5);
-        width: 250px;
         height: 35px;
         margin: 60px 0;
         border: none;

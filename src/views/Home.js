@@ -37,7 +37,12 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
     <StyledHome>
       <Header landing={true} />
       <div className="container">
-        <h2>Find the best places to code</h2>
+        <h2>Where will you work from today?</h2>
+        <div className="row">
+        <div className="row-half">
+          <button onClick={handleClick}>Find places near you</button>
+        </div>
+        <div className="row-half">
         <form type="submit">
           <input
             type="text"
@@ -45,7 +50,9 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
             id="mapSuggestions"
           />
         </form>
-        <button onClick={handleClick}>Find places near you</button>
+        </div>
+        </div>
+
       </div>
     </StyledHome>
   );
