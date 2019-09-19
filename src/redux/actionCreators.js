@@ -46,6 +46,7 @@ export const login = user => async dispatch => {
       withCredentials: true
     });
     dispatch(authSuccess(loginDetails.data.data));
+    toast('Login Successful!');
     return loginDetails;
   } catch (error) {
     const errorValue = error.response
@@ -75,6 +76,7 @@ export const signup = userData => async dispatch => {
       { withCredentials: true }
     );
     dispatch(authSuccess(userDetails.data.data));
+    toast('Signup Successful');
     return userDetails;
   } catch (error) {
     const errorValue = error.response
