@@ -4,10 +4,9 @@ import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 import { connect } from 'react-redux';
 import { getCookie } from './helpers/authHelpers';
 import AddLocation from '../components/AddLocation';
-import { clearLocations } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
-  const { newSearch, clearLocations } = props;
+  const { newSearch } = props;
   const [ authRequired, setAuthRequired ] = useState(false);
   const [showAddLocationForm , setShowAddLocationForm] = useState(false);
 
@@ -62,6 +61,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-  mapStateToProps,
-  { clearLocations }
+  mapStateToProps
 )(LocationErr);
