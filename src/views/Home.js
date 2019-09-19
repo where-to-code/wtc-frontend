@@ -27,11 +27,6 @@ const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations 
     });
   });
 
-  const handleClick = () => {
-    setGeolocationValue(null);
-    clearLocations();
-    history.push('/locations');
-  };
 
   return (    
     <StyledHome>
@@ -45,7 +40,7 @@ const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations 
             id="mapSuggestions"
           />
         </form>
-        <button onClick={handleClick}>Find places near you</button>
+        <button>Find places near you</button>
       </div>
     </StyledHome>
   );

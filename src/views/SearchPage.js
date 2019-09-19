@@ -38,12 +38,6 @@ const SearchPage = props => {
     locationLoads(geolocation);
   }, [geolocation, locationLoads]);
 
-  // When a new search is triggered from search field 
-  // case where there was no location arround current search coordinate
-  const newSearch = (newCoordinates) => {
-    setGeolocationValue(newCoordinates);
-  }
-
   function setNewLocations(choices) {
     const filteredLocation = allLocations.filter(
       loc =>
@@ -69,7 +63,7 @@ const SearchPage = props => {
             </StyledLoader>
           )}
           {locations.length === 0 && (
-            <LocationErr newSearch={newSearch} />
+            <LocationErr />
           )}
           <CardContainer />
         </LeftPane>
