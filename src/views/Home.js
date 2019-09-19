@@ -4,10 +4,9 @@ import { bindActionCreators } from 'redux';
 import { StyledHome } from './ViewStyles/HomeStyles';
 import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
-import { setGeolocationValue, clearLocations } from '../redux/actionCreators';
+import { setGeolocationValue, clearLocations, clearAllLocations } from '../redux/actionCreators';
 
-const Home = ({ setGeolocationValue, clearLocations, history }) => {
-  const [pos, updatePos] = useState(false);
+const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations }) => {
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
@@ -21,7 +20,8 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
 
         setGeolocationValue({ lat: latitude, lng: longitude });
         clearLocations();
-        updatePos(true);
+        clearAllLocations();
+
         history.push('/locations');
       });
     });
@@ -33,7 +33,7 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
     history.push('/locations');
   };
 
-  return (
+  return (    
     <StyledHome>
       <Header landing={true} />
       <div className="container">
@@ -55,7 +55,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       setGeolocationValue,
-      clearLocations
+      clearLocations,
+      clearAllLocations
     },
     dispatch
   );

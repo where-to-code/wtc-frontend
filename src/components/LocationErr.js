@@ -4,10 +4,9 @@ import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 import { connect } from 'react-redux';
 import { getCookie } from './helpers/authHelpers';
 import AddLocation from '../components/AddLocation';
-import { clearLocations } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
-  const { newSearch, clearLocations } = props;
+  const { newSearch } = props;
   const [ authRequired, setAuthRequired ] = useState(false);
   const [showAddLocationForm , setShowAddLocationForm] = useState(false);
 
@@ -19,8 +18,7 @@ const LocationErr = (props) => {
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
         const latitude = place.geometry.location.lat();
-        const longitude = place.geometry.location.lng();
-
+        const longitude = place.geometry.location.lng();;
         newSearch({ lat: latitude, lng: longitude });
       });
     });
@@ -63,5 +61,4 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { clearLocations }
 )(LocationErr);
