@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 import { setTempCookie } from '../components/helpers/authHelpers';
+import { toast } from 'react-toastify';
 
 const url = 'https://where2code.herokuapp.com/api/auth/gitAuth';
 
@@ -31,6 +32,7 @@ const GitHub = ({ location, successGitlog }) => {
         // Login is successful so we write a cookie to auth the user
         setTempCookie(res.data.data);
         setIsAuth(true);
+        toast('Successful')
       })
       .catch(err => setIsAuth(false));
   }, []);
@@ -42,7 +44,7 @@ const GitHub = ({ location, successGitlog }) => {
       </StyledSpinner>
     );
 
-  return isAuth ? <Redirect to="/" /> : <Redirect to="signup" />;
+  return isAuth ? (<Redirect to="/" />, toast('Successful')) : <Redirect to="signup" />;
 };
 
 const mapStatetoProps = state => {
