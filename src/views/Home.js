@@ -7,7 +7,6 @@ import { mapPromise } from '../redux/helpers';
 import { setGeolocationValue, clearLocations } from '../redux/actionCreators';
 
 const Home = ({ setGeolocationValue, clearLocations, history }) => {
-  const [pos, updatePos] = useState(false);
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
@@ -21,7 +20,6 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
 
         setGeolocationValue({ lat: latitude, lng: longitude });
         clearLocations();
-        updatePos(true);
         history.push('/locations');
       });
     });
