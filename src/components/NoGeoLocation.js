@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyledNoGeoLocation } from './componentStyles/LocationErrStyles';
 
-const NoGeoLocation = () => {
+export default () => {
   const [toggleNoLoc, setToggleNoLoc] = useState(true);
   const hideNoLoc = () => setToggleNoLoc(!toggleNoLoc);
 
@@ -17,5 +17,3 @@ const NoGeoLocation = () => {
     </StyledNoGeoLocation>
   );
 };
-
-export default NoGeoLocation;
