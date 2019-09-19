@@ -1,21 +1,16 @@
 import styled from 'styled-components';
 
 export const StyledCard = styled.div`
-  transition: 0.2s;
   margin: 10px 5px;
   width: 100%;
   height: 340px;
-  box-shadow: -1px 1px 5px 1px rgba(219, 219, 219, 1);
   background-color: rgba(219, 219, 219, 0.35);
   border-radius: 5px;
+  box-shadow: ${props =>
+    props.active ? '-1px 1px 5px 5px rgba(86, 193, 203, 0.5)' : '-1px 1px 5px 1px rgba(219, 219, 219, 1)'};
   transition: 0.2s;
-
-  &:hover {
-    box-shadow: ${props =>
-      props.active ? '-1px 1px 5px 5px rgba(86, 193, 203, 0.5)' : 'none'};
-    transition: 0.2s;
-    transform: ${props => (props.active ? 'scale(1.05)' : 'scale(1)')};
-  }
+  transform: ${props => (props.active ? 'scale(1.05)' : 'scale(1)')};
+  
 
   .desc {
     text-align: center;

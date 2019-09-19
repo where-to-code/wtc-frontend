@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/Home';
 import Location from './views/Location';
 import SearchPage from './views/SearchPage';
@@ -9,24 +9,48 @@ import GitHub from './views/GitHubAuth';
 import FindAccount from './views/FindAccount';
 import ResetPassword from './views/ResetPassword';
 import EmailConfirmationMessage from './views/EmailConfirmationMessage';
-import AddReview from './components/AddReview';
+import NotFound from './views/404';
 
 const App = () => {
   return (
-    <div>
-      <Route exact path="/" render={props => <Home {...props} />} />
-      <Route path="/location/:id" render={props => <Location {...props} />} />
-      <Route path="/locations" render={props => <SearchPage {...props} />} />
-      <Route path="/login" render={props => <Login {...props} />} />
-      <Route path="/account" render={props => <FindAccount {...props} />} />
-      <Route path="/signup" render={props => <Registration {...props} />} />
-      <Route path="/gitAuth" render={props => <GitHub {...props} />} />
-      <Route path="/reset" render={props => <ResetPassword {...props} />} />
-      <Route
-        path="/email-message"
-        render={props => <EmailConfirmationMessage {...props} />}
-      />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" render={props => <Home {...props} />} />
+        <Route
+          exact
+          path="/location/:id"
+          render={props => <Location {...props} />}
+        />
+        <Route
+          exact
+          path="/locations"
+          render={props => <SearchPage {...props} />}
+        />
+        <Route exact path="/login" render={props => <Login {...props} />} />
+        <Route
+          exact
+          path="/account"
+          render={props => <FindAccount {...props} />}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={props => <Registration {...props} />}
+        />
+        <Route exact path="/gitAuth" render={props => <GitHub {...props} />} />
+        <Route
+          exact
+          path="/reset"
+          render={props => <ResetPassword {...props} />}
+        />
+        <Route
+          exact
+          path="/email-message"
+          render={props => <EmailConfirmationMessage {...props} />}
+        />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 };
 
