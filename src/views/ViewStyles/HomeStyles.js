@@ -21,6 +21,7 @@ export const StyledHome = styled.div`
     height: 500px;
     width: 300px;
     margin: auto 0;
+    border:1px solid red;
     h2 {
       font-weight: bolder;
       font-size: 24px;
