@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyledNoGeoLocation } from './componentStyles/LocationErrStyles';
 
 export default () => {
-  const [toggleNoLoc, setToggleNoLoc] = useState(true);
+  const [toggleNoLoc, setToggleNoLoc] = useState(false);
+
   const hideNoLoc = () => setToggleNoLoc(!toggleNoLoc);
+
+  useEffect(() => {
+    navigator.geolocation.watchPosition(
+      () => setToggleNoLoc(false),
+      () => setToggleNoLoc(true),
+    );
+  });
 
   return (
     <StyledNoGeoLocation toggleNoLoc={toggleNoLoc}>
