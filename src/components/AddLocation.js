@@ -122,13 +122,13 @@ function AddLocation (props){
                     <>
                     <form onSubmit={submitLocation}>
                         <div>
-                        <h2>Add a new location</h2>
+                        <h2>Add a working place</h2>
                         </div>
                         {
                             isAdded 
                             ? (
                                 <>
-                                <p> Thank you for adding this location </p>
+                                <p> Thank you for adding this place </p>
                                 <StyledButton onClick={hideMessage}>
                                 OK
                                 </StyledButton>
@@ -160,7 +160,7 @@ function AddLocation (props){
                                     </StyledInput>
                                     <StyledTextarea 
                                     rows="5"
-                                    placeholder="General Location Description"
+                                    placeholder="What do you think about this place?"
                                     value={description}
                                     onChange={handleChange}
                                     >
@@ -169,9 +169,9 @@ function AddLocation (props){
                                     {
                                         loading 
                                         ? 
-                                        <Loader type="Oval" color="#56C1CB" height={40} width={30} /> 
+                                        <Loader type="Oval" color="#56C1CB" height={17} width={73} /> 
                                         : 
-                                        <>Add location</>
+                                        <>Add Place</>
                                     }
                                     </StyledButton>
                                 </div>

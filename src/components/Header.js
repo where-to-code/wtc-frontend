@@ -13,7 +13,7 @@ const Header = props => {
   const [ showAddLocationForm, setShowAddLocationForm ] = useState(false);
   const cookieData = getCookie();
   // we have a cookie but no user ID (user relaoded the page/app)
-  if(cookieData && !userId){
+  if (cookieData && !userId) {
     // we reinitialise the state with the data from the cookie
     setCookieToState(cookieData);
   }
@@ -37,27 +37,27 @@ const Header = props => {
         </Link>
       </div>
       <div className="auth">
-      {
-        cookieData 
-          ? 
-          <>
-            <button onClick={onLogout}>
-              Logout
-            </button>
-            <button onClick={displayAddForm}>
-              Add Location
-            </button>
-            </>
-          : (
+        {
+          cookieData
+            ?
             <>
-            <Link to="/signup">
-              <button>Sign Up</button>
-            </Link>
-            <Link to="/login">
-              <button>Login</button>
-            </Link>
-          </>
-        )}
+              <button className="add-space" onClick={displayAddForm}>
+                Add a Place
+              </button>
+              <button onClick={onLogout}>
+                Logout
+              </button>
+            </>
+            : (
+              <>
+                <Link to="/signup">
+                  <button>Sign Up</button>
+                </Link>
+                <Link to="/login">
+                  <button>Login</button>
+                </Link>
+              </>
+            )}
         {!isEmailVerified && (
           <TopNotif isVerified={isEmailVerified} />
         )}
