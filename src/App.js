@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './views/Home';
 import Location from './views/Location';
 import SearchPage from './views/SearchPage';
@@ -13,7 +13,7 @@ import NotFound from './views/404';
 
 const App = () => {
   return (
-    <div>
+    <Switch>
       <Route exact path="/" render={props => <Home {...props} />} />
       <Route path="/location/:id" render={props => <Location {...props} />} />
       <Route path="/locations" render={props => <SearchPage {...props} />} />
@@ -27,7 +27,7 @@ const App = () => {
         render={props => <EmailConfirmationMessage {...props} />}
       />
       <Route component={NotFound} />
-    </div>
+    </Switch>
   );
 };
 
