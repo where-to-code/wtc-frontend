@@ -6,10 +6,10 @@ export const StyledHome = styled.div`
   background-image: url(${home});
   background-size: cover;
   background-position: center;
-  box-shadow: inset 0 0 0 2000px rgba(102, 106, 124, 0.5);
+  box-shadow: inset 0 0 0 2000px rgba(102, 106, 124, 0.4);
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  border:1px solid red;
   align-items: center;
 
   .container {
@@ -24,36 +24,46 @@ export const StyledHome = styled.div`
     .row{
       display: flex;
       justify-content: space-between;
+      width: 100%;
     }
     .row-half{
+      display:flex;
+      justify-content: center;
       width: 48%;
       background: white;
+      border-radius: 5px;
+      color: #666666;
+      padding : 60px 0;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.70), 
+    0 10px 10px rgba(0,0,0,0.60);
     }
     h2 {
       font-weight: bolder;
       font-size: 24px;
       line-height: 33px;
       text-align: center;
-      color: #e5e5e5;
+      color: white;
       text-shadow: 0px 4px 10px #666a7c;
       font-family: 'Roboto', sans-serif;
+      margin-bottom:30px;
     }
+
     form {
       display: flex;
-      position: relative;
+      width: 100%;
+      justify-content: center;
 
       input[type='text'] {
-        background: rgba(219, 219, 219, 0.5);
         height: 35px;
-        margin: 60px 0;
-        border: none;
+        width: 95%;
+        border: 1px solid #eee;
         border-radius: 10px;
-        color: #fff;
+        color: #666;
+        padding-left:15px
         text-align: left;
-        padding: 0 10px;
         font-size: 16px;
         ::-webkit-input-placeholder {
-          color: #fff;
+          color: #999;
           font-size: 12px;
           padding: 8px;
         }
@@ -82,7 +92,7 @@ export const StyledHome = styled.div`
       }
       form {
         input[type='text'] {
-          width: 550px;
+          width: 95%;
           height: 50px;
           ::-webkit-input-placeholder {
             font-size: 16px;
