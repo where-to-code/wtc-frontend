@@ -9,6 +9,7 @@ import GitHub from './views/GitHubAuth';
 import FindAccount from './views/FindAccount';
 import ResetPassword from './views/ResetPassword';
 import EmailConfirmationMessage from './views/EmailConfirmationMessage';
+import NotFound from './views/404';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         path="/email-message"
         render={props => <EmailConfirmationMessage {...props} />}
       />
+      <Route component={NotFound} />
     </div>
   );
 };
