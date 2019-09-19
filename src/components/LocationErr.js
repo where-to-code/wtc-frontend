@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { mapPromise } from '../redux/helpers';
 import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 import { connect } from 'react-redux';
-import { getCookie } from './helpers/authHelpers';
-import AddLocation from '../components/AddLocation';
-import { setGeolocationValue } from '../redux/actionCreators'
+import { showAddLocation, setGeolocationValue } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
-  const { setGeolocationValue } = props;
-  const [authRequired, setAuthRequired] = useState(false);
-  const [showAddLocationForm, setShowAddLocationForm] = useState(false);
+  const { showAddLocation, setGeolocationValue } = props;
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
@@ -25,15 +21,8 @@ const LocationErr = (props) => {
     });
   });
 
-  const closePopup = () => {
-    setShowAddLocationForm(false)
-  }
-
   const onAddLocation = () => {
-    if (!getCookie(props.userId)) {
-      setAuthRequired(true);
-    }
-    setShowAddLocationForm(true);
+    showAddLocation();
   }
 
   return (
@@ -47,9 +36,6 @@ const LocationErr = (props) => {
       </form>
       <p>Or just add a new place here</p>
       <button onClick={onAddLocation}>Add a Place</button>
-      {
-        showAddLocationForm && <AddLocation authRequired={authRequired} closePopup={closePopup} />
-      }
     </StyledLocationErr>
   );
 };
@@ -62,5 +48,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { setGeolocationValue }
+  { setGeolocationValue, showAddLocation }
 )(LocationErr);

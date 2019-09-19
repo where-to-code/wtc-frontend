@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';    
 import { connect } from 'react-redux';
-import { addNewLocation, clearNewLocation } from '../redux/actionCreators';
+import { addNewLocation, clearNewLocation, hideAddLocation } from '../redux/actionCreators';
 import { StyledOverlayPopup } from './componentStyles/OverlayPopupStyles';
 import { 
     StyledButton,
@@ -21,7 +21,9 @@ function AddLocation (props){
         isAdded,
         clearNewLocation,
         authRequired,
-        closePopup 
+        isShown,
+        hideAddLocation,
+        isAuth
     } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
@@ -37,7 +39,7 @@ function AddLocation (props){
         setDescription('');
         setPlaceData(null);
         setFormError(null)
-        closePopup();
+        hideAddLocation();
     }
     const submitLocation = (event) =>{
         event.preventDefault();
@@ -100,13 +102,13 @@ function AddLocation (props){
     }
 
     return (
-        <StyledOverlayPopup id="add-location-form">
+        <StyledOverlayPopup isShown={isShown} id="add-location-form">
         <div className="message-container">
             <div className="closing-cross">
                 <span onClick={hideMessage}>X</span>
             </div>
             {
-                authRequired && (
+                !isAuth && (
                     <>
                     <div>
                     <h2>You must login first</h2>
@@ -118,7 +120,7 @@ function AddLocation (props){
                 )
             }
             {
-                !authRequired && (
+                isAuth && (
                     <>
                     <form onSubmit={submitLocation}>
                         <div>
@@ -192,10 +194,12 @@ const mapStatetoProps = state => {
         loading: state.newLocation.loading,
         remoteError: state.newLocation.error, 
         isAdded: state.newLocation.isAdded,
+        isShown: state.newLocation.isShown,
+        isAuth: state.auth.userId
     };
   };
   
   export default connect(
     mapStatetoProps,
-    { addNewLocation, clearNewLocation }
+    { addNewLocation, clearNewLocation, hideAddLocation }
   )(AddLocation);

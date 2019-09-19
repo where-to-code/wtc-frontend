@@ -412,3 +412,11 @@ export const addNewLocation = locationData => dispatch => {
 export const clearNewLocation = () => ({
   type: types.CLEAR_NEW_LOCATION
 });
+
+export const showAddLocation = () => ({
+  type: types.SHOW_ADD_LOCATION
+})
+
+export const hideAddLocation = () => ({
+  type: types.HIDE_ADD_LOCATION
+})
