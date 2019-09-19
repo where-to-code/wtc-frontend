@@ -30,6 +30,7 @@ const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations 
   const handleClick = () => {
     setGeolocationValue(null);
     clearLocations();
+    clearAllLocations();
     history.push('/locations');
   };
 
