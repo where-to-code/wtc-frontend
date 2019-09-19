@@ -24,6 +24,7 @@ const SearchPage = props => {
   const {
     filterLocations,
     allLocations,
+    locations,
     geolocation,
     locationLoads,
     loadingLocation,
@@ -40,7 +41,6 @@ const SearchPage = props => {
   // When a new search is triggered from search field 
   // case where there was no location arround current search coordinate
   const newSearch = (newCoordinates) => {
-    clearLocations();
     setGeolocationValue(newCoordinates);
   }
 
@@ -68,7 +68,7 @@ const SearchPage = props => {
               <Loader type="Oval" color="#56c1cb" height={80} width={80} />
             </StyledLoader>
           )}
-          {locationsErr && locationsErr !== 'currentLocation is null' && (
+          {locations.length === 0 && (
             <LocationErr newSearch={newSearch} />
           )}
           <CardContainer />
@@ -88,6 +88,7 @@ const mapStateToProps = state => ({
   geolocation: state.maps.geolocation,
   activeLocation: state.activeLocation,
   isGeolocated: state.maps.isGeolocated,
+  locations: state.locations.locations
 });
 
 export default connect(

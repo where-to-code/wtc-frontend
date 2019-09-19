@@ -32,7 +32,9 @@ describe('Search Page tests', () => {
     })
     it('render the noGeolocation component if user is not geolocated', () => {
         const reducer = {
-            locations: {},
+            locations: {
+                locations: []
+            },
             maps: {
                 isGeolocated: false,
             }
@@ -45,6 +47,7 @@ describe('Search Page tests', () => {
         const reducer = {
             locations: {
                 loadingLocation: true,
+                locations: []
             },
             maps: {}
         }
@@ -52,15 +55,8 @@ describe('Search Page tests', () => {
         const { getByText } = renderWithRedux(<SearchPage />, { store })
         expect(getByText('Loader Mock')).toBeTruthy();
     })
-    it('render the LocationErr component if there is an error', () => {
-        const reducer = {
-            locations: {
-                error: true,
-            },
-            maps: {}
-        }
-        const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
-        const { getByText } = renderWithRedux(<SearchPage />, { store })
+    it('render the LocationErr component if there are no locations', () => {
+        const { getByText } = renderWithRedux(<SearchPage />,)
         expect(getByText('LocationErr Mock')).toBeTruthy();
     })
     it('render the CardContainer component', () => {
