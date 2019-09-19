@@ -4,13 +4,13 @@ import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 import { connect } from 'react-redux';
 import { getCookie } from './helpers/authHelpers';
 import AddLocation from '../components/AddLocation';
-import { Redirect } from 'react-router-dom';
 import { clearLocations } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
   const { newSearch, clearLocations } = props;
-  const [ addNewLocationReq, setAddNewLocationReq ] = useState(false);
-  const [ authRequired, setAuthRequired ] = useState(false)
+  const [ authRequired, setAuthRequired ] = useState(false);
+  const [showAddLocationForm , setShowAddLocationForm] = useState(false);
+
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
@@ -26,21 +26,15 @@ const LocationErr = (props) => {
     });
   });
 
-  const onAddLocation = () =>{
-    if(getCookie(props.userId)) {
-      setAddNewLocationReq(true);
-      // to be managed with props later
-      document.getElementById('add-location-form').style.display = 'flex';
-    }
-    else {
-      setAuthRequired(true);
-    }
+  const closePopup = () => {
+    setShowAddLocationForm(false)
   }
 
-  if (authRequired) {
-    return (
-      <Redirect to="/login" />
-    );
+  const onAddLocation = () =>{
+    if(!getCookie(props.userId)) {
+      setAuthRequired(true);
+    }
+    setShowAddLocationForm(true);
   }
 
   return (
@@ -55,7 +49,7 @@ const LocationErr = (props) => {
       <p>Or suggest us a new place to add</p>
       <button onClick={onAddLocation}>Add a Place</button>
       {
-        addNewLocationReq && <AddLocation />
+        showAddLocationForm && <AddLocation authRequired={authRequired} closePopup={closePopup}/>
       }
     </StyledLocationErr>
   );
