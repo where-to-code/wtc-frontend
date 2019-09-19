@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledMap } from './componentStyles/MapStyles';
@@ -21,18 +21,6 @@ const Map = props => {
     setGeolocationValue,
   } = props;
 
-  const [mapCenter, setMapCenter] = useState({ lat: 51.504831314, lng: -0.123499506 })
-  // Set the default position to Trafalgar Square, London
-  useEffect(() => {
-    if (activeLocation) {
-      setMapCenter({
-        lat: Number(activeLocation.latitude),
-        lng: Number(activeLocation.longitude),
-      });
-    }
-  }, [activeLocation])
-
-
   const updateView = location => {
     let elm = document.getElementById(location.id);
     elm.scrollIntoView();
@@ -40,19 +28,20 @@ const Map = props => {
   };
 
   useEffect(() => {
+
     Promise.resolve(mapPromise).then(async mapObject => {
       let map;
-      setMapCenter(await position(mapCenter));
-
-      if (!geolocation) {
-        map = mapInit(mapObject.maps, mapCenter);
-        setGeolocationValue(mapCenter);
-        mapsLoading();
-      } else {
-        map = mapInit(mapObject.maps, geolocation);
-        mapsLoading();
+      let mapCenter;
+      if (activeLocation) {
+        mapCenter = {
+          lat: Number(activeLocation.latitude),
+          lng: Number(activeLocation.longitude),
+        };
       }
-
+      else mapCenter = await position();
+      if (!geolocation) setGeolocationValue(mapCenter);
+      mapsLoading();
+      map = mapInit(mapObject.maps, mapCenter);
       // We add markers and modals to locations
       if (locations.length > 0) {
         locations.forEach(location => {
@@ -71,7 +60,7 @@ const Map = props => {
         });
       }
     });
-  }, [locations.length, geolocation]);
+  }, [locations.length, geolocation, activeLocation]);
 
   return <StyledMap id="map" />;
 };
