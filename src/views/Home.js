@@ -40,8 +40,8 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
         <h2>Where will you work from today?</h2>
         <div className="row">
         <div className="row-half">
-          <h3>Places around me</h3>
-          <button onClick={handleClick}>Find places near me</button>
+          <h3>Find places around me</h3>
+          <button onClick={handleClick}>Geo locate me</button>
         </div>
         <div className="row-half">
           <h3>Search anywhere else</h3>
