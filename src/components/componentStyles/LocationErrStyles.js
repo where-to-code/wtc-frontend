@@ -10,6 +10,11 @@ export const StyledLocationErr = styled.div`
     font-size: 2rem;
     padding-top: 30px;
   }
+  h6{
+    padding-top: 10px;
+    font-weight: unset;
+    line-height: 1.5;
+  }
   p {
     font-size: 1.4rem;
     padding: 30px 0;

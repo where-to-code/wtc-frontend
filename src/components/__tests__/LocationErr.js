@@ -7,9 +7,9 @@ afterEach(cleanup);
 
 describe('<LocationErr />', () => {
   it('Displays a message to the user', () => {
-    const { getByRole } = renderWithRedux(<LocationErr />);
+    const { getAllByRole } = renderWithRedux(<LocationErr />);
 
-    expect(getByRole('heading').textContent).toEqual(
+    expect(getAllByRole('heading')[0].textContent).toEqual(
       "Sorry, we couldn't find any location around you",
     );
   });
