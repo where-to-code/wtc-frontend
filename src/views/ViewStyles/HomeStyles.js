@@ -37,7 +37,7 @@ export const StyledHome = styled.div`
       border-radius: 10px;
       color: #666666;
       padding : 20px 0;
-      border-top: 10px solid #DBDBDB;
+      border-left: 10px solid #DBDBDB;
       box-shadow: 0 14px 28px rgba(0,0,0,0.30), 
       0 10px 10px rgba(0,0,0,0.60);
     }
@@ -110,6 +110,8 @@ export const StyledHome = styled.div`
         flex-direction: column;
         width: 48%;
         padding : 40px 0;
+        border-top: 10px solid #DBDBDB;
+        border-left: none;
       }
       h2 {
         font-size: 36px;
