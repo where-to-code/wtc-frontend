@@ -40,9 +40,11 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
         <h2>Where will you work from today?</h2>
         <div className="row">
         <div className="row-half">
-          <button onClick={handleClick}>Find places near you</button>
+          <h3>Places around me</h3>
+          <button onClick={handleClick}>Find places near me</button>
         </div>
         <div className="row-half">
+          <h3>Search anywhere else</h3>
         <form type="submit">
           <input
             type="text"
