@@ -7,7 +7,7 @@ export const StyledHome = styled.div`
   background-image: url(${home});
   background-size: cover;
   background-position: center;
-  box-shadow: inset 0 0 0 2000px rgba(102, 106, 124, 0.4);
+  box-shadow: inset 0 0 0 2000px rgba(102, 106, 124, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
