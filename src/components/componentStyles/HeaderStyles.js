@@ -26,13 +26,22 @@ export const StyledHeader = styled.header`
       height: 30px;
       width: 70px;
       font-size: 12px;
-      font-weight: 300;
+      font-weight: 500;
       margin: 0 10px;
       background: none;
       border: ${props =>
-        props.landing ? '0.5px solid #fff' : '0.5px solid #03525B'};
+        props.landing ? '2px solid #fff' : '1px solid #03525B'};
       border-radius: 5px;
       color: ${props => (props.landing ? '#fff' : '#666A7C')};
+      transition: all 0.3s ease 0s;
+      &:hover {
+        transition: all 0.3s ease 0s;
+        box-shadow: ${props =>
+          props.landing
+            ? '1px 1px 5px 1px rgba(3, 82, 91, 0.84)'
+            : '1px 1px 5px 1px rgba(102,106,124,1)'};
+        transform: translateY(-7px);
+      }
     }
   }
   .top-notif {
@@ -53,9 +62,9 @@ export const StyledHeader = styled.header`
       text-align: center;
     }
   }
-  .top-notif.green{
-    background: #56C1CB;
-    border:1px solid #ffffff;
+  .top-notif.green {
+    background: #56c1cb;
+    border: 1px solid #ffffff;
   }
 
   @media (min-width: 600px) {
