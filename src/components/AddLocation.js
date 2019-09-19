@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';    
 import { connect } from 'react-redux';
 import { addNewLocation, clearNewLocation } from '../redux/actionCreators';
 import { StyledOverlayPopup } from './componentStyles/OverlayPopupStyles';
@@ -18,13 +19,17 @@ function AddLocation (props){
         remoteError, 
         loading,
         isAdded,
-        clearNewLocation 
+        clearNewLocation,
+        authRequired,
+        closePopup 
     } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
     const [placeData, setPlaceData] = useState(null);
     const [formError, setFormError] = useState(null);
     const [fromUnsplash, setFromUnsplash] = useState(false);
+    const [redirect, setRedirect] = useState(false);
+    
 
     const hideMessage = () =>{
         clearNewLocation();
@@ -32,7 +37,7 @@ function AddLocation (props){
         setDescription('');
         setPlaceData(null);
         setFormError(null)
-        document.getElementById('add-location-form').style.display = 'none';
+        closePopup();
     }
     const submitLocation = (event) =>{
         event.preventDefault();
@@ -59,6 +64,10 @@ function AddLocation (props){
         setFormError(false);
     };
 
+    const redirectToLogin = () => {
+        setRedirect(true);
+    }
+
     // useEffect to use the Map place API autocomplete
     useEffect(() => {
         Promise.resolve(mapPromise).then(mapObject => {
@@ -84,6 +93,12 @@ function AddLocation (props){
         });
     });
 
+    if(redirect){
+        return(
+            <Redirect to="/login" />
+        )
+    }
+
     return (
         <StyledOverlayPopup id="add-location-form">
         <div className="message-container">
@@ -91,69 +106,81 @@ function AddLocation (props){
                 <span onClick={hideMessage}>X</span>
             </div>
             {
-                <>
-                <form onSubmit={submitLocation}>
+                authRequired && (
+                    <>
                     <div>
-                    <h2>Add a working place</h2>
+                    <h2>You must login first</h2>
                     </div>
-                    {
-                        isAdded 
-                        ? (
-                            <>
-                            <p> Thank you for adding this location </p>
-                            <StyledButton onClick={hideMessage}>
-                            OK
-                            </StyledButton>
-                            </>
-                        )
-                        :
-                        (
-                            <Row>
-                                {
-                                    locationPhotos && 
-                                    (
-                                        !fromUnsplash &&
-                                        <>
-                                        <div className="left-box">
-                                        <img className="location-photos" alt="location" src={locationPhotos} />    
-                                        </div>
-                                        </>
-                                    )
-                                }
-                            <div className="right-box">
-                                { formError && <div className="error"> All fields are required</div> }
-                                { remoteError && <div className="error"> We are unable to process your request. <br/> {remoteError} </div> }
-                                <StyledInput
-                                    type="text"
-                                    name="name-adress"
-                                    placeholder="Location Name or Address "
-                                    id="location-name-field"
-                                >
-                                </StyledInput>
-                                <StyledTextarea 
-                                rows="5"
-                                placeholder="What do you think about this place?"
-                                value={description}
-                                onChange={handleChange}
-                                >
-                                </StyledTextarea>
-                                <StyledButton type="submit">
-                                {
-                                    loading 
-                                    ? 
-                                    <Loader type="Oval" color="#56C1CB" height={17} width={73} /> 
-                                    : 
-                                    <>Add Place</>
-                                }
+                    <StyledButton onClick={redirectToLogin}>
+                        OK
+                    </StyledButton>
+                    </>
+                )
+            }
+            {
+                !authRequired && (
+                    <>
+                    <form onSubmit={submitLocation}>
+                        <div>
+                        <h2>Add a working place</h2>
+                        </div>
+                        {
+                            isAdded 
+                            ? (
+                                <>
+                                <p> Thank you for adding this place </p>
+                                <StyledButton onClick={hideMessage}>
+                                OK
                                 </StyledButton>
-                            </div>
-                            </Row>       
-                        )
-
-                    
-                    }
-                </form>
-                </>        
+                                </>
+                            )
+                            :
+                            (
+                                <Row>
+                                    {
+                                        locationPhotos && 
+                                        (
+                                            !fromUnsplash &&
+                                            <>
+                                            <div className="left-box">
+                                            <img className="location-photos" alt="location" src={locationPhotos} />    
+                                            </div>
+                                            </>
+                                        )
+                                    }
+                                <div className="right-box">
+                                    { formError && <div className="error"> All fields are required</div> }
+                                    { remoteError && <div className="error"> We are unable to process your request. <br/> {remoteError} </div> }
+                                    <StyledInput
+                                        type="text"
+                                        name="name-adress"
+                                        placeholder="Location Name or Address "
+                                        id="location-name-field"
+                                    >
+                                    </StyledInput>
+                                    <StyledTextarea 
+                                    rows="5"
+                                    placeholder="What do you think about this place?"
+                                    value={description}
+                                    onChange={handleChange}
+                                    >
+                                    </StyledTextarea>
+                                    <StyledButton type="submit">
+                                    {
+                                        loading 
+                                        ? 
+                                        <Loader type="Oval" color="#56C1CB" height={17} width={73} /> 
+                                        : 
+                                        <>Add Place</>
+                                    }
+                                    </StyledButton>
+                                </div>
+                                </Row>       
+                            )
+                        }
+                    </form>
+                    </>    
+                )
             }
         </div>
         </StyledOverlayPopup>
