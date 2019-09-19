@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import home from '../../assets/home.jpeg';
+import home from '../../assets/caffe.jpg';
 
 export const StyledHome = styled.div`
   height: 100vh;
   background-image: url(${home});
   background-size: cover;
   background-position: center;
-  box-shadow: inset 0 0 0 2000px rgba(102, 106, 124, 0.5);
+  box-shadow: inset 0 0 0 2000px rgba(102, 106, 124, 0.3);
   display: flex;
   flex-direction: column;
   align-content: space-between;
