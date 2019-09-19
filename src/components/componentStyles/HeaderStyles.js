@@ -34,6 +34,13 @@ export const StyledHeader = styled.header`
       border-radius: 5px;
       color: ${props => (props.landing ? '#fff' : '#666A7C')};
     }
+    .add-space {
+      background: #56c1cb
+      width: 120px;
+      &:hover {
+        background:none;
+      }
+    }
   }
   .top-notif {
     cursor: pointer;

@@ -4,18 +4,14 @@ import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 import { connect } from 'react-redux';
 import { getCookie } from './helpers/authHelpers';
 import AddLocation from '../components/AddLocation';
-import { Redirect } from 'react-router-dom';
 import { clearLocations } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
   const { newSearch, clearLocations } = props;
-  const [ addNewLocationReq, setAddNewLocationReq ] = useState(false);
-  const [ authRequired, setAuthRequired ] = useState(false)
+  const [ authRequired, setAuthRequired ] = useState(false);
+  const [showAddLocationForm , setShowAddLocationForm] = useState(false);
+
   useEffect(() => {
-    // clearLocations is called to wipe away 
-    // any previous locations stored in state 
-    // from previous search to avoid the cards to render
-    clearLocations();
     Promise.resolve(mapPromise).then(mapObject => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
         document.getElementById('location-seach')
@@ -30,39 +26,30 @@ const LocationErr = (props) => {
     });
   });
 
-  const onAddLocation = () =>{
-    if(getCookie(props.userId)) {
-      setAddNewLocationReq(true);
-      // to be managed with props later
-      document.getElementById('add-location-form').style.display = 'flex';
-    }
-    else {
-      setAuthRequired(true);
-    }
+  const closePopup = () => {
+    setShowAddLocationForm(false)
   }
 
-  if (authRequired) {
-    return (
-      <Redirect to="/login" />
-    );
+  const onAddLocation = () =>{
+    if(!getCookie(props.userId)) {
+      setAuthRequired(true);
+    }
+    setShowAddLocationForm(true);
   }
 
   return (
     <StyledLocationErr>
       <h4>Sorry, we couldn't find any location around you</h4>
-      <p>Maybe you want to try again</p>
-      <button onClick={() => window.location.reload()}>
-        Find places near you
-      </button>
-      <p>Or suggest us a location</p>
-      <button onClick={onAddLocation}>Add a Location</button>
-      <p>Or use our search feature</p>
+      <h6>If you have active filters you could try to disable them. <br/> Otherwise you could chose one of the options below.</h6>
+      <p>You could search for a place manually </p>
       <form type="submit">
         <input id="location-seach" type="text" placeholder="Search" />
         <input type="submit" value="" />
       </form>
+      <p>Or just add a new place here</p>
+      <button onClick={onAddLocation}>Add a Place</button>
       {
-        addNewLocationReq && <AddLocation />
+        showAddLocationForm && <AddLocation authRequired={authRequired} closePopup={closePopup}/>
       }
     </StyledLocationErr>
   );
