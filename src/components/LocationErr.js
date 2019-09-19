@@ -2,11 +2,10 @@ import React, { useEffect } from 'react';
 import { mapPromise } from '../redux/helpers';
 import { StyledLocationErr } from './componentStyles/LocationErrStyles';
 import { connect } from 'react-redux';
-import { getCookie } from './helpers/authHelpers';
 import { showAddLocation } from '../redux/actionCreators';
 
 const LocationErr = (props) => {
-  const { newSearch, showAddLocation, isShown } = props;
+  const { newSearch, showAddLocation } = props;
 
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {

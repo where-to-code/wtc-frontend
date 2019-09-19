@@ -22,7 +22,8 @@ function AddLocation (props){
         clearNewLocation,
         authRequired,
         isShown,
-        hideAddLocation 
+        hideAddLocation,
+        isAuth
     } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
@@ -107,7 +108,7 @@ function AddLocation (props){
                 <span onClick={hideMessage}>X</span>
             </div>
             {
-                authRequired && (
+                !isAuth && (
                     <>
                     <div>
                     <h2>You must login first</h2>
@@ -119,7 +120,7 @@ function AddLocation (props){
                 )
             }
             {
-                !authRequired && (
+                isAuth && (
                     <>
                     <form onSubmit={submitLocation}>
                         <div>
@@ -193,7 +194,8 @@ const mapStatetoProps = state => {
         loading: state.newLocation.loading,
         remoteError: state.newLocation.error, 
         isAdded: state.newLocation.isAdded,
-        isShown: state.newLocation.isShown
+        isShown: state.newLocation.isShown,
+        isAuth: state.auth.userId
     };
   };
   
