@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   z-index: 2;
-  background-color: ${props => (props.landing ? '' : 'rgb(219,219,219, 0.5)')};
+  background-color: ${props => (props.landing ? '' : 'rgb(229,229,229)')};
   .logo {
     width: 80px;
     &:hover {
@@ -26,13 +26,22 @@ export const StyledHeader = styled.header`
       height: 30px;
       width: 70px;
       font-size: 12px;
-      font-weight: 300;
+      font-weight: 400;
       margin: 0 10px;
       background: none;
       border: ${props =>
-        props.landing ? '0.5px solid #fff' : '0.5px solid #03525B'};
+        props.landing ? '2px solid #fff' : '1px solid #03525B'};
       border-radius: 5px;
       color: ${props => (props.landing ? '#fff' : '#666A7C')};
+      transition: all 0.3s ease 0s;
+      &:hover {
+        transition: all 0.3s ease 0s;
+        box-shadow: ${props =>
+          props.landing
+            ? '1px 1px 5px 1px rgba(3, 82, 91, 0.84)'
+            : '1px 1px 5px 1px rgba(102,106,124,1)'};
+        transform: translateY(-7px);
+      }
     }
     .add-space {
       background: #56c1cb
@@ -60,7 +69,7 @@ export const StyledHeader = styled.header`
       text-align: center;
     }
   }
-  .top-notif.green{
+  .top-notif.green {
     background: #56C1CB;
     border:1px solid #ffffff;
   }

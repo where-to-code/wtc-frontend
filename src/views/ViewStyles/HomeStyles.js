@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import home from '../../assets/home.jpeg';
+import home from '../../assets/caffe.jpg';
 import localisation from '../../assets/icons8-marker-red.png';
 
 export const StyledHome = styled.div`
