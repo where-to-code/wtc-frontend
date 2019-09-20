@@ -60,6 +60,7 @@ const Map = props => {
         });
       }
     });
+    // eslint-disable-next-line
   }, [locations.length, geolocation, activeLocation]);
 
   return <StyledMap id="map" />;
