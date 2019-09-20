@@ -45,7 +45,7 @@ const App = () => {
         />
         <Route
           exact
-          path="/email-message"
+          path="/email-message/:id"
           render={props => <EmailConfirmationMessage {...props} />}
         />
         <Route component={NotFound} />
