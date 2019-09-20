@@ -31,6 +31,8 @@ export const locationReducer = (
       return { ...state, loadingLocation: false, error: action.payload };
     case types.CLEAR_LOCATIONS:
       return { ...state, locations: [] };
+    case types.CLEAR_ALL_LOCATIONS:
+      return { ...state, allLocations: [] };
     default:
       return state;
   }
@@ -270,6 +272,7 @@ export const addReviewReducer = (state = {
 
 const newLocation = {
   location: null,
+  isShown: false,
   loading: false,
   isAdded: false,
   error: ''
@@ -299,6 +302,10 @@ export const addLocationReducer = (state = newLocation, action) => {
       };
     case types.CLEAR_NEW_LOCATION:
       return { ...state, isAdded: false }
+    case types.SHOW_ADD_LOCATION:
+      return { ...state, isShown: true }
+    case types.HIDE_ADD_LOCATION:
+      return { ...state, isShown: false }
     default:
       return state;
   }
