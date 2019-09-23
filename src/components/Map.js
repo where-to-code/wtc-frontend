@@ -21,16 +21,6 @@ const Map = props => {
     setGeolocationValue,
   } = props;
 
-  // Set the default position to Trafalgar Square, London
-  let mapCenter = { lat: 51.504831314, lng: -0.123499506 };
-
-  if (activeLocation) {
-    mapCenter = {
-      lat: Number(activeLocation.latitude),
-      lng: Number(activeLocation.longitude),
-    };
-  }
-
   const updateView = location => {
     let elm = document.getElementById(location.id);
     elm.scrollIntoView();
@@ -38,22 +28,23 @@ const Map = props => {
   };
 
   useEffect(() => {
+
     Promise.resolve(mapPromise).then(async mapObject => {
       let map;
-      mapCenter = await position(mapCenter);
-
-      if (!geolocation) {
-        map = mapInit(mapObject.maps, mapCenter);
-        setGeolocationValue(mapCenter);
-        mapsLoading();
-      } else {
-        map = mapInit(mapObject.maps, geolocation);
-        mapsLoading();
+      let mapCenter;
+      if (activeLocation) {
+        mapCenter = {
+          lat: Number(activeLocation.latitude),
+          lng: Number(activeLocation.longitude),
+        };
       }
-
+      else mapCenter = await position();
+      if (!geolocation) setGeolocationValue(mapCenter);
+      mapsLoading();
+      map = mapInit(mapObject.maps, mapCenter);
       // We add markers and modals to locations
       if (locations.length > 0) {
-        locations.map(location => {
+        locations.forEach(location => {
           let marker;
           const selectedLocation =
             activeLocation && activeLocation.name === location.name;
@@ -69,7 +60,8 @@ const Map = props => {
         });
       }
     });
-  });
+    // eslint-disable-next-line
+  }, [locations.length, geolocation, activeLocation]);
 
   return <StyledMap id="map" />;
 };

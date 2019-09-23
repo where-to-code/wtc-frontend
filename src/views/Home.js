@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledHome } from './ViewStyles/HomeStyles';
@@ -21,7 +21,6 @@ const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations 
         setGeolocationValue({ lat: latitude, lng: longitude });
         clearLocations();
         clearAllLocations();
-
         history.push('/locations');
       });
     });

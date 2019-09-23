@@ -25,6 +25,7 @@ const Location = props => {
 
   useEffect(() => {
     fetchSingleLocation(locationId);
+    // eslint-disable-next-line
   }, []);
 
   if (location) {

@@ -42,7 +42,7 @@ export const positionPromise = () => {
   }
 };
 
-export const position = async defaultPos => {
+export const position = async () => {
   try {
     const posObj = await positionPromise();
     return {
@@ -50,9 +50,6 @@ export const position = async defaultPos => {
       lng: posObj.coords.longitude
     };
   } catch {
-    return {
-      lat: defaultPos.lat,
-      lng: defaultPos.lng
-    };
+    return { lat: 51.504831314, lng: -0.123499506 };
   }
 };
