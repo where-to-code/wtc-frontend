@@ -1,3 +1,5 @@
+const uuid = require('uuid');
+
 export const getCookie = userId => {
   let cookieData = readCookie(userId);
   if (cookieData) {
@@ -22,11 +24,11 @@ function eraseCookie(userId) {
 
 // Stackover flow to read cookie value by name
 function readCookie() {
-  
-  const result = new RegExp(
+  // back to previous verision
+  let result;
+  return (result = new RegExp(
     '(?:^|; )' + encodeURIComponent('wtc') + '=([^;]*)'
-  )
-  return result.exec(document.cookie)
+  ).exec(document.cookie))
     ? result[1]
     : null;
 }
