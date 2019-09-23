@@ -20,7 +20,6 @@ function AddLocation (props){
         loading,
         isAdded,
         clearNewLocation,
-        authRequired,
         isShown,
         hideAddLocation,
         isAuth

@@ -33,6 +33,7 @@ const GitHub = ({ location, successGitlog }) => {
         setIsAuth(true);
       })
       .catch(err => setIsAuth(false));
+      // eslint-disable-next-line
   }, []);
 
   if (isAuth === null)
