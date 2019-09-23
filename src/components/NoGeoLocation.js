@@ -7,7 +7,7 @@ export default () => {
   const hideNoLoc = () => setToggleNoLoc(!toggleNoLoc);
 
   useEffect(() => {
-    navigator.geolocation.watchPosition(
+    navigator.geolocation.getCurrentPosition(
       () => setToggleNoLoc(false),
       () => setToggleNoLoc(true),
     );
