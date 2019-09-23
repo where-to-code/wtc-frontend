@@ -14,9 +14,7 @@ import LocationErr from '../components/LocationErr';
 import FilterPane from '../components/FilterPane';
 import {
   filterLocations,
-  locationLoads,
-  setGeolocationValue, 
-  clearLocations,
+  locationLoads
 } from '../redux/actionCreators';
 
 import NoGeoLocation from '../components/NoGeoLocation';
@@ -28,9 +26,6 @@ const SearchPage = props => {
     geolocation,
     locationLoads,
     loadingLocation,
-    locationsErr,
-    setGeolocationValue,
-    clearLocations,
     isGeolocated,
   } = props;
 
@@ -77,7 +72,6 @@ const SearchPage = props => {
 
 const mapStateToProps = state => ({
   allLocations: state.locations.allLocations,
-  locationsErr: state.locations.error,
   loadingLocation: state.locations.loadingLocation,
   geolocation: state.maps.geolocation,
   activeLocation: state.activeLocation,
@@ -88,8 +82,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { locationLoads, 
-    filterLocations, 
-    setGeolocationValue, 
-    clearLocations, 
+    filterLocations
   }
 )(SearchPage);

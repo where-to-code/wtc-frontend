@@ -7,11 +7,16 @@ export default () => {
   const hideNoLoc = () => setToggleNoLoc(!toggleNoLoc);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      () => setToggleNoLoc(false),
-      () => setToggleNoLoc(true),
-    );
-  });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        () => setToggleNoLoc(false),
+        () => setToggleNoLoc(true),
+      );
+    } else {
+      setToggleNoLoc(true);
+    }
+    
+  }, []);
 
   return (
     <StyledNoGeoLocation toggleNoLoc={toggleNoLoc}>
@@ -20,7 +25,7 @@ export default () => {
           Your browser doesn't support Geolocation, or you didn't allow it.
           Centering the map to a default location
         </p>
-        <button onClick={() => hideNoLoc()}>&times;</button>
+        <button onClick={() => hideNoLoc(false)}>&times;</button>
       </div>
     </StyledNoGeoLocation>
   );
