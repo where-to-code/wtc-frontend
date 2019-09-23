@@ -26,7 +26,7 @@ export default (props) => {
       );
       const cookieData = getCookie();
       setCookieToState(cookieData);  
-    }, []
+    }
   ); 
 
   return (
