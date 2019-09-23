@@ -8,7 +8,7 @@ export default () => {
 
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(
+      navigator.geolocation.getCurrentPosition(
         () => setToggleNoLoc(false),
         () => setToggleNoLoc(true),
       );
