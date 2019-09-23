@@ -19,8 +19,8 @@ describe('Email Confirmation Message tests', () => {
     })
     it('push to / if Continue To Homepage is clicked', async() => {
         const redirectUrl = '/'
-        const mainRoute = '/email-message/1'
-        const { getByText, container } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <EmailConfirmationMessage {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />, {}, { route: mainRoute })
+        const mainRoute = '/email-message/'
+        const { getByText, container } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <EmailConfirmationMessage {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />, {}, { route: '/email-message/1' })
         fireEvent.click(getByText('Continue to homepage'))
         expect(container.innerHTML).toEqual(
             expect.stringContaining(redirectUrl)

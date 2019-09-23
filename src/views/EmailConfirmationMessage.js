@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect }from 'react';
 import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
@@ -7,7 +7,8 @@ import {
   StyledMessage,
   StyledConfirmationPage
 } from './ViewStyles/EmailConfirmationMessageStyles';
-import { setTempCookie } from '../components/helpers/authHelpers';
+import { setTempCookie, getCookie } from '../components/helpers/authHelpers';
+import { setCookieToState } from '../redux/actionCreators';
 
 export default (props) => {
 
@@ -16,11 +17,18 @@ export default (props) => {
   // get him automatically logged in. However we have 
   // only partial data from BE that can be set to state ...
   // require BE upgrade for security and data integrity
-  setTempCookie( {
-    id: props.match.params, 
-    isVerified: true
-  }
-  )
+
+  useEffect (()=> {
+      setTempCookie( {
+        id: props.match.params, 
+        isVerified: true
+      }
+      );
+      const cookieData = getCookie();
+      setCookieToState(cookieData);  
+    }, []
+  ); 
+
   return (
     <StyledConfirmationPage>
       <Header />
