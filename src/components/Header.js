@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCookieToState, showAddLocation } from '../redux/actionCreators';
@@ -10,12 +10,23 @@ import logo from '../assets/logo.png';
 
 const Header = props => {
   const { landing, userId, isEmailVerified, setCookieToState, showAddLocation } = props;
-  const cookieData = getCookie();
-  // we have a cookie but no user ID (user relaoded the page/app)
-  if (cookieData && !userId) {
-    // we reinitialise the state with the data from the cookie
-    setCookieToState(cookieData);
-  }
+
+  const [ cookieData, setCookieData] = useState(null);
+
+  useEffect(() => {
+    //cookieData = getCookie();
+    setCookieData(getCookie())
+    // we have a cookie but no user ID (user relaoded the page/app)
+    if (cookieData && !userId) {
+      // we reinitialise the state with the data from the cookie
+      setCookieToState(cookieData);
+    }
+    // eslint-disable-next-line
+  }, [cookieData]
+
+  );
+
+
   const onLogout = () => {
     logout();
   };
