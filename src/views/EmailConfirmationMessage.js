@@ -17,10 +17,13 @@ export default (props) => {
   // get him automatically logged in. However we have 
   // only partial data from BE that can be set to state ...
   // require BE upgrade for security and data integrity
+  const userId =  Number(props.location.search.split('=')[1])
+  console.log('userId', userId);
 
   useEffect (()=> {
+    
       setTempCookie( {
-        id: props.match.params, 
+        id: userId, 
         isVerified: true
       }
       );
