@@ -32,8 +32,7 @@ export const StyledHeader = styled.header`
       border: ${props =>
         props.landing ? '2px solid #fff' : '1px solid #03525B'};
       border-radius: 5px;
-      // color: ${props => (props.landing ? '#fff' : '#666A7C')};
-      color: #666A7C;
+      color: ${props => (props.landing ? '#fff' : '#666A7C')};
       transition: all 0.3s ease 0s;
       &:hover {
         transition: all 0.3s ease 0s;

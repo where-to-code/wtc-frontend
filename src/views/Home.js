@@ -38,7 +38,8 @@ const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations 
       <Header landing={true} />
       <div className="container">
         <div className="row">
-        <div className="row-half">
+        <div className="row-half right">
+          <h2>Big title here</h2>
           <h3>Find places around me</h3>
           <button onClick={handleClick}>Geo locate me</button>
         </div>

@@ -20,7 +20,7 @@ export const StyledHome = styled.div`
     align-items: center;
     height: 100%;
     width: 100vw;
-    border:1px solid red;
+  
     .row{
       display: flex;
       flex-direction: column;
@@ -37,15 +37,22 @@ export const StyledHome = styled.div`
       height: 100%;
     }
 
+    .row-half.right{
+      background: white;
+    }
+
+
     h2, h3 {
       font-weight: bolder;
       font-size: 24px;
       line-height: 33px;
       text-align: center;
-      color: white;
-      text-shadow: 0px 4px 10px #666a7c;
+      color: #666A7C;
       font-family: 'Roboto', sans-serif;
       margin-bottom:20px;
+    }
+    h2{
+      font-size: 50px;
     }
     
     h3 {
