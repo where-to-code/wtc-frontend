@@ -81,7 +81,7 @@ const AddReview = props => {
   }
 
   return (
-    <StyledAddReview isShown={isShown}>
+    <StyledAddReview isShown={isShown} id={id}>
       {
         !id && (
           <>
