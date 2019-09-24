@@ -11,38 +11,30 @@ export const StyledHome = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  z-index: 5;
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items: center;
-    height: 500px;
-    width: 300px;
-    margin: auto 0;
+    height: 100%;
+    width: 100vw;
+    border:1px solid red;
     .row{
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       width: 100%;
+      height: 100%;
     }
     .row-half{
       display:flex;
       flex-direction: column;
       justify-content: center;
-      margin-top:10px;
       width: 100%;
-      background: white;
-      border-radius: 10px;
+      background: none;
       color: #666666;
-      padding : 20px 0;
-      border-left: 10px solid #DBDBDB;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.30), 
-      0 10px 10px rgba(0,0,0,0.60);
-    }
-    .row-half:hover{
-      margin-top:0px;
+      height: 100%;
     }
 
     h2, h3 {
@@ -102,15 +94,11 @@ export const StyledHome = styled.div`
   }
   @media (min-width: 600px) {
     .container {
-      width: 800px;
       .row{
         flex-direction: row;
       }
       .row-half{
         flex-direction: column;
-        width: 48%;
-        padding : 40px 0;
-        border-top: 10px solid #DBDBDB;
         border-left: none;
       }
       h2 {

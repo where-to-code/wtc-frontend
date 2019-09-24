@@ -37,7 +37,6 @@ const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations 
     <StyledHome>
       <Header landing={true} />
       <div className="container">
-        <h2>Where will you work from today?</h2>
         <div className="row">
         <div className="row-half">
           <h3>Find places around me</h3>
