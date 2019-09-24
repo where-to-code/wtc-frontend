@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';    
 import { connect } from 'react-redux';
-import { addNewLocation, clearNewLocation, hideAddLocation } from '../redux/actionCreators';
+import { addNewLocation, clearNewLocation, hideAddLocation, locationLoads } from '../redux/actionCreators';
 import { StyledOverlayPopup } from './componentStyles/OverlayPopupStyles';
 import { 
     StyledButton,
@@ -22,7 +22,9 @@ function AddLocation (props){
         clearNewLocation,
         isShown,
         hideAddLocation,
-        isAuth
+        isAuth,
+        locationLoads,
+        geolocation
     } = props
     const [locationPhotos, setLocationPhotos] = useState(null);
     const [description, setDescription] = useState('');
@@ -39,6 +41,7 @@ function AddLocation (props){
         setPlaceData(null);
         setFormError(null)
         hideAddLocation();
+        locationLoads(geolocation);
     }
     const submitLocation = (event) =>{
         event.preventDefault();
@@ -194,11 +197,12 @@ const mapStatetoProps = state => {
         remoteError: state.newLocation.error, 
         isAdded: state.newLocation.isAdded,
         isShown: state.newLocation.isShown,
-        isAuth: state.auth.userId
+        isAuth: state.auth.userId,
+        geolocation: state.maps.geolocation,
     };
   };
   
   export default connect(
     mapStatetoProps,
-    { addNewLocation, clearNewLocation, hideAddLocation }
+    { addNewLocation, clearNewLocation, hideAddLocation, locationLoads }
   )(AddLocation);
