@@ -34,7 +34,7 @@ export default (props) => {
 
   return (
     <StyledConfirmationPage>
-      <Header />
+      <Header {...props} />
       <StyledMessage>
         <img src={thankYou} alt="thank_you" />
         <p>Your email has been confirmed successfully.</p>

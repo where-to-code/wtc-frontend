@@ -47,7 +47,7 @@ const SearchPage = props => {
 
   return (
     <Fragment>
-      <Header />
+      <Header {...props}/>
       <StyledSearch>
         <LeftPane>
           <FilterPane setNewLocations={setNewLocations} />

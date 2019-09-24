@@ -68,7 +68,7 @@ const Header = props => {
           <TopNotif isVerified={isEmailVerified} />
         )}
       </div>
-      <AddLocation />
+      <AddLocation {...props} />
     </StyledHeader>
   );
 };

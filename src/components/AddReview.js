@@ -27,7 +27,6 @@ const AddReview = props => {
   } = props;
   const [allFields, setAllFields] = useState(false);
   const [notAuthed, setNotAuthed] = useState(false);
-  const [redirect, setRedirect] = useState(false);
 
   const [input, setInput] = useState({
     review: ''
@@ -71,14 +70,10 @@ const AddReview = props => {
     clearReview();
   };
   const redirectToLogin = () => {
-    setRedirect(true);
+    props.history.push('/login')
   }
 
-  if (redirect) {
-    return (
-      <Redirect to="/login" />
-    )
-  }
+
 
   return (
     <StyledAddReview isShown={isShown} id={id}>

@@ -6,8 +6,8 @@ import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
 import { setGeolocationValue, clearLocations, clearAllLocations } from '../redux/actionCreators';
 
-const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations }) => {
-
+const Home = props => {
+const { setGeolocationValue, clearLocations, history, clearAllLocations } = props;
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
@@ -35,7 +35,7 @@ const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations 
 
   return (    
     <StyledHome>
-      <Header landing={true} />
+      <Header landing={true} {...props} />
       <div className="container">
         <h2>Find the best places to code</h2>
         <form type="submit">
