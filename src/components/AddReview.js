@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
 import Review from './Review';
+import { Redirect } from 'react-router-dom';   
 import {
   setAddReviewFalse,
   clearReview,
@@ -22,7 +23,7 @@ const AddReview = props => {
     clearReview,
     addReview,
     locId,
-    loading
+    loading,
   } = props;
   const [allFields, setAllFields] = useState(false);
   const [notAuthed, setNotAuthed] = useState(false);
@@ -33,7 +34,7 @@ const AddReview = props => {
   const [inputChangeState, updateInputChangeState] = useState({
     review: false
   });
-  useEffect(() => {}, [id]);
+  useEffect(() => { }, [id]);
   const handleChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
 
@@ -68,33 +69,54 @@ const AddReview = props => {
     setAddReviewFalse();
     clearReview();
   };
+  const redirectToLogin = () => {
+    props.history.push('/login')
+  }
+
+
 
   return (
-    <StyledAddReview isShown={isShown}>
-      <h2>Add a Review</h2>
-      <form onSubmit={e => e.preventDefault()}>
-        <h4>Please rate the following</h4>
-        <StyledAddRating>
-          <Review title="Quietness" />
-          <Review title="Wifi Speed" />
-          <Review title="Community" />
-          <Review title="Accessibility" />
-        </StyledAddRating>
-        <div>
-          <h4>What do you think about this place?</h4>
-          <textarea name="review" onChange={handleChange} />
-          {allFields ? <span>All fields are required.</span> : null}
-          {notAuthed ? <span>You need to login to add a review.</span> : null}
-        </div>
+    <StyledAddReview isShown={isShown} id={id}>
+      {
+        !id && (
+          <>
+            <div>
+              <h2>You must login first</h2>
+            </div>
+            <button onClick={redirectToLogin}>
+              OK
+            </button>
+          </>
+        )
+      }
+      {
+        id && <>
+          <h2>Add a Review</h2>
+          <form onSubmit={e => e.preventDefault()}>
+            <h4>Please rate the following</h4>
+            <StyledAddRating>
+              <Review title="Quietness" />
+              <Review title="Wifi Speed" />
+              <Review title="Community" />
+              <Review title="Accessibility" />
+            </StyledAddRating>
+            <div>
+              <h4>What do you think about this place?</h4>
+              <textarea name="review" onChange={handleChange} />
+              {allFields ? <span>All fields are required.</span> : null}
+              {notAuthed ? <span>You need to login to add a review.</span> : null}
+            </div>
 
-        <button onClick={submitReview}>
-          {loading ? (
-            <Loader type="Oval" color="#fff" height={40} width={30} />
-          ) : (
-            'Add Review'
-          )}
-        </button>
-      </form>
+            <button onClick={submitReview}>
+              {loading ? (
+                <Loader type="Oval" color="#fff" height={40} width={30} />
+              ) : (
+                  'Add Review'
+                )}
+            </button>
+          </form>
+        </>
+      }
       <p onClick={closeModal}>&times;</p>
     </StyledAddReview>
   );

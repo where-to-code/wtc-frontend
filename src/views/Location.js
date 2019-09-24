@@ -36,7 +36,7 @@ const Location = props => {
           <TopContainer>
             <LocationBanner location={location} setEditing={setEditLocation} />
             <TopRightContainer>
-              <AverageRatings locId={locationId} location={location} />
+              <AverageRatings locId={locationId} location={location} {...props}/>
               <MapIFrame location={location} />
             </TopRightContainer>
           </TopContainer>

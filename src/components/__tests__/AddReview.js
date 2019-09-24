@@ -26,14 +26,55 @@ describe('Add Reviews tests', () => {
     expect(getByText('Loader Mock')).toBeTruthy()
   })
   it('prevents default on user submit', async () => {
+    const reducer = {
+      addReview: {
+        isShown: false,
+        review: {
+          quietness: null,
+          wifi_speed: null,
+          community: null,
+          accessibility: null,
+          description: '',
+          user_id: null,
+        },
+        loading: false
+      },
+      auth: {
+        userId: 1,
+      }
+    }
+    const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
     global.window = { location: { pathname: null } };
-    const { getByText } = await renderWithRedux(<AddReview />);
+    const { getByText } = await renderWithRedux(<AddReview />, { store });
     fireEvent.click(getByText('Add Review'));
     expect(global.window.location.pathname).toEqual('/');
   })
-  it('display an error message if some field is not present', async () =>{
-    const { getByText } = await renderWithRedux(<AddReview />);
+  it('display an error message if some field is not present', async () => {
+    const reducer = {
+      addReview: {
+        isShown: false,
+        review: {
+          quietness: null,
+          wifi_speed: null,
+          community: null,
+          accessibility: null,
+          description: '',
+          user_id: null,
+        },
+        loading: false
+      },
+      auth: {
+        userId: 1,
+      }
+    }
+    const store = createStore(() => reducer, compose(applyMiddleware(thunk)))
+    global.window = { location: { pathname: null } };
+    const { getByText } = await renderWithRedux(<AddReview />, { store });
     fireEvent.click(getByText('Add Review'));
     expect(getByText('All fields are required.')).toBeTruthy()
-  }) 
+  })
 });
+it('display a message if the user is not logged in', async () => {
+  const { getByText } = await renderWithRedux(<AddReview />);
+  expect(getByText('You must login first')).toBeTruthy()
+})
