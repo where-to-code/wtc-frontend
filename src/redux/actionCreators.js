@@ -362,7 +362,9 @@ export const addReviewLoad = () => ({
 export const addReview = (review, locId) => async dispatch => {
   dispatch(addReviewLoad());
   try {
-    await axios.post(`${url}/locations/${locId}/review`, review);
+    await axios.post(`${url}/locations/${locId}/review`, review, {
+      withCredentials: true
+    });
     dispatch(fetchSingleLocation(locId));
     dispatch(addReviewSuccess());
   } catch (error) {
