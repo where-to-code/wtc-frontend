@@ -21,7 +21,7 @@ const AverageRatings = props => {
         <button onClick={onClick}>Add a Review</button>
         <button>Add to Favourites</button>
       </div>
-      <AddReview locId={locId} />
+      <AddReview locId={locId} {...props}/>
     </StyledAverage>
   );
 };
