@@ -53,7 +53,7 @@ const Login = props => {
       if (res.status === 200) {
         // Login is successful so we write a cookie to auth the user
         setTempCookie(res.data.data);
-        props.history.push('/locations');
+        props.history.goBack();
       }
     });
   };
