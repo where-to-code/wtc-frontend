@@ -16,12 +16,12 @@ const AverageRatings = props => {
     <StyledAverage>
       <h3>Average Rating</h3>
       <p>{location.averageRating}</p>
-      {location.isGoogleRating && <span>&#33; Google Ratings</span>}
+      {location.isGoogleRating && location.reviews.length === 0 && <span>&#33; Google Ratings</span>}
       <div>
         <button onClick={onClick}>Add a Review</button>
         <button>Add to Favourites</button>
       </div>
-      <AddReview {...props} locId={locId} />
+      <AddReview locId={locId} {...props}/>
     </StyledAverage>
   );
 };
