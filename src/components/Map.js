@@ -32,13 +32,21 @@ const Map = props => {
     Promise.resolve(mapPromise).then(async mapObject => {
       let map;
       let mapCenter;
-      if (activeLocation) {
+      // if we receive a geoloc from the search bar
+      // set map center to the searched place
+      if(geolocation) {
+        mapCenter = geolocation;
+      }
+      // if we receive an geoloc from active location
+      else if (activeLocation) {
         mapCenter = {
           lat: Number(activeLocation.latitude),
           lng: Number(activeLocation.longitude),
         };
       }
+      // Otherwise we default the map center
       else mapCenter = await position();
+
       if (!geolocation) setGeolocationValue(mapCenter);
       mapsLoading();
       map = mapInit(mapObject.maps, mapCenter);
