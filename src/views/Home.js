@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StyledHome } from './ViewStyles/HomeStyles';
 import Header from '../components/Header';
 import { mapPromise } from '../redux/helpers';
-import { setGeolocationValue, clearLocations } from '../redux/actionCreators';
+import { setGeolocationValue, clearLocations, clearAllLocations } from '../redux/actionCreators';
 
-const Home = ({ setGeolocationValue, clearLocations, history }) => {
-  const [pos, updatePos] = useState(false);
-
+const Home = props => {
+const { setGeolocationValue, clearLocations, history, clearAllLocations } = props;
   useEffect(() => {
     Promise.resolve(mapPromise).then(mapObject => {
       const autocomplete = new mapObject.maps.places.Autocomplete(
@@ -21,7 +20,7 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
 
         setGeolocationValue({ lat: latitude, lng: longitude });
         clearLocations();
-        updatePos(true);
+        clearAllLocations();
         history.push('/locations');
       });
     });
@@ -30,12 +29,13 @@ const Home = ({ setGeolocationValue, clearLocations, history }) => {
   const handleClick = () => {
     setGeolocationValue(null);
     clearLocations();
+    clearAllLocations();
     history.push('/locations');
   };
 
-  return (
+  return (    
     <StyledHome>
-      <Header landing={true} />
+      <Header landing={true} {...props} />
       <div className="container">
         <h2>Where will you work from today?</h2>
         <div className="row">
@@ -64,7 +64,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       setGeolocationValue,
-      clearLocations
+      clearLocations,
+      clearAllLocations
     },
     dispatch
   );

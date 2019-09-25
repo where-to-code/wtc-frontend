@@ -56,7 +56,7 @@ const Registration = props => {
     if (
       !/^[a-zA-Z-]{2,}$/.test(firstname) ||
       !/^[a-zA-Z-]{2,}$/.test(lastname) ||
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) ||
+      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email) ||
       !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password) ||
       password !== confirmPassword
     ) {
@@ -120,7 +120,7 @@ const Registration = props => {
               onChange={handleChange}
             />
             {inputChangeState.email &&
-              !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+              !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
                 formState.email
               ) && <span>You have entered an invalid email address!</span>}
 

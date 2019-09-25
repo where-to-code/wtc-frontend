@@ -25,6 +25,7 @@ const Stars = props => {
       setStatic(false)
       setActiveStars([])
     }
+    // eslint-disable-next-line
   }, [isShown]);
 
   const onMouseEnter = index => {
@@ -62,6 +63,8 @@ const Stars = props => {
         case 'Accessibility':
           newReview.accessibility = index + 1;
           break;
+        default:
+          return //maybe a message error could be added here
       }
       addRatingValue(newReview)
       setActiveStars(starsArray)

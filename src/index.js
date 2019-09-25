@@ -9,7 +9,7 @@ import rootReducer from './redux/reducers/rootReducer';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 dotenv.config();

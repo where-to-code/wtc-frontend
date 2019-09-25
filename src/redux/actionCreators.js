@@ -127,6 +127,10 @@ export const clearLocations = () => ({
   type: types.CLEAR_LOCATIONS
 });
 
+export const clearAllLocations = () => ({
+  type: types.CLEAR_ALL_LOCATIONS
+})
+
 // ACTIONS FOR MAPS REDUCER
 export const mapsSucces = () => ({
   type: types.FETCH_MAP_API_SUCCESS
@@ -358,7 +362,9 @@ export const addReviewLoad = () => ({
 export const addReview = (review, locId) => async dispatch => {
   dispatch(addReviewLoad());
   try {
-    await axios.post(`${url}/locations/${locId}/review`, review);
+    await axios.post(`${url}/locations/${locId}/review`, review, {
+      withCredentials: true
+    });
     dispatch(fetchSingleLocation(locId));
     dispatch(addReviewSuccess());
   } catch (error) {
@@ -408,3 +414,11 @@ export const addNewLocation = locationData => dispatch => {
 export const clearNewLocation = () => ({
   type: types.CLEAR_NEW_LOCATION
 });
+
+export const showAddLocation = () => ({
+  type: types.SHOW_ADD_LOCATION
+})
+
+export const hideAddLocation = () => ({
+  type: types.HIDE_ADD_LOCATION
+})

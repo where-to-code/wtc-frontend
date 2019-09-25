@@ -40,7 +40,7 @@ const Login = props => {
     const { email, password } = details;
 
     if (
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) ||
+      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email) ||
       !/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,15}$/.test(password)
     ) {
       setAllFields(true);
@@ -53,7 +53,7 @@ const Login = props => {
       if (res.status === 200) {
         // Login is successful so we write a cookie to auth the user
         setTempCookie(res.data.data);
-        props.history.push('/locations');
+        props.history.goBack();
       }
     });
   };
@@ -79,7 +79,7 @@ const Login = props => {
               onChange={handleChange}
             />
             {inputChangeState.email &&
-              !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+              !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
                 details.email
               ) && <span>You have entered an invalid email address!</span>}
             <input

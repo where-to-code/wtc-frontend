@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setCookieToState } from '../redux/actionCreators';
+import { setCookieToState, showAddLocation } from '../redux/actionCreators';
 import { getCookie, logout } from './helpers/authHelpers';
 import { StyledHeader } from '../components/componentStyles/HeaderStyles';
 import TopNotif from '../components/TopNotif';
@@ -9,24 +9,30 @@ import AddLocation from '../components/AddLocation';
 import logo from '../assets/logo.png';
 
 const Header = props => {
-  const { landing, userId, isEmailVerified, setCookieToState } = props;
-  const [ showAddLocationForm, setShowAddLocationForm ] = useState(false);
-  const cookieData = getCookie();
-  // we have a cookie but no user ID (user relaoded the page/app)
-  if (cookieData && !userId) {
-    // we reinitialise the state with the data from the cookie
-    setCookieToState(cookieData);
-  }
+  const { landing, userId, isEmailVerified, setCookieToState, showAddLocation } = props;
+
+  const [ cookieData, setCookieData] = useState(null);
+
+  useEffect(() => {
+    //cookieData = getCookie();
+    setCookieData(getCookie())
+    // we have a cookie but no user ID (user relaoded the page/app)
+    if (cookieData && !userId) {
+      // we reinitialise the state with the data from the cookie
+      setCookieToState(cookieData);
+    }
+    // eslint-disable-next-line
+  }, [cookieData]
+
+  );
+
+
   const onLogout = () => {
     logout();
   };
 
-  const closePopup = () => {
-    setShowAddLocationForm(false)
-  }
-
   const displayAddForm = () => {
-    setShowAddLocationForm(true);
+    showAddLocation()
   }
 
   return (
@@ -62,9 +68,7 @@ const Header = props => {
           <TopNotif isVerified={isEmailVerified} />
         )}
       </div>
-      {
-        showAddLocationForm && <AddLocation authRequired={false} closePopup={closePopup}/>
-      }
+      <AddLocation {...props} />
     </StyledHeader>
   );
 };
@@ -72,11 +76,11 @@ const Header = props => {
 function mapStateToProps(state) {
   return {
     userId: state.auth.userId,
-    isEmailVerified: state.auth.isEmailVerified
+    isEmailVerified: state.auth.isEmailVerified,
   };
 }
 
 export default connect(
   mapStateToProps,
-  { setCookieToState }
+  { setCookieToState, showAddLocation }
 )(Header);

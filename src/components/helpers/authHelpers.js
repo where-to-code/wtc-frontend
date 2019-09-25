@@ -24,6 +24,7 @@ function eraseCookie(userId) {
 
 // Stackover flow to read cookie value by name
 function readCookie() {
+  // back to previous verision
   let result;
   return (result = new RegExp(
     '(?:^|; )' + encodeURIComponent('wtc') + '=([^;]*)'

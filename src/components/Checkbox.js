@@ -20,6 +20,7 @@ const Checkbox = props => {
 
   useEffect(() => {
     setNewLocations(filter);
+    // eslint-disable-next-line
   }, [filter]);
 
   return (

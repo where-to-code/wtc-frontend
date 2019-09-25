@@ -13,8 +13,8 @@ describe('<NotFound />', () => {
   });
 
   it('Renders the page not found message', () => {
-    const { getByRole } = renderWithRedux(<NotFound />);
+    const { getAllByRole } = renderWithRedux(<NotFound />);
 
-    expect(getByRole('heading').textContent).toEqual('Page Not Found');
+    expect(getAllByRole('heading')[1].textContent).toEqual('Page Not Found');
   });
 });

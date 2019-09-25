@@ -2,6 +2,14 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import NoGeoLocation from '../NoGeoLocation';
 
+beforeEach(() => {
+  const mockGeolocation = {
+    getCurrentPosition: jest.fn(),
+    watchPosition: jest.fn(),
+  };
+
+  navigator.geolocation = mockGeolocation;
+});
 afterEach(cleanup);
 
 describe('<NoGeoLocation />', () => {
