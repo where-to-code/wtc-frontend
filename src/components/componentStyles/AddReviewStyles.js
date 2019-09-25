@@ -7,7 +7,7 @@ export const StyledAddReview = styled.div`
     position: absolute;
     text-align: center;
     width: 500px;
-    height: 580px;
+    height: ${props => props.id ? '580px' : 'unset'};
     top: 50%;
     left: 50%;
     margin-top: -250px; /* Negative half of height. */

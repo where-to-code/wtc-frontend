@@ -31,9 +31,7 @@ function AddLocation (props){
     const [placeData, setPlaceData] = useState(null);
     const [formError, setFormError] = useState(null);
     const [fromUnsplash, setFromUnsplash] = useState(false);
-    const [redirect, setRedirect] = useState(false);
     
-
     const hideMessage = () =>{
         clearNewLocation();
         setLocationPhotos(null);
@@ -69,7 +67,7 @@ function AddLocation (props){
     };
 
     const redirectToLogin = () => {
-        setRedirect(true);
+        props.history.push('/login')
     }
 
     // useEffect to use the Map place API autocomplete
@@ -96,12 +94,6 @@ function AddLocation (props){
         });
         });
     });
-
-    if(redirect){
-        return(
-            <Redirect to="/login" />
-        )
-    }
 
     return (
         <StyledOverlayPopup isShown={isShown} id="add-location-form">
