@@ -41,7 +41,7 @@ const { setGeolocationValue, clearLocations, history, clearAllLocations } = prop
         <div className="row-half right">
           <h2>Where will you work from today?</h2>
           <p>Find the best places to work remotely, all  sourced from our community of remote workers.</p>
-          <button onClick={handleClick}>PLACES AROUND ME</button>
+          <button onClick={handleClick}>FIND PLACES AROUND ME</button>
         </div>
         <div className="row-half">
         <form type="submit">
