@@ -35,6 +35,7 @@ export const StyledHome = styled.div`
       color: antiquewhite;
       font-weight: bold;
       text-align: center;
+      font-size: 0.94rem;
     }
     form {
       display: flex;
