@@ -32,8 +32,7 @@ export const StyledHome = styled.div`
     }
     p {
       padding-top: 15px;
-      color: antiquewhite;
-      font-weight: bold;
+      color: #e5e5e5;
       text-align: center;
       font-size: 0.94rem;
     }
