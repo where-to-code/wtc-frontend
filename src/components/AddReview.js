@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Loader from 'react-loader-spinner';
 import Review from './Review';
-import { Redirect } from 'react-router-dom';   
+import { Redirect } from 'react-router-dom';
 import {
   setAddReviewFalse,
   clearReview,
@@ -14,6 +14,8 @@ import {
   StyledAddReview
 } from './componentStyles/AddReviewStyles';
 
+import { StyledModal } from './componentStyles/ModalStyles';
+
 const AddReview = props => {
   const {
     setAddReviewFalse,
@@ -23,18 +25,21 @@ const AddReview = props => {
     clearReview,
     addReview,
     locId,
-    loading,
+    loading
   } = props;
+
   const [allFields, setAllFields] = useState(false);
   const [notAuthed, setNotAuthed] = useState(false);
 
   const [input, setInput] = useState({
     review: ''
   });
+
   const [inputChangeState, updateInputChangeState] = useState({
     review: false
   });
-  useEffect(() => { }, [id]);
+
+  useEffect(() => {}, [id]);
   const handleChange = e => {
     setInput({ ...input, [e.target.name]: e.target.value });
 
@@ -43,6 +48,7 @@ const AddReview = props => {
       [e.target.name]: true
     });
   };
+
   const submitReview = () => {
     const newReview = review;
     newReview.description = input.review;
@@ -65,35 +71,33 @@ const AddReview = props => {
     addReview(newReview, locId);
     closeModal();
   };
+
   const closeModal = () => {
     setAddReviewFalse();
     clearReview();
   };
+
   const redirectToLogin = () => {
-    props.history.push('/login')
-  }
-
-
+    props.history.push('/login');
+  };
 
   return (
-    <StyledAddReview isShown={isShown} id={id}>
-      {
-        !id && (
-          <>
-            <div>
-              <h2>You must login first</h2>
-            </div>
-            <button onClick={redirectToLogin}>
-              OK
-            </button>
-          </>
-        )
-      }
-      {
-        id && <>
+    <StyledAddReview isShown={isShown}>
+      {!id && (
+        <StyledModal isShown={isShown}>
+          <span onClick={closeModal}>&times;</span>
+          <div>
+            <h2>You must login first</h2>
+            <button onClick={redirectToLogin}>OK</button>
+          </div>
+        </StyledModal>
+      )}
+      {id && (
+        <StyledModal isShown={isShown} id={id}>
+          <span onClick={closeModal}>&times;</span>
           <h2>Add a Review</h2>
           <form onSubmit={e => e.preventDefault()}>
-            <h4>Please rate the following</h4>
+            <h2>Please rate the following</h2>
             <StyledAddRating>
               <Review title="Quietness" />
               <Review title="Wifi Speed" />
@@ -101,23 +105,24 @@ const AddReview = props => {
               <Review title="Accessibility" />
             </StyledAddRating>
             <div>
-              <h4>What do you think about this place?</h4>
+              <h2>What do you think about this place?</h2>
               <textarea name="review" onChange={handleChange} />
               {allFields ? <span>All fields are required.</span> : null}
-              {notAuthed ? <span>You need to login to add a review.</span> : null}
+              {notAuthed ? (
+                <span>You need to login to add a review.</span>
+              ) : null}
             </div>
 
             <button onClick={submitReview}>
               {loading ? (
                 <Loader type="Oval" color="#fff" height={40} width={30} />
               ) : (
-                  'Add Review'
-                )}
+                'Add Review'
+              )}
             </button>
           </form>
-        </>
-      }
-      <p onClick={closeModal}>&times;</p>
+        </StyledModal>
+      )}
     </StyledAddReview>
   );
 };

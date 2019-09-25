@@ -40,7 +40,7 @@ export const StyledReview = styled.div`
   display: flex;
   border-bottom: 1px solid whitesmoke;
   width: 60%;
-  padding: 3px;
+  padding: 5px;
 
   label {
     width: 30%;
