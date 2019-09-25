@@ -45,7 +45,7 @@ function OverlayMessage(props) {
     <StyledOverlayPopup id="popup">
       <div className="message-container">
         <div className="closing-cross">
-          <span onClick={hideMessage}>X</span>
+          <span onClick={hideMessage}>&times;</span>
         </div>
         {newEmailVerification ? (
           <>
