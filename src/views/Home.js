@@ -39,16 +39,15 @@ const Home = ({ setGeolocationValue, clearLocations, history, clearAllLocations 
       <div className="container">
         <div className="row">
         <div className="row-half right">
-          <h2>Big title here</h2>
-          <h3>Find places around me</h3>
-          <button onClick={handleClick}>Geo locate me</button>
+          <h2>Where will you work from today?</h2>
+          <p>Find the best places to work remotely, all  sourced from our community of remote workers.</p>
+          <button onClick={handleClick}>PLACES AROUND ME</button>
         </div>
         <div className="row-half">
-          <h3>Search anywhere else</h3>
         <form type="submit">
           <input
             type="text"
-            placeholder="Search and select a place"
+            placeholder="OR SEARCH ANYWHERE"
             id="mapSuggestions"
           />
         </form>

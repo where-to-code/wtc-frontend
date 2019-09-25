@@ -12,6 +12,7 @@ export const StyledHome = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 5;
+
   .container {
     display: flex;
     flex-direction: column;
@@ -41,26 +42,30 @@ export const StyledHome = styled.div`
       background: white;
     }
 
-
     h2, h3 {
       font-weight: bolder;
-      font-size: 24px;
+      font-size: 32px;
       line-height: 33px;
       text-align: center;
       color: #666A7C;
       font-family: 'Roboto', sans-serif;
+      margin:0 auto;
       margin-bottom:20px;
+      width: 70%;
     }
     h2{
-      font-size: 50px;
+      font-size: 24px;
     }
-    
-    h3 {
-      color: #666A7C;
-      text-shadow: none;
-      margin-bottom:30px;
+
+    p {
+      width: 50%;
+      margin:0 auto;
+      padding-bottom: 20px;
+      text-align: center;
     }
-   
+    .white{
+      color:white;
+    }
     form {
       display: flex;
       width: 100%;
@@ -68,19 +73,19 @@ export const StyledHome = styled.div`
 
       input[type='text'] {
         background: url(${localisation}) no-repeat 3px;
-        opacity: .7;
         background-size: 20px;
         height: 35px;
-        width: 90%;
-        border: 1px solid #56c1cb;
-        border-radius: 10px;
-        color: #666;
+        width: 60%;
+        border: 3px solid white;
+        border-radius:5px;
+        color: white;
         padding-left:30px
         text-align: left;
         font-size: 16px;
         ::-webkit-input-placeholder {
-          color: #999;
+          color: white;
           font-size: 12px;
+          fonct-weight:regular;
         }
       }
     }
@@ -109,12 +114,12 @@ export const StyledHome = styled.div`
         border-left: none;
       }
       h2 {
-        font-size: 36px;
+        font-size: 42px;
         line-height: 50px;
       }
       form {
         input[type='text'] {
-          width: 90%;
+          width: 60%;
           height: 50px;
           ::-webkit-input-placeholder {
             font-size: 16px;
