@@ -4,6 +4,7 @@ export const FilterPaneStyle = styled.div`
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid rgb(229,229,229);
+  padding-top: 20px;
   .filter {
     color: #56c1cb;
     text-align: center;
