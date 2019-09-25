@@ -46,7 +46,7 @@ export const StyledAverage = styled.div`
       font-size: 1.5rem;
     }
     button {
-      width: 130px;
+      width: 150px;
       font-size: 12px;
     }
   }
