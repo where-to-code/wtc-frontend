@@ -11,7 +11,7 @@ import logo from '../assets/logo.png';
 const Header = props => {
   const { landing, userId, isEmailVerified, setCookieToState, showAddLocation } = props;
 
-  const [ cookieData, setCookieData] = useState(null);
+  const [cookieData, setCookieData] = useState(null);
 
   useEffect(() => {
     //cookieData = getCookie();
@@ -43,13 +43,13 @@ const Header = props => {
         </Link>
       </div>
       <div className="auth">
+        <button className="add-space" onClick={displayAddForm}>
+          Add a Place
+        </button>
         {
           cookieData
             ?
             <>
-              <button className="add-space" onClick={displayAddForm}>
-                Add a Place
-              </button>
               <button onClick={onLogout}>
                 Logout
               </button>
