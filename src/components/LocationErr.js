@@ -35,7 +35,7 @@ const LocationErr = (props) => {
         <input type="submit" value="" />
       </form>
       <p>Or just add a new place here</p>
-      <button onClick={onAddLocation}>Add a Place</button>
+      <button onClick={onAddLocation}>ADD A PLACE</button>
     </StyledLocationErr>
   );
 };
