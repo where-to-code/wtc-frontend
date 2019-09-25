@@ -1,39 +1,15 @@
 import styled from 'styled-components';
 
 export const StyledAddReview = styled.div`
-    display: ${props => props.isShown ? 'block': 'none'};
-    z-index: 1;
-    border-radius: 3%;
-    position: absolute;
-    text-align: center;
-    width: 500px;
-    height: ${props => props.id ? '580px' : 'unset'};
-    top: 50%;
-    left: 50%;
-    margin-top: -250px; /* Negative half of height. */
-    margin-left: -250px; /* Negative half of width. */
-    background-color: #f0efef;
+    display: ${props => (props.isShown ? 'block' : 'none')};
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 
-
-    h2 {
-        font-size: 2rem;
-        text-align: center;
-        padding: 30px 0;
-    }
-
-    h4 {
-        font-size: 1.2rem;
-        text-align: center;
-        padding: 20px 0;
-    }
-    textarea {
-        margin-left:12px;
-        width: 95%;
-        padding-bottom: 135px;
-        outline: none;
-        resize: none;
-
-    }
+    
     p {
         position: relative;
         bottom: 530px;
@@ -47,9 +23,8 @@ export const StyledAddReview = styled.div`
 `
 
 export const StyledAddRating = styled.div`
-    padding-left: 100px;
-    font-size: 1.1rem;
-    label {
-        width: 80%;
-    }
+    margin: 10px auto;
+    font-size: 16px;
+    width: 60%;
+
 `

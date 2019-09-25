@@ -21,7 +21,7 @@ export const StyledOverlayPopup = styled.div`
     background: white;
     width: 50%;
     min-width: 300px;
-    max-width: 600px;
+    max-width: 500px;
     border-radius:10px;
     color: #666A7C;
 }
@@ -43,9 +43,9 @@ h2{
     cursor: pointer;
     font-size: 1rem;
     padding: 15px;
-    border: 1px solid #56c1cb;
     border-radius: 5px;
-    color: #03525b;
+    background-color: #56c1cb;
+    color: #fff;
     margin-top: 15px;
   }
 
@@ -77,6 +77,7 @@ img {
 .right-box{
     width: 100%;
     margin: 10px
+    border-radius: 5px;
 }
 
 .error{
