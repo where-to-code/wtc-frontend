@@ -12,6 +12,7 @@ export const StyledHeader = styled.header`
   padding-right:20px;
   background-color: ${props => (props.landing ? '' : '#fff')};
   border-bottom: ${props => (props.landing ? 'none' : '1px solid #eee')};
+  box-shadow: ${props => (props.landing ? 'none' : '0 14px 28px rgba(0,0,0,0.1)')};
   .logo {
     width: 80px;
     &:hover {
