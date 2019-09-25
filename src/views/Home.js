@@ -38,6 +38,7 @@ const { setGeolocationValue, clearLocations, history, clearAllLocations } = prop
       <Header landing={true} {...props} />
       <div className="container">
         <h2>Find the best places to code</h2>
+        <p>Find the best places to work remotely, all  sourced from our community of remote workers.</p>
         <form type="submit">
           <input
             type="text"

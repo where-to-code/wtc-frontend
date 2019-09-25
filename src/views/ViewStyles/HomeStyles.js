@@ -30,6 +30,11 @@ export const StyledHome = styled.div`
       text-shadow: 0px 4px 10px #666a7c;
       font-family: 'Roboto', sans-serif;
     }
+    p {
+      padding-top: 15px;
+      color: antiquewhite;
+      font-weight: bold;
+    }
     form {
       display: flex;
       position: relative;
