@@ -8,13 +8,11 @@ export const StyledCheckbox = styled.label`
   cursor: pointer;
   font-size: 16px;
   user-select: none;
-
   input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
   }
-
   span {
     position: absolute;
     top: -3px;
@@ -24,25 +22,20 @@ export const StyledCheckbox = styled.label`
     background-color: #eee;
     border-radius: 2px;
   }
-
   &:hover input ~ span {
     background-color: #ccc;
   }
-
   input:checked ~ span {
     background-color: #56c1cb;
   }
-
   span:after {
     content: '';
     position: absolute;
     display: none;
   }
-
   input:checked ~ span:after {
     display: block;
   }
-
   span:after {
     left: 7px;
     top: 3px;

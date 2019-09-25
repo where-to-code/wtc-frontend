@@ -30,6 +30,12 @@ export const StyledHome = styled.div`
       text-shadow: 0px 4px 10px #666a7c;
       font-family: 'Roboto', sans-serif;
     }
+    p {
+      padding-top: 15px;
+      color: #e5e5e5;
+      text-align: center;
+      font-size: 0.94rem;
+    }
     form {
       display: flex;
       position: relative;
@@ -55,7 +61,7 @@ export const StyledHome = styled.div`
     button {
       width: 170px;
       background-color: #56c1cb;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: #fff;
       border: none;
@@ -68,7 +74,7 @@ export const StyledHome = styled.div`
   }
   @media (min-width: 600px) {
     .container {
-      width: 800px;
+      width: 600px;
       h2 {
         font-size: 36px;
         line-height: 50px;
@@ -88,7 +94,7 @@ export const StyledHome = styled.div`
       }
       button {
         width: 240px;
-        font-size: 16px;
+        font-size: 14px;
         padding: 16px;
       }
     }

@@ -9,7 +9,10 @@ export const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   z-index: 2;
-  background-color: ${props => (props.landing ? '' : 'rgb(229,229,229)')};
+  padding-right:20px;
+  background-color: ${props => (props.landing ? '' : '#fff')};
+  border-bottom: ${props => (props.landing ? 'none' : '1px solid #eee')};
+  box-shadow: ${props => (props.landing ? 'none' : '0 14px 28px rgba(0,0,0,0.1)')};
   .logo {
     width: 80px;
     &:hover {
@@ -24,30 +27,30 @@ export const StyledHeader = styled.header`
     align-items: center;
     button {
       height: 30px;
-      width: 70px;
       font-size: 12px;
       font-weight: 400;
-      margin: 0 10px;
+      margin: 0 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin:10px;
       background: none;
       border: ${props =>
-        props.landing ? '2px solid #fff' : '1px solid #03525B'};
+        props.landing ? '2px solid #fff' : 'none'};
       border-radius: 5px;
-      color: ${props => (props.landing ? '#fff' : '#666A7C')};
+      color: ${props => (props.landing ? '#fff' : '#111111')};
       transition: all 0.3s ease 0s;
       &:hover {
         transition: all 0.3s ease 0s;
-        box-shadow: ${props =>
-          props.landing
-            ? '1px 1px 5px 1px rgba(3, 82, 91, 0.84)'
-            : '1px 1px 5px 1px rgba(102,106,124,1)'};
+        color: ${props => (props.landing ? '#fff' : '#56c1cb')};
         transform: translateY(-7px);
       }
     }
     .add-space {
-      background: #56c1cb
-      width: 120px;
+      background: #56c1cb;
+      color: #fff;
+      border-radius:5px;
       &:hover {
-        background:none;
+        color: #fff;
       }
     }
   }
@@ -82,7 +85,6 @@ export const StyledHeader = styled.header`
     .auth {
       button {
         height: 40px;
-        width: 107px;
         font-size: 16px;
       }
     }
