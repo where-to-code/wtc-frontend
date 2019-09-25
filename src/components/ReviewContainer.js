@@ -39,7 +39,7 @@ const ReviewContainer = props => {
         <StyledNoReviews>
           <h4>There aren't reviews for this location yet</h4>
           <p>You could be the first to add one </p>
-          <button onClick={onClick}>Add a Review</button>
+          <button onClick={onClick}>ADD A REVIEW</button>
         </StyledNoReviews>
       }
     </>

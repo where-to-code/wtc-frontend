@@ -46,7 +46,7 @@ const { setGeolocationValue, clearLocations, history, clearAllLocations } = prop
             id="mapSuggestions"
           />
         </form>
-        <button onClick={handleClick}>Find places near you</button>
+        <button onClick={handleClick}>FIND PLACES NEAR YOU</button>
       </div>
     </StyledHome>
   );

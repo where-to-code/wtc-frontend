@@ -18,8 +18,8 @@ const AverageRatings = props => {
       <p>{location.averageRating}</p>
       {location.isGoogleRating && location.reviews.length === 0 && <span>&#33; Google Ratings</span>}
       <div>
-        <button onClick={onClick}>Add a Review</button>
-        <button>Add to Favourites</button>
+        <button onClick={onClick}>ADD A REVIEW</button>
+        <button>ADD TO FAVOURITES</button>
       </div>
       <AddReview locId={locId} {...props}/>
     </StyledAverage>

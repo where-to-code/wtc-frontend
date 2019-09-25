@@ -60,7 +60,7 @@ export const StyledHome = styled.div`
     button {
       width: 170px;
       background-color: #56c1cb;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: #fff;
       border: none;
@@ -93,7 +93,7 @@ export const StyledHome = styled.div`
       }
       button {
         width: 240px;
-        font-size: 16px;
+        font-size: 14px;
         padding: 16px;
       }
     }
