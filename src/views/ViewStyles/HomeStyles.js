@@ -34,6 +34,7 @@ export const StyledHome = styled.div`
       padding-top: 15px;
       color: antiquewhite;
       font-weight: bold;
+      text-align: center;
     }
     form {
       display: flex;
@@ -73,7 +74,7 @@ export const StyledHome = styled.div`
   }
   @media (min-width: 600px) {
     .container {
-      width: 800px;
+      width: 600px;
       h2 {
         font-size: 36px;
         line-height: 50px;
