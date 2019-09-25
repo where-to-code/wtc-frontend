@@ -21,16 +21,19 @@ export const StyledCheckbox = styled.label`
     left: 0;
     height: 20px;
     width: 20px;
-    background-color: #eee;
+    background-color: none;
+    border: 1px solid #ccc;
     border-radius: 2px;
   }
 
   &:hover input ~ span {
-    background-color: #ccc;
+    background-color: none;
+    border: 1px solid #56c1cb;
   }
 
   input:checked ~ span {
     background-color: #56c1cb;
+    border:none;
   }
 
   span:after {

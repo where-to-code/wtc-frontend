@@ -14,7 +14,7 @@ const FilterPane = props => {
   const checkboxes = ['quiet', 'wifi', 'accessibility', 'community'];
   return (
     <FilterPaneStyle>
-      <div className="filter">Filter</div>
+      <div className="filter">Filter locations by preferences</div>
       <div className="pane">
         {checkboxes.map(check => (
           <Checkbox

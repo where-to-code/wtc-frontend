@@ -3,13 +3,17 @@ import styled from 'styled-components';
 export const FilterPaneStyle = styled.div`
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 3px 2px 1px rgba(86, 193, 203, 0.5);
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.02);
+  padding-top:20px;
+  padding-bottom:10px;
   .filter {
     color: #56c1cb;
     text-align: center;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     &:hover {
       cursor: pointer;
     }
