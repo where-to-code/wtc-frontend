@@ -19,7 +19,7 @@ describe('Search Page tests', () => {
         const redirectUrl = '/locations'
         const mainRoute ='/'
         const { getByText, container } = await renderWithRedux(<TestingRouter ComponentWithRedirection={props => <Home {...props} />} RedirectUrl={redirectUrl} MainRoute={mainRoute} />)
-        fireEvent.click(getByText('Find places near you'))
+        fireEvent.click(getByText('FIND PLACES AROUND ME'))
         expect(container.innerHTML).toEqual(
             expect.stringContaining(redirectUrl)
           )

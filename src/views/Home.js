@@ -37,15 +37,23 @@ const { setGeolocationValue, clearLocations, history, clearAllLocations } = prop
     <StyledHome>
       <Header landing={true} {...props} />
       <div className="container">
-        <h2>Find the best places to code</h2>
+        <div className="row">
+        <div className="row-half right">
+          <h2>Where will you work from today?</h2>
+          <p>Find the best places to work remotely, all  sourced from our community of remote workers.</p>
+          <button onClick={handleClick}>FIND PLACES AROUND ME</button>
+        </div>
+        <div className="row-half">
         <form type="submit">
           <input
             type="text"
-            placeholder="Search and select a place"
+            placeholder="OR SEARCH ANYWHERE"
             id="mapSuggestions"
           />
         </form>
-        <button onClick={handleClick}>Find places near you</button>
+        </div>
+        </div>
+
       </div>
     </StyledHome>
   );
