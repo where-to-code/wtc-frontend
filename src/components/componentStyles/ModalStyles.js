@@ -7,8 +7,8 @@ export const StyledModal = styled.div`
   text-align: center;
   position: absolute;
   top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 400px;
   margin: 20px 0;
   padding: 15px;

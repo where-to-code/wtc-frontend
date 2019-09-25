@@ -104,17 +104,14 @@ function AddLocation(props) {
   return (
     <StyledOverlayPopup isShown={isShown} id="add-location-form">
       <div className="message-container">
-        <div className="closing-cross">
-          <span onClick={hideMessage}>X</span>
-        </div>
+        <span onClick={hideMessage}>&times;</span>
         {!isAuth && (
-          <StyledModal isShown={isShown}>
-            <span onClick={hideMessage}>&times;</span>
+          <>
             <div>
               <h2>You must login first</h2>
             </div>
             <button onClick={redirectToLogin}>OK</button>
-          </StyledModal>
+          </>
         )}
         {isAuth && (
           <>

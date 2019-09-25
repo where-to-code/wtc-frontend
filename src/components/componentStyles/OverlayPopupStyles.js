@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledOverlayPopup = styled.div`
   position: fixed; /* Sit on top of the page content */
-  display: ${props => props.isShown ? 'flex' : 'none'}
+  display: ${props => (props.isShown ? 'flex' : 'none')}
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -24,6 +24,25 @@ export const StyledOverlayPopup = styled.div`
     max-width: 500px;
     border-radius:10px;
     color: #666A7C;
+
+    span {
+      float: right
+    margin: 0;
+    width: auto;
+    color: #03525b;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold; 
+    }
+
+    button {
+      width: 100px;
+      height: 35px;
+      padding: 10px;
+      color: #fff;
+      background-color: #56c1cb;
+      border-radius: 5px;
+    }
 }
 h3, h2{
     font-size: 1.5rem;
@@ -31,7 +50,7 @@ h3, h2{
     color: #03525B;
 }
 h2{
-    font-size: 1.7rem;
+    font-size: 24px;
 }
 .actions-row{
     display:flex;
@@ -84,6 +103,4 @@ img {
     color: red;
     font-size: .8rem;
     padding: 10px;
-}
-
-`;
+}`;
