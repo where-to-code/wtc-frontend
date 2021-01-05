@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cross-env": "^5.2.1",
     "dotenv": "^8.1.0",
     "make-coverage-badge": "^1.1.1",
