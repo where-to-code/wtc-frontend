@@ -114,7 +114,7 @@ const Login = props => {
           </div>
           <StyleGit>
             <a href="https://github.com/login/oauth/authorize?client_id=86d82ca50b3aad5948e7">
-              <FaGithub/>
+              <FaGithub />
             </a>
           </StyleGit>
           <span>
